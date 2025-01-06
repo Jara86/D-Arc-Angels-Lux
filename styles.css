@@ -1,0 +1,27 @@
+
+body {
+    background: radial-gradient(circle, #8fd3f4, #296077);
+    font-family: 'Open Sans, sans-serif';
+    color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+container{display: block;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);}
+h1{
+    display: block;}
+    footer{
+        text-align: center;
+        font-size: 15px;
+        color: blueviolet;
+        padding-top: 20px;
+      
+    }
