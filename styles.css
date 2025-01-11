@@ -27,7 +27,10 @@ h1 {
     margin: 0;
     flex: 1;
 }
-
+.container1 img {
+  
+    border-radius: 50%;   /* For a perfect circle */
+}
 .container2 {
     display: block;
     max-width: 900px;
