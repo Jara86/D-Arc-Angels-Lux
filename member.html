@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="member.css"/>
+    <title>D'Arc Angels Lëtzebuerg</title>
+</head>
+<body>
+    <div class="container1">
+        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg" width="200" height="200">
+        <h1>D'Arc Angels Lëtzebuerg</h1>
+    </div>
+
+    <div class="container3">
+        <form>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="100">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" name="address" placeholder="Strasse, PLZ & Stadt" required maxlength="250">
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+            </div>
+            
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
+            </div>
+            
+            <div class="recaptcha">
+                <!-- Google reCAPTCHA will be inserted here -->
+            </div>
+            
+            <button type="submit">Absenden</button>
+            
+            <div class="success-message">
+                <p>Vielen Dank für Deine Anmeldung</p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

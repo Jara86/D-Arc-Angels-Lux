@@ -62,7 +62,7 @@ body {
 }
 
 /* Container styles */
-.container1, .container2 {
+.container1 {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -75,15 +75,20 @@ body {
     background: radial-gradient(circle, #75e0f1, #296077);
 }
 
-.container3 {
-    display: block;
+.container2, .container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     max-width: 900px;
     width: 100%;
+    margin-bottom: 20px; 
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
     background: radial-gradient(circle, #75e0f1, #296077);
 }
+
 
 /* Element styles */
 .container1 img {
