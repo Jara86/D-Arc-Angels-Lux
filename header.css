@@ -1,3 +1,14 @@
+body {
+    background: radial-gradient(circle, #75e0f1, #296077);
+    font-family: 'Open Sans', sans-serif;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
 /* Container styles */
 .header-container {
     display: flex;
@@ -24,4 +35,139 @@ h1 {
 h2 {
     text-align: center;
     font-size: 40px;
+}
+
+.navigation-container, .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 20px; 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    background: radial-gradient(circle, #75e0f1, #296077);
+}
+/* Navigation styles */
+.nav-list {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+.nav-list li a {
+    color: #183947;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.nav-list li a:hover {
+    color: #8fd3f4;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 10px;
+    min-width: 200px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content li {
+    padding: 5px 0;
+}
+
+.dropdown-content a {
+    color: #296077;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    color: #8fd3f4;
+}
+
+
+
+
+
+/* Element styles */
+.container1 img {
+    border-radius: 50%;
+}
+
+h1 {
+    margin: 0;
+    flex: 1;
+}
+
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Social media styles */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    filter: grayscale(100%) opacity(0.7);
+}
+
+.social-icon:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Footer styles */
+.footer-line {
+    width: 80%;
+    margin: 30px auto;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #8fd3f4, transparent);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.footer-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-link {
+    color: #183947;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #8fd3f4;
 }
