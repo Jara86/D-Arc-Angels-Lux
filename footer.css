@@ -1,0 +1,30 @@
+/* Footer styles */
+.footer-line {
+    width: 80%;
+    margin: 30px auto;
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #8fd3f4, transparent);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.footer-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-link {
+    color: #183947;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #8fd3f4;
+}

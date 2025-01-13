@@ -3,48 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"/>
+    <meta name="description" content="D'Arc Angels Lëtzebuerg membership registration page">
+    <link rel="stylesheet" href="Index.css"/>
+    <link rel="stylesheet" href="header.css"/>
+    <link rel="stylesheet" href="navigation.css"/>
+    <link rel="stylesheet" href="footer.css"/>
+    
     <link rel="stylesheet" href="member.css"/>
     <title>D'Arc Angels Lëtzebuerg</title>
+
 </head>
 <body>
-    <div class="container1">
-        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
-    </div>
+    <div id="header-placeholder"></div>
+    <div id="nav-placeholder"></div>
 
-    <div class="container3">
-        <form>
-            <div class="form-group">
-                <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="100">
-            </div>
-            
-            <div class="form-group">
-                <input type="text" name="address" placeholder="Strasse, PLZ & Stadt" required maxlength="250">
-            </div>
-            
-            <div class="form-group">
-                <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
-            </div>
-            
-            <div class="form-group">
-                <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
-            </div>
-            
-            <div class="form-group">
-                <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
-            </div>
-            
-            <div class="recaptcha">
-                <!-- Google reCAPTCHA will be inserted here -->
-            </div>
-            
-            <button type="submit">Absenden</button>
-            
+   <div class="container3">
+    <div id="member-info">
+        <form id="contactForm" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="100">
+        </div>
+        
+        <div class="form-group">
+            <input type="text" name="address" placeholder="Strasse, PLZ & Stadt" required maxlength="250">
+        </div>
+        
+        <div class="form-group">
+            <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+        </div>
+        
+        <div class="form-group">
+            <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
+        </div>
+        
+        <div class="form-group">
+            <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
+        </div>
+        
+        <button type="submit">Absenden</button>
+    </form>
+
             <div class="success-message">
                 <p>Vielen Dank für Deine Anmeldung</p>
             </div>
         </form>
-    </div>
+        </div>
+    
+        <div id="member-actions" class="membership-section">
+            <h2>Mitgliedschaft bei d'ARC Angels Lëtzebuerg</h2>
+    
+            <div class="membership-details">
+                <div class="benefits-box">
+                    <h3>Deine Vorteile als Mitglied</h3>
+                    <ul>
+                        <li>Teilnahme an exklusiven Events</li>
+                        <li>Vergünstigungen bei Trainings</li>
+                        <li>Zugang zur Community</li>
+                        <li>Regelmäßige Updates</li>
+                    </ul>
+                </div>
+        
+                <div class="pricing-box">
+                    <h3>Jahresbeitrag 2023</h3>
+                    <div class="price">40€</div>
+                </div>
+        
+                <div class="payment-info">
+                    <h3>Zahlungsinformationen</h3>
+                    <div class="payment-details">
+                        <p><strong>Payconiq Nummer:</strong> +352 691 544 816</p>
+                        <p><strong>Verwendungszweck:</strong> Deine E-Mail-Adresse</p>
+                    </div>
+                </div>
+        
+                <div class="membership-card-info">
+                    <h3>Nach deiner Anmeldung</h3>
+                    <p>Nach Zahlungseingang erhältst du deine digitale Mitgliedskarte für 2023 per E-Mail. Diese kannst du entweder ausdrucken oder auf deinem Handy speichern.</p>
+                </div>
+        
+                <div class="contact-support">
+                    <h3>Fragen?</h3>
+                    <p>Kontaktiere uns über unsere <a href="#">Facebook-Gruppe</a> oder per E-Mail an <a href="mailto:darcangelsletzebuerg@gmail.com">darcangelsletzebuerg@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    <div id="footer-placeholder"></div>
+</div>
+</div>
+
+    <script src="script.js" defer></script>
+
+   
 </body>
 </html>
+

@@ -38,3 +38,72 @@ button:hover {
     font-weight: bold;
     margin-top: 1rem;
 }
+.membership-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.membership-section h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2em;
+}
+
+.membership-details > div {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.benefits-box {
+    border-left: 4px solid #2ecc71;
+}
+
+.pricing-box {
+    text-align: center;
+    background: #75e0f1 !important;
+    color: white;
+}
+
+.price {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.payment-info {
+    border-left: 4px solid #e74c3c;
+}
+
+.payment-details p {
+    margin: 0.5rem 0;
+}
+
+.membership-card-info {
+    border-left: 4px solid #f1c40f;
+}
+
+.contact-support {
+    text-align: center;
+    background: #ecf0f1 !important;
+}
+
+.contact-support a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.contact-support a:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    color: #34495e;
+    margin-bottom: 1rem;
+}
