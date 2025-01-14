@@ -19,36 +19,71 @@
 
         <strong>Kontaktiere uns</strong>
         <div class="container">
-            <form id="contactForm" action="https://formsubmit.co/...@gmail.com" method="POST">
+            <form id="contactForm" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
                 <div class="form-group">
-                    <input type="hidden" name="_subject" value="Fragen formular!">
-                    <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="100">
-                </div>
-                
-                <div class="form-group">
-                    <input type="text" name="address" placeholder="Strasse, PLZ & Stadt" required maxlength="250">
-                </div>
-                
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
-                </div>
-                
-                <div class="form-group">
-                    <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
-                </div>
-                
-                <div class="form-group">
-                    <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
-                </div>
-                
-                <button type="submit">Absenden</button>
-            </form>
-        
-                    <div class="success-message">
-                        
+                    <input type="hidden" name="_subject" value="ett huet een eng froh 🤔🙋‍♂️🙋‍♀️">
+                        <input type="text" name="name" placeholder="Vorname" required maxlength="100">
+                        <input type="text" name="lastname" placeholder="Nachname" required maxlength="100">
                     </div>
+                    
+                    
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                name="street" 
+                                placeholder="Strasse" 
+                                required 
+                                pattern="^[a-zA-Z0-9\s]{3,}$" 
+                                maxlength="100"
+                            >
+                            <input 
+                                type="text" 
+                                name="postal_code" 
+                                placeholder="PLZ" 
+                                required 
+                                pattern="[0-9]{4}" 
+                                maxlength="4"
+                            >
+                            <input 
+                                type="text" 
+                                name="city" 
+                                placeholder="Stadt" 
+                                required 
+                                pattern="^[a-zA-Z\s]{2,}$" 
+                                maxlength="100"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                type="number" 
+                                name="age" 
+                                placeholder="Alter" 
+                                required 
+                                min="18" 
+                                max="120"
+                            >
+                        </div>
+                    
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
+                    </div>
+                    
+                    <button type="submit">Absenden</button>
                 </form>
-          </div>
+            
+                        <div class="success-message">
+                            <p>Vielen Dank für Dein Interesse🎯</p>
+                        </div>
+                    </form>
+                    </div>
         
         <div class="social-links">
             <a href="mailto:darcangelsletzebuerg@gmail.com" target="_blank">

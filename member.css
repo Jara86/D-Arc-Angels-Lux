@@ -9,6 +9,50 @@ input, textarea {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+.form-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[name="first_name"]{
+    flex: 1;
+}
+input[name="last_name"] {
+    flex: 1;
+}
+
+input[name="street"] {
+    flex: 2;
+}
+
+input[name="postal_code"] {
+    flex: 1;
+    width: 80px;
+}
+
+input[name="city"] {
+    flex: 1;
+}
+
+input[name="age"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Remove number spinner arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 textarea {
     min-height: 150px;
