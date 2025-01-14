@@ -1,0 +1,53 @@
+.training-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.training-module {
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: radial-gradient(circle, #75e0f1, #296077);
+}
+
+.content-box {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    margin: 1rem 0;
+}
+
+.training-steps {
+    list-style: none;
+    padding: 0;
+}
+
+.training-steps li {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.highlight {
+    font-size: 1.2em;
+    color: #2c3e50;
+    padding: 1rem;
+    background: #e3f2fd;
+    border-radius: 6px;
+    margin: 1rem 0;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: #34495e;
+    margin: 1rem 0;
+}
