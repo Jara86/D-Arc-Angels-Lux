@@ -16,26 +16,39 @@
     <div id="nav-placeholder"></div>
 
     <main class="content-container">
+
+        <strong>Kontaktiere uns</strong>
         <div class="container">
-            <h1>Kontaktiere uns</h1>
-            <form target="_blank" action="https://formsubmit.co/your@email.com" method="POST">
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="col">
-                    <input type="text" name="frisr-name" class="form-control" placeholder="Vorname" required>
-                  </div>
-                  <div class="col">
-                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                  </div>
+            <form id="contactForm" action="https://formsubmit.co/...@gmail.com" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Vor- und Nachname" required maxlength="100">
                 </div>
-              </div>
-              <div class="form-group">
-                <textarea placeholder="Your Message" class="form-control" name="message" rows="10" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Form</button>
+                
+                <div class="form-group">
+                    <input type="text" name="address" placeholder="Strasse, PLZ & Stadt" required maxlength="250">
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+                </div>
+                
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
+                </div>
+                
+                <button type="submit">Absenden</button>
             </form>
+        
+                    <div class="success-message">
+                        
+                    </div>
+                </form>
           </div>
-        <p>Mail to:  darcangelsletzebuerg@gmail.com </p>
+        
         <div class="social-links">
             <a href="mailto:darcangelsletzebuerg@gmail.com" target="_blank">
                 <img src="images/mail icon.jpg" alt="link_email" width="100" height="100">
