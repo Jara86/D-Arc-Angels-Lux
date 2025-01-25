@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+    crossorigin="anonymous"
+  />
     <meta name="description" content="D'Arc Angels Lëtzebuerg membership registration page">
     <link rel="stylesheet" href="Index.css"/>
     <link rel="stylesheet" href="header.css"/>
@@ -19,14 +25,27 @@
     <div id="nav-placeholder"></div>
 
     <main class="training-container">
-        <section class="training-module">
+        <div id="top"></div>
+        <section id="intro" class="training-module">
            
         <h1>Pferd & Reiter im Einklang: Training für berittenes Bogenschießen</h1>
 
             <p >Damit ihr beiden Freude am Sport habt, ist es notwendig dein Pferd in dieser Disziplin auch zu trainieren!</p>
+            <nav class="section-nav">
+                <ul>
+                    <li><a href="#intro">Pferd & Reiter im Einklang</a></li>
+                    <li><a href="#grundlagen">Desensibilisierung Grundlagen</a></li>
+                    <li><a href="#bogen-training">Training mit dem Bogen</a></li>
+                    <li><a href="#schrittweise">Schrittweise Desensibilisierung</a></li>
+                    <li><a href="#pfeile">Training mit den Pfeilen</a></li>
+                    <li><a href="#schiessen">Zeit mit dem Schießen</a></li>
+                    <li><a href="#tipps">Tipps und Tricks</a></li>
+                    <li><a href="#gegenkonditionierung">Gegenkonditionierung</a></li>
+                </ul>
+            </nav>
         </section>
     </div>
-        <section class="training-module">
+    <section id="grundlagen" class="training-module">
             <h2>Desensibilisierung Grundlagen</h2>
             <div class="content-box">
                 <h3>Hintergrund der Desensibilisierung</h3>
@@ -80,9 +99,10 @@
 </div>
 </ul>
 </div>
+
 </section>
 
-<section class="training-module">
+<section id="bogen-training" class="training-module">
     <h2>Training mit dem Bogen</h2>
     <div class="content-box">
         <h3>Anfang</h3>
@@ -109,7 +129,7 @@
 </div>
 </section>
 
-<section class="training-module">
+<section id="schrittweise" class="training-module">
     <h2>Training mit dem Bogen</h2>
     <div class="content-box">
         <h3>Schrittweise Desensibilisierung</h3>
@@ -166,7 +186,7 @@
         
     </section>
 
-    <section class="training-module">
+    <section id="pfeile" class="training-module">
         <h2>Training mit den Pfeilen</h2>
         <div class="content-box">
             <ul class="training-steps">
@@ -226,7 +246,7 @@
             </ul>
         </section>
 
-        <section class="training-module">
+        <section  id="schiessen" class="training-module">
             <h2>Zeit mit dem Schießen zu beginnen</h2>
             <div class="content-box">
                 <ul class="training-steps">
@@ -291,7 +311,7 @@
                 </ul>
             </section>
 
-            <section class="training-module">
+            <section id="tipps" class="training-module">
                 <h2>Tipps und Tricks zur Desensibilisierung</h2>
                 <div class="content-box">
                     <ul class="training-steps">
@@ -367,7 +387,7 @@
                 By structuring the information with headings and bullet points, the key takeaways are more easily accessible to the reader. The additional tips provide more practical guidance for implementing desensitization training.  </p>
             </section>
 
-            <section class="training-module">
+            <section id="gegenkonditionierung" class="training-module">
                 <h2>Gegenkonditionierung</h2>
                 <div class="content-box">
                     <ul class="training-steps">
@@ -461,7 +481,9 @@ Tipp: Es ist viel einfacher, einem Pferd positive Assoziationen beizubringen, al
                   </p>
                 </section>
 
-               
+                <div class="back-to-top">
+                    <a href="#top" class="top-link">↑ Nach oben</a>
+                </div>
                 </main>
 
                 <div id="footer-placeholder"></div>
