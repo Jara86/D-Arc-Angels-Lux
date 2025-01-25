@@ -8,6 +8,7 @@
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
+
 .form-group {
     display: flex;
     gap: clamp(5px, 1vw, 10px);
@@ -81,7 +82,26 @@ button {
         width: 100%;
     }
     
+    input[name="street"],
+    input[name="postal_code"],
+    input[name="city"] {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 10px;
+    }
+
+    input, textarea, button {
+        padding: 10px;
+    }
+
+    .success-message {
+        font-size: 1.2rem;
+    }
+}
     .membership-section h2 {
         font-size: clamp(1.5em, 3vw, 2em);
     }
-}

@@ -1,9 +1,12 @@
 
 /* Base styles */
 .form-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 800px;
+    margin: clamp(1rem, 4vw, 2rem) auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
 strong {
@@ -17,83 +20,56 @@ strong {
 
 .form-group {
     display: flex;
-    gap: 15px;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    gap: clamp(5px, 1vw, 10px);
+    margin-bottom: clamp(10px, 2vw, 15px);
 }
 
-/* Input styles */
 input, textarea {
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    transition: border-color 0.3s ease;
-    font-size: 16px;
+    width: 100%;
+    padding: clamp(6px, 1.5vw, 10px);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
-input:focus, textarea:focus {
-    border-color: #183947;
-    outline: none;
-}
-
-/* Specific input widths */
+/* Maintain flex ratios */
 input[name="first_name"],
 input[name="last_name"] {
-    flex: 1 1 200px;
+    flex: 1;
 }
 
 input[name="street"] {
-    flex: 2 1 300px;
+    flex: 2;
 }
 
 input[name="postal_code"] {
-    flex: 0 1 120px;
+    flex: 0 0 clamp(60px, 10vw, 80px);
 }
 
 input[name="city"] {
-    flex: 1 1 200px;
+    flex: 1;
 }
 
 input[name="age"] {
-    flex: 0 1 100px;
+    width: clamp(60px, 10vw, 80px);
 }
 
-/* Textarea styles */
 textarea {
-    width: 100%;
-    min-height: 150px;
-    resize: vertical;
+    min-height: clamp(100px, 20vw, 150px);
 }
 
-/* Button styles */
 button {
     background-color: #183947;
     color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2vw, 20px);
     width: 100%;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
-button:hover {
-    background-color: #8fd3f4;
-}
-
-/* Success message */
 .success-message {
-    text-align: center;
-    color: white;
-    font-family: brandon-grot-w01-light, sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: #183947;
-    border-radius: 6px;
+    font-size: clamp(18px, 3vw, 25px);
 }
+
 
 /* Remove number spinner arrows */
 input[type="number"]::-webkit-inner-spin-button,
@@ -103,9 +79,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* Responsive breakpoints */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .form-group {
-        gap: 10px;
+        flex-direction: column;
     }
 
     input[name="street"],
