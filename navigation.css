@@ -70,3 +70,15 @@ body {
 .dropdown-content a:hover {
     color: #8fd3f4;
 }
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .dropdown-content {
+        position: static;
+        width: 100%;
+        text-align: center;
+    }
+}
