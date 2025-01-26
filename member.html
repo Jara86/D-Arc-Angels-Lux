@@ -62,13 +62,16 @@
                 >
             </div>
             <div class="form-group">
+                <label for="dateOfBirth">Geburtsdatum</label>
                 <input 
-                    type="number" 
-                    name="age" 
-                    placeholder="Alter" 
-                    required 
-                    min="18" 
-                    max="120"
+                    type="date" 
+                    name="dateOfBirth" 
+                    placeholder="DD-MM-YYYY "
+                    placeholder="Geburtsdatum"
+                    required
+                    max="2050-12-31"
+                    min="1900-01-01"
+                    pattern="\d{2}-\d{2}-\d{4}"
                 >
             </div>
         
@@ -84,6 +87,22 @@
             <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
         </div>
         
+        <div class="info-box">
+            <p>Sobald Sie Ihren Antrag eingereicht haben, werden wir uns in Kürze mit Ihnen in Verbindung setzen, um Ihren Mitgliedsantrag zu vervollständigen.</p>
+        </div>
+        
+      
+        <div class="terms-section">
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="rules" name="rules" required>
+                <label for="rules">Ich habe die Mitgliedschaftsregeln gelesen und stimme ihnen zu.</label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.</label>
+            </div>
+        </div>
         <button type="submit">Absenden</button>
     </form>
 

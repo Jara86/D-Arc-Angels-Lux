@@ -23,6 +23,10 @@ input, textarea {
     font-size: clamp(14px, 1.5vw, 16px);
 }
 
+.form-group label {
+    color: #666;
+    font-size: clamp(14px, 1.5vw, 16px);
+}
 /* Maintain flex ratios */
 input[name="first_name"],
 input[name="last_name"] {
@@ -41,8 +45,8 @@ input[name="city"] {
     flex: 1;
 }
 
-input[name="age"] {
-    width: clamp(60px, 10vw, 80px);
+input[name="dateOfBirth"] {
+    width: clamp(160px, 20vw, 200px);
 }
 
 textarea {
@@ -56,9 +60,42 @@ button {
     width: 100%;
     font-size: clamp(14px, 1.5vw, 16px);
 }
+.info-box {
+    background: #f8f9fa;
+    border-left: 4px solid #183947;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin: clamp(1rem, 2vw, 1.5rem) 0;
+    border-radius: 4px;
+    font-size: clamp(14px, 1.5vw, 16px);
+}
+
+/* Terms section styling */
+.terms-section {
+    margin: clamp(1rem, 2vw, 1.5rem) 0;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: clamp(5px, 1vw, 10px);
+    margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: clamp(16px, 1.5vw, 20px);
+    height: clamp(16px, 1.5vw, 20px);
+    flex: 0 0 auto;
+}
+
+.checkbox-group label {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: #183947;
+}
 
 .success-message {
     font-size: clamp(18px, 3vw, 25px);
+    text-align: center;
+    padding-top: clamp(2rem, 4vw, 4rem);
 }
 
 /* Membership section styling */
