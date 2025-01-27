@@ -26,8 +26,12 @@
         <h2>Turnier-Anmeldeformular</h2>
 
         <div class="tournament-registration">
-            <form id="tournamentForm" action="https://formsubmit.co/your-email@example.com" method="POST" class="contact-form">
-                <input type="hidden" name="_subject" value="Tournament Registration 🎯">
+            <form id="tournamentForm" 
+             method="POST"
+              data-netlify="true" 
+              class="contact-form">
+                <input type="hidden"
+                 name="_subject" value="Tournier Registration 🎯">
                 
                 <div class="participant-section">
                     <h3>Hauptteilnehmer</h3>
@@ -100,7 +104,9 @@
               <div class="form-group checkbox-group">
                   <input type="checkbox" id="privacy" name="privacy" required>
                   <label for="privacy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
-              </div>
+                  <input type="checkbox" id="privacy" name="privacy" required>
+                  <label for="privacy">Ich habe die Teilnamebedinungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
+                </div>
        
 
             <button type="submit">Anmelden</button>

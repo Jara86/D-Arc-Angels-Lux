@@ -1,88 +1,57 @@
-.offerings-container {
-    max-width: 1200px;
+.content-container {
+    max-width: 900px;
     margin: 0 auto;
-    padding: clamp(1rem, 3vw, 2rem);
+    padding: 20px;
 }
 
-.training-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-    gap: clamp(1rem, 3vw, 2rem);
-    margin: clamp(1rem, 3vw, 2rem) 0;
+/* Single column layout for better readability */
+.training-sections-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .training-card {
     background: white;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    margin-bottom: 20px;
 }
 
-.training-card:hover {
-    transform: translateY(-5px);
-}
-
-.price-cards {
+.info-sections-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: clamp(1rem, 3vw, 2rem);
-    margin: clamp(1rem, 3vw, 2rem) 0;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.price-card {
+.equipment-rental, .private-training {
     background: white;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    border-radius: 8px;
-    text-align: center;
-    flex: 1;
-    min-width: min(200px, 100%);
-}
-
-.price {
-    font-size: clamp(1.8em, 4vw, 2.5em);
-    font-weight: bold;
-    color: #3498db;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
 }
 
 .event-card {
-    background: #f8f9fa;
-    padding: clamp(1.5rem, 3vw, 2rem);
-    margin: clamp(0.75rem, 2vw, 1rem) 0;
-    border-radius: 8px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    margin: 2rem 0;
 }
 
-.highlight {
-    color: #e74c3c;
-    font-weight: bold;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-}
-
-.cta-button {
-    display: inline-block;
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
-    background: #3498db;
+/* Consistent button styling */
+.btn-primary, .cta-button {
+    background: #183947;
     color: white;
-    text-decoration: none;
+    padding: 10px 20px;
     border-radius: 4px;
-    margin-top: clamp(0.75rem, 2vw, 1rem);
-    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.cta-button:hover {
-    background: #2980b9;
-    transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-    .price-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .price-card {
-        width: 100%;
-        max-width: 400px;
-    }
+.btn-primary:hover, .cta-button:hover {
+    background: #296077;
+    transform: none;
 }

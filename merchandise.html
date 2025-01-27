@@ -160,8 +160,85 @@
     </div>
 </div>
 </section>
+<section class="order-section">
+    <h2>Bestellung aufgeben</h2>
+    <form name="merchandise-order" method="POST" data-netlify="true" class="order-form">
+        <input type="hidden" name="subject" value="Neue Merchandise Bestellung">
+        
+        <!-- Customer Details -->
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="member">Mitgliedschaft:</label>
+            <select id="member" name="member" required>
+                <option value="member">Member</option>
+                <option value="non-member">Non-Member</option>
+            </select>
+        </div>
+
+        <!-- Order Items Section -->
+        <div class="order-items">
+            <h3>Deine Bestellung</h3>
+            <div id="order-list">
+                <!-- Dynamic order items will appear here -->
+            </div>
+            
+            <div class="add-item-form">
+                <div class="form-group">
+                    <label for="product">Produkt:</label>
+                    <select id="product" name="product">
+                        <option value="">Bitte wählen</option>
+                        <!-- Clothing -->
+                        <option value="grey-shirt">T-shirt - Dunkel grau</option>
+                        <option value="turquoise-shirt">T-Shirt - Türkis</option>
+                        <option value="black-shirt">T-shirt - Schwarz</option>
+                        <option value="hoodie">Hoodie</option>
+                        <option value="gilet-m">Fleece Gilet Herren</option>
+                        <option value="gilet-w">Fleece Gilet Damen</option>
+                        <!-- Accessories -->
+                        <option value="cup">Tassen</option>
+                        <option value="sticker">Runde Sticker</option>
+                        <option value="pen">Bic'er</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="size-group">
+                    <label for="size">Größe:</label>
+                    <select id="size" name="size">
+                        <option value="">Bitte wählen</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Anzahl:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                </div>
+
+                <button type="button" id="add-item" class="btn-secondary">Artikel hinzufügen</button>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Bestellung absenden</button>
+    </form>
+</section>
 </main>
 
 <div id="footer-placeholder"></div>
 <script src="script.js"></script>
+<script src="merchandise.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
