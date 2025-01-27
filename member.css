@@ -24,8 +24,10 @@ input, textarea {
 }
 
 .form-group label {
-    color: #666;
+    display: block;
+    margin-bottom: clamp(5px, 1vw, 8px);
     font-size: clamp(14px, 1.5vw, 16px);
+    color: #000;
 }
 /* Maintain flex ratios */
 input[name="first_name"],
