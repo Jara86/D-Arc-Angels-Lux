@@ -17,19 +17,30 @@
     
     <link rel="stylesheet" href="tournaments.css"/>
     <title>D'Arc Angels Lëtzebuerg</title>
-
+<Body>
  
 
       <div id="header-placeholder"></div>
       <div id="nav-placeholder"></div>
-  <div class="content-container">
-    <div class="tournament-registration">
-        <form id="tournamentForm" action="https://formsubmit.co/your-email@example.com" method="POST" class="contact-form">
-            <input type="hidden" name="_subject" value="Tournament Registration 🎯">
-            
-            <!-- Primary Participant -->
-            <div class="participant-section">
-              <h3>Hauptteilnehmer</h3>
+      <div class="content-container">
+        <div class="tournament-registration">
+            <form id="tournamentForm" action="https://formsubmit.co/your-email@example.com" method="POST" class="contact-form">
+                <input type="hidden" name="_subject" value="Tournament Registration 🎯">
+                
+                <div class="participant-section">
+                    <h3>Hauptteilnehmer</h3>
+                    
+                    <div class="form-group select-group">
+                        <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
+                        <select id="turnier" name="tournament" required>
+                            <option value="">Turnier auswählen</option>
+                            <option value="france">Turnier beispiel 1</option>
+                            <option value="italy">Turnier beispiel 2</option>
+                            <option value="usa">Turnir beispiel 3</option>
+                            <option value="brazil">Turnier beispiel 4</option>
+                            <option value="japan">Turnier beispiel 5</option>
+                        </select>
+                    </div>
               <div class="form-group">
                   <input type="text" name="participant1_name" placeholder="Vorname" required maxlength="100">
                   <input type="text" name="participant1_lastname" placeholder="Nachname" required maxlength="100">
@@ -53,55 +64,48 @@
               <div class="form-group">
                   <input type="tel" name="participant1_phone" placeholder="Handynummer" required maxlength="50">
               </div>
+              <div class="form-group radio-group">
+                <p class="radio-label">Teilnahmeart:</p>
+                <div class="radio-options">
+                    <div class="radio-item">
+                        <input type="radio" id="participant1_foot" name="participant1_type" value="foot" required>
+                        <label for="participant1_foot">"Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten)."</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="participant1_horse" name="participant1_type" value="horse" required>
+                        <label for="participant1_horse">"Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst."</label>
+                    </div>
+                    </div>
+                </div>
           </div>
 
-            <!-- Additional Participants Container -->
-            <div id="additional-participants"></div>
+           
+           
 
-            <!-- Add Participant Button -->
-            <button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
+           
 
-            <!-- Common Tournament Details -->
-            <div class="form-group select-group">
-                <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
-                <select id="turnier" name="tournament" required>
-                    <option value="">Turnier auswählen</option>
-                    <option value="france">Turnier beispiel 1</option>
-                    <option value="italy">Turnier beispiel 2</option>
-                    <option value="usa">Turnir beispiel 3</option>
-                    <option value="brazil">Turnier beispiel 4</option>
-                    <option value="japan">Turnier beispiel 5</option>
-                </select>
-            </div>
+            
+           
+ <!-- Add Participant Button -->
+</div>
 
-            <div class="form-group radio-group">
-              <p class="radio-label">Teilnahmeart wählen:</p>
-              <div class="radio-options">
-                  <div class="radio-item">
-                      <input type="radio" id="foot" name="participation_type" value="foot" required>
-                      <label for="foot">Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten).</label>
-                  </div>
-                  <div class="radio-item">
-                      <input type="radio" id="horse" name="participation_type" value="horse" required>
-                      <label for="horse">Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst</label>
-                  </div>
-              </div>
-          </div>
-            <div class="terms-section">
-              <div class="form-group checkbox-group">
-                  <input type="checkbox" id="rules" name="rules" required>
-                  <label for="rules">Ich habe die Teilnahmebestimungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
-              </div>
+<div id="additional-participants"></div>
+<button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
+</form>
+
+
               
               <div class="form-group checkbox-group">
                   <input type="checkbox" id="privacy" name="privacy" required>
                   <label for="privacy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
               </div>
-          </div>
+       
 
             <button type="submit">Anmelden</button>
         </form>
     </div>
+  </div>
+  </div>
     <div class="tournaments-container">
       <h2>Turniere 2025</h2>
       
@@ -166,6 +170,16 @@ document.getElementById('addParticipant').addEventListener('click', function() {
             <div class="form-group">
                 <input type="tel" name="participant${participantCount}_phone" placeholder="Handynummer" required maxlength="50">
             </div>
+             <div class="form-group radio-group">
+                <p class="radio-label">Teilnahmeart:</p>
+                <div class="radio-options">
+                    <div class="radio-item">
+                        <input type="radio" id="participant${participantCount}_foot" name="participant${participantCount}_type" value="foot" required>
+                        <label for="participant${participantCount}_foot">"Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten)."</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="participant${participantCount}_horse" name="participant${participantCount}_type" value="horse" required>
+                        <label for="participant${participantCount}_horse">"Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst."</label>
         </div>
     `;
     

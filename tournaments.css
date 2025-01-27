@@ -1,3 +1,6 @@
+
+
+
 .participant-section {
     border: 1px solid #183947;
     padding: clamp(1rem, 2vw, 1.5rem);
@@ -5,6 +8,12 @@
     border-radius: 8px;
 }
 
+.main-participant-section {
+    border: 1px solid #183947;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    border-radius: 8px;
+}
 .participant-section h3 {
     font-size: clamp(16px, 1.8vw, 20px);
     margin-bottom: clamp(10px, 1.5vw, 15px);
@@ -32,11 +41,12 @@
         gap: 1rem;
     }
     
+   
     .radio-label {
+        padding: 15px 0;
         font-weight: 500;
         color: #183947;
     }
-    
     .radio-options {
         display: flex;
         flex-direction: column;
