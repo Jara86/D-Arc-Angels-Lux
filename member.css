@@ -23,15 +23,10 @@ input, textarea {
     font-size: clamp(14px, 1.5vw, 16px);
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: clamp(5px, 1vw, 8px);
-    font-size: clamp(14px, 1.5vw, 16px);
-    color: #000;
-}
-/* Maintain flex ratios */
-input[name="first_name"],
-input[name="last_name"] {
+
+
+input[name="name"],
+input[name="lastname"] {
     flex: 1;
 }
 
