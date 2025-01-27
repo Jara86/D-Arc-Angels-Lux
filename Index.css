@@ -68,8 +68,14 @@ h2 {
     font-weight: bold;
     padding: 10px;
 }
+.nav-list > a {
+    color: #183947;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+}
 
-.nav-list li a:hover {
+.nav-list > a:hover {
     color: #8fd3f4;
 }
 
@@ -87,6 +93,11 @@ h2 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     padding: 10px;
     min-width: 200px;
+    z-index: 1000;
+}
+.dropdown > a {
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .dropdown:hover .dropdown-content {
