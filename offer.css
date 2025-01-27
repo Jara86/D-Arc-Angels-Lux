@@ -1,0 +1,88 @@
+.offerings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: clamp(1rem, 3vw, 2rem) 0;
+}
+
+.training-card {
+    background: white;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+}
+
+.price-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: clamp(1rem, 3vw, 2rem) 0;
+}
+
+.price-card {
+    background: white;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    min-width: min(200px, 100%);
+}
+
+.price {
+    font-size: clamp(1.8em, 4vw, 2.5em);
+    font-weight: bold;
+    color: #3498db;
+}
+
+.event-card {
+    background: #f8f9fa;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    margin: clamp(0.75rem, 2vw, 1rem) 0;
+    border-radius: 8px;
+}
+
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: clamp(0.75rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .price-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .price-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}
