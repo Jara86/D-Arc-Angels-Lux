@@ -74,10 +74,19 @@
                 </select>
             </div>
 
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="horse" name="horse" required>
-                <label for="horse">Ich habe ein Pferd/Pony das für das Berittene Bogenschießen ausgebildet ist und sorge selbst für den Transport</label>
-            </div>
+            <div class="form-group radio-group">
+              <p class="radio-label">Teilnahmeart wählen:</p>
+              <div class="radio-options">
+                  <div class="radio-item">
+                      <input type="radio" id="foot" name="participation_type" value="foot" required>
+                      <label for="foot">Ich nehme am Turnier zu Fuss teil als Bodenschutze ohne Pferd</label>
+                  </div>
+                  <div class="radio-item">
+                      <input type="radio" id="horse" name="participation_type" value="horse" required>
+                      <label for="horse">Ich habe ein Pferd/Pony das für das Berittene Bogenschießen ausgebildet ist und sorge selbst für den Transport</label>
+                  </div>
+              </div>
+          </div>
             <div class="terms-section">
               <div class="form-group checkbox-group">
                   <input type="checkbox" id="rules" name="rules" required>
