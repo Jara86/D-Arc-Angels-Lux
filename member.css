@@ -7,7 +7,44 @@
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
+.member-section {
+    border: 1px solid #183947;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    border-radius: 8px;
+}
 
+.member-section.junior {
+    border-left: 4px solid #ff9800;
+    background-color:none;
+}
+
+.add-member-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    flex: 1;
+    background-color: #ffffff;
+    color: #183947;
+    border: 2px solid #183947;
+    padding: clamp(8px, 1.5vw, 10px);
+    font-size: clamp(14px, 1.5vw, 16px);
+    cursor: pointer;
+}
+
+.btn-secondary.junior {
+    color: #ff9800;
+    border-color: #ff9800;
+}
+
+.guardian-info {
+    background-color: #fff5e6;
+    padding: 10px;
+    border-radius: 4px;
+}
 
 .form-group {
     display: flex;
@@ -18,32 +55,36 @@
 input, textarea {
     width: 100%;
     padding: clamp(6px, 1.5vw, 10px);
-    border: 1px solid #ccc;
+    border: 1px solid #183947;
     border-radius: 4px;
     font-size: clamp(14px, 1.5vw, 16px);
 }
 
 
 
-input[name="name"],
-input[name="lastname"] {
+input[name^="member"][name$="_name"],
+input[name^="member"][name$="_lastname"] {
     flex: 1;
 }
 
-input[name="street"] {
+input[name^="member"][name$="_street"] {
     flex: 2;
 }
 
-input[name="postal_code"] {
+input[name^="member"][name$="_postal_code"] {
     flex: 0 0 clamp(60px, 10vw, 80px);
 }
 
-input[name="city"] {
+
+input[name^="member"][name$="_city"] {
     flex: 1;
 }
 
-input[name="dateOfBirth"] {
+input[name="dob"] {
     width: clamp(160px, 20vw, 200px);
+}
+input[name^="member"][name$="_dateOfBirth"] {
+    width: clamp(160px, 20vw, 100px);
 }
 
 textarea {

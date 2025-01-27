@@ -23,74 +23,97 @@
 <body>
     <div id="header-placeholder"></div>
     <div id="nav-placeholder"></div>
+    <form 
+    id="membershipForm" 
+    action="https://formsubmit.co/jarouschka@gmail.com" 
+    method="POST"
+    data-netlify="true"
+    class="contact-form"
+    >
+    <input type="hidden" name="_subject" value="en neie Member 🎯">
+    
+    <div class="form-group">
+    <input type="text" name="name" placeholder="Vorname" required maxlength="100">
+    <input type="text" name="lastname" placeholder="Nachname" required maxlength="100">
+    </div>
+    
+    <div class="form-group">
+    <input 
+    type="text" 
+    name="street" 
+    placeholder="Strasse" 
+    required 
+    pattern="^[a-zA-Z0-9\s]{3,}$" 
+    maxlength="100"
+    >
+    <input 
+    type="text" 
+    name="postal_code" 
+    placeholder="PLZ" 
+    required 
+    pattern="[0-9]{4}" 
+    maxlength="4"
+    >
+    <input 
+    type="text" 
+    name="city" 
+    placeholder="Stadt" 
+    required 
+    pattern="^[a-zA-Z\s]{2,}$" 
+    maxlength="100"
+    >
+    </div>
+    
+    
+    <div class="form-group">
+    <input 
+    type="date" 
+    name="dob" 
+    placeholder="Geburtsdatum"
+    required
+    max="2050-12-31"
+    min="1900-01-01"
+    >
+    </div>
+    
+    
+    <div class="form-group">
+    <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+    </div>
+    
+    
+    <div class="form-group">
+    <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
+    </div>
+    
+    
+    <div class="form-group">
+    <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
+    </div>
+    
 
    
 
-<div class="content-container">
-    <div id="member-info">
-        <form 
-            id="membershipForm" 
-            action="https://formsubmit.co/jarouschka@gmail.com" 
-            method="POST"
-            data-netlify="true"
-            class="contact-form"
-        >
-            <input type="hidden" name="_subject" value="en neie Member 🎯">
-            
-            <div class="form-group">
-                <input type="text" name="name" placeholder="Vorname" required maxlength="100">
-                <input type="text" name="lastname" placeholder="Nachname" required maxlength="100">
-            </div>
-            
-            <div class="form-group">
-                <input 
-                    type="text" 
-                    name="street" 
-                    placeholder="Strasse" 
-                    required 
-                    pattern="^[a-zA-Z0-9\s]{3,}$" 
-                    maxlength="100"
-                >
-                <input 
-                    type="text" 
-                    name="postal_code" 
-                    placeholder="PLZ" 
-                    required 
-                    pattern="[0-9]{4}" 
-                    maxlength="4"
-                >
-                <input 
-                    type="text" 
-                    name="city" 
-                    placeholder="Stadt" 
-                    required 
-                    pattern="^[a-zA-Z\s]{2,}$" 
-                    maxlength="100"
-                >
-            </div>
-
-            <div class="form-group">
-                <input 
-                    type="date" 
-                    name="dateOfBirth" 
-                    placeholder="Geburtsdatum"
-                    required
-                    max="2050-12-31"
-                    min="1900-01-01"
-                >
-            </div>
-
-            <div class="form-group">
-                <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
-            </div>
-
-            <div class="form-group">
-                <input type="tel" name="phone" placeholder="Handynummer" required maxlength="50">
-            </div>
-
-            <div class="form-group">
-                <textarea name="message" placeholder="Schreib uns ein bisschen was über dich...." required></textarea>
-            </div>
+    <div class="content-container">
+        <div id="member-info">
+            <form id="membershipForm" action="https://formsubmit.co/jarouschka@gmail.com" method="POST" data-netlify="true" class="contact-form">
+                <input type="hidden" name="_subject" value="en neie Member 🎯">
+                
+                <!-- Primary Member -->
+                <div class="member-section primary">
+                    <h3>Hauptmitglied</h3>
+                    <!-- Your existing form fields for primary member -->
+                    [Your existing input fields here]
+                </div>
+    
+                <!-- Additional Members Container -->
+                <div id="additional-members"></div>
+    
+                <!-- Add Member Buttons -->
+                <div class="add-member-buttons">
+                    <button type="button" id="addAdultMember" class="btn-secondary">+ Erwachsenes Mitglied hinzufügen</button>
+                    <button type="button" id="addJuniorMember" class="btn-secondary junior">+ Jugendmitglied hinzufügen</button>
+                </div>
 
             <div class="info-box">
                 <p>Sobald Sie Ihren Antrag eingereicht haben, werden wir uns in Kürze mit Ihnen in Verbindung setzen, um Ihren Mitgliedsantrag zu vervollständigen.</p>
@@ -160,7 +183,43 @@
 </div>
 
     <script src="script.js" defer></script>
-
+    <script>
+        function addMember(isJunior) {
+            const memberCount = document.querySelectorAll('.member-section').length + 1;
+            const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
+            const sectionClass = isJunior ? 'member-section junior' : 'member-section';
+            
+            const newMember = `
+                <div class="${sectionClass}">
+                    <h3>${memberType} ${memberCount}</h3>
+                    <div class="form-group">
+                        <input type="text" name="member${memberCount}_name" placeholder="Vorname" required maxlength="100">
+                        <input type="text" name="member${memberCount}_lastname" placeholder="Nachname" required maxlength="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="date" name="member${memberCount}_dateOfBirth" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
+                    </div>
+                    
+                    ${isJunior ? `
+                        <div class="form-group guardian-info">
+                            <input type="text" name="member${memberCount}_guardian" placeholder="Name des Erziehungsberechtigten" required>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="form-group">
+                        <input type="email" name="member${memberCount}_email" placeholder="E-Mail-Adresse" required maxlength="250">
+                        <input type="tel" name="member${memberCount}_phone" placeholder="Handynummer" required maxlength="50">
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
+        }
+        
+        document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
+        document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
+        </script>
    
 </body>
 </html>
