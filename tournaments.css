@@ -143,3 +143,40 @@
     border-radius: 20px;
     margin-top: 1rem;
 }
+@media (max-width: 768px) {
+    .select-group select {
+        width: 100%;  /* Make select box full width on mobile */
+    }
+
+    .form-group {
+        flex-direction: column;  /* Stack form elements vertically */
+    }
+
+    .tournament-card {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    .tournament-details {
+        gap: 0.8rem;
+    }
+
+    .status {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .participant-section {
+        padding: 1rem;
+    }
+
+    .tournament-card {
+        transform: none;  /* Disable hover effect on mobile */
+    }
+
+    .tournament-card:hover {
+        transform: none;
+    }
+}
