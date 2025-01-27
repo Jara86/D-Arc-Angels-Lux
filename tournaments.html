@@ -9,9 +9,122 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
     crossorigin="anonymous"
   />
-    <title>Document</title>
+  <meta name="description" content="D'Arc Angels Lëtzebuerg tournament-registration  page">
+    <link rel="stylesheet" href="Index.css"/>
+    <link rel="stylesheet" href="header.css"/>
+    <link rel="stylesheet" href="navigation.css"/>
+    <link rel="stylesheet" href="footer.css"/>
+    
+    <link rel="stylesheet" href="tournaments.css"/>
+    <title>D'arc Angels Tournaments</title>
 </head>
 <body>
+  <div class="content-container">
+    <div class="tournament-registration">
+        <form id="tournamentForm" action="https://formsubmit.co/your-email@example.com" method="POST" class="contact-form">
+            <input type="hidden" name="_subject" value="Tournament Registration 🎯">
+            
+            <!-- Primary Participant -->
+            <div class="participant-section">
+              <h3>Hauptteilnehmer</h3>
+              <div class="form-group">
+                  <input type="text" name="participant1_name" placeholder="Vorname" required maxlength="100">
+                  <input type="text" name="participant1_lastname" placeholder="Nachname" required maxlength="100">
+              </div>
+              
+              <div class="form-group">
+                  <input 
+                      type="date" 
+                      name="participant1_dateOfBirth" 
+                      placeholder="Geburtsdatum"
+                      required
+                      max="2050-12-31"
+                      min="1900-01-01"
+                  >
+              </div>
+              
+              <div class="form-group">
+                  <input type="email" name="participant1_email" placeholder="E-Mail-Adresse" required maxlength="250">
+              </div>
+              
+              <div class="form-group">
+                  <input type="tel" name="participant1_phone" placeholder="Handynummer" required maxlength="50">
+              </div>
+          </div>
+
+            <!-- Additional Participants Container -->
+            <div id="additional-participants"></div>
+
+            <!-- Add Participant Button -->
+            <button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
+
+            <!-- Common Tournament Details -->
+            <div class="form-group select-group">
+                <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
+                <select id="turnier" name="tournament" required>
+                    <option value="">Turnier auswählen</option>
+                    <option value="france">Turnier beispiel 1</option>
+                    <option value="italy">Turnier beispiel 2</option>
+                    <option value="usa">Turnir beispiel 3</option>
+                    <option value="brazil">Turnier beispiel 4</option>
+                    <option value="japan">Turnier beispiel 5</option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="horse" name="horse" required>
+                <label for="horse">Ich habe ein Pferd/Pony das für das Berittene Bogenschießen ausgebildet ist und sorge selbst für den Transport</label>
+            </div>
+            <div class="terms-section">
+              <div class="form-group checkbox-group">
+                  <input type="checkbox" id="rules" name="rules" required>
+                  <label for="rules">Ich habe die Teilnahmebestimungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
+              </div>
+              
+              <div class="form-group checkbox-group">
+                  <input type="checkbox" id="privacy" name="privacy" required>
+                  <label for="privacy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
+              </div>
+          </div>
+
+            <button type="submit">Anmelden</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('addParticipant').addEventListener('click', function() {
+    const participantCount = document.querySelectorAll('.participant-section').length + 1;
     
-</body>
-</html>
+    const newParticipant = `
+        <div class="participant-section">
+            <h3>Teilnehmer ${participantCount}</h3>
+            <div class="form-group">
+                <input type="text" name="participant${participantCount}_name" placeholder="Vorname" required maxlength="100">
+                <input type="text" name="participant${participantCount}_lastname" placeholder="Nachname" required maxlength="100">
+            </div>
+            
+            <div class="form-group">
+                <input 
+                    type="date" 
+                    name="participant${participantCount}_dateOfBirth" 
+                    placeholder="Geburtsdatum"
+                    required
+                    max="2050-12-31"
+                    min="1900-01-01"
+                >
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="participant${participantCount}_email" placeholder="E-Mail-Adresse" required maxlength="250">
+            </div>
+            
+            <div class="form-group">
+                <input type="tel" name="participant${participantCount}_phone" placeholder="Handynummer" required maxlength="50">
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('additional-participants').insertAdjacentHTML('beforeend', newParticipant);
+});
+</script>

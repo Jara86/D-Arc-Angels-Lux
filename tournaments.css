@@ -1,0 +1,27 @@
+.participant-section {
+    border: 1px solid #eee;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    border-radius: 8px;
+}
+
+.participant-section h3 {
+    font-size: clamp(16px, 1.8vw, 20px);
+    margin-bottom: clamp(10px, 1.5vw, 15px);
+    color: #183947;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #183947;
+    border: 2px solid #183947;
+    padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2vw, 20px);
+    width: 100%;
+    font-size: clamp(14px, 1.5vw, 16px);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa;
+}
