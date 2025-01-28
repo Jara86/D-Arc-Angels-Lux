@@ -1,32 +1,32 @@
-// Update the form submission to include all members
+// Single form submission event handler
 document.getElementById('membershipForm').addEventListener('submit', function(e) {
-    // Collect all member sections
     const memberSections = document.querySelectorAll('.member-section');
-    const allMembersData = [];
+    let formattedData = '';
     
     memberSections.forEach((section, index) => {
         const isJunior = section.classList.contains('junior');
-        const memberData = {
-            type: index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'),
-            name: section.querySelector('[name$="_name"]').value,
-            lastname: section.querySelector('[name$="_lastname"]').value,
-            dateOfBirth: section.querySelector('[name$="_dateOfBirth"]').value,
-            email: section.querySelector('[name$="_email"]').value,
-            phone: section.querySelector('[name$="_phone"]').value
-        };
+        const prefix = index === 0 ? '' : `member${index}_`;
+        
+        formattedData += `\n--- ${index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied')} ---\n`;
+        formattedData += `Name: ${section.querySelector(`[name="${prefix}name"]`).value}\n`;
+        formattedData += `Nachname: ${section.querySelector(`[name="${prefix}lastname"]`).value}\n`;
+        formattedData += `Geburtsdatum: ${section.querySelector(`[name="${prefix}dateOfBirth"]`).value}\n`;
+        formattedData += `Email: ${section.querySelector(`[name="${prefix}email"]`).value}\n`;
+        formattedData += `Telefon: ${section.querySelector(`[name="${prefix}phone"]`).value}\n`;
         
         if (isJunior) {
-            memberData.guardian = section.querySelector('[name$="_guardian"]').value;
+            formattedData += `Erziehungsberechtigter: ${section.querySelector(`[name="${prefix}guardian"]`).value}\n`;
         }
-        
-        allMembersData.push(memberData);
     });
     
-    // Store all members data in hidden field
-    document.getElementById('additional_members_data').value = JSON.stringify(allMembersData);
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'all_members_data';
+    hiddenField.value = formattedData;
+    this.appendChild(hiddenField);
 });
 
-
+// Function to add new members
 function addMember(isJunior) {
     const memberCount = document.querySelectorAll('.member-section').length + 1;
     const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
@@ -60,5 +60,6 @@ function addMember(isJunior) {
     document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
 }
 
+// Event listeners for adding members
 document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
 document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
