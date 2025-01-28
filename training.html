@@ -20,6 +20,31 @@
 <body>
     <div id="header-placeholder"></div>
     <div id="nav-placeholder"></div>
+    <div id="registration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Training Anmeldung</h2>
+            <form id="training-registration" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label for="participant-name">Name:</label>
+                    <input type="text" id="participant-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="participant-phone">Telefon:</label>
+                    <input type="tel" id="participant-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="membership">Mitgliedschaft:</label>
+                    <select id="membership" required>
+                        <option value="member">Member</option>
+                        <option value="non-member">Non-Member</option>
+                    </select>
+                </div>
+                <input type="hidden" id="training-type">
+                <button type="submit" class="btn-primary">Anmelden</button>
+            </form>
+        </div>
+    </div>
 
     <main class="content-container">
         <h1>Unsere Trainingsangebote</h1>
@@ -146,7 +171,9 @@
         </section>
     </main>
 
+
     <div id="footer-placeholder"></div>
     <script src="script.js"></script>
+    <script src="training.js"></script>
 </body>
 </html>
