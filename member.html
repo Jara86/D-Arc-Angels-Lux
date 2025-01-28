@@ -25,9 +25,9 @@
     <div id="nav-placeholder"></div>
    
     <div class="content-container">
-        <div id="member-info">
-            <form id="membershipForm" method="POST" data-netlify="true" class="contact-form">
-                <input type="hidden" name="_subject" value="en neie Member 🎯">
+        <form id="membershipForm" method="POST" data-netlify="true" class="contact-form">
+            <input type="hidden" name="form-name" value="membershipForm">
+            <input type="hidden" name="_subject" value="en neie Member 🎯">
                 
                 <!-- Primary Member -->
                 <div class="member-section primary">
@@ -38,7 +38,7 @@
                     data-netlify="true"
                     class="contact-form"
                 >
-                    <input type="hidden" name="_subject" value="en neie Member 🎯">
+                  
                     
                     <div class="form-group">
     <input type="text" name="name" placeholder="Vorname" required maxlength="100">
@@ -76,7 +76,7 @@
     <div class="form-group">
     <input 
     type="date" 
-    name="dob" 
+    name="Geburtsdatum" 
     placeholder="Geburtsdatum"
     required
     max="2050-12-31"
@@ -127,6 +127,7 @@
             </div>
 
             <button type="submit">Absenden</button>
+            <input type="hidden" name="additional_members" id="additional_members_data">
         </form>
 
         <div class="success-message">
@@ -177,44 +178,9 @@
 </div>
 </div>
 
-    <script src="script.js" defer></script>
-    <script>
-        function addMember(isJunior) {
-            const memberCount = document.querySelectorAll('.member-section').length + 1;
-            const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
-            const sectionClass = isJunior ? 'member-section junior' : 'member-section';
-            
-            const newMember = `
-                <div class="${sectionClass}">
-                    <h3>${memberType} ${memberCount}</h3>
-                    <div class="form-group">
-                        <input type="text" name="member${memberCount}_name" placeholder="Vorname" required maxlength="100">
-                        <input type="text" name="member${memberCount}_lastname" placeholder="Nachname" required maxlength="100">
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="date" name="member${memberCount}_dateOfBirth" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
-                    </div>
-                    
-                    ${isJunior ? `
-                        <div class="form-group guardian-info">
-                            <input type="text" name="member${memberCount}_guardian" placeholder="Name des Erziehungsberechtigten" required>
-                        </div>
-                    ` : ''}
-                    
-                    <div class="form-group">
-                        <input type="email" name="member${memberCount}_email" placeholder="E-Mail-Adresse" required maxlength="250">
-                        <input type="tel" name="member${memberCount}_phone" placeholder="Handynummer" required maxlength="50">
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
-        }
-        
-        document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
-        document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
-        </script>
+    <script src="script.js" ></script>
+    <script src ="member.js" ></script>
+   
    
 </body>
 </html>
