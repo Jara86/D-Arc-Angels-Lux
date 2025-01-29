@@ -163,7 +163,8 @@
 <section class="order-section">
     <h2>Bestellung aufgeben</h2>
     <form name="merchandise-order" method="POST" data-netlify="true" class="order-form">
-        <input type="hidden" name="subject" value="Neue Merchandise Bestellung">
+        <!-- Add this hidden input -->
+        <input type="hidden" name="form-name" value="merchandise-order">
         
         <!-- Customer Details -->
         <div class="form-group">
