@@ -1,38 +1,29 @@
-let orderItems = [];
-
 document.querySelector('.order-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const formData = new FormData();
-    
-    // Add basic form fields
-    formData.append('name', document.getElementById('name').value);
-    formData.append('email', document.getElementById('email').value);
-    formData.append('member', document.getElementById('member').value);
-    
-    // Add each order item as a separate entry
-    orderItems.forEach((item, index) => {
-        formData.append(`Product ${index + 1}`, `${item.product} - Size: ${item.size} - Quantity: ${item.quantity}`);
-    });
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        member: document.getElementById('member').value,
+        orderItems: orderItems.map(item => `${item.product} - Size: ${item.size} - Quantity: ${item.quantity}`).join('\n')
+    };
 
-    fetch('/', {
+    fetch('https://formsubmit.co/jarouschka@hotmail.com', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
         },
-        body: new URLSearchParams(formData).toString()
+        body: JSON.stringify(formData)
     })
-    .then(response => {
-        if (response.ok) {
-            alert('Order successfully sent!');
-            orderItems = [];
-            updateOrderList();
-            this.reset();
-        } else {
-            throw new Error('Error sending order');
-        }
+    .then(response => response.json())
+    .then(data => {
+        alert('Order successfully sent!');
+        orderItems = [];
+        updateOrderList();
+        this.reset();
     })
     .catch(error => {
-        alert('Error: ' + error.message);
+        alert('Error sending form: ' + error.message);
     });
 });
