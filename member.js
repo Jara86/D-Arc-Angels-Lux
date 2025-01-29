@@ -47,21 +47,30 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
         const isJunior = section.classList.contains('junior');
         const prefix = index === 0 ? '' : `member${index}_`;
         
+        // Get elements and safely access their values
+        const nameInput = section.querySelector(`[name="${prefix}name"]`);
+        const lastnameInput = section.querySelector(`[name="${prefix}lastname"]`);
+        const dateInput = section.querySelector(`[name="${prefix}dateOfBirth"]`);
+        const emailInput = section.querySelector(`[name="${prefix}email"]`);
+        const phoneInput = section.querySelector(`[name="${prefix}phone"]`);
+        
         const memberData = {
             type: index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'),
-            name: section.querySelector(`[name="${prefix}name"]`).value,
-            lastname: section.querySelector(`[name="${prefix}lastname"]`).value,
-            dateOfBirth: section.querySelector(`[name="${prefix}dateOfBirth"]`).value,
-            email: section.querySelector(`[name="${prefix}email"]`).value,
-            phone: section.querySelector(`[name="${prefix}phone"]`).value
+            name: nameInput ? nameInput.value : '',
+            lastname: lastnameInput ? lastnameInput.value : '',
+            dateOfBirth: dateInput ? dateInput.value : '',
+            email: emailInput ? emailInput.value : '',
+            phone: phoneInput ? phoneInput.value : ''
         };
         
         if (isJunior) {
-            memberData.guardian = section.querySelector(`[name="${prefix}guardian"]`).value;
+            const guardianInput = section.querySelector(`[name="${prefix}guardian"]`);
+            memberData.guardian = guardianInput ? guardianInput.value : '';
         }
         
         membersData.push(memberData);
     });
+
 
     const formData = {
         members: membersData,
