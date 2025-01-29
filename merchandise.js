@@ -43,12 +43,23 @@ function resetForm() {
 document.querySelector('.order-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
+    if (orderItems.length === 0) {
+        alert('Please add at least one item to your order');
+        return;
+    }
+
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         member: document.getElementById('member').value,
-        orderItems: orderItems.map(item => `${item.product} - Size: ${item.size} - Quantity: ${item.quantity}`).join('\n')
+        orderItems: orderItems.map(item => `${item.product} - Size: ${item.size} - Quantity: ${item.quantity}`).join('\n'),
+        _subject: "New Merchandise Order",
+        _template: "table"
     };
+
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
 
     fetch('https://formsubmit.co/jarouschka@hotmail.com', {
         method: 'POST',
@@ -58,14 +69,17 @@ document.querySelector('.order-form').addEventListener('submit', function(e) {
         },
         body: JSON.stringify(formData)
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response => {
         alert('Order successfully sent!');
         orderItems = [];
         updateOrderList();
         this.reset();
     })
     .catch(error => {
-        alert('Error sending form: ' + error.message);
+        alert('Error sending order: ' + error.message);
+    })
+    .finally(() => {
+        submitButton.textContent = 'Submit Order';
+        submitButton.disabled = false;
     });
 });

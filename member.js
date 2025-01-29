@@ -1,3 +1,4 @@
+// Member addition functions
 function addMember(isJunior) {
     const memberCount = document.querySelectorAll('.member-section').length + 1;
     const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
@@ -31,11 +32,11 @@ function addMember(isJunior) {
     document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
 }
 
-// Add member button event listeners
+// Event Listeners
 document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
 document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
 
-// Form submission handler
+// Form submission
 document.getElementById('membershipForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -62,25 +63,31 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
         membersData.push(memberData);
     });
 
-    fetch('https://formsubmit.co/your-jarouschka@gmail.com', {
+    const formData = {
+        members: membersData,
+        _subject: "New Membership Application",
+        _template: "table"
+    };
+
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
+
+    fetch('https://formsubmit.co/jarouschka@hotmail.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({
-            members: membersData,
-            _subject: 'New Membership Application',
-            _template: 'table'
-        })
+        body: JSON.stringify(formData)
     })
-    .then(response => response.json())
-    .then(data => {
+    .then(response => {
         alert('Membership application successfully sent!');
         this.reset();
         document.getElementById('additional-members').innerHTML = '';
     })
-    .catch(error => {
-        alert('Error sending form: ' + error.message);
+    .finally(() => {
+        submitButton.textContent = 'Submit Application';
+        submitButton.disabled = false;
     });
 });
