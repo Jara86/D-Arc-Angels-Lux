@@ -1,4 +1,32 @@
-// Member addition functions
+
+document.getElementById('membershipForm').addEventListener('submit', function(e) {
+    const memberSections = document.querySelectorAll('.member-section');
+    let formattedData = '';
+    
+    memberSections.forEach((section, index) => {
+        const isJunior = section.classList.contains('junior');
+        const prefix = index === 0 ? '' : `member${index}_`;
+        
+        formattedData += `\n--- ${index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied')} ---\n`;
+        formattedData += `Name: ${section.querySelector(`[name="${prefix}name"]`).value}\n`;
+        formattedData += `Nachname: ${section.querySelector(`[name="${prefix}lastname"]`).value}\n`;
+        formattedData += `Geburtsdatum: ${section.querySelector(`[name="${prefix}dateOfBirth"]`).value}\n`;
+        formattedData += `Email: ${section.querySelector(`[name="${prefix}email"]`).value}\n`;
+        formattedData += `Telefon: ${section.querySelector(`[name="${prefix}phone"]`).value}\n`;
+        
+        if (isJunior) {
+            formattedData += `Erziehungsberechtigter: ${section.querySelector(`[name="${prefix}guardian"]`).value}\n`;
+        }
+    });
+    
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'all_members_data';
+    hiddenField.value = formattedData;
+    this.appendChild(hiddenField);
+});
+
+// Function to add new members
 function addMember(isJunior) {
     const memberCount = document.querySelectorAll('.member-section').length + 1;
     const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
@@ -32,71 +60,6 @@ function addMember(isJunior) {
     document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
 }
 
-// Event Listeners
+// Event listeners for adding members
 document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
 document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
-
-// Form submission
-document.getElementById('membershipForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const memberSections = document.querySelectorAll('.member-section');
-    let membersData = [];
-    
-    memberSections.forEach((section, index) => {
-        const isJunior = section.classList.contains('junior');
-        const prefix = index === 0 ? '' : `member${index}_`;
-        
-        // Get elements and safely access their values
-        const nameInput = section.querySelector(`[name="${prefix}name"]`);
-        const lastnameInput = section.querySelector(`[name="${prefix}lastname"]`);
-        const dateInput = section.querySelector(`[name="${prefix}dateOfBirth"]`);
-        const emailInput = section.querySelector(`[name="${prefix}email"]`);
-        const phoneInput = section.querySelector(`[name="${prefix}phone"]`);
-        
-        const memberData = {
-            type: index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'),
-            name: nameInput ? nameInput.value : '',
-            lastname: lastnameInput ? lastnameInput.value : '',
-            dateOfBirth: dateInput ? dateInput.value : '',
-            email: emailInput ? emailInput.value : '',
-            phone: phoneInput ? phoneInput.value : ''
-        };
-        
-        if (isJunior) {
-            const guardianInput = section.querySelector(`[name="${prefix}guardian"]`);
-            memberData.guardian = guardianInput ? guardianInput.value : '';
-        }
-        
-        membersData.push(memberData);
-    });
-
-
-    const formData = {
-        members: membersData,
-        _subject: "New Membership Application",
-        _template: "table"
-    };
-
-    const submitButton = this.querySelector('button[type="submit"]');
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
-
-    fetch('https://formsubmit.co/jarouschka@hotmail.com', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => {
-        alert('Membership application successfully sent!');
-        this.reset();
-        document.getElementById('additional-members').innerHTML = '';
-    })
-    .finally(() => {
-        submitButton.textContent = 'Submit Application';
-        submitButton.disabled = false;
-    });
-});
