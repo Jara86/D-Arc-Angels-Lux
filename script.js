@@ -1,23 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Load header, navigation and footer
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
+    // Load all components with proper error handling
+    const loadComponent = (url, elementId) => {
+        return fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById(elementId).innerHTML = data;
+                if (elementId === 'nav-placeholder') {
+                    initializeMobileNav();
+                }
+            })
+            .catch(error => {
+                console.log(`Error loading ${url}:`, error);
+            });
+    };
 
-    fetch('navigation.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('nav-placeholder').innerHTML = data;
-            initializeMobileNav();
-        });
-
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-        });
+    // Load all components concurrently
+    Promise.all([
+        loadComponent('header.html', 'header-placeholder'),
+        loadComponent('navigation.html', 'nav-placeholder'),
+        loadComponent('footer.html', 'footer-placeholder')
+    ]).then(() => {
+        console.log('All components loaded successfully');
+    });
 });
 
 function initializeMobileNav() {
