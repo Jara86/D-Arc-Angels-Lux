@@ -1,4 +1,3 @@
-// Member addition functions
 function addMember(isJunior) {
     const memberCount = document.querySelectorAll('.member-section').length + 1;
     const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
@@ -32,11 +31,11 @@ function addMember(isJunior) {
     document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
 }
 
-// Event Listeners
+// Add member button event listeners
 document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
 document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
 
-// Form submission
+// Form submission handler
 document.getElementById('membershipForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -47,40 +46,21 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
         const isJunior = section.classList.contains('junior');
         const prefix = index === 0 ? '' : `member${index}_`;
         
-        // Get elements and safely access their values
-        const nameInput = section.querySelector(`[name="${prefix}name"]`);
-        const lastnameInput = section.querySelector(`[name="${prefix}lastname"]`);
-        const dateInput = section.querySelector(`[name="${prefix}dateOfBirth"]`);
-        const emailInput = section.querySelector(`[name="${prefix}email"]`);
-        const phoneInput = section.querySelector(`[name="${prefix}phone"]`);
-        
         const memberData = {
             type: index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'),
-            name: nameInput ? nameInput.value : '',
-            lastname: lastnameInput ? lastnameInput.value : '',
-            dateOfBirth: dateInput ? dateInput.value : '',
-            email: emailInput ? emailInput.value : '',
-            phone: phoneInput ? phoneInput.value : ''
+            name: section.querySelector(`[name="${prefix}name"]`).value,
+            lastname: section.querySelector(`[name="${prefix}lastname"]`).value,
+            dateOfBirth: section.querySelector(`[name="${prefix}dateOfBirth"]`).value,
+            email: section.querySelector(`[name="${prefix}email"]`).value,
+            phone: section.querySelector(`[name="${prefix}phone"]`).value
         };
         
         if (isJunior) {
-            const guardianInput = section.querySelector(`[name="${prefix}guardian"]`);
-            memberData.guardian = guardianInput ? guardianInput.value : '';
+            memberData.guardian = section.querySelector(`[name="${prefix}guardian"]`).value;
         }
         
         membersData.push(memberData);
     });
-
-
-    const formData = {
-        members: membersData,
-        _subject: "New Membership Application",
-        _template: "table"
-    };
-
-    const submitButton = this.querySelector('button[type="submit"]');
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
 
     fetch('https://formsubmit.co/jarouschka@gmail.com', {
         method: 'POST',
@@ -88,15 +68,19 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+            members: membersData,
+            _subject: 'New Membership Application',
+            _template: 'table'
+        })
     })
-    .then(response => {
+    .then(response => response.json())
+    .then(data => {
         alert('Membership application successfully sent!');
         this.reset();
         document.getElementById('additional-members').innerHTML = '';
     })
-    .finally(() => {
-        submitButton.textContent = 'Submit Application';
-        submitButton.disabled = false;
+    .catch(error => {
+        alert('Error sending form: ' + error.message);
     });
 });
