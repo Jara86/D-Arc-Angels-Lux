@@ -37,7 +37,7 @@ document.querySelector('.order-form').addEventListener('submit', function(e) {
     .then(response => response.json())
     .then(data => {
         alert('Order successfully sent!');
-        orderItems = [];
+        allMembers = [];
         updateOrderList();
         this.reset();
     })
