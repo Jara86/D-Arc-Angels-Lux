@@ -82,7 +82,7 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
     submitButton.textContent = 'Sending...';
     submitButton.disabled = true;
 
-    fetch('https://formsubmit.co/cdf96776353aec10207def6412ff3021 ', {
+    fetch('https://formsubmit.co/jarouschka@gmail.com', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
