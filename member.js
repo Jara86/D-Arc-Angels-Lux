@@ -1,66 +1,54 @@
-function addMember(isJunior) {
-    const memberCount = document.querySelectorAll('.member-section').length + 1;
-    const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied';
-    const sectionClass = isJunior ? 'member-section junior' : 'member-section';
+let orderItems = [];
+
+// Product adding functionality
+document.getElementById('add-item').addEventListener('click', function() {
+    const product = document.getElementById('product');
+    const size = document.getElementById('size');
+    const quantity = document.getElementById('quantity');
     
-    const newMember = `
-        <div class="${sectionClass}">
-            <h3>${memberType} ${memberCount}</h3>
-            <div class="form-group">
-                <input type="text" name="member${memberCount}_name" placeholder="Vorname" required maxlength="100">
-                <input type="text" name="member${memberCount}_lastname" placeholder="Nachname" required maxlength="100">
-            </div>
-            
-            <div class="form-group">
-                <input type="date" name="member${memberCount}_dateOfBirth" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
-            </div>
-            
-            ${isJunior ? `
-                <div class="form-group guardian-info">
-                    <input type="text" name="member${memberCount}_guardian" placeholder="Name des Erziehungsberechtigten" required>
-                </div>
-            ` : ''}
-            
-            <div class="form-group">
-                <input type="email" name="member${memberCount}_email" placeholder="E-Mail-Adresse" required maxlength="250">
-                <input type="tel" name="member${memberCount}_phone" placeholder="Handynummer" required maxlength="50">
-            </div>
+    if (product.value) {
+        orderItems.push({
+            product: product.value,
+            size: size.value,
+            quantity: quantity.value
+        });
+        
+        updateOrderList();
+        resetForm();
+    }
+});
+
+function updateOrderList() {
+    const orderList = document.getElementById('order-list');
+    orderList.innerHTML = orderItems.map((item, index) => `
+        <div class="order-item">
+            ${item.product} - ${item.size ? `Größe: ${item.size} -` : ''} ${item.quantity}x
+            <button onclick="removeItem(${index})" class="btn-remove">Entfernen</button>
         </div>
-    `;
-    
-    document.getElementById('additional-members').insertAdjacentHTML('beforeend', newMember);
+    `).join('');
 }
 
-// Add member button event listeners
-document.getElementById('addAdultMember').addEventListener('click', () => addMember(false));
-document.getElementById('addJuniorMember').addEventListener('click', () => addMember(true));
+function removeItem(index) {
+    orderItems.splice(index, 1);
+    updateOrderList();
+}
 
-// Form submission handler
-document.getElementById('membershipForm').addEventListener('submit', function(e) {
+function resetForm() {
+    document.getElementById('product').value = '';
+    document.getElementById('size').value = '';
+    document.getElementById('quantity').value = '1';
+}
+
+// Form submission
+document.querySelector('.order-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const memberSections = document.querySelectorAll('.member-section');
-    let membersData = [];
-    
-    memberSections.forEach((section, index) => {
-        const isJunior = section.classList.contains('junior');
-        const prefix = index === 0 ? '' : `member${index}_`;
-        
-        const memberData = {
-            type: index === 0 ? 'Hauptmitglied' : (isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'),
-            name: section.querySelector(`[name="${prefix}name"]`).value,
-            lastname: section.querySelector(`[name="${prefix}lastname"]`).value,
-            dateOfBirth: section.querySelector(`[name="${prefix}dateOfBirth"]`).value,
-            email: section.querySelector(`[name="${prefix}email"]`).value,
-            phone: section.querySelector(`[name="${prefix}phone"]`).value
-        };
-        
-        if (isJunior) {
-            memberData.guardian = section.querySelector(`[name="${prefix}guardian"]`).value;
-        }
-        
-        membersData.push(memberData);
-    });
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        member: document.getElementById('member').value,
+        orderItems: orderItems.map(item => `${item.product} - Size: ${item.size} - Quantity: ${item.quantity}`).join('\n')
+    };
 
     fetch('https://formsubmit.co/jarouschka@gmail.com', {
         method: 'POST',
@@ -68,17 +56,14 @@ document.getElementById('membershipForm').addEventListener('submit', function(e)
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify({
-            members: membersData,
-            _subject: 'New Membership Application',
-            _template: 'table'
-        })
+        body: JSON.stringify(formData)
     })
     .then(response => response.json())
     .then(data => {
-        alert('Membership application successfully sent!');
+        alert('Order successfully sent!');
+        orderItems = [];
+        updateOrderList();
         this.reset();
-        document.getElementById('additional-members').innerHTML = '';
     })
     .catch(error => {
         alert('Error sending form: ' + error.message);
