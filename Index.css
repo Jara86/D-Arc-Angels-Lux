@@ -195,6 +195,17 @@ h2 {
     filter: grayscale(0%);
     transform: scale(1.1);
 }
+.social-links img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#mail-icon {
+    border-radius: 50%;
+    overflow: hidden;
+}
 
 /* Footer styles */
 .footer-line {
