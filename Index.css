@@ -125,7 +125,7 @@ h2 {
 }
 
 .fire-devils-link {
-    color: #6F1308 !important;
+    color:#183947 !important;
     font-weight: bold;
     text-decoration: none;
     padding: 10px;
@@ -133,7 +133,7 @@ h2 {
 }
 
 .fire-devils-link:hover {
-    color: #CDA428 !important;
+    color: #6F1308 !important;
     transform: translateY(-2px);
 }
 
