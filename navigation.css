@@ -121,7 +121,7 @@ h2 {
 .special-section {
     margin-left: 20px;
     padding-left: 20px;
-    border-left: 2px solid #183947;
+    text-align: center;
 }
 
 .fire-devils-link {
@@ -140,6 +140,7 @@ h2 {
 .flame-icon {
     margin-left: 5px;
 }
+
 
 
 /* Element styles */
@@ -173,7 +174,7 @@ h2 {
 }
 
 .social-icon:hover {
-    color: #8fd3f4 !important;
+    opacity: 1;
     filter: grayscale(0%);
     transform: scale(1.1);
 }
