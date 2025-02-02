@@ -173,7 +173,7 @@ h2 {
 }
 
 .social-icon:hover {
-    opacity: 1;
+    color: #8fd3f4 !important;
     filter: grayscale(0%);
     transform: scale(1.1);
 }
