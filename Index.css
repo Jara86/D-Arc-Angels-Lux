@@ -20,8 +20,10 @@ body {
     align-items: center;
     gap: 20px;
     width: 100%;
-    max-width: 600px; 
+    max-width: 700px; 
     margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
@@ -42,7 +44,23 @@ h2 {
     font-size: 40px;
 }
 
-.navigation-container, .content-container {
+.navigation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px; 
+    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    background: radial-gradient(circle, #75e0f1, #296077);
+}
+.content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
