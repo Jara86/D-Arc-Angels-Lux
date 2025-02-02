@@ -118,7 +118,28 @@ h2 {
 }
 
 
+.special-section {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #183947;
+}
 
+.fire-devils-link {
+    color: #6F1308 !important;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.fire-devils-link:hover {
+    color: #CDA428 !important;
+    transform: translateY(-2px);
+}
+
+.flame-icon {
+    margin-left: 5px;
+}
 
 
 /* Element styles */
