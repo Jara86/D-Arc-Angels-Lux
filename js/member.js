@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
         memberDiv.innerHTML = `
             <h4>${isJunior ? 'Junior' : 'Adult'} Mitglied</h4>
             <div class="form-group">
-                <input type="text" name="additional_member[${memberId}][name]" placeholder="Vorname" required>
-                <input type="text" name="additional_member[${memberId}][lastname]" placeholder="Nachname" required>
-                <input type="date" name="additional_member[${memberId}][birthdate]" required>
-                <input type="email" name="additional_member[${memberId}][email]" placeholder="E-Mail-Adresse" required>
-                <input type="tel" name="additional_member[${memberId}][phone]" placeholder="Handynummer" required>
-                <input type="hidden" name="additional_member[${memberId}][type]" value="${isJunior ? 'Junior' : 'Adult'}">
+                <input type="text" name="Member_${memberId}_Name" placeholder="Vorname" required>
+                <input type="text" name="Member_${memberId}_Lastname" placeholder="Nachname" required>
+                <input type="date" name="Member_${memberId}_Birthdate" required>
+                <input type="email" name="Member_${memberId}_Email" placeholder="E-Mail-Adresse" required>
+                <input type="tel" name="Member_${memberId}_Phone" placeholder="Handynummer" required>
+                <input type="hidden" name="Member_${memberId}_Type" value="${isJunior ? 'Junior' : 'Adult'}">
             </div>
             <button type="button" class="remove-member">×</button>
         `;
@@ -34,35 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
         additionalMembersContainer.appendChild(memberDiv);
     }
 
+    // Remove the preventDefault() to allow natural form submission
     membershipForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Create a new FormData object
-        const formData = new FormData(membershipForm);
-        
-        // Add form submission endpoint
-        formData.append('_subject', 'New Membership Application');
-        formData.append('_template', 'table');
-
-        // Send the form
-        fetch('https://formsubmit.co/ajax/jarouschka@gmail.com', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                membershipForm.reset();
-                additionalMembersContainer.innerHTML = '';
-                alert('Anmeldung erfolgreich eingereicht!');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
-        });
+        // Form will submit naturally to FormSubmit endpoint
+        return true;
     });
 });
