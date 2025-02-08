@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createMemberForm(isJunior) {
         const memberDiv = document.createElement('div');
-        memberDiv.className = 'member-section';
+        memberDiv.className = `member-section ${isJunior ? 'junior' : 'adult'}`;
         memberDiv.dataset.id = Date.now();
         memberDiv.innerHTML = `
             <h3>${isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'}</h3>
@@ -49,38 +49,39 @@ document.addEventListener('DOMContentLoaded', function() {
     membershipForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const formData = {
-            mainMember: {
-                name: document.getElementById('name').value,
-                lastname: document.getElementById('lastname').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                birthdate: document.getElementById('birthdate').value,
-                street: document.getElementById('street').value,
-                postal_code: document.getElementById('postal_code').value,
-                city: document.getElementById('city').value
-            },
-            additionalMembers: allMembers
+        const mainMemberData = {
+            name: this.querySelector('[name="name"]').value,
+            lastname: this.querySelector('[name="lastname"]').value,
+            email: this.querySelector('[name="email"]').value,
+            phone: this.querySelector('[name="phone"]').value,
+            birthdate: this.querySelector('[name="birthdate"]').value,
+            street: this.querySelector('[name="street"]').value,
+            postal_code: this.querySelector('[name="postal_code"]').value,
+            city: this.querySelector('[name="city"]').value
         };
+
+        const additionalMembersData = Array.from(document.querySelectorAll('.member-section')).map(section => ({
+            type: section.classList.contains('junior') ? 'Junior' : 'Adult',
+            name: section.querySelector('[name="additional_name[]"]').value,
+            lastname: section.querySelector('[name="additional_lastname[]"]').value,
+            birthdate: section.querySelector('[name="additional_birthdate[]"]').value,
+            email: section.querySelector('[name="additional_email[]"]').value,
+            phone: section.querySelector('[name="additional_phone[]"]').value
+        }));
+
+        const formData = new FormData();
+        formData.append('_subject', 'Neue Mitgliedschaft - D\'Arc Angels');
+        formData.append('mainMember', JSON.stringify(mainMemberData));
+        formData.append('additionalMembers', JSON.stringify(additionalMembersData));
 
         fetch('https://formsubmit.co/jarouschka@gmail.com', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            body: formData
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(() => {
             document.querySelector('.success-message').style.display = 'block';
-            allMembers = [];
             additionalMembersContainer.innerHTML = '';
-            this.reset();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+            membershipForm.reset();
         });
     });
 });
