@@ -1,9 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const addAdultButton = document.getElementById('addAdultMember');
     const addJuniorButton = document.getElementById('addJuniorMember');
     const membershipForm = document.getElementById('membershipForm');
     const additionalMembersContainer = document.getElementById('additional-members');
-    let allMembers = [];
 
     if (addAdultButton && addJuniorButton) {
         addAdultButton.addEventListener('click', () => addMember(false));
@@ -31,70 +30,65 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        const removeButton = memberDiv.querySelector('.remove-member');
-        removeButton.addEventListener('click', () => {
-            memberDiv.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+        memberDiv.querySelector('.remove-member').addEventListener('click', () => {
             memberDiv.style.opacity = '0';
             memberDiv.style.transform = 'translateX(20px)';
-            
-            setTimeout(() => {
-                memberDiv.remove();
-                allMembers = allMembers.filter(member => member.id !== parseInt(memberDiv.dataset.id));
-            }, 300);
+            setTimeout(() => memberDiv.remove(), 300);
         });
 
         return memberDiv;
     }
 
-    membershipForm.addEventListener('submit', function(e) {
+    membershipForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
-        // Collect main member data
+
+        // Hauptmitglied Daten sammeln
         const mainMemberData = {
             name: document.getElementById('name').value,
             lastname: document.getElementById('lastname').value,
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
-            birthdate: document.getElementById('birthdate').value,
+            birthdate: document.getElementById('Geburtsdatum').value,
             street: document.getElementById('street').value,
             postal_code: document.getElementById('postal_code').value,
             city: document.getElementById('city').value
         };
-    
-        // Collect all additional members
-        const additionalMembersData = Array.from(document.querySelectorAll('.member-section')).map(section => ({
-            type: section.classList.contains('junior') ? 'Jugendmitglied' : 'Erwachsenes Mitglied',
-            name: section.querySelector('[name="additional_name[]"]').value,
-            lastname: section.querySelector('[name="additional_lastname[]"]').value,
-            birthdate: section.querySelector('[name="additional_birthdate[]"]').value,
-            email: section.querySelector('[name="additional_email[]"]').value,
-            phone: section.querySelector('[name="additional_phone[]"]').value
-        }));
-    
-        // Prepare complete form data
-        const completeFormData = {
-            mainMember: mainMemberData,
-            additionalMembers: additionalMembersData
-        };
-    
-        // Send to FormSubmit
-        fetch('https://formsubmit.co/ajax/jarouschka@gmail.com', {
+
+        // Zusätzliche Mitglieder sammeln
+        const additionalMembersData = Array.from(document.querySelectorAll('.member-section'))
+            .filter(section => section.classList.contains('junior') || section.classList.contains('adult'))
+            .map(section => ({
+                type: section.classList.contains('junior') ? 'Jugendmitglied' : 'Erwachsenes Mitglied',
+                name: section.querySelector('[name="additional_name[]"]').value,
+                lastname: section.querySelector('[name="additional_lastname[]"]').value,
+                birthdate: section.querySelector('[name="additional_birthdate[]"]').value,
+                email: section.querySelector('[name="additional_email[]"]').value,
+                phone: section.querySelector('[name="additional_phone[]"]').value
+            }));
+
+        // Hidden-Input für zusätzliche Mitglieder setzen
+        document.getElementById('additional_members_data').value = JSON.stringify(additionalMembersData);
+
+        // Formulardaten vorbereiten und senden
+        const formData = new FormData(membershipForm);
+
+        fetch('https://formsubmit.co/jarouschka@gmail.com', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(completeFormData)
+            body: formData
         })
-        .then(response => {
-            document.querySelector('.success-message').style.display = 'block';
-            additionalMembersContainer.innerHTML = '';
-            membershipForm.reset();
-            window.scrollTo(0, 0);
-        })
-        .catch(error => {
-            console.error('Submission error:', error);
-            alert('Bitte versuchen Sie es erneut.');
-        });
+            .then(response => {
+                if (response.ok) {
+                    document.querySelector('.success-message').style.display = 'block';
+                    additionalMembersContainer.innerHTML = '';
+                    membershipForm.reset();
+                    window.scrollTo(0, 0);
+                } else {
+                    throw new Error('Fehler beim Absenden des Formulars');
+                }
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('Bitte versuchen Sie es erneut.');
+            });
     });
 });
