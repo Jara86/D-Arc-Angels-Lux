@@ -61,38 +61,46 @@ document.addEventListener('DOMContentLoaded', function () {
     membershipForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const formData = {
-            mainMember: {
-                name: document.getElementById('name').value,
-                lastname: document.getElementById('lastname').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                birthdate: document.getElementById('birthdate').value,
-                street: document.getElementById('street').value,
-                postal_code: document.getElementById('postal_code').value,
-                city: document.getElementById('city').value
-            },
-            additionalMembers: allMembers
-        };
+        const formData = new FormData();
+
+        // Hauptmitgliedsdaten
+        formData.append('name', document.getElementById('name').value);
+        formData.append('lastname', document.getElementById('lastname').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('birthdate', document.getElementById('birthdate').value);
+        formData.append('street', document.getElementById('street').value);
+        formData.append('postal_code', document.getElementById('postal_code').value);
+        formData.append('city', document.getElementById('city').value);
+
+        // Zusätzliche Mitglieder
+        allMembers.forEach((member, index) => {
+            formData.append(`members[${index}][type]`, member.type);
+            formData.append(`members[${index}][name]`, member.name);
+            formData.append(`members[${index}][lastname]`, member.lastname);
+            formData.append(`members[${index}][birthdate]`, member.birthdate);
+            formData.append(`members[${index}][email]`, member.email);
+            formData.append(`members[${index}][phone]`, member.phone);
+        });
 
         fetch('https://formsubmit.co/jarouschka@gmail.com', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            body: formData
         })
-        .then(response => response.json())
-        .then(() => {
-            document.querySelector('.success-message').style.display = 'block';
-            allMembers = [];
-            updateMembersList();
-            membershipForm.reset();
+        .then(response => {
+            if (response.ok) {
+                document.querySelector('.success-message').style.display = 'block';
+                allMembers = [];
+                updateMembersList();
+                membershipForm.reset();
+                window.scrollTo(0, 0);
+            } else {
+                throw new Error('Fehler beim Absenden des Formulars');
+            }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+            console.error('Submission error:', error);
+            alert('Bitte versuchen Sie es erneut.');
         });
     });
 });
