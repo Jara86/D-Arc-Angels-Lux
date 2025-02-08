@@ -4,91 +4,95 @@ document.addEventListener('DOMContentLoaded', function () {
     const membershipForm = document.getElementById('membershipForm');
     const additionalMembersContainer = document.getElementById('additional-members');
 
+    let allMembers = [];
+
     if (addAdultButton && addJuniorButton) {
         addAdultButton.addEventListener('click', () => addMember(false));
         addJuniorButton.addEventListener('click', () => addMember(true));
     }
 
     function addMember(isJunior) {
-        const memberForm = createMemberForm(isJunior);
-        additionalMembersContainer.appendChild(memberForm);
+        const memberData = {
+            id: Date.now(),
+            type: isJunior ? 'Junior' : 'Adult',
+            name: '',
+            lastname: '',
+            email: '',
+            phone: '',
+            birthdate: ''
+        };
+
+        allMembers.push(memberData);
+        updateMembersList();
     }
 
-    function createMemberForm(isJunior) {
-        const memberDiv = document.createElement('div');
-        memberDiv.className = `member-section ${isJunior ? 'junior' : 'adult'}`;
-        memberDiv.dataset.id = Date.now();
-        memberDiv.innerHTML = `
-            <h3>${isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'}</h3>
-            <button type="button" class="remove-member">×</button>
-            <div class="form-group">
-                <input type="text" name="additional_name[]" placeholder="Vorname" required>
-                <input type="text" name="additional_lastname[]" placeholder="Nachname" required>
-                <input type="date" name="additional_birthdate[]" required>
-                <input type="email" name="additional_email[]" placeholder="E-Mail-Adresse" required>
-                <input type="tel" name="additional_phone[]" placeholder="Handynummer" required>
+    function updateMembersList() {
+        additionalMembersContainer.innerHTML = allMembers.map((member, index) => `
+            <div class="member-card" data-id="${member.id}">
+                <h4>${member.type} Mitglied</h4>
+                <div class="form-group">
+                    <input type="text" placeholder="Vorname" oninput="updateMember(${index}, 'name', this.value)" required>
+                    <input type="text" placeholder="Nachname" oninput="updateMember(${index}, 'lastname', this.value)" required>
+                    <input type="date" oninput="updateMember(${index}, 'birthdate', this.value)" required>
+                    <input type="email" placeholder="E-Mail-Adresse" oninput="updateMember(${index}, 'email', this.value)" required>
+                    <input type="tel" placeholder="Handynummer" oninput="updateMember(${index}, 'phone', this.value)" required>
+                </div>
+                <button type="button" class="remove-member" onclick="removeMember(${index})">×</button>
             </div>
-        `;
-
-        memberDiv.querySelector('.remove-member').addEventListener('click', () => {
-            memberDiv.style.opacity = '0';
-            memberDiv.style.transform = 'translateX(20px)';
-            setTimeout(() => memberDiv.remove(), 300);
-        });
-
-        return memberDiv;
+        `).join('');
     }
+
+    window.updateMember = function (index, field, value) {
+        allMembers[index][field] = value;
+    };
+
+    window.removeMember = function (index) {
+        const memberCard = document.querySelector(`.member-card[data-id="${allMembers[index].id}"]`);
+        memberCard.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+        memberCard.style.opacity = '0';
+        memberCard.style.transform = 'translateX(20px)';
+
+        setTimeout(() => {
+            allMembers.splice(index, 1);
+            updateMembersList();
+        }, 300);
+    };
 
     membershipForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // Hauptmitglied Daten sammeln
-        const mainMemberData = {
-            name: document.getElementById('name').value,
-            lastname: document.getElementById('lastname').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            birthdate: document.getElementById('Geburtsdatum').value,
-            street: document.getElementById('street').value,
-            postal_code: document.getElementById('postal_code').value,
-            city: document.getElementById('city').value
+        const formData = {
+            mainMember: {
+                name: document.getElementById('name').value,
+                lastname: document.getElementById('lastname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                birthdate: document.getElementById('birthdate').value,
+                street: document.getElementById('street').value,
+                postal_code: document.getElementById('postal_code').value,
+                city: document.getElementById('city').value
+            },
+            additionalMembers: allMembers
         };
-
-        // Zusätzliche Mitglieder sammeln
-        const additionalMembersData = Array.from(document.querySelectorAll('.member-section'))
-            .filter(section => section.classList.contains('junior') || section.classList.contains('adult'))
-            .map(section => ({
-                type: section.classList.contains('junior') ? 'Jugendmitglied' : 'Erwachsenes Mitglied',
-                name: section.querySelector('[name="additional_name[]"]').value,
-                lastname: section.querySelector('[name="additional_lastname[]"]').value,
-                birthdate: section.querySelector('[name="additional_birthdate[]"]').value,
-                email: section.querySelector('[name="additional_email[]"]').value,
-                phone: section.querySelector('[name="additional_phone[]"]').value
-            }));
-
-        // Hidden-Input für zusätzliche Mitglieder setzen
-        document.getElementById('additional_members_data').value = JSON.stringify(additionalMembersData);
-
-        // Formulardaten vorbereiten und senden
-        const formData = new FormData(membershipForm);
 
         fetch('https://formsubmit.co/jarouschka@gmail.com', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
         })
-            .then(response => {
-                if (response.ok) {
-                    document.querySelector('.success-message').style.display = 'block';
-                    additionalMembersContainer.innerHTML = '';
-                    membershipForm.reset();
-                    window.scrollTo(0, 0);
-                } else {
-                    throw new Error('Fehler beim Absenden des Formulars');
-                }
-            })
-            .catch(error => {
-                console.error('Submission error:', error);
-                alert('Bitte versuchen Sie es erneut.');
-            });
+        .then(response => response.json())
+        .then(() => {
+            document.querySelector('.success-message').style.display = 'block';
+            allMembers = [];
+            updateMembersList();
+            membershipForm.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+        });
     });
 });
