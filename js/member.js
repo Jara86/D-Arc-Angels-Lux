@@ -3,58 +3,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const addJuniorButton = document.getElementById('addJuniorMember');
     const membershipForm = document.getElementById('membershipForm');
     const additionalMembersContainer = document.getElementById('additional-members');
-
     let allMembers = [];
 
-    addAdultButton.addEventListener('click', () => addMember(false));
-    addJuniorButton.addEventListener('click', () => addMember(true));
+    if (addAdultButton && addJuniorButton) {
+        addAdultButton.addEventListener('click', () => addMember(false));
+        addJuniorButton.addEventListener('click', () => addMember(true));
+    }
 
     function addMember(isJunior) {
         const memberForm = createMemberForm(isJunior);
-        memberForm.style.opacity = '0';
         additionalMembersContainer.appendChild(memberForm);
-        
-        requestAnimationFrame(() => {
-            memberForm.style.transition = 'opacity 0.3s ease-in';
-            memberForm.style.opacity = '1';
-        });
-
-        const memberData = {
-            type: isJunior ? 'Junior' : 'Adult',
-            id: Date.now(),
-            name: '',
-            lastname: '',
-            email: '',
-            phone: '',
-            birthdate: '',
-            street: '',
-            postal_code: '',
-            city: ''
-        };
-
-        allMembers.push(memberData);
     }
 
     function createMemberForm(isJunior) {
         const memberDiv = document.createElement('div');
-        memberDiv.className = `member-section ${isJunior ? 'junior' : 'adult'}`;
+        memberDiv.className = 'member-section';
         memberDiv.dataset.id = Date.now();
         memberDiv.innerHTML = `
-            <div class="member-header">
-                <h3>${isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'}</h3>
-                <button type="button" class="remove-member" title="Entfernen">×</button>
-            </div>
+            <h3>${isJunior ? 'Jugendmitglied' : 'Erwachsenes Mitglied'}</h3>
+            <button type="button" class="remove-member">×</button>
             <div class="form-group">
                 <input type="text" name="additional_name[]" placeholder="Vorname" required>
                 <input type="text" name="additional_lastname[]" placeholder="Nachname" required>
-            </div>
-            <div class="form-group">
                 <input type="date" name="additional_birthdate[]" required>
-            </div>
-            <div class="form-group">
                 <input type="email" name="additional_email[]" placeholder="E-Mail-Adresse" required>
-            </div>
-            <div class="form-group">
                 <input type="tel" name="additional_phone[]" placeholder="Handynummer" required>
             </div>
         `;
