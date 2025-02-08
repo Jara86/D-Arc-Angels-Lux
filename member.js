@@ -1,29 +1,52 @@
 let allMembers = [];
 
-// Add this function to store additional members
 function addMember(isJunior) {
     const memberData = {
         type: isJunior ? 'Junior' : 'Adult',
         name: document.getElementById('name').value,
+        lastname: document.getElementById('lastname').value,
         email: document.getElementById('email').value,
-        // Add other fields as needed
+        phone: document.getElementById('phone').value,
+        birthdate: document.getElementById('birthdate').value,
+        street: document.getElementById('street').value,
+        postal_code: document.getElementById('postal_code').value,
+        city: document.getElementById('city').value
     };
+    
     allMembers.push(memberData);
     updateMembersList();
 }
 
-// Update form submission to include all members
-document.querySelector('.order-form').addEventListener('submit', function(e) {
+function updateMembersList() {
+    const membersContainer = document.getElementById('additional-members');
+    membersContainer.innerHTML = allMembers.map((member, index) => `
+        <div class="member-card">
+            <h4>${member.type} Member - ${member.name} ${member.lastname}</h4>
+            <button type="button" onclick="removeMember(${index})">Remove</button>
+        </div>
+    `).join('');
+}
+
+function removeMember(index) {
+    allMembers.splice(index, 1);
+    updateMembersList();
+}
+
+document.getElementById('membershipForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const formData = {
         mainMember: {
             name: document.getElementById('name').value,
+            lastname: document.getElementById('lastname').value,
             email: document.getElementById('email').value,
-            member: document.getElementById('member').value,
+            phone: document.getElementById('phone').value,
+            birthdate: document.getElementById('birthdate').value,
+            street: document.getElementById('street').value,
+            postal_code: document.getElementById('postal_code').value,
+            city: document.getElementById('city').value
         },
-        additionalMembers: allMembers,
-        orderItems: orderItems
+        additionalMembers: allMembers
     };
 
     fetch('https://formsubmit.co/jarouschka@gmail.com', {
@@ -36,12 +59,13 @@ document.querySelector('.order-form').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        alert('Order successfully sent!');
+        document.querySelector('.success-message').style.display = 'block';
         allMembers = [];
-        updateOrderList();
+        updateMembersList();
         this.reset();
     })
     .catch(error => {
-        alert('Error sending form: ' + error.message);
+        console.error('Error:', error);
+        alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
     });
 });

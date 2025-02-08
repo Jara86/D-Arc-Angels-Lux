@@ -168,6 +168,7 @@ body {
 .footer-link {
     color: #183947;
     text-decoration: none;
+    text-align: center;
     font-weight: bold;
     transition: color 0.3s ease;
 }
