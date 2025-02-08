@@ -152,20 +152,17 @@ body {
 }
 
 /* Footer styles */
-.footer {
-    width: 100%;
-    max-width: 900px;
-    text-align: center;
-    padding: clamp(15px, 2vw, 20px);
-    margin-top: clamp(15px, 2vw, 20px);
-}
-
 .footer-line {
     width: 80%;
     margin: 30px auto;
     border: none;
     height: 2px;
     background: linear-gradient(to right, transparent, #8fd3f4, transparent);
+}
+
+.footer-text {
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .footer-link {
