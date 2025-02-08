@@ -11,19 +11,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addMember(isJunior) {
-        const memberType = isJunior ? 'Jugendmitglied' : 'Erwachsenenmitglied';
         const memberDiv = document.createElement('div');
         memberDiv.className = 'member-card';
         memberDiv.dataset.id = memberCounter;
         memberDiv.innerHTML = `
-            <h4>${memberType} (M${memberCounter})</h4>
+            <h4>${isJunior ? 'Junior' : 'Adult'} Mitglied</h4>
             <div class="form-group">
-                <input type="text" name="M${memberCounter}_Vorname" placeholder="Vorname" required>
-                <input type="text" name="M${memberCounter}_Nachname" placeholder="Nachname" required>
-                <input type="date" name="M${memberCounter}_Geburtsdatum" required>
-                <input type="email" name="M${memberCounter}_Email" placeholder="E-Mail-Adresse" required>
-                <input type="tel" name="M${memberCounter}_Telefon" placeholder="Handynummer" required>
-                <input type="hidden" name="M${memberCounter}_Type" value="${memberType}">
+                <input type="text" name="Member_${memberCounter}_Name" placeholder="Vorname" required>
+                <input type="text" name="Member_${memberCounter}_Lastname" placeholder="Nachname" required>
+                <input type="date" name="Member_${memberCounter}_Birthdate" required>
+                <input type="email" name="Member_${memberCounter}_Email" placeholder="E-Mail-Adresse" required>
+                <input type="tel" name="Member_${memberCounter}_Phone" placeholder="Handynummer" required>
+                <input type="hidden" name="Member_${memberCounter}_Type" value="${isJunior ? 'Junior' : 'Adult'}">
             </div>
             <button type="button" class="remove-member">×</button>
         `;
