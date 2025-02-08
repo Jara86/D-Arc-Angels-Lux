@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
             phone: '',
             birthdate: ''
         };
-
         allMembers.push(memberData);
         updateMembersList();
     }
@@ -31,22 +30,22 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="member-card" data-id="${member.id}">
                 <h4>${member.type} Mitglied</h4>
                 <div class="form-group">
-                    <input type="text" placeholder="Vorname" oninput="updateMember(${index}, 'name', this.value)" required>
-                    <input type="text" placeholder="Nachname" oninput="updateMember(${index}, 'lastname', this.value)" required>
-                    <input type="date" oninput="updateMember(${index}, 'birthdate', this.value)" required>
-                    <input type="email" placeholder="E-Mail-Adresse" oninput="updateMember(${index}, 'email', this.value)" required>
-                    <input type="tel" placeholder="Handynummer" oninput="updateMember(${index}, 'phone', this.value)" required>
+                    <input type="text" placeholder="Vorname" value="${member.name}" oninput="updateMember(${index}, 'name', this.value)" required>
+                    <input type="text" placeholder="Nachname" value="${member.lastname}" oninput="updateMember(${index}, 'lastname', this.value)" required>
+                    <input type="date" value="${member.birthdate}" oninput="updateMember(${index}, 'birthdate', this.value)" required>
+                    <input type="email" placeholder="E-Mail-Adresse" value="${member.email}" oninput="updateMember(${index}, 'email', this.value)" required>
+                    <input type="tel" placeholder="Handynummer" value="${member.phone}" oninput="updateMember(${index}, 'phone', this.value)" required>
                 </div>
                 <button type="button" class="remove-member" onclick="removeMember(${index})">×</button>
             </div>
         `).join('');
     }
 
-    window.updateMember = function (index, field, value) {
+    window.updateMember = function(index, field, value) {
         allMembers[index][field] = value;
     };
 
-    window.removeMember = function (index) {
+    window.removeMember = function(index) {
         const memberCard = document.querySelector(`.member-card[data-id="${allMembers[index].id}"]`);
         memberCard.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
         memberCard.style.opacity = '0';
@@ -58,52 +57,41 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     };
 
-    membershipForm.addEventListener('submit', function (e) {
+    membershipForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const formData = new FormData();
+        const formData = {
+            mainMember: {
+                name: document.getElementById('name').value,
+                lastname: document.getElementById('lastname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                birthdate: document.getElementById('birthdate').value,
+                street: document.getElementById('street').value,
+                postal_code: document.getElementById('postal_code').value,
+                city: document.getElementById('city').value
+            },
+            additionalMembers: allMembers
+        };
 
-        // Hauptmitgliedsdaten
-        formData.append('name', document.getElementById('name').value);
-        formData.append('lastname', document.getElementById('lastname').value);
-        formData.append('email', document.getElementById('email').value);
-        formData.append('phone', document.getElementById('phone').value);
-        formData.append('birthdate', document.getElementById('birthdate').value);
-        formData.append('street', document.getElementById('street').value);
-        formData.append('postal_code', document.getElementById('postal_code').value);
-        formData.append('city', document.getElementById('city').value);
-
-        // Zusätzliche Mitglieder
-        allMembers.forEach((member, index) => {
-            formData.append(`members[${index}][type]`, member.type);
-            formData.append(`members[${index}][name]`, member.name);
-            formData.append(`members[${index}][lastname]`, member.lastname);
-            formData.append(`members[${index}][birthdate]`, member.birthdate);
-          
-            formData.append(`members[${index}][phone]`, member.phone);
-        });
-
-     
-
-    fetch('https://formsubmit.co/jarouschka@gmail.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Order successfully sent!');
-            allMembers = [];
-            updateOrderList();
-            this.reset();
-        })
-      
+        fetch('https://formsubmit.co/cdf96776353aec10207def6412ff3021', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.success-message').style.display = 'block';
+            allMembers = [];
+            updateMembersList();
+            this.reset();
+        })
         .catch(error => {
-            console.error('Submission error:', error);
-            alert('Bitte versuchen Sie es erneut.');
+            console.error('Error:', error);
+            alert('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
         });
-    });
-});
+    });});
+
