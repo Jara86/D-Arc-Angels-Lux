@@ -67,7 +67,7 @@ input[name^="member"][name$="_Nachname"] {
     flex: 1;
 }
 
-input[name^="member"][name$="_Strasse"] {
+input[name^="member"][name$="_Strasse und Hausnummer"] {
     flex: 2;
 }
 
@@ -157,7 +157,7 @@ button {
         width: 100%;
     }
     
-    input[name="Strasse"],
+    input[name="Strasse und Hausnummer"],
     input[name="PLZ"],
     input[name="Stadt"] {
         flex: 1 1 100%;
