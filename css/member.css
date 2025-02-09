@@ -62,25 +62,25 @@ input, textarea {
 
 
 
-input[name^="member"][name$="_name"],
-input[name^="member"][name$="_lastname"] {
+input[name^="member"][name$="_Vorname"],
+input[name^="member"][name$="_Nachname"] {
     flex: 1;
 }
 
-input[name^="member"][name$="_street"] {
+input[name^="member"][name$="_Strasse"] {
     flex: 2;
 }
 
-input[name^="member"][name$="_postal_code"] {
+input[name^="member"][name$="PLZ"] {
     flex: 0 0 clamp(60px, 10vw, 80px);
 }
 
 
-input[name^="member"][name$="_city"] {
+input[name^="member"][name$="_Stadt"] {
     flex: 1;
 }
 
-input[name="dob"] {
+input[name="Geburtsdatum"] {
     width: clamp(160px, 20vw, 200px);
 }
 input[name^="member"][name$="_dateOfBirth"] {
@@ -152,14 +152,14 @@ button {
         flex-direction: column;
     }
     
-    input[name="postal_code"],
-    input[name="city"] {
+    input[name="PLZ"],
+    input[name="Stadt"] {
         width: 100%;
     }
     
-    input[name="street"],
-    input[name="postal_code"],
-    input[name="city"] {
+    input[name="Strasse"],
+    input[name="PLZ"],
+    input[name="Stadt"] {
         flex: 1 1 100%;
     }
 }
