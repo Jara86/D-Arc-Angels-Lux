@@ -82,16 +82,16 @@
     <input type="text" name="Vorname" placeholder="Vorname" required maxlength="100">
     <input type="text" name="Nachname" placeholder="Nachname" required maxlength="100">
     </div>
-    
     <div class="form-group">
-    <input 
-    type="text" 
-    name="Strasse" 
-    placeholder="Strasse" 
-    required 
-    pattern="^[a-zA-Z0-9\s]{3,}$" 
-    maxlength="100"
-    >
+        <input 
+            type="text" 
+            name="Strasse" 
+            placeholder="Strasse und Hausnummer" 
+            required 
+            pattern="^[a-zA-ZäöüÄÖÜß0-9\s\-\/\.]{3,}$" 
+            maxlength="100"
+        >
+    </div>
     <input 
     type="text" 
     name="PLZ" 
