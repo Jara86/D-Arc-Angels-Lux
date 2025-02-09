@@ -21,126 +21,102 @@
         <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
     <div id="nav-placeholder"></div>
-
-      <div class="content-container">
-        <h2>Turnier-Anmeldeformular</h2>
-
+    <div class="content-container">
         <main class="content-container">
             <section class="registration-section">
                 <h2>Turnier-Anmeldeformular</h2>
                 <form class="tournament-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="Tournier Registration 🎯">
                     <input type="hidden" name="_template" value="table">
-                   
-                
-                <div class="participant-section">
-                    <h3>Hauptteilnehmer</h3>
                     
-                    <div class="form-group select-group">
-                        <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
-                        <select id="turnier" name="tournament" required>
-                            <option value="">Turnier auswählen</option>
-                            <option value="france">Turnier beispiel 1</option>
-                            <option value="italy">Turnier beispiel 2</option>
-                            <option value="usa">Turnir beispiel 3</option>
-                            <option value="brazil">Turnier beispiel 4</option>
-                            <option value="japan">Turnier beispiel 5</option>
-                        </select>
+                    <div class="participant-section">
+                        <h3>Hauptteilnehmer</h3>
+                        
+                        <div class="form-group select-group">
+                            <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
+                            <select id="turnier" name="tournament" required>
+                                <option value="">Turnier auswählen</option>
+                                <option value="france">Turnier beispiel 1</option>
+                                <option value="italy">Turnier beispiel 2</option>
+                                <option value="usa">Turnir beispiel 3</option>
+                                <option value="brazil">Turnier beispiel 4</option>
+                                <option value="japan">Turnier beispiel 5</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <input type="text" name="participant1_name" placeholder="Vorname" required maxlength="100">
+                            <input type="text" name="participant1_lastname" placeholder="Nachname" required maxlength="100">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="date" name="participant1_dateOfBirth" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" name="participant1_email" placeholder="E-Mail-Adresse" required maxlength="250">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" name="participant1_phone" placeholder="Handynummer" required maxlength="50">
+                        </div>
+    
+                        <div class="form-group radio-group">
+                            <p class="radio-label">Teilnahmeart:</p>
+                            <div class="radio-options">
+                                <div class="radio-item">
+                                    <input type="radio" id="participant1_foot" name="participant1_type" value="foot" required>
+                                    <label for="participant1_foot">Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten).</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="participant1_horse" name="participant1_type" value="horse" required>
+                                    <label for="participant1_horse">Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst.</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-              <div class="form-group">
-                  <input type="text" name="participant1_name" placeholder="Vorname" required maxlength="100">
-                  <input type="text" name="participant1_lastname" placeholder="Nachname" required maxlength="100">
-              </div>
-              
-              <div class="form-group">
-                  <input 
-                      type="date" 
-                      name="participant1_dateOfBirth" 
-                      placeholder="Geburtsdatum"
-                      required
-                      max="2050-12-31"
-                      min="1900-01-01"
-                  >
-              </div>
-              
-              <div class="form-group">
-                  <input type="email" name="participant1_email" placeholder="E-Mail-Adresse" required maxlength="250">
-              </div>
-              
-              <div class="form-group">
-                  <input type="tel" name="participant1_phone" placeholder="Handynummer" required maxlength="50">
-              </div>
-              <div class="form-group radio-group">
-                <p class="radio-label">Teilnahmeart:</p>
-                <div class="radio-options">
-                    <div class="radio-item">
-                        <input type="radio" id="participant1_foot" name="participant1_type" value="foot" required>
-                        <label for="participant1_foot">"Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten)."</label>
+    
+                    <div id="additional-participants"></div>
+                    <button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
+    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy-policy" name="privacy_policy" required>
+                        <label for="privacy-policy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
+                        
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Ich habe die Teilnamebedinungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
                     </div>
-                    <div class="radio-item">
-                        <input type="radio" id="participant1_horse" name="participant1_type" value="horse" required>
-                        <label for="participant1_horse">"Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst."</label>
+    
+                    <button type="submit">Anmelden</button>
+                </form>
+            </section>
+    
+            <section class="tournaments-container">
+                <h2>Turniere 2025</h2>
+                <div class="tournament-list">
+                    <div class="tournament-card">
+                        <h3>Beispiel Tournament 1</h3>
+                        <div class="tournament-details">
+                            <p class="date">15-16 März 2025</p>
+                            <p class="location">Paris, France</p>
+                            <p class="description">International Mounted Archery Competition</p>
+                            <div class="status">Anmeldung offen</div>
+                        </div>
                     </div>
+    
+                    <div class="tournament-card">
+                        <h3>Beispiel Tournament 2</h3>
+                        <div class="tournament-details">
+                            <p class="date">20-21 Mai 2025</p>
+                            <p class="location">Rome, Italy</p>
+                            <p class="description">European Championship Qualifiers</p>
+                            <div class="status">Demnächst</div>
+                        </div>
                     </div>
                 </div>
-          </div>
-
-           
-           
-
-           
-
-            
-           
- <!-- Add Participant Button -->
-</div>
-
-<div id="additional-participants"></div>
-<button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
-</form>
-
-
-              
-              <div class="form-group checkbox-group">
-                  <input type="checkbox" id="privacy" name="privacy" required>
-                  <label for="privacy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
-                  <input type="checkbox" id="privacy" name="privacy" required>
-                  <label for="privacy">Ich habe die Teilnamebedinungen gelesen und stimme ihnen zu.<em>(hier link mit pdf zum Thema)</em></label>
-                </div>
-       
-
-            <button type="submit">Anmelden</button>
-        </form>
+            </section>
+        </main>
     </div>
-  </div>
-  </div>
-  <section class="tournaments-container">
-    <h2>Turniere 2025</h2>
-    <div class="tournament-list">
-          <div class="tournament-card">
-              <h3>Beispiel Tournament 1</h3>
-              <div class="tournament-details">
-                  <p class="date">15-16 März 2025</p>
-                  <p class="location">Paris, France</p>
-                  <p class="description">International Mounted Archery Competition</p>
-                  <div class="status">Anmeldung offen</div>
-              </div>
-          </div>
-  
-          <div class="tournament-card">
-              <h3>Beispiel Tournament 2</h3>
-              <div class="tournament-details">
-                  <p class="date">20-21 Mai 2025</p>
-                  <p class="location">Rome, Italy</p>
-                  <p class="description">European Championship Qualifiers</p>
-                  <div class="status">Demnächst   </div>
-                </section>
-            </main>
-  
-          <!-- Add more tournament cards as needed -->
-      </section>
-  </div>
-</div>
 <footer class="footer">
     <hr class="footer-line">
     <footer class="footer">
@@ -154,7 +130,7 @@
 </div> 
 </div>
 </div>
-
+</div>
 
 <script src="js/tournaments.js" defer></script>
 <script src="js/script.js" defer></script>
