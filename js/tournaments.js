@@ -3,7 +3,12 @@ document.getElementById('addParticipant').addEventListener('click', function() {
     
     const newParticipant = `
         <div class="participant-section">
-            <h3>Teilnehmer ${participantCount}</h3>
+            <div class="participant-header">
+                <h3>Teilnehmer ${participantCount}</h3>
+                <button type="button" class="remove-participant" onclick="removeParticipant(this)">
+                    <i class="fas fa-times"></i> Entfernen
+                </button>
+            </div>
             <div class="form-group">
                 <input type="text" name="Teilnehmer${participantCount}_Vorname" placeholder="Vorname" required maxlength="100">
                 <input type="text" name="Teilnehmer${participantCount}_Nachname" placeholder="Nachname" required maxlength="100">
@@ -46,3 +51,7 @@ document.getElementById('addParticipant').addEventListener('click', function() {
     
     document.getElementById('weitere-Teilnehmer').insertAdjacentHTML('beforeend', newParticipant);
 });
+
+function removeParticipant(button) {
+    button.closest('.participant-section').remove();
+}

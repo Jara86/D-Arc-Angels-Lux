@@ -179,4 +179,22 @@
     .tournament-card:hover {
         transform: none;
     }
+}.participant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.remove-participant {
+    background-color: #183947;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.remove-participant:hover {
+    background-color: #183947;
 }
