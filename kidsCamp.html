@@ -13,18 +13,76 @@
 
 </head>
 <body>
-    <div class="page-wrapper">
-        <!-- Header -->
-        <div class="header-container">
-            <img src="./images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo">
-            <h1>D'Arc Angels Lëtzebuerg</h1>
-        </div>
-        <div id="nav-placeholder"></div>
+    <div class="header-container">
+        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team"  width="200" height="200">
+        <h1>D'Arc Angels Lëtzebuerg</h1>
+    </div>
+    </div>
       
 
-<main class="content">
-    <!-- Add your KidsCamp content here -->
-</main>
+        <main class="content-container">
+<section class="KidsCamp-section">
+    <h2>KidsCamp</h2>
+    <p>Wir bieten ein spannendes und abwechslungsreiches Ferienprogramm für Kinder und Jugendliche zwischen 8 und 16 Jahren an. Die Teilnehmer erwartet eine Woche voller Spaß und Action mit Pferden und Bogenschießen. Die Kinder lernen den Umgang mit Pferden und Bögen, trainieren ihre Geschicklichkeit und Koordination und erleben gemeinsam mit anderen Kindern ein unvergessliches Abenteuer.</p>
+
+
+
+            <section class="registration-section">
+                <h2>KidsCamp Anmeldeformular</h2>
+                <form class="kidscamp-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="KidsCamp Anmeldung 🏹">
+                    <input type="hidden" name="_template" value="table">
+        
+                    <!-- Parent Information -->
+                    <div class="parent-section">
+                        <h3>Eltern/Erziehungsberechtigte</h3>
+                        <div class="form-group">
+                            <input type="text" name="Eltern_Vorname" placeholder="Vorname" required maxlength="100">
+                            <input type="text" name="Eltern_Nachname" placeholder="Nachname" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="Eltern_Email" placeholder="E-Mail-Adresse" required maxlength="250">
+                            <input type="tel" name="Eltern_Telefon" placeholder="Handynummer" required maxlength="50">
+                        </div>
+                    </div>
+        
+                    <!-- First Child (Required) -->
+                    <div class="child-section">
+                        <h3>Kind 1</h3>
+                        <div class="form-group">
+                            <input type="text" name="Kind1_Vorname" placeholder="Vorname" required maxlength="100">
+                            <input type="text" name="Kind1_Nachname" placeholder="Nachname" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="Kind1_Geburtsdatum" required max="2024-12-31" min="2010-01-01">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="Kind1_Allergien" placeholder="Allergien oder besondere Bedürfnisse" rows="2"></textarea>
+                        </div>
+                    </div>
+        
+                    <!-- Container for Additional Children -->
+                    <div id="weitere-Kinder"></div>
+                    
+                    <!-- Add Child Button -->
+                    <button type="button" id="addChild" class="btn-secondary">
+                        <i class="fas fa-plus"></i> Weiteres Kind hinzufügen
+                    </button>
+        
+                    <!-- Agreements -->
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacy-policy" name="privacy_policy" required>
+                        <label for="privacy-policy">Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.</label>
+                        
+                        <input type="checkbox" id="Teilnamebedinungen" name="Teilnamebedinungen" required>
+                        <label for="Teilnamebedinungen">Ich habe die Teilnahmebedingungen gelesen und stimme ihnen zu.</label>
+                    </div>
+        
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Anmelden</button>
+                </form>
+            </section>
+        </main>
 
 <footer class="footer">
     <hr class="footer-line">
@@ -36,6 +94,7 @@
     <a href="impressum.html" class="footer-link">Impressum</a>
 </footer>
 
+<script src="js/kidsCamp.js"></script>
 <script src="js/script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
