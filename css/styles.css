@@ -47,6 +47,7 @@ body {
 
 .navigation-container {
     max-width: 800px;
+    z-index: 1000; /* Ensure navigation is on top */
 }
 
 .content-container {
