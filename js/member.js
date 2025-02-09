@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <h4>${isJunior ? 'Junior' : 'Adult'} Mitglied</h4>
             <div class="form-group">
                 <input type="text" name="Member_${memberCounter}_Name" placeholder="Vorname" required>
-                <input type="text" name="Member_${memberCounter}_Lastname" placeholder="Nachname" required>
-                <input type="date" name="Member_${memberCounter}_Birthdate" required>
+                <input type="text" name="Member_${memberCounter}_Nachname" placeholder="Nachname" required>
+                <input type="date" name="Member_${memberCounter}_Geburtsdatum" required>
                 <input type="email" name="Member_${memberCounter}_Email" placeholder="E-Mail-Adresse" required>
-                <input type="tel" name="Member_${memberCounter}_Phone" placeholder="Handynummer" required>
+                <input type="tel" name="Member_${memberCounter}_Handynummer" placeholder="Handynummer" required>
                 <input type="hidden" name="Member_${memberCounter}_Type" value="${isJunior ? 'Junior' : 'Adult'}">
             </div>
             <button type="button" class="remove-member">×</button>
