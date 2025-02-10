@@ -1,3 +1,4 @@
+
 document.getElementById('addChild').addEventListener('click', function() {
     const childCount = document.querySelectorAll('.child-section').length + 1;
     
@@ -28,3 +29,5 @@ document.getElementById('addChild').addEventListener('click', function() {
 function removeChild(button) {
     button.closest('.child-section').remove();
 }
+
+
