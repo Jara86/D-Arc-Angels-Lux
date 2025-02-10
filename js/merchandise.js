@@ -2,12 +2,7 @@ let orderItems = [];
 
 function formatOrderForEmail() {
     return orderItems.map((item, index) => {
-        const productName = getProductName(item.product);
-        const productNumber = `Produkt ${index + 1}`;
-        const sizeInfo = item.size ? `- Größe: ${item.size}` : '';
-        const quantity = `- ${item.quantity}x`;
-        
-        return [productNumber, productName, sizeInfo, quantity].join(' ');
+        return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
     }).join('\n');
 }
 
@@ -59,12 +54,16 @@ document.getElementById('add-item').addEventListener('click', function() {
 });
 
 function formatEmailContent(formData) {
-        return `
-   
-    Order Details:
-    ${formatOrderForEmail()}
-        `.trim();
-    }
+    return `
+Name: ${formData.get('name')}
+Email: ${formData.get('email')}
+Member: ${formData.get('member')}
+Address: ${formData.get('address')}
+Pickup: ${formData.get('pickup')}
+Order Details:
+${formatOrderForEmail()}
+    `.trim();
+}
 
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
