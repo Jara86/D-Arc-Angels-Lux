@@ -76,9 +76,9 @@ document.querySelector('form').addEventListener('submit', function(e) {
 });
 
 function resetForm() {
-    document.getElementById('product').value = 'none';
-    document.getElementById('size').value = 'none';
-    document.getElementById('quantity').value = 'none';
+    document.getElementById('product').style.display = 'none';;
+    document.getElementById('size').style.display = 'none';
+    document.getElementById('quantity').style.display = 'none';
     document.getElementById('size-group').style.display = 'none';
 }
 
