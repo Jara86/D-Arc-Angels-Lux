@@ -52,37 +52,34 @@ document.getElementById('add-item').addEventListener('click', function() {
     }
 });
 
-function updateOrderList() {
-    const orderList = document.getElementById('order-list');
-    orderList.innerHTML = orderItems.map((item, index) => `
-        <div class="order-item">
-            Produkt ${index + 1}: ${getProductName(item.product)} 
-            ${item.size ? `- Größe: ${item.size}` : ''} 
-            - ${item.quantity}x
-            <button type="button" onclick="removeItem(${index})" class="btn-remove">
-                🗑️
-            </button>
-        </div>
-    `).join('');
+function formatEmailContent(formData) {
+    return `
+Name: ${formData.get('name')}
+Email: ${formData.get('email')}
+Member: ${formData.get('member')}
+Address: ${formData.get('address')}
+Pickup: ${formData.get('pickup')}
+Order Details:
+${formatOrderForEmail()}
+    `.trim();
+}
 
-    // Update hidden input for email submission
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    
+    // Create and update hidden input for email content
     let orderInput = document.querySelector('input[name="order_details"]');
     if (!orderInput) {
         orderInput = document.createElement('input');
         orderInput.type = 'hidden';
         orderInput.name = 'order_details';
-        document.querySelector('form').appendChild(orderInput);
+        this.appendChild(orderInput);
     }
-    orderInput.value = formatOrderForEmail();
-}
-
-function getProductName(productCode) {
-    const productSelect = document.getElementById('product');
-    const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
-    return option ? option.text : productCode;
-}
-
-function removeItem(index) {
-    orderItems.splice(index, 1);
-    updateOrderList();
-}
+    
+    orderInput.value = formatEmailContent(formData);
+    
+    // Submit the form
+    this.submit();
+});
