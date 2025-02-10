@@ -276,22 +276,28 @@
             });
     </script>
     <script>
-      document.querySelector('form').addEventListener('submit', function(e) {
+   document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
+    const formData = new FormData(this);
     
-    // Create a hidden input specifically for order items if it doesn't exist
-    let orderItemsInput = document.querySelector('input[name="_orderItems"]');
-    if (!orderItemsInput) {
-        orderItemsInput = document.createElement('input');
-        orderItemsInput.type = 'hidden';
-        orderItemsInput.name = '_orderItems';
-        this.appendChild(orderItemsInput);
+    let orderInput = document.querySelector('input[name="order_details"]');
+    if (!orderInput) {
+        orderInput = document.createElement('input');
+        orderInput.type = 'hidden';
+        orderInput.name = 'order_details';
+        this.appendChild(orderInput);
     }
     
-    // Set just the order items
-    orderItemsInput.value = formatOrderForEmail();
-    
-    // Submit the form
+    orderInput.value = formatEmailContent(formData);
+
+    // 🔥 Entferne leere Felder aus dem Formular
+    const inputs = this.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        if (!input.value) {
+            input.remove();
+        }
+    });
+
     this.submit();
 });
         </script>
