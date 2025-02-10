@@ -29,6 +29,7 @@ document.getElementById('product').addEventListener('change', function() {
     }
 });
 
+// Fix: Change this to add-item button click event
 document.getElementById('add-item').addEventListener('click', function() {
     const product = document.getElementById('product');
     const size = document.getElementById('size');
@@ -66,10 +67,8 @@ ${formatOrderForEmail()}
 
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
     const formData = new FormData(this);
     
-    // Create and update hidden input for email content
     let orderInput = document.querySelector('input[name="order_details"]');
     if (!orderInput) {
         orderInput = document.createElement('input');
@@ -79,16 +78,16 @@ document.querySelector('form').addEventListener('submit', function(e) {
     }
     
     orderInput.value = formatEmailContent(formData);
-    
-    // Submit the form
     this.submit();
 });
+
 function resetForm() {
     document.getElementById('product').value = '';
     document.getElementById('size').value = '';
     document.getElementById('quantity').value = '1';
     document.getElementById('size-group').style.display = 'none';
 }
+
 function updateOrderList() {
     const orderList = document.getElementById('order-list');
     orderList.innerHTML = orderItems.map((item, index) => `
@@ -101,4 +100,17 @@ function updateOrderList() {
             </button>
         </div>
     `).join('');
+}
+
+// Add the missing getProductName function
+function getProductName(productCode) {
+    const productSelect = document.getElementById('product');
+    const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
+    return option ? option.text : productCode;
+}
+
+// Add the missing removeItem function
+function removeItem(index) {
+    orderItems.splice(index, 1);
+    updateOrderList();
 }
