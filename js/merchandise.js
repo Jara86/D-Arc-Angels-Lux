@@ -2,7 +2,12 @@ let orderItems = [];
 
 function formatOrderForEmail() {
     return orderItems.map((item, index) => {
-        return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+        const productName = getProductName(item.product);
+        const productNumber = `Produkt ${index + 1}`;
+        const sizeInfo = item.size ? `- Größe: ${item.size}` : '';
+        const quantity = `- ${item.quantity}x`;
+        
+        return [productNumber, productName, sizeInfo, quantity].join(' ');
     }).join('\n');
 }
 
