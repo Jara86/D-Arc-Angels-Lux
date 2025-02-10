@@ -55,12 +55,7 @@ document.getElementById('add-item').addEventListener('click', function() {
 
 function formatEmailContent(formData) {
     return `
-Name: ${formData.get('name')}
-Email: ${formData.get('email')}
-Member: ${formData.get('member')}
-Address: ${formData.get('address')}
-Pickup: ${formData.get('pickup')}
-Order Details:
+
 ${formatOrderForEmail()}
     `.trim();
 }
