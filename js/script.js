@@ -70,3 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 });
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const response = await fetch('header.html');
+        const data = await response.text();
+        document.getElementById('header').innerHTML = data;
+    } catch (error) {
+        console.log('Header loading:', error);
+    }
+});
