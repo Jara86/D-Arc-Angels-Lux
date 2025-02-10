@@ -59,9 +59,12 @@ document.getElementById('add-item').addEventListener('click', function() {
 });
 
 function formatEmailContent(formData) {
-    // This will only contain the order items
-    return formatOrderForEmail();
-}
+        return `
+   
+    Order Details:
+    ${formatOrderForEmail()}
+        `.trim();
+    }
 
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
