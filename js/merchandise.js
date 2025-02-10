@@ -54,9 +54,14 @@ document.getElementById('add-item').addEventListener('click', function() {
 });
 
 function formatEmailContent(formData) {
-    // Return just the order items with proper line breaks
-    const orderDetails = formatOrderForEmail();
-    return orderDetails;  // This will show only the products in order_details
+    const orderDetails = orderItems.map((item, index) => {
+        const productName = getProductName(item.product);
+        const size = item.size ? `- Größe: ${item.size}` : '';
+        const quantity = `- ${item.quantity}x`;
+        return `Produkt ${index + 1}: ${productName} ${size} ${quantity}`;
+    }).join('\n');
+    
+    return orderDetails;
 }
 
 document.querySelector('form').addEventListener('submit', function(e) {
