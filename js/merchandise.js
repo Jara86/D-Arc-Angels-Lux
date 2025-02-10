@@ -113,3 +113,21 @@ function removeItem(index) {
     orderItems.splice(index, 1);
     updateOrderList();
 }
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Create a hidden input specifically for order items if it doesn't exist
+    let orderItemsInput = document.querySelector('input[name="_orderItems"]');
+    if (!orderItemsInput) {
+        orderItemsInput = document.createElement('input');
+        orderItemsInput.type = 'hidden';
+        orderItemsInput.name = '_orderItems';
+        this.appendChild(orderItemsInput);
+    }
+    
+    // Set just the order items
+    orderItemsInput.value = formatOrderForEmail();
+    
+    // Submit the form
+    this.submit();
+});
