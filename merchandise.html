@@ -163,11 +163,9 @@
 </section>
 <section class="order-section">
     <form name="merchandise-order" class="order-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
-        <!-- Add this hidden input -->
         <input type="hidden" name="_subject" value="New Merchandise Order">
         <input type="hidden" name="_template" value="table">
         
-        <!-- Customer Details -->
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
@@ -186,26 +184,21 @@
             </select>
         </div>
 
-        <!-- Order Items Section -->
         <div class="order-items">
             <h3>Deine Bestellung</h3>
-            <div id="order-list">
-                <!-- Dynamic order items will appear here -->
-            </div>
+            <div id="order-list"></div>
             
             <div class="add-item-form">
                 <div class="form-group">
                     <label for="product">Produkt:</label>
                     <select id="product" name="product">
                         <option value="">Bitte wählen</option>
-                        <!-- Clothing -->
                         <option value="grey-shirt">T-shirt - Dunkel grau</option>
                         <option value="turquoise-shirt">T-Shirt - Türkis</option>
                         <option value="black-shirt">T-shirt - Schwarz</option>
                         <option value="hoodie">Hoodie</option>
                         <option value="gilet-m">Fleece Gilet Herren</option>
                         <option value="gilet-w">Fleece Gilet Damen</option>
-                        <!-- Accessories -->
                         <option value="cup">Tassen</option>
                         <option value="sticker">Runde Sticker</option>
                         <option value="pen">Bic'er</option>

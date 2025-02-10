@@ -57,7 +57,7 @@ function updateOrderList() {
             ${item.size ? `- Größe: ${item.size}` : ''} 
             - ${item.quantity}x
             <button type="button" onclick="removeItem(${index})" class="btn-remove">
-                <i class="fas fa-times"></i> Entfernen
+                🗑️
             </button>
         </div>
     `).join('');

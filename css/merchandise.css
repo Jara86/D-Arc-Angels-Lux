@@ -218,17 +218,17 @@
 }
 
 .btn-remove {
-    background: #2c5464;
-    color: white;
+    background: transparent;
+    color: #dc3545;
     border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
 }
 
 .btn-remove:hover {
-    background: #8fd3f4;
+    transform: scale(1.2);
 }
 
 @media (max-width: 768px) {
