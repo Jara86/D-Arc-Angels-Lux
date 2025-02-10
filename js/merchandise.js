@@ -83,3 +83,22 @@ document.querySelector('form').addEventListener('submit', function(e) {
     // Submit the form
     this.submit();
 });
+function resetForm() {
+    document.getElementById('product').value = '';
+    document.getElementById('size').value = '';
+    document.getElementById('quantity').value = '1';
+    document.getElementById('size-group').style.display = 'none';
+}
+function updateOrderList() {
+    const orderList = document.getElementById('order-list');
+    orderList.innerHTML = orderItems.map((item, index) => `
+        <div class="order-item">
+            Produkt ${index + 1}: ${getProductName(item.product)} 
+            ${item.size ? `- Größe: ${item.size}` : ''} 
+            - ${item.quantity}x
+            <button type="button" onclick="removeItem(${index})" class="btn-remove">
+                🗑️
+            </button>
+        </div>
+    `).join('');
+}
