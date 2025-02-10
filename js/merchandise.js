@@ -54,10 +54,8 @@ document.getElementById('add-item').addEventListener('click', function() {
 });
 
 function formatEmailContent(formData) {
-    return `
-
-${formatOrderForEmail()}
-    `.trim();
+    // Add a single space before the order details to ensure proper formatting
+    return ' ' + formatOrderForEmail();
 }
 
 document.querySelector('form').addEventListener('submit', function(e) {
