@@ -84,3 +84,41 @@
     background: #296077;
     transform: none;
 }
+.training-card, .recurring-trainings, .equipment-rental, .private-training {
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    margin-bottom: 20px;
+}
+
+.training-card img, .recurring-trainings img, .equipment-rental img, .private-training img {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.training-card img:hover, .recurring-trainings img:hover, .equipment-rental img:hover, .private-training img:hover {
+    transform: scale(1.03);
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .training-card img, .recurring-trainings img, .equipment-rental img, .private-training img {
+        height: 200px;
+    }
+    
+    .training-grid {
+        grid-template-columns: 1fr;
+    }
+}
