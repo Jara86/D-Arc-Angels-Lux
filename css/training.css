@@ -86,7 +86,7 @@
 }
 .training-card, .recurring-trainings, .equipment-rental, .private-training {
     position: relative;
-    background: white;
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
