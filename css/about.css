@@ -51,7 +51,7 @@
     transform: translateY(-5px);
 }
 
-.role {
+.role,.address {
     color: #183947;
     font-style: italic;
     margin: 0.5rem 0;
