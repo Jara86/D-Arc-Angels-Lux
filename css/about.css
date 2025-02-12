@@ -27,10 +27,44 @@
 }
 
 .feature-list li::before {
-    content: "→";
+    content: "🏹";
     position: absolute;
     left: 0;
     color: #183947;
+    transition: transform 0.3s ease;
+}
+
+.feature-list li:hover::before {
+    transform: translateX(5px);
+}
+
+.feature-list a {
+    color: #284f55;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.feature-list a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #183947;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.feature-list a:hover {
+    color: #2c5f73;
+}
+
+.feature-list a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .contact-cards {
