@@ -1,12 +1,31 @@
+/* Font Declarations */
+/* Font Declarations */
+.playfair-display {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.marcellus {
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
     --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
+    --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
     --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
 }
 
+/* Single, consolidated body styles */
 body {
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.6;
     background: var(--primary-gradient);
-    font-family: 'Open Sans', sans-serif;
-    color: #222;
+    color: #183947;
     display: flex;
     flex-direction: column;
     align-items: center;

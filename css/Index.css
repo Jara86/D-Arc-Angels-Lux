@@ -1,9 +1,4 @@
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
-    color: #183947;
-}
+
 
 .header-container {
     max-width: 1200px;
