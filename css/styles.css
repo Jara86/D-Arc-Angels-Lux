@@ -12,6 +12,12 @@
     font-style: normal;
 }
 
+p, li {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
 :root {
     --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
     --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
