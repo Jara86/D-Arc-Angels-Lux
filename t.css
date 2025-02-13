@@ -1,10 +1,14 @@
-
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
 
 .training-sections-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -18,8 +22,8 @@
 
 
  img {
-    width: 100%;
-    height: 300px;
+    width: 60%;
+    height: 320px;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1rem;
@@ -38,20 +42,4 @@
     .training-sections-wrapper {
         grid-template-columns: 1fr;
     }
-}
-
-/* Consistent button styling */
-.btn-primary, .cta-button {
-    background: #183947;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    border: none;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-primary:hover, .cta-button:hover {
-    background: #296077;
-    transform: none;
 }

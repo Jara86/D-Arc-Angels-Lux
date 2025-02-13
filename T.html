@@ -1,52 +1,12 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="D'Arc Angels Lëtzebuerg training page">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/training.css">
-
-    <title>Training - D'Arc Angels Lëtzebuerg</title>
+    <link rel="stylesheet" href="t.css">
+    <title>Document</title>
 </head>
 <body>
-    <div class="header-container">
-        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
-    </div>
-    <div id="nav-placeholder"></div>
- 
-    <div id="registration-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Training Anmeldung</h2>
-            <form id="training-registration" onsubmit="sendToWhatsApp(event)">
-                <div class="form-group">
-                    <label for="participant-name">Name:</label>
-                    <input type="text" id="participant-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="participant-phone">Telefon:</label>
-                    <input type="tel" id="participant-phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="membership">Mitgliedschaft:</label>
-                    <select id="membership" required>
-                        <option value="member">Member</option>
-                        <option value="non-member">Non-Member</option>
-                    </select>
-                </div>
-                <input type="hidden" id="training-type">
-                <button type="submit" class="btn-primary">Anmelden</button>
-            </form>
-        </div>
-    </div>
     <main class="content-container">
         <h1>Unsere Trainingsangebote</h1>
         
@@ -138,28 +98,5 @@
             </section>
         </div>
     </main>
-
-
-    <footer class="footer">
-        <hr class="footer-line">
-        <footer class="footer">
-            <p class="footer-text">
-                Code and design by 
-                <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-            </p>
-            <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-            <a href="impressum.html" class="footer-link">Impressum</a>
-        </footer>
-      
-        <script src="js/training.js"></script>
-        <script src="js/script.js" defer></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            fetch('nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('nav-placeholder').innerHTML = data;
-                });
-        </script>
-    </body>
-    </html>
+</body>
+</html>
