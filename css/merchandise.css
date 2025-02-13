@@ -22,7 +22,11 @@
 }
 
 /* Product Cards */
-
+.main img{
+  
+    border-radius: 8px;
+    
+}
 /* Image Container Styles */
 .product-card img {
     width: 100%;
@@ -71,10 +75,12 @@
 
 .accessories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+
 .accessory-item img {
     width: 100%;
     height: auto;
