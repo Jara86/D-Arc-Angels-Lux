@@ -108,3 +108,21 @@ function removeItem(index) {
     orderItems.splice(index, 1);
     updateOrderList();
 }
+// Create modal element
+const modal = document.createElement('div');
+modal.className = 'image-modal';
+modal.innerHTML = '<div class="modal-content"><img src="" alt=""></div>';
+document.body.appendChild(modal);
+
+// Add click handlers to images
+document.querySelectorAll('.product-card img').forEach(img => {
+    img.addEventListener('click', function() {
+        modal.querySelector('img').src = this.src;
+        modal.style.display = 'block';
+    });
+});
+
+// Close modal on click
+modal.addEventListener('click', function() {
+    this.style.display = 'none';
+});
