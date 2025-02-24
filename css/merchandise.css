@@ -4,11 +4,12 @@
     padding: 2rem;
 }
 
-/* Content Container */
-.content-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
+img#main {
+    border-radius: 12px;
+    width: 80%;
+ 
+    object-fit:fill;
+    margin-bottom: 2rem;
 }
 
 /* Product Categories */
@@ -27,10 +28,10 @@
 
 /* Product Grid Layout */
 .products {
-    display: grid;
+  display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    padding: 2rem 0;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 /* Product Card Styling */
@@ -45,12 +46,17 @@
 }
 
 .product-card img {
-    width: 100%;
-    height: 300px;
+  
     border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    object-fit: cover;
-}
+     width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: contain; 
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
 
 .product-card img:hover {
     transform: scale(1.05);
@@ -98,13 +104,15 @@
 }
 
 .accessory-item img {
-    width: 100%;
-    height: auto;
     border-radius: 8px;
-    transition: transform 0.3s ease;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-}
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+     width: 100%;
+        height: auto;
+        max-height: 250px;
+        object-fit: contain; 
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
 
 .accessory-item:hover {
     transform: translateY(-3px);

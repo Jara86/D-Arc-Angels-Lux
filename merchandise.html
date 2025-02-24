@@ -29,6 +29,7 @@
             <img src="images/hoodie_front.avif"id=main alt="D'Arc Angels Lëtzebuerg Merchandise" width="800" height="400">
     
             <section class="products">
+                
                 <div class="product-category ladies">
                     <h2>Ladies Collection</h2>
             
@@ -304,10 +305,29 @@
             });
     </script>
     <script>
-   document.querySelector('form').addEventListener('submit', function(e) {
+document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const formData = new FormData(this);
     
+    if (orderItems.length === 0) {
+        alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
+        return;
+    }
+
+    const formData = new FormData(this);
+    let orderDetails = '';
+
+    // Add customer information
+    orderDetails += `Name: ${formData.get('name')}\n`;
+    orderDetails += `Email: ${formData.get('email')}\n`;
+    orderDetails += `Telefon: ${formData.get('Handynummer')}\n`;
+    orderDetails += `Adresse: ${formData.get('address')}\n`;
+    orderDetails += `Abholung: ${formData.get('pickup')}\n`;
+    orderDetails += `Mitgliedschaft: ${formData.get('member')}\n\n`;
+    
+    // Add order items
+    orderDetails += 'Bestellte Artikel:\n';
+    orderDetails += formatOrderForEmail();
+
     let orderInput = document.querySelector('input[name="order_details"]');
     if (!orderInput) {
         orderInput = document.createElement('input');
@@ -316,16 +336,7 @@
         this.appendChild(orderInput);
     }
     
-    orderInput.value = formatEmailContent(formData);
-
-    // 🔥 Entferne leere Felder aus dem Formular
-    const inputs = this.querySelectorAll('input, select');
-    inputs.forEach(input => {
-        if (!input.value) {
-            input.remove();
-        }
-    });
-
+    orderInput.value = orderDetails;
     this.submit();
 });
         </script>

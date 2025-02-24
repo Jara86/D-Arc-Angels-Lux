@@ -35,22 +35,29 @@ document.getElementById('add-item').addEventListener('click', function() {
     const size = document.getElementById('size');
     const quantity = document.getElementById('quantity');
     
-    if (product.value) {
-        const isClothing = clothingItems.includes(product.value);
-        if (isClothing && !size.value) {
-            alert('Bitte wählen Sie eine Größe für Kleidungsstücke');
-            return;
-        }
-        
-        orderItems.push({
-            product: product.value,
-            size: isClothing ? size.value : null,
-            quantity: quantity.value
-        });
-        
-        updateOrderList();
-        resetForm();
+    if (!product.value) {
+        alert('Bitte wählen Sie ein Produkt aus');
+        return;
     }
+    
+    if (clothingItems.includes(product.value) && !size.value) {
+        alert('Bitte wählen Sie eine Größe für Kleidungsstücke');
+        return;
+    }
+    
+    if (!quantity.value || quantity.value < 1) {
+        alert('Bitte geben Sie eine gültige Menge ein');
+        return;
+    }
+    
+    orderItems.push({
+        product: product.value,
+        size: clothingItems.includes(product.value) ? size.value : null,
+        quantity: quantity.value
+    });
+    
+    updateOrderList();
+    resetForm();
 });
 
 function formatEmailContent(formData) {
@@ -75,12 +82,14 @@ document.querySelector('form').addEventListener('submit', function(e) {
     this.submit();
 });
 
+
 function resetForm() {
-    document.getElementById('product').value = 'none';
-    document.getElementById('size').value = 'none';
-    document.getElementById('quantity').value = 'none';
+    document.getElementById('product').value = '';
+    document.getElementById('size').value = '';
+    document.getElementById('quantity').value = '1';
     document.getElementById('size-group').style.display = 'none';
 }
+
 
 function updateOrderList() {
     const orderList = document.getElementById('order-list');
