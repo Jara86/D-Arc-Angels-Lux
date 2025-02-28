@@ -129,6 +129,15 @@ button {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
 }
+.terms-section a {
+    color: #183947;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.terms-section a:hover {
+    color: #ff9800;
+}
 .radio-group {
     display: flex;
     flex-direction: column;
