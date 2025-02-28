@@ -129,7 +129,74 @@ button {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
 }
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
 
+.radio-group input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: #183947;
+    cursor: pointer;
+}
+
+/* Price Display */
+#total-amount {
+    background: #183947;
+    color: white;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin: 20px 0;
+    border-radius: 8px;
+    font-size: clamp(1.2em, 2vw, 1.5em);
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Bank Information */
+.bank-info {
+    background: #f8f9fa;
+    border-left: 4px solid #183947;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.bank-info .iban {
+    font-family: monospace;
+    font-size: clamp(16px, 1.8vw, 18px);
+    background: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Membership Select for Additional Members */
+.member-card select {
+    width: 100%;
+    padding: clamp(6px, 1.5vw, 10px);
+    border: 1px solid #183947;
+    border-radius: 4px;
+    font-size: clamp(14px, 1.5vw, 16px);
+    background-color: white;
+}
+
+.member-card .membership-type {
+    margin-top: 10px;
+}
 .success-message {
     font-size: clamp(18px, 3vw, 25px);
     text-align: center;
