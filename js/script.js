@@ -79,3 +79,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log('Header loading:', error);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const impressumLinks = document.querySelectorAll('a[href*="impressum.html"]');
+    impressumLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('Impressum link clicked');
+        });
+    });
+});
