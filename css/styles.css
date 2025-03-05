@@ -1,5 +1,8 @@
-/* Font Declarations */
-/* Font Declarations */
+:root {
+    --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
+    --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
+}
 .playfair-display {
     font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
@@ -18,11 +21,7 @@ p, li {
     line-height: 1.7;
 }
 
-:root {
-    --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
-    --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
-    --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
-}
+
 
 /* Single, consolidated body styles */
 body {

@@ -1,10 +1,11 @@
 .about-container {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     padding: 2rem;
 }
+
 .content-grid {
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -17,14 +18,25 @@
     gap: 2rem;
     align-items: start;
 }
+
 .about-intro, 
-.about-features, 
-.training-locations, 
-.team-contacts {
+.about-features {
     background: radial-gradient(circle, #75e0f1, #296077);
     border-radius: 10px;
     padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.training-locations,
+.team-contacts {
+    width: 100%;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    background: radial-gradient(circle, #75e0f1, #296077);
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -82,9 +94,10 @@
 
 .contact-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
     margin-top: 2rem;
+    width: 100%;
 }
 
 .contact-card {
@@ -98,26 +111,18 @@
     transform: translateY(-5px);
 }
 
-.role,.address {
+.role,
+.address {
     color: #183947;
     font-style: italic;
     margin: 0.5rem 0;
 }
 
-@media (max-width: 768px) {
-    .about-container {
-        padding: 1rem;
-    }
-    
-    .contact-cards {
-        grid-template-columns: 1fr;
-    }
-}
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    max-width: 1200px;
+    max-width: 1800px;
     margin: 0 auto;
 }
 
@@ -133,11 +138,7 @@
     transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-    .image-grid {
-        grid-template-columns: 1fr;
-    }
-}.banner-image {
+.banner-image {
     width: 100%;
     height: 400px;
     overflow: hidden;
@@ -168,8 +169,32 @@
     border-radius: 8px;
 }
 
-/* For the lower quality image */
 .image-container:last-child .timeline-image {
     object-fit: contain;
     background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+}
+
+@media (min-width: 1400px) {
+    .contact-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+    }
+    
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .training-locations,
+    .team-contacts {
+        padding: 1.5rem;
+    }
+    
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
 }
