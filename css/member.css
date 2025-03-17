@@ -1,4 +1,5 @@
 
+
 .membership-section {
     max-width: 800px;
     margin: clamp(1rem, 4vw, 2rem) auto;
@@ -6,23 +7,30 @@
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
 }
+
 .member-section {
     border: 1px solid #183947;
     padding: clamp(1rem, 2vw, 1.5rem);
     margin-bottom: clamp(1rem, 2vw, 1.5rem);
     border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .member-section.junior {
     border-left: 4px solid #ff9800;
-    background-color:none;
+    background-color: transparent;
 }
 
+/* Button styling */
 .add-member-buttons {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .btn-secondary {
@@ -33,6 +41,7 @@
     padding: clamp(8px, 1.5vw, 10px);
     font-size: clamp(14px, 1.5vw, 16px);
     cursor: pointer;
+    min-width: 120px;
 }
 
 .btn-secondary.junior {
@@ -40,55 +49,62 @@
     border-color: #ff9800;
 }
 
+/* Guardian info styling */
 .guardian-info {
     background-color: #fff5e6;
     padding: 10px;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Form elements styling */
 .form-group {
     display: flex;
     gap: clamp(5px, 1vw, 10px);
     margin-bottom: clamp(10px, 2vw, 15px);
+    flex-wrap: wrap;
 }
 
-input, textarea {
+input, textarea, select {
     width: 100%;
     padding: clamp(6px, 1.5vw, 10px);
     border: 1px solid #183947;
     border-radius: 4px;
     font-size: clamp(14px, 1.5vw, 16px);
+    box-sizing: border-box;
 }
-
-
 
 input[name^="member"][name$="_Vorname"],
 input[name^="member"][name$="_Nachname"] {
     flex: 1;
+    min-width: 140px;
 }
 
 input[name^="member"][name$="_Strasse und Hausnummer"] {
     flex: 2;
+    min-width: 200px;
 }
 
 input[name^="member"][name$="PLZ"] {
     flex: 0 0 clamp(60px, 10vw, 80px);
+    min-width: 60px;
 }
-
 
 input[name^="member"][name$="_Stadt"] {
     flex: 1;
+    min-width: 140px;
 }
 
-input[name="Geburtsdatum"] {
-    width: clamp(160px, 20vw, 200px);
-}
+input[name="Geburtsdatum"],
 input[name^="member"][name$="_dateOfBirth"] {
-    width: clamp(160px, 20vw, 100px);
+    width: clamp(160px, 20vw, 200px);
+    max-width: 200px;
 }
 
 textarea {
     min-height: clamp(100px, 20vw, 150px);
+    resize: vertical;
 }
 
 button {
@@ -97,7 +113,16 @@ button {
     padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2vw, 20px);
     width: 100%;
     font-size: clamp(14px, 1.5vw, 16px);
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
 }
+
+button:hover {
+    background-color: #0f2730;
+}
+
+/* Info box styling */
 .info-box {
     background: #f8f9fa;
     border-left: 4px solid #183947;
@@ -105,30 +130,40 @@ button {
     margin: clamp(1rem, 2vw, 1.5rem) 0;
     border-radius: 4px;
     font-size: clamp(14px, 1.5vw, 16px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Terms section styling */
 .terms-section {
     margin: clamp(1rem, 2vw, 1.5rem) 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Fixed checkbox styling */
 .checkbox-group {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: clamp(5px, 1vw, 10px);
     margin-bottom: clamp(10px, 2vw, 15px);
+    position: relative;
+    padding-left: 30px;
 }
 
 .checkbox-group input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 3px;
     width: clamp(16px, 1.5vw, 20px);
     height: clamp(16px, 1.5vw, 20px);
-    flex: 0 0 auto;
 }
 
 .checkbox-group label {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
 }
+
 .terms-section a {
     color: #183947;
     text-decoration: underline;
@@ -138,6 +173,8 @@ button {
 .terms-section a:hover {
     color: #ff9800;
 }
+
+/* Radio group styling */
 .radio-group {
     display: flex;
     flex-direction: column;
@@ -146,12 +183,8 @@ button {
     padding: 15px;
     background: #f8f9fa;
     border-radius: 8px;
-}
-
-.radio-group input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .radio-group label {
@@ -160,6 +193,17 @@ button {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
     cursor: pointer;
+    padding-left: 30px;
+    position: relative;
+}
+
+.radio-group input[type="radio"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
 }
 
 /* Price Display */
@@ -172,6 +216,8 @@ button {
     font-size: clamp(1.2em, 2vw, 1.5em);
     text-align: center;
     font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Bank Information */
@@ -181,6 +227,8 @@ button {
     padding: clamp(1rem, 2vw, 1.5rem);
     margin: 20px 0;
     border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .bank-info .iban {
@@ -191,6 +239,7 @@ button {
     margin-top: 10px;
     border-radius: 4px;
     display: inline-block;
+    word-break: break-all;
 }
 
 /* Membership Select for Additional Members */
@@ -206,6 +255,7 @@ button {
 .member-card .membership-type {
     margin-top: 10px;
 }
+
 .success-message {
     font-size: clamp(18px, 3vw, 25px);
     text-align: center;
@@ -216,43 +266,107 @@ button {
 .membership-details > div {
     margin-bottom: clamp(1rem, 3vw, 2rem);
     padding: clamp(1rem, 2vw, 1.5rem);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .price {
     font-size: clamp(1.8em, 4vw, 2.5em);
 }
 
+.membership-section h2 {
+    font-size: clamp(1.5em, 3vw, 2em);
+    margin-bottom: 1rem;
+}
+
 /* Media queries for smaller screens */
+@media (max-width: 768px) {
+    .membership-section {
+        padding: clamp(0.8rem, 2vw, 1.5rem);
+        margin: 1rem auto;
+    }
+    
+    .add-member-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
 @media (max-width: 600px) {
     .form-group {
         flex-direction: column;
     }
     
-    input[name="PLZ"],
-    input[name="Stadt"] {
+    input[name^="member"][name$="_Vorname"],
+    input[name^="member"][name$="_Nachname"],
+    input[name^="member"][name$="_Strasse und Hausnummer"],
+    input[name^="member"][name$="PLZ"],
+    input[name^="member"][name$="_Stadt"] {
         width: 100%;
+        flex: none;
     }
     
-    input[name="Strasse und Hausnummer"],
-    input[name="PLZ"],
-    input[name="Stadt"] {
-        flex: 1 1 100%;
+    input[name="Geburtsdatum"],
+    input[name^="member"][name$="_dateOfBirth"] {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    .form-container {
+    .membership-section {
         padding: 10px;
+        margin: 10px auto;
     }
-
-    input, textarea, button {
+    
+    input, textarea, button, select {
         padding: 10px;
+        font-size: 14px;
     }
-
+    
     .success-message {
         font-size: 1.2rem;
     }
-}
-    .membership-section h2 {
-        font-size: clamp(1.5em, 3vw, 2em);
+    
+    .checkbox-group, .radio-group label {
+        padding-left: 25px;
     }
+    
+    .checkbox-group input[type="checkbox"],
+    .radio-group input[type="radio"] {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .bank-info .iban {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 364px) {
+    .membership-section {
+        padding: 8px;
+        margin: 8px auto;
+    }
+    
+    .member-section {
+        padding: 8px;
+    }
+    
+    .info-box, .bank-info {
+        padding: 8px;
+    }
+    
+    .membership-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .price {
+        font-size: 1.5rem;
+    }
+}
