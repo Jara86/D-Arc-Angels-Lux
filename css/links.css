@@ -1,4 +1,4 @@
-inks-container {
+.links-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: clamp(1rem, 3vw, 2rem);
@@ -11,6 +11,7 @@ inks-container {
     margin: 1rem 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    height: 100%; /* Ensure all cards in a row have the same height */
 }
 
 .link-card:hover {
@@ -33,6 +34,7 @@ inks-container {
     border-radius: 4px;
     margin-top: 1rem;
     font-size: clamp(0.9rem, 1.5vw, 1rem);
+    transition: background 0.3s ease;
 }
 
 .link-card a:hover {
@@ -51,8 +53,60 @@ h2 {
     font-size: clamp(1.5rem, 2.5vw, 2rem);
 }
 
+/* Responsive adjustments for larger screens */
+@media (min-width: 1200px) {
+    .link-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .links-container {
+        max-width: 1400px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .link-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .links-container {
+        max-width: 1800px;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 992px) {
+    .link-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .link-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 364px) {
+    .links-container {
+        padding: 0.8rem;
+    }
+    
+    .link-card {
+        padding: 0.8rem;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0.8rem 0;
+    }
+    
+    .link-grid {
+        gap: 0.8rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.8rem;
     }
 }
