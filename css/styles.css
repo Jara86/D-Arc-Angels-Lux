@@ -3,6 +3,8 @@
     --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
     --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
 }
+
+/* Font families */
 .playfair-display {
     font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
@@ -15,15 +17,14 @@
     font-style: normal;
 }
 
+/* Base typography */
 p, li {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     line-height: 1.7;
 }
 
-
-
-/* Single, consolidated body styles */
+/* Body styles */
 body {
     font-family: "Marcellus", serif;
     font-weight: 400;
@@ -39,11 +40,9 @@ body {
     padding: 20px;
 }
 
+/* Container styles */
 .page-wrapper {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
 }
-/* Container styles */
-
-

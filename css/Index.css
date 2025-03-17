@@ -2,19 +2,19 @@
 
 
 
-header {
+.secondary-header {
     text-align: center;
     padding: 3rem 0;
 }
 
-header img {
+.secondary-header img {
     max-width: 400px;
     height: auto;
     transition: transform 0.3s ease;
     border-radius:20%;
 }
 
-header img:hover {
+.secondary-header img:hover {
     transform: scale(1.05);
 }
 
