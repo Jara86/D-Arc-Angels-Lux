@@ -1,92 +1,136 @@
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    background-color: white;
-    box-shadow: var(--box-shadow);
-    border-radius: 4px;
+:root {
+    --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
+    --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
 }
+
 
 h1 {
     color: var(--primary-color);
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px; /* Reduced margin */
+    font-size: 2rem;
 }
 
-section {
-    margin-bottom: 30px;
-    padding: 10px;
-    background-color: var(--secondary-color);
-    border-radius: 4px;
-}
+
 
 h2 {
     color: var(--primary-color);
     margin-bottom: 10px;
+    font-size: 1.5rem;
 }
 
 address, p {
     line-height: 1.6;
     margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif; /* For consistency */
+    font-weight: 300;
 }
 
 strong {
     color: var(--primary-color);
-    
+    font-weight: 500;
 }
 
-.info-sections-wrapper section {
-    margin-bottom: 10px;  /* Reduced from 20px */
-    padding: 10px;        /* Reduced from 15px */
-    text-align: center;
-}
-.info-sections-wrapper {
-    max-width: 600px;
+saction {
+    background-color:linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
     margin: 0 auto;
+    max-width: 400px;
 }
 
-.info-sections-wrapper section {
-    margin-bottom: 20px;
-    padding: 15px;
+.info-sections-wrapper h1 {
+    color: var(--primary-color);
     text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    font-size: 2rem;
+}
+
+/* This is the key change - making sections display in a row */
+.info-sections-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
+    gap: 20px; /* Space between sections */
+}
+
+/* Style for the individual sections */
+.info-sections-wrapper section {
+    flex: 1; /* Each section takes equal width */
+    min-width: 250px; /* Minimum width before wrapping */
+    max-width: 350px; /* Maximum width to prevent too wide sections */
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    margin: 0; /* Remove default margins */
 }
 
 .info-sections-wrapper h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .info-sections-wrapper p, 
 .info-sections-wrapper address {
     font-size: 1rem;
-    line-height: 1.4;
+    line-height: 1.5;
+    text-align: center;
 }
+
+/* Privacy policy section - full width */
+.privacy-policy {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--box-shadow);
+    margin-top: 20px;
+}
+
+.privacy-policy h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
 .privacy-policy p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     line-height: 1.6;
 }
 
+.privacy-policy strong {
+    color: var(--primary-color);
+    font-weight: 500;
+}
 
-
-
-/* Tablet adjustments */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
+    .info-sections-wrapper section {
+        min-width: 200px;
+    }
+    
+    .privacy-policy {
+        padding: 20px;
     }
 }
 
-/* Mobile adjustments */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
+@media (max-width: 600px) {
+    .info-sections-wrapper {
+        flex-direction: column;
+        align-items: stretch;
     }
     
-    h1 {
-        font-size: 24px;
+    .info-sections-wrapper section {
+        max-width: 100%;
     }
     
-    h2 {
-        font-size: 20px;
+    .privacy-policy {
+        padding: 15px;
     }
 }
