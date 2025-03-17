@@ -1,0 +1,44 @@
+:root {
+    --primary-gradient: radial-gradient(circle, #75e0f1, #296077);
+    --background-gradient: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    --box-shadow: 0 2px 4px rgba(65, 50, 100, 0.08);
+}
+.playfair-display {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.marcellus {
+    font-family: "Marcellus", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+p, li {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 700px; 
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+    background: radial-gradient(circle, #75e0f1, #296077);
+}
+
+.header-container img {
+    max-width: 200px;
+    height: auto;
+   
+    border-radius: 50%;
+}
