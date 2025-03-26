@@ -99,4 +99,44 @@
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
+}.flatpickr-calendar {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(65, 50, 100, 0.15);
+    border-radius: 8px;
+}
+
+.flatpickr-day.selected {
+    background: #296077;
+    border-color: #296077;
+}
+
+.flatpickr-day.selected:hover {
+    background: #183947;
+    border-color: #183947;
+}
+
+.flatpickr-day {
+    border-radius: 4px;
+}
+
+.flatpickr-day.flatpickr-disabled {
+    color: rgba(72, 72, 72, 0.3);
+}
+
+.flatpickr-day.today {
+    border-color: #75e0f1;
+}
+
+/* Style the input field */
+input#training-date {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Help text for date selection */
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 0.8em;
 }
