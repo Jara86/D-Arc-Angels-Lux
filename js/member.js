@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get customer email
         const customerEmail = document.querySelector('input[name="email"]').value;
         
-        // Generate member number
-        const memberNumber = generateMemberNumber();
+        // Generate member number for primary member
+        const primaryMemberNumber = generateMemberNumber();
         
         // Add hidden fields for FormSubmit
         const ccField = document.querySelector('input[name="_cc"]');
@@ -167,17 +167,30 @@ document.addEventListener('DOMContentLoaded', function () {
             membershipForm.appendChild(newCcField);
         }
         
-        // Add member number to form
+        // Add member number to form for primary member
         const memberNumberField = document.createElement('input');
         memberNumberField.type = 'hidden';
         memberNumberField.name = 'Member_Number';
-        memberNumberField.value = memberNumber;
+        memberNumberField.value = primaryMemberNumber;
         membershipForm.appendChild(memberNumberField);
         
-        // Add member number to subject line
+        // Generate and add member numbers for additional members
+        const memberCards = document.querySelectorAll('.member-card');
+        memberCards.forEach((card, index) => {
+            const memberNum = index + 2; // Member numbers start at 2
+            const additionalMemberNumber = generateMemberNumber();
+            
+            const additionalMemberNumberField = document.createElement('input');
+            additionalMemberNumberField.type = 'hidden';
+            additionalMemberNumberField.name = `Member_${memberNum}_Number`;
+            additionalMemberNumberField.value = additionalMemberNumber;
+            membershipForm.appendChild(additionalMemberNumberField);
+        });
+        
+        // Add member numbers to subject line
         const subjectField = document.querySelector('input[name="_subject"]');
         if (subjectField) {
-            subjectField.value = `en neie Member 🎯 - ${memberNumber}`;
+            subjectField.value = `en neie Member 🎯 - ${primaryMemberNumber}`;
         }
         
         // Calculate total one last time
