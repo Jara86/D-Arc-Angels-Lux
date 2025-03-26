@@ -147,71 +147,45 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.addEventListener('change', calculateTotal);
     });
 
-    // Function to clean up form before submission
-    function cleanupFormBeforeSubmission() {
-        // Remove any unnecessary fields or large data
-        const allInputs = membershipForm.querySelectorAll('input');
-        allInputs.forEach(input => {
-            // Remove any data- attributes that might be adding size
-            for (const attr of input.attributes) {
-                if (attr.name.startsWith('data-')) {
-                    input.removeAttribute(attr.name);
-                }
-            }
-        });
-    }
-
-    // Add CC to customer and generate member number - USING FETCH API
+    // Add CC to customer and generate member number
     membershipForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         
-        // Clean up form first
-        cleanupFormBeforeSubmission();
-        
-        const formData = new FormData(membershipForm);
-        
-        // Add the member number
-        const memberNumber = generateMemberNumber();
-        formData.append('Member_Number', memberNumber);
-        
-        // Update subject
-        formData.set('_subject', `en neie Member 🎯 - ${memberNumber}`);
-        
-        // Set CC to customer email
+        // Get customer email
         const customerEmail = document.querySelector('input[name="email"]').value;
-        formData.set('_cc', customerEmail);
         
-        // Calculate total
+        // Generate member number
+        const memberNumber = generateMemberNumber();
+        
+        // Add hidden fields for FormSubmit
+        const ccField = document.querySelector('input[name="_cc"]');
+        if (ccField) {
+            ccField.value = customerEmail;
+        } else {
+            const newCcField = document.createElement('input');
+            newCcField.type = 'hidden';
+            newCcField.name = '_cc';
+            newCcField.value = customerEmail;
+            membershipForm.appendChild(newCcField);
+        }
+        
+        // Add member number to form
+        const memberNumberField = document.createElement('input');
+        memberNumberField.type = 'hidden';
+        memberNumberField.name = 'Member_Number';
+        memberNumberField.value = memberNumber;
+        membershipForm.appendChild(memberNumberField);
+        
+        // Add member number to subject line
+        const subjectField = document.querySelector('input[name="_subject"]');
+        if (subjectField) {
+            subjectField.value = `en neie Member 🎯 - ${memberNumber}`;
+        }
+        
+        // Calculate total one last time
         calculateTotal();
         
-        // Show loading indicator
-        const submitButton = membershipForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
-        submitButton.textContent = 'Wird gesendet...';
-        submitButton.disabled = true;
-        
-        fetch('https://formsubmit.co/jarouschka@gmail.com', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Redirect to thank you page
-            window.location.href = 'https://darc-angels-letzebuerg.netlify.app/thankyou.html';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Es gab ein Problem beim Absenden des Formulars. Bitte versuchen Sie es später erneut.');
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-        });
+        // Submit the form
+        membershipForm.submit();
     });
 });
