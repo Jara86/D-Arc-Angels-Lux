@@ -12,6 +12,32 @@ document.addEventListener('DOMContentLoaded', function () {
         'FLSE Freizeitlizenz': 25
     };
 
+    // Generate a unique member number starting at 100
+    const generateMemberNumber = () => {
+        // Get current date components for the member number
+        const now = new Date();
+        const year = now.getFullYear().toString().substr(2); // Last 2 digits of year
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        
+        // Generate a random 3-digit number
+        const randomPart = Math.floor(100 + Math.random() * 900);
+        
+        // Combine parts to create member number: DAL-YY-MM-DD-XXX
+        return `DAL-${year}-${month}-${day}-${randomPart}`;
+    };
+
+    // Update CC field when email changes
+    const emailField = document.querySelector('input[name="email"]');
+    if (emailField) {
+        emailField.addEventListener('input', function() {
+            const ccField = document.querySelector('input[name="_cc"]');
+            if (ccField) {
+                ccField.value = this.value;
+            }
+        });
+    }
+
     if (addAdultButton && addJuniorButton) {
         addAdultButton.addEventListener('click', () => addMember(false));
         addJuniorButton.addEventListener('click', () => addMember(true));
@@ -30,12 +56,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 <input type="email" name="Member_${memberCounter}_Email" placeholder="E-Mail-Adresse" required>
                 <input type="tel" name="Member_${memberCounter}_Handynummer" placeholder="Handynummer" required>
                 <div class="membership-type">
-                    <select name="Member_${memberCounter}_MembershipType" required>
-                        <option value="">Mitgliedschaft auswählen</option>
-                        ${Object.entries(PRICES).map(([type, price]) => 
-                            `<option value="${type}">${type} (${price}€)</option>`
-                        ).join('')}
-                    </select>
+                    <h5>Mitgliedschaft auswählen</h5>
+                    <div class="checkbox-group membership-options">
+                        ${Object.entries(PRICES).map(([type, price]) => `
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="Member_${memberCounter}_${type.replace(/\s+/g, '_')}" 
+                                       name="Member_${memberCounter}_MembershipType[]" 
+                                       value="${type}">
+                                <label for="Member_${memberCounter}_${type.replace(/\s+/g, '_')}">
+                                    ${type} (${price}€)
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
                 <input type="hidden" name="Member_${memberCounter}_Type" value="${isJunior ? 'Junior' : 'Adult'}">
             </div>
@@ -48,7 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
             calculateTotal();
         });
 
-        memberDiv.querySelector('select').addEventListener('change', calculateTotal);
+        // Add event listeners to all checkboxes in this member card
+        memberDiv.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', calculateTotal);
+        });
 
         additionalMembersContainer.appendChild(memberDiv);
         memberCounter++;
@@ -63,8 +99,20 @@ document.addEventListener('DOMContentLoaded', function () {
             
             const inputs = card.querySelectorAll('input, select');
             inputs.forEach(input => {
-                const fieldName = input.name.split('_').pop();
-                input.name = `Member_${newNumber}_${fieldName}`;
+                const fieldName = input.name.split('_').pop().replace('[]', '');
+                if (input.type === 'checkbox') {
+                    const typeValue = input.value.replace(/\s+/g, '_');
+                    input.id = `Member_${newNumber}_${typeValue}`;
+                    input.name = `Member_${newNumber}_MembershipType[]`;
+                    
+                    // Also update the associated label's 'for' attribute
+                    const label = input.nextElementSibling;
+                    if (label && label.tagName === 'LABEL') {
+                        label.setAttribute('for', `Member_${newNumber}_${typeValue}`);
+                    }
+                } else {
+                    input.name = `Member_${newNumber}_${fieldName}`;
+                }
             });
         });
         memberCounter = memberCards.length + 2;
@@ -72,15 +120,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function calculateTotal() {
         let total = 0;
-        const mainMembershipType = document.querySelector('input[name="membership_type"]:checked');
-        if (mainMembershipType) {
-            total += PRICES[mainMembershipType.value];
-        }
+        
+        // Calculate main member's membership costs
+        document.querySelectorAll('input[name="membership_type[]"]:checked').forEach(checkbox => {
+            total += PRICES[checkbox.value];
+        });
 
-        document.querySelectorAll('.member-card select').forEach(select => {
-            if (select.value) {
-                total += PRICES[select.value];
-            }
+        // Calculate additional members' membership costs
+        document.querySelectorAll('.member-card input[type="checkbox"]:checked').forEach(checkbox => {
+            total += PRICES[checkbox.value];
         });
 
         const totalElement = document.getElementById('total-amount') || 
@@ -94,12 +142,50 @@ document.addEventListener('DOMContentLoaded', function () {
         totalElement.textContent = `Gesamtbetrag: ${total}€`;
     }
 
-    document.querySelectorAll('input[name="membership_type"]').forEach(radio => {
-        radio.addEventListener('change', calculateTotal);
+    // Add event listeners to main member's membership checkboxes
+    document.querySelectorAll('input[name="membership_type[]"]').forEach(checkbox => {
+        checkbox.addEventListener('change', calculateTotal);
     });
 
+    // Add CC to customer and generate member number
     membershipForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        
+        // Get customer email
+        const customerEmail = document.querySelector('input[name="email"]').value;
+        
+        // Generate member number
+        const memberNumber = generateMemberNumber();
+        
+        // Add hidden fields for FormSubmit
+        const ccField = document.querySelector('input[name="_cc"]');
+        if (ccField) {
+            ccField.value = customerEmail;
+        } else {
+            const newCcField = document.createElement('input');
+            newCcField.type = 'hidden';
+            newCcField.name = '_cc';
+            newCcField.value = customerEmail;
+            membershipForm.appendChild(newCcField);
+        }
+        
+        // Add member number to form
+        const memberNumberField = document.createElement('input');
+        memberNumberField.type = 'hidden';
+        memberNumberField.name = 'Member_Number';
+        memberNumberField.value = memberNumber;
+        membershipForm.appendChild(memberNumberField);
+        
+        // Add member number to subject line
+        const subjectField = document.querySelector('input[name="_subject"]');
+        if (subjectField) {
+            subjectField.value = `en neie Member 🎯 - ${memberNumber}`;
+        }
+        
+        // Calculate total one last time
         calculateTotal();
-        return true;
+        
+        // Submit the form
+        membershipForm.submit();
     });
 });

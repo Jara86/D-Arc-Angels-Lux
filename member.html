@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/member.css">
+    <link rel="stylesheet" href="css/member.css"> 
     
     <title>Mitglied werden - D'Arc Angels Lëtzebuerg</title>
 </head>
@@ -24,98 +24,102 @@
 
     <!-- Navigation placeholder -->
     <div id="nav-placeholder"></div>
+    
     <main class="content-container">
-     <div class="content-container">
-        <form id="membershipForm" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="en neie Member 🎯">
-        
-            <div class="member-section primary">
-                <h3>Hauptmitglied</h3>
-                
-                <div class="form-group">
-                    <input type="text" name="Nachname" placeholder="Nachname" required maxlength="100">
-                    <input type="text" name="Vorname" placeholder="Vorname" required maxlength="100">
-                </div>
-        
-                <div class="form-group">
-                    <input type="date" name="Geburtsdatum" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
-                </div>
-        
-                <div class="form-group">
-                    <input type="text" name="Strasse_und_Hausnummer" placeholder="Nr, Straße" required pattern="^[a-zA-ZäöüÄÖÜß0-9\s\-\/\.]{3,}$" maxlength="100">
-                </div>
-        
-                <div class="form-group">
-                    <input type="text" name="PLZ" placeholder="Postleitzahl" required pattern="[0-9]{4}" maxlength="4">
-                    <input type="text" name="Ort" placeholder="Ort" required pattern="^[a-zA-Z\s]{2,}$" maxlength="100">
-                    <input type="text" name="Land" placeholder="Land" required maxlength="100">
-                </div>
-        
-                <div class="form-group">
-                    <input type="tel" name="Telefonnummer" placeholder="Telefonnummer" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
-                    <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
-                </div>
-        
-                <div class="membership-type">
-                    <h4>Mitgliedschaft auswählen</h4>
-                    <div class="radio-group">
-                        <input type="radio" id="active" name="membership_type" value="Aktive Mitgliedschaft" required>
-                        <label for="active">Aktive Mitgliedschaft (40€)</label>
-        
-                        <input type="radio" id="isis" name="membership_type" value="Mitgliedschaft Isis vum Roude Léiw">
-                        <label for="isis">Mitgliedschaft Isis vum Roude Léiw (25€)</label>
-        
-                        <input type="radio" id="family" name="membership_type" value="Familienmitgliedschaft">
-                        <label for="family">Familienmitgliedschaft (75€)</label>
-        
-                        <input type="radio" id="flse" name="membership_type" value="FLSE Freizeitlizenz">
-                        <label for="flse">FLSE Freizeitlizenz (25€)</label>
+        <div class="content-container">
+            <form id="membershipForm" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="en neie Member 🎯">
+                <input type="hidden" name="_autoresponse" value="Vielen Dank für deine Anmeldung bei D'Arc Angels Lëtzebuerg!">
+                <input type="hidden" name="_next" value="https://darc-angels-letzebuerg.netlify.app/thankyou.html">
+                <input type="hidden" name="_cc" value="">
+                <input type="hidden" name="additional_members" style="display:none">
+            
+                <div class="member-section primary">
+                    <h3>Hauptmitglied</h3>
+                    
+                    <div class="form-group">
+                        <input type="text" name="Nachname" placeholder="Nachname" required maxlength="100">
+                        <input type="text" name="Vorname" placeholder="Vorname" required maxlength="100">
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="date" name="Geburtsdatum" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="text" name="Strasse_und_Hausnummer" placeholder="Nr, Straße" required pattern="^[a-zA-ZäöüÄÖÜß0-9\s\-\/\.]{3,}$" maxlength="100">
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="text" name="PLZ" placeholder="Postleitzahl" required pattern="[0-9]{4}" maxlength="4">
+                        <input type="text" name="Ort" placeholder="Ort" required pattern="^[a-zA-Z\s]{2,}$" maxlength="100">
+                        <input type="text" name="Land" placeholder="Land" required maxlength="100">
+                    </div>
+            
+                    <div class="form-group">
+                        <input type="tel" name="Telefonnummer" placeholder="Telefonnummer" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
+                        <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
+                    </div>
+            
+                    <div class="membership-type">
+                        <h4>Mitgliedschaft auswählen</h4>
+                        <div class="checkbox-group membership-options">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="active" name="membership_type[]" value="Aktive Mitgliedschaft">
+                                <label for="active">Aktive Mitgliedschaft (40€)</label>
+                            </div>
+                            
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="isis" name="membership_type[]" value="Mitgliedschaft Isis vum Roude Léiw">
+                                <label for="isis">Mitgliedschaft Isis vum Roude Léiw (25€)</label>
+                            </div>
+                            
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="family" name="membership_type[]" value="Familienmitgliedschaft">
+                                <label for="family">Familienmitgliedschaft (75€)</label>
+                            </div>
+                            
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="flse" name="membership_type[]" value="FLSE Freizeitlizenz">
+                                <label for="flse">FLSE Freizeitlizenz (25€)</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        
-            <div id="additional-members"></div>
-        
-            <div class="add-member-buttons">
-                <button type="button" id="addAdultMember" class="btn-secondary">+ Erwachsenes Mitglied hinzufügen</button>
-                <button type="button" id="addJuniorMember" class="btn-secondary junior">+ Jugendmitglied hinzufügen</button>
-            </div>
-        
-            <div class="bank-info">
-                <p>Der Betrag ist zu überweisen auf das Konto von D'Arc Angels Lëtzebuerg:</p>
-                <p class="iban">IBAN: LU17 1111 7008 0577 0000 <br>Swift: (CCPLLULL)</p>
-            </div>
-        
-            <div class="terms-section">
-              
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" required>
-                    <label for="regeln">
-                        Ich habe die <a href=" ./docs\Mitgliedschaftsregeln D’arc Angels Wasserzeichen.pdf"target="_blank" rel="noopener">Mitgliedschaftsregeln und Datenschutzbestimmungen</a> gelesen und stimme ihnen zu.
-                    </label>
+            
+                <div id="additional-members"></div>
+            
+                <div class="add-member-buttons">
+                    <button type="button" id="addAdultMember" class="btn-secondary">+ Erwachsenes Mitglied hinzufügen</button>
+                    <button type="button" id="addJuniorMember" class="btn-secondary junior">+ Jugendmitglied hinzufügen</button>
                 </div>
-                </div>
-                
-             
-                   
+            
+                <div class="bank-info">
+                    <p>Der Betrag ist zu überweisen auf das Konto von D'Arc Angels Lëtzebuerg:</p>
                     
+                    <p><strong>Verwendungszweck:</strong> Deine E-Mail-Adresse + Mitgliedschafts Nr. </p>
+                   
+                    <p class="iban">IBAN: LU17 1111 7008 0577 0000 <br>Swift: (CCPLLULL)</p>
                 </div>
+            
+                <div class="terms-section">
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" required>
+                        <label for="regeln">
+                            Ich habe die <a href="./docs/Mitgliedschaftsregeln D'arc Angels Wasserzeichen.pdf" target="_blank" rel="noopener">Mitgliedschaftsregeln und Datenschutzbestimmungen</a> gelesen und stimme ihnen zu.
+                        </label>
+                    </div>
+                </div>
+            
+                <button type="submit">Absenden</button>
+            </form>
+
+            <div class="success-message">
+                <p>Vielen Dank für Deine Anmeldung</p>
             </div>
-        
-            <button type="submit">Absenden</button>
-        </form>
-
-<input type="hidden" name="_autoresponse" value="Vielen Dank für deine Anmeldung bei D'Arc Angels Lëtzebuerg!">
-<input type="hidden" name="_next" value="https://darc-angels-letzebuerg.netlify.app/thankyou.html">
-<input type="hidden" name="additional_members" style="display:none">
-
-        <div class="success-message">
-            <p>Vielen Dank für Deine Anmeldung</p>
         </div>
-    </div>
 
-    
-    <div id="member-actions" class="membership-section">
+        <div id="member-actions" class="membership-section">
             <h2>Mitgliedschaft bei d'ARC Angels Lëtzebuerg</h2>
     
             <div class="membership-details">
@@ -128,73 +132,39 @@
                         <li>Regelmäßige Updates</li>
                     </ul>
                 </div>
-        
-                <div class="pricing-box">
-                    <h3>Jahresbeitrag</h3>
-                    
-                    <div class="price-options">
-                        <div class="price-item">
-                            <span class="type">Aktive Mitgliedschaft</span>
-                            <span class="price">40€</span>
-                        </div>
-                        
-                        <div class="price-item">
-                            <span class="type">Mitgliedschaft Isis vum Roude Léiw</span>
-                            <span class="price">25€</span>
-                        </div>
-                        
-                        <div class="price-item">
-                            <span class="type">Familienmitgliedschaft</span>
-                            <span class="price">75€</span>
-                        </div>
-                        
-                        <div class="price-item">
-                            <span class="type">FLSE Freizeitlizenz</span>
-                            <span class="price">25€</span>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="payment-info">
-                    <h3>Zahlungsinformationen</h3>
-                    <div class="payment-details">
-                        <p><strong></strong> </p>
-                        <p><strong>Verwendungszweck:</strong> Deine E-Mail-Adresse</p>
-                    </div>
-                </div>
-        
-                <div class="membership-card-info">
-                    <h3>Nach deiner Anmeldung</h3>
-                    <p>Nach Zahlungseingang erhältst du deine digitale Mitglieds Jahreskarte per E-Mail. Diese kannst du entweder ausdrucken oder auf deinem Handy speichern.</p>
-                </div>
-        
-                <div class="contact-support">
-                    <h3>Fragen?</h3>
-                    <p>Kontaktiere uns über unsere <a href="#">Facebook-Gruppe</a> oder per E-Mail an <a href="mailto:darcangelsletzebuerg@gmail.com">darcangelsletzebuerg@gmail.com</a></p>
-                </div>
+            </div>
+                  
+            <div class="membership-card-info">
+                <h3>Nach deiner Anmeldung</h3>
+                <p>Nach Zahlungseingang erhältst du deine digitale Mitglieds Jahreskarte per E-Mail. Diese kannst du entweder ausdrucken oder auf deinem Handy speichern.</p>
+            </div>
+     
+            <div class="contact-support">
+                <h3>Fragen?</h3>
+                <p>Kontaktiere uns über unsere <a href="#">Facebook-Gruppe</a> oder per E-Mail an <a href="mailto:darcangelsletzebuerg@gmail.com">darcangelsletzebuerg@gmail.com</a></p>
             </div>
         </div>
     </main>
+
     <hr class="footer-line">
-  <footer class="footer">
-    <p class="footer-text">
-        Code and design by 
-        <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-    </p>
-    <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-    <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
-</footer>
+    <footer class="footer">
+        <p class="footer-text">
+            Code and design by 
+            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
+        </p>
+        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+        <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
+    </footer>
     
-  
-        <script src="js/member.js"></script>
-        <script src="js/script.js" defer></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            fetch('nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('nav-placeholder').innerHTML = data;
-                });
-        </script>
-    </body>
-    </html>
+    <script src="js/member.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
