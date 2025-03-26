@@ -107,10 +107,17 @@ Telefon: ${phone}
 Status: ${membership}`;
 
     // Replace with your WhatsApp number
-    const whatsappNumber = '00352621788349';
-    
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
-    
-    document.getElementById('registration-modal').style.display = 'none';
-    document.getElementById('training-registration').reset();
+   // Hide WhatsApp number by splitting it
+   const countryCode = '00352';
+   const part1 = '621';
+   const part2 = '788';
+   const part3 = '349';
+   const whatsappNumber = countryCode + part1 + part2 + part3;
+   
+   window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
+   
+   document.getElementById('registration-modal').style.display = 'none';
+   document.getElementById('training-registration').reset();
 }
+    
+
