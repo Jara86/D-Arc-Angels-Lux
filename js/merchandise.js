@@ -1,5 +1,11 @@
 let orderItems = [];
 
+function generateOrderNumber() {
+    const timestamp = new Date().getTime();
+    const random = Math.floor(Math.random() * 1000);
+    return `ORDER-${timestamp}-${random}`;
+}
+
 function formatOrderForEmail() {
     return orderItems.map((item, index) => {
         return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
@@ -29,7 +35,12 @@ document.getElementById('product').addEventListener('change', function() {
     }
 });
 
-// Fix: Change this to add-item button click event
+// Add event listener to email field to update the _cc field
+document.getElementById('email').addEventListener('input', function() {
+    const ccField = document.querySelector('input[name="_cc"]');
+    ccField.value = this.value; // Set the CC field to the customer's email
+});
+
 document.getElementById('add-item').addEventListener('click', function() {
     const product = document.getElementById('product');
     const size = document.getElementById('size');
@@ -60,16 +71,54 @@ document.getElementById('add-item').addEventListener('click', function() {
     resetForm();
 });
 
-function formatEmailContent(formData) {
-    // Return just the order items with proper line breaks
-    const orderDetails = formatOrderForEmail();
-    return orderDetails;  // This will show only the products in order_details
+function showConfirmation(orderNumber) {
+    alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}\nEine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.`);
 }
 
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const formData = new FormData(this);
     
+    if (orderItems.length === 0) {
+        alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
+        return;
+    }
+
+    const orderNumber = generateOrderNumber();
+    const formData = new FormData(this);
+    let orderDetails = '';
+
+    // Add order number at the top
+    orderDetails += `Bestellnummer: ${orderNumber}\n\n`;
+
+    // Add customer information
+    orderDetails += `Name: ${formData.get('name')}\n`;
+    orderDetails += `Email: ${formData.get('email')}\n`;
+    orderDetails += `Telefon: ${formData.get('Handynummer')}\n`;
+    orderDetails += `Adresse: ${formData.get('address')}\n`;
+    orderDetails += `Abholung: ${formData.get('pickup')}\n`;
+    orderDetails += `Mitgliedschaft: ${formData.get('member')}\n\n`;
+    
+    // Add order items
+    orderDetails += 'Bestellte Artikel:\n';
+    orderDetails += formatOrderForEmail();
+    
+    // Add payment instructions
+    orderDetails += '\n\n-----------------------------------\n';
+    orderDetails += 'Zahlungsinformationen:\n';
+    orderDetails += `Bitte geben Sie bei der Überweisung die Bestellnummer ${orderNumber} an.\n`;
+    orderDetails += 'Bankverbindung: IBAN: LU17 1111 7008 0577 0000 Swift: CCPLLULL\n';
+    orderDetails += '-----------------------------------\n';
+    // Add hidden input for order number
+    let orderNumberInput = document.querySelector('input[name="order_number"]');
+    if (!orderNumberInput) {
+        orderNumberInput = document.createElement('input');
+        orderNumberInput.type = 'hidden';
+        orderNumberInput.name = 'order_number';
+        this.appendChild(orderNumberInput);
+    }
+    orderNumberInput.value = orderNumber;
+
+    // Add order details
     let orderInput = document.querySelector('input[name="order_details"]');
     if (!orderInput) {
         orderInput = document.createElement('input');
@@ -78,10 +127,18 @@ document.querySelector('form').addEventListener('submit', function(e) {
         this.appendChild(orderInput);
     }
     
-    orderInput.value = formatEmailContent(formData);
+    orderInput.value = orderDetails;
+    
+    // Store order number for confirmation
+    const orderNumForConfirmation = orderNumber;
+    
+    // Show confirmation after submission
+    setTimeout(() => {
+        showConfirmation(orderNumForConfirmation);
+    }, 100);
+    
     this.submit();
 });
-
 
 function resetForm() {
     document.getElementById('product').value = '';
@@ -89,7 +146,6 @@ function resetForm() {
     document.getElementById('quantity').value = '1';
     document.getElementById('size-group').style.display = 'none';
 }
-
 
 function updateOrderList() {
     const orderList = document.getElementById('order-list');
@@ -105,33 +161,13 @@ function updateOrderList() {
     `).join('');
 }
 
-// Add the missing getProductName function
 function getProductName(productCode) {
     const productSelect = document.getElementById('product');
     const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
     return option ? option.text : productCode;
 }
 
-// Add the missing removeItem function
 function removeItem(index) {
     orderItems.splice(index, 1);
     updateOrderList();
 }
-// Create modal element
-const modal = document.createElement('div');
-modal.className = 'image-modal';
-modal.innerHTML = '<div class="modal-content"><img src="" alt=""></div>';
-document.body.appendChild(modal);
-
-// Add click handlers to images
-document.querySelectorAll('.product-card img').forEach(img => {
-    img.addEventListener('click', function() {
-        modal.querySelector('img').src = this.src;
-        modal.style.display = 'block';
-    });
-});
-
-// Close modal on click
-modal.addEventListener('click', function() {
-    this.style.display = 'none';
-});
