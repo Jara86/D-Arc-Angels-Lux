@@ -1,9 +1,16 @@
 let orderItems = [];
 
+let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
+
 function generateOrderNumber() {
-    const timestamp = new Date().getTime();
-    const random = Math.floor(Math.random() * 1000);
-    return `ORDER-${timestamp}-${random}`;
+    // Increment the last order number
+    lastOrderNumber++;
+    
+    // Store the updated number in localStorage
+    localStorage.setItem('lastOrderNumber', lastOrderNumber.toString());
+    
+    // Format the order number with a prefix
+    return `ORDER-${lastOrderNumber}`;
 }
 
 function formatOrderForEmail() {
