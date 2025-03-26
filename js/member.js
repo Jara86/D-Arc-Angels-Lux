@@ -190,7 +190,24 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add member numbers to subject line
         const subjectField = document.querySelector('input[name="_subject"]');
         if (subjectField) {
-            subjectField.value = `en neie Member 🎯 - ${primaryMemberNumber}`;
+            let subjectText = `en neie Member 🎯 - ${primaryMemberNumber}`;
+            
+            // Add additional member numbers to subject if they exist
+            const memberCards = document.querySelectorAll('.member-card');
+            if (memberCards.length > 0) {
+                const additionalNumbers = [];
+                memberCards.forEach((card, index) => {
+                    const memberNum = index + 2;
+                    const additionalMemberNumber = document.querySelector(`input[name="Member_${memberNum}_Number"]`).value;
+                    additionalNumbers.push(additionalMemberNumber);
+                });
+                
+                if (additionalNumbers.length > 0) {
+                    subjectText += ` + ${additionalNumbers.join(', ')}`;
+                }
+            }
+            
+            subjectField.value = subjectText;
         }
         
         // Calculate total one last time
