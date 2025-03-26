@@ -12,19 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
         'FLSE Freizeitlizenz': 25
     };
 
-    // Generate a unique member number starting at 100
+    // Generate a unique member number in format DAL-YYYY-XXX
     const generateMemberNumber = () => {
-        // Get current date components for the member number
+        // Get current year for the member number
         const now = new Date();
-        const year = now.getFullYear().toString().substr(2); // Last 2 digits of year
-        const month = (now.getMonth() + 1).toString().padStart(2, '0');
-        const day = now.getDate().toString().padStart(2, '0');
+        const year = now.getFullYear(); // Full 4-digit year
         
-        // Generate a random 3-digit number
-        const randomPart = Math.floor(100 + Math.random() * 900);
+        // Generate a 3-digit number with leading zeros
+        const randomPart = Math.floor(1 + Math.random() * 999).toString().padStart(3, '0');
         
-        // Combine parts to create member number: DAL-YY-MM-DD-XXX
-        return `DAL-${year}-${month}-${day}-${randomPart}`;
+        // Combine parts to create member number: DAL-YYYY-XXX
+        return `DAL-${year}-${randomPart}`;
     };
 
     // Update CC field when email changes
