@@ -318,41 +318,5 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
-    <script>
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (orderItems.length === 0) {
-        alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
-        return;
-    }
-
-    const formData = new FormData(this);
-    let orderDetails = '';
-
-    // Add customer information
-    orderDetails += `Name: ${formData.get('name')}\n`;
-    orderDetails += `Email: ${formData.get('email')}\n`;
-    orderDetails += `Telefon: ${formData.get('Handynummer')}\n`;
-    orderDetails += `Adresse: ${formData.get('address')}\n`;
-    orderDetails += `Abholung: ${formData.get('pickup')}\n`;
-    orderDetails += `Mitgliedschaft: ${formData.get('member')}\n\n`;
-    
-    // Add order items
-    orderDetails += 'Bestellte Artikel:\n';
-    orderDetails += formatOrderForEmail();
-
-    let orderInput = document.querySelector('input[name="order_details"]');
-    if (!orderInput) {
-        orderInput = document.createElement('input');
-        orderInput.type = 'hidden';
-        orderInput.name = 'order_details';
-        this.appendChild(orderInput);
-    }
-    
-    orderInput.value = orderDetails;
-    this.submit();
-});
-        </script>
 </body>
 </html>
