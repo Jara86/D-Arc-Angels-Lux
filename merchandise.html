@@ -202,6 +202,7 @@
     <form name="merchandise-order" class="order-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New Merchandise Bestellung 🛒">
         <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_cc" value="">
         
         <div class="form-group">
             <label for="name">Name:</label>
@@ -219,10 +220,52 @@
            
         </div>
 
-        <div class="form-group"> 
-            <label for="address">Adresse:</label>
-            <textarea id="address" name="address" rows="3" required placeholder="z. B. Musterstraße 12, 12345 Musterstadt"></textarea>
-          
+        <div class="form-group address-group">
+            <label>Adresse:</label>
+            
+            <div class="address-fields">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="street">Straße:</label>
+                        <input type="text" id="street" name="street" required placeholder="z.B. Musterstraße">
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="house_number">Hausnummer:</label>
+                        <input type="text" id="house_number" name="house_number" required placeholder="z.B. 12">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="zip_code">Postleitzahl:</label>
+                        <input type="text" id="zip_code" name="zip_code" required placeholder="z.B. 12345">
+                    </div>
+                    
+                    <div class="form-field">
+                        <label for="city">Ort:</label>
+                        <input type="text" id="city" name="city" required placeholder="z.B. Musterstadt">
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <label for="country">Land:</label>
+                    <select id="country" name="country" required>
+                        <option value="">Bitte wählen</option>
+                        <option value="Luxembourg">Luxemburg</option>
+                        <option value="Germany">Deutschland</option>
+                        <option value="Belgium">Belgien</option>
+                        <option value="France">Frankreich</option>
+                        <option value="Netherlands">Niederlande</option>
+                        <option value="other">Anderes Land</option>
+                    </select>
+                </div>
+                
+                <div class="form-field" id="other_country_field" style="display: none;">
+                    <label for="other_country">Anderes Land:</label>
+                    <input type="text" id="other_country" name="other_country" placeholder="Bitte Land eingeben">
+                </div>
+            </div>
         </div>
         
         <div class="form-group">
@@ -235,6 +278,10 @@
                 <label>
                     <input type="radio" name="pickup" value="turnier" required>
                     Abholung bei Turnier
+                </label>
+                <label>
+                    <input type="radio" name="pickup" value="delivery" required>
+                    Lieferung an Adresse
                 </label>
             </div>
         </div>
