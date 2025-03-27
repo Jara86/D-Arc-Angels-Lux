@@ -93,13 +93,9 @@
             background-color: #cccccc;
             cursor: not-allowed;
         }
-       
     </style>
 </head>
 <body>
-  
-    
-    
     <h1>Mitgliedschaftsregeln / Teilnahmebedingungen<br> D'Arc Angels</h1>
     
     <div class="section">
@@ -110,8 +106,6 @@
         
         <p><strong>Bekleidung:</strong> Geeignete Kleidung und Schutzkleidung (z.B. Reithelm) sind Pflicht.</p>
         
-        
-        
         <p><strong>Alkohol und Drogen:</strong> Der Konsum von Alkohol oder Drogen vor oder während des Trainings ist strengstens verboten.</p>
     </div>
     
@@ -121,7 +115,6 @@
         
         <p><strong>Material:</strong> Das Material anderer Vereinsmitglieder ist mit Sorgfalt zu behandeln.</p>
         
- 
         <p><strong>Anweisungen:</strong> Den Anweisungen der Trainer und des Aufsichtspersonals ist Folge zu leisten.</p>
     </div>
     
@@ -129,7 +122,7 @@
         <h2>Umgang mit Pferden und anderen Tieren</h2>
         <p><strong>Pferde:</strong>Teilnehmende Pferde müssen ruhig und zuverlässig sein und an das Bogenschießen gewöhnt sein.Die Pferde müssen artgerecht gehalten und behandelt werden. Regelmäßige Hufpflege und tierärztliche Versorgung sind sicherzustellen. Es wird ohne Schenkeltrensen oder andere scharfe Gebisse sowie Sporen geritten. Ebenfalls stellt das Festbinden der Zügel am Sattel eine erhebliche Verletzungsgefahr für Pferd und Reiter dar und ist daher untersagt.</p>
 
-        <p></p> Respektvoller Umgang mit Pferden und anderen Tieren ist selbstverständlich. Tiere dürfen nicht misshandelt oder überfordert werden.</p>
+        <p>Respektvoller Umgang mit Pferden und anderen Tieren ist selbstverständlich. Tiere dürfen nicht misshandelt oder überfordert werden.</p>
         
         <p><strong>Schutz der Tiere:</strong> Kein Tier darf absichtlich verletzt oder durch Nachlässigkeit gefährdet werden. Falls sich ein Tier – wie eine Katze, ein Hund oder ein anderes Lebewesen – auf das Trainingsgelände verirrt, ist das Schießen sofort einzustellen, bis das Tier in Sicherheit ist.</p>
         
@@ -163,6 +156,9 @@
     </div>
 
     <script>
+        // Store the referrer when the page loads
+        const sourceUrl = document.referrer;
+        
         function enableButton() {
             const checkbox = document.getElementById('agreement');
             const button = document.getElementById('backButton');
@@ -178,32 +174,10 @@
             // Set a flag in localStorage to indicate the user has agreed
             localStorage.setItem('rulesAgreed', 'true');
             
-            // Go back to member.html
-            window.location.href = '../member.html';
-        }
-    </script>
-    <script>
-        function enableButton() {
-            const checkbox = document.getElementById('agreement');
-            const button = document.getElementById('backButton');
-            
-            if (checkbox.checked) {
-                button.disabled = false;
-            } else {
-                button.disabled = true;
-            }
-        }
-        
-        function goBack() {
-            // Set a flag in localStorage to indicate the user has agreed
-            localStorage.setItem('rulesAgreed', 'true');
-            
-            // Check the referrer to determine where to go back to
-            const referrer = document.referrer;
-            
-            if (referrer.includes('kidscamp.html')) {
+            // Check the stored referrer to determine where to go back to
+            if (sourceUrl.includes('kidscamp.html')) {
                 window.location.href = '../kidscamp.html';
-            } else if (referrer.includes('tournaments.html')) {
+            } else if (sourceUrl.includes('tournaments.html')) {
                 window.location.href = '../tournaments.html';
             } else {
                 // Default to member.html
