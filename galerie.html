@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="D'Arc Angels Lëtzebuerg galerie page">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lg-zoom.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lg-thumbnail.css">
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -25,44 +29,89 @@
     </div>
     <div id="nav-placeholder"></div>
 
-    <div class="gallery-container">
-        <h1>Darc-Angels Gallery</h1>
+    <main class="gallery-container">
+        <h1>Unsere Galerie</h1>
         
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="images/photo1.jpg" alt="Darc-Angels Event 1">
-                    <div class="image-description">
-                        <h3>Slavic technique Workshop</h3>
-                        <p>A HUGE Thank You to Jens Vogt and Elsa Frewell for teaching us how to shoot the Slavic Technique!! 🏹🏹</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="images/photo2.jpg" alt="Darc-Angels Event 2">
-                    <div class="image-description">
-                        <h3>Kids Camp 2024</h3>
-                        <p>Supporting our local community</p>
-                    </div>
-                </div>
-                <!-- Add more slides as needed -->
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">Alle</button>
+            <button class="filter-btn" data-filter="workshops">Workshops</button>
+            <button class="filter-btn" data-filter="competitions">Wettbewerbe</button>
+            <button class="filter-btn" data-filter="camps">Camps</button>
         </div>
-    </div>
+        
+        <div class="gallery-grid" id="lightgallery">
+            <a href="images\474694587_17939045156954626_754370519569405511_n.webp" class="gallery-item workshops" 
+               data-sub-html="<h4>Slavic technique Workshop</h4><p>A HUGE Thank You to Jens Vogt and Elsa Frewell for teaching us how to shoot the Slavic Technique!! 🏹🏹</p>">
+                <img src="images\474694587_17939045156954626_754370519569405511_n.webp" alt="Slavic technique Workshop">
+                <div class="gallery-caption">
+                    <h3>Slavic technique Workshop</h3>
+                    <p>Workshop mit Jens Vogt und Elsa Frewell</p>
+                </div>
+            </a>
+            
+            <a href="images/competition.jpg" class="gallery-item competitions" 
+               data-sub-html="<h4>Limpach Open 2024</h4><p>Competition</p>">
+                <img src="images/competition.jpg" alt="Limpach Open 2024">
+                <div class="gallery-caption">
+                    <h3>Limpach Open 2024</h3>
+                    <p>Wettbewerb</p>
+                </div>
+            </a>
+            
+            <a href="images/Kidscamp1.webp" class="gallery-item camps" 
+               data-sub-html="<h4> Kids Camp 2024</h4>">
+                <img src="images/Kidscamp1.webp" alt="Kids Camp 2024">
+                <div class="gallery-caption">
+                    <h3>Kids Camp 2024</h3>
+                </div>
+            </a>
+            
+            <!-- Add more gallery items as needed -->
+            <!-- Example of additional items (you'll need to add your actual images) -->
+            <a href="images/photo1.jpg" class="gallery-item workshops" 
+               data-sub-html="<h4>Bogenschießen Grundkurs</h4><p>Einführung in die Grundtechniken</p>">
+                <img src="images\Kidscamp2.webp" alt="Bogenschießen Grundkurs">
+                <div class="gallery-caption">
+                    <h3>Bogenschießen Grundkurs</h3>
+                    <p>Einführung in die Grundtechniken</p>
+                </div>
+            </a>
+            
+            <a href="images/competition.jpg" class="gallery-item competitions" 
+               data-sub-html="<h4>Nationale Meisterschaft 2023</h4><p>D'Arc Angels Team</p>">
+                <img src="images/competition.jpg" alt="Nationale Meisterschaft 2023">
+                <div class="gallery-caption">
+                    <h3>Nationale Meisterschaft </h3>
+                    <p>D'Arc Angels Team</p>
+                </div>
+            </a>
+            
+            <a href="images/Kidscamp1.webp" class="gallery-item camps" 
+               data-sub-html="<h4>Sommer Camp 2023</h4><p>Intensivtraining für Fortgeschrittene</p>">
+                <img src="images/Kidscamp1.webp" alt="Sommer Camp 2023">
+                <div class="gallery-caption">
+                    <h3>Sommer Camp 2023</h3>
+                    <p>Intensivtraining für Fortgeschrittene</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
     <hr class="footer-line">
     <footer class="footer">
-      <p class="footer-text">
-          Code and design by 
-          <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-      </p>
-      <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-      <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
-  </footer>
+        <p class="footer-text">
+            Code and design by 
+            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
+        </p>
+        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+        <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
+    </footer>
 
-<script src="js/script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    
     <script>
         fetch('nav.html')
             .then(response => response.text())
@@ -70,7 +119,6 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="js/galerie.js"></script>
 </body>
 </html>
