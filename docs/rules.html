@@ -182,5 +182,34 @@
             window.location.href = '../member.html';
         }
     </script>
+    <script>
+        function enableButton() {
+            const checkbox = document.getElementById('agreement');
+            const button = document.getElementById('backButton');
+            
+            if (checkbox.checked) {
+                button.disabled = false;
+            } else {
+                button.disabled = true;
+            }
+        }
+        
+        function goBack() {
+            // Set a flag in localStorage to indicate the user has agreed
+            localStorage.setItem('rulesAgreed', 'true');
+            
+            // Check the referrer to determine where to go back to
+            const referrer = document.referrer;
+            
+            if (referrer.includes('kidscamp.html')) {
+                window.location.href = '../kidscamp.html';
+            } else if (referrer.includes('tournaments.html')) {
+                window.location.href = '../tournaments.html';
+            } else {
+                // Default to member.html
+                window.location.href = '../member.html';
+            }
+        }
+    </script>
 </body>
 </html>

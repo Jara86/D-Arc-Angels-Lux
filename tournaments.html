@@ -139,5 +139,76 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        // Find all links to rules.html
+        const rulesLinks = document.querySelectorAll('a[href*="rules.html"]');
+        
+        rulesLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default - we want the link to work
+                
+                // Get the form element
+                const form = this.closest('form');
+                if (!form) return;
+                
+                // Get the form ID to use as a key in localStorage
+                const formId = form.id || 'form-data';
+                
+                // Create an object to store form data
+                const formData = {};
+                
+                // Get all form inputs
+                const inputs = form.querySelectorAll('input, select, textarea');
+                
+                inputs.forEach(input => {
+                    // Skip submit buttons
+                    if (input.type === 'submit') return;
+                    
+                    // Handle different input types
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        formData[input.name] = input.checked;
+                    } else {
+                        formData[input.name] = input.value;
+                    }
+                });
+                
+                // Save to localStorage
+                localStorage.setItem(formId, JSON.stringify(formData));
+                
+                // Also save which page we're on
+                localStorage.setItem('formPage', window.location.pathname);
+            });
+        });
+        
+        // Restore form data when page loads
+        const formId = document.querySelector('form')?.id || 'form-data';
+        const savedFormData = localStorage.getItem(formId);
+        const savedPage = localStorage.getItem('formPage');
+        
+        // Only restore if we're on the same page as when data was saved
+        if (savedFormData && savedPage === window.location.pathname) {
+            const formData = JSON.parse(savedFormData);
+            
+            // Get all form inputs
+            const form = document.getElementById(formId) || document.querySelector('form');
+            if (!form) return;
+            
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                // Skip submit buttons
+                if (input.type === 'submit') return;
+                
+                // Restore value based on input type
+                if (input.name in formData) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        input.checked = formData[input.name];
+                    } else {
+                        input.value = formData[input.name];
+                    }
+                }
+            });
+        }
+    });</script>
 </body>
 </html>
