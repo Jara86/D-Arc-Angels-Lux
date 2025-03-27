@@ -72,16 +72,12 @@
                         <i class="fas fa-plus"></i> Weiteres Kind hinzufügen
                     </button>
         
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" id="privacy-policy" name="privacy_policy" required>
-                            <span>Ich habe die Datenschutzbestimmungen gelesen und stimme ihnen zu.</span>
-                        </label>
-                        
-                        <label>
-                            <input type="checkbox" id="Teilnamebedinungen" name="Teilnamebedinungen" required>
-                            <span>Ich habe die Teilnahmebedingungen gelesen und stimme ihnen zu.</span>
-                        </label>
+                    <div class="terms-section">
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
+                                Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; padding: 0; font: inherit;">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu.
+                            </label>
+                        </div>
                     </div>
         
                     <!-- Submit Button -->

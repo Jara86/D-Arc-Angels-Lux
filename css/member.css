@@ -148,20 +148,19 @@ button:hover {
     gap: clamp(5px, 1vw, 10px);
     margin-bottom: clamp(10px, 2vw, 15px);
     position: relative;
-    padding-left: 30px;
 }
 
 .checkbox-group input[type="checkbox"] {
-    position: absolute;
-    left: 0;
-    top: 3px;
     width: clamp(16px, 1.5vw, 20px);
     height: clamp(16px, 1.5vw, 20px);
+    margin-top: 3px;
+    flex-shrink: 0;
 }
 
 .checkbox-group label {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
+    flex: 1;
 }
 
 .terms-section a {
@@ -173,6 +172,7 @@ button:hover {
 .terms-section a:hover {
     color: #ff9800;
 }
+
 .checkbox-group.membership-options {
     display: flex;
     flex-direction: column;
@@ -187,18 +187,16 @@ button:hover {
 
 .checkbox-option {
     position: relative;
-    padding-left: 30px;
+    display: flex;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
 
 .checkbox-option input[type="checkbox"] {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    margin: 0;
+    margin: 3px 10px 0 0;
+    flex-shrink: 0;
 }
 
 .checkbox-option label {
@@ -206,6 +204,7 @@ button:hover {
     font-size: clamp(14px, 1.5vw, 16px);
     color: #183947;
     cursor: pointer;
+    flex: 1;
 }
 
 /* Fix for checked checkboxes */
@@ -213,6 +212,7 @@ button:hover {
     font-weight: 600;
     color: #0f2730;
 }
+
 /* Price Display */
 #total-amount {
     background: #183947;
@@ -338,12 +338,7 @@ button:hover {
         font-size: 1.2rem;
     }
     
-    .checkbox-group, .radio-group label {
-        padding-left: 25px;
-    }
-    
-    .checkbox-group input[type="checkbox"],
-    .radio-group input[type="radio"] {
+    .checkbox-group input[type="checkbox"] {
         width: 16px;
         height: 16px;
     }
@@ -377,6 +372,7 @@ button:hover {
         font-size: 1.5rem;
     }
 }
+
 input:focus, 
 textarea:focus, 
 select:focus {
@@ -394,8 +390,6 @@ textarea {
     transition: all 0.2s ease-in-out;
 }
 
-
-
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -407,4 +401,3 @@ textarea {
     font-weight: 600;
     color: #0f2730;
 }
-
