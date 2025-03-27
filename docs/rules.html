@@ -152,13 +152,10 @@
             <label for="agreement">Gelesen und einverstanden</label>
         </div>
         
-        <button id="backButton" class="button" onclick="goBack()" disabled>Zurück zum Anmeldeformular</button>
+        <button id="backButton" class="button" onclick="acceptAndClose()" disabled>Akzeptieren und schließen</button>
     </div>
 
     <script>
-        // Store the referrer when the page loads
-        const sourceUrl = document.referrer;
-        
         function enableButton() {
             const checkbox = document.getElementById('agreement');
             const button = document.getElementById('backButton');
@@ -170,19 +167,22 @@
             }
         }
         
-        function goBack() {
+        function acceptAndClose() {
             // Set a flag in localStorage to indicate the user has agreed
             localStorage.setItem('rulesAgreed', 'true');
             
-            // Check the stored referrer to determine where to go back to
-            if (sourceUrl.includes('kidscamp.html')) {
-                window.location.href = '../kidscamp.html';
-            } else if (sourceUrl.includes('tournaments.html')) {
-                window.location.href = '../tournaments.html';
-            } else {
-                // Default to member.html
-                window.location.href = '../member.html';
+            // Notify the opener window that rules were accepted (if it exists)
+            if (window.opener && !window.opener.closed) {
+                try {
+                    window.opener.rulesAccepted();
+                } catch (e) {
+                    // If the function doesn't exist in the parent, ignore the error
+                    console.log("Parent window doesn't have rulesAccepted function");
+                }
             }
+            
+            // Close this window
+            window.close();
         }
     </script>
 </body>
