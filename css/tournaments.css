@@ -101,6 +101,7 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 0 1rem;
+    padding-bottom: 2rem;
 }
 
 .tournament-list {
