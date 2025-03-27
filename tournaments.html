@@ -24,8 +24,9 @@
         <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
     <div id="nav-placeholder"></div>
+    
     <div class="content-container">
-        <main class="content-container">
+        <main>
             <section class="registration-section">
                 <h2>Turnier-Anmeldeformular</h2>
                 <form class="tournament-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
@@ -38,15 +39,15 @@
                         <div class="form-group select-group">
                             <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
                             <select id="turnier" name="Turnier" required>
-                                <option value="">Turnier auswählen</option>
-                                <option value="france">Turnier beispiel 1</option>
-                                <option value="italy">Turnier beispiel 2</option>
-                                <option value="usa">Turnir beispiel 3</option>
-                                <option value="brazil">Turnier beispiel 4</option>
-                                <option value="japan">Turnier beispiel 5</option>
+                                <option value="">select Tournament</option>
+                                <option value="france"> beispiel 1</option>
+                                <option value="italy">beispiel 2</option>
+                                <option value="usa">beispiel 3</option>
+                                <option value="brazil">beispiel 4</option>
+                                <option value="japan"> beispiel 5</option>
                             </select>
                         </div>
-    
+
                         <div class="form-group">
                             <input type="text" name="Teilnehmer1_Vorname" placeholder="Vorname" required maxlength="100">
                             <input type="text" name="Teilnehmer1_Nachname" placeholder="Nachname" required maxlength="100">
@@ -63,7 +64,7 @@
                         <div class="form-group">
                             <input type="tel" name="Teilnehmer1_phone" placeholder="Handynummer" required maxlength="50">
                         </div>
-    
+
                         <div class="form-group radio-group">
                             <p class="radio-label">Teilnahmeart:</p>
                             <div class="radio-options">
@@ -78,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div id="weitere-Teilnehmer"></div>
                     <button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
                     <div class="terms-section">
@@ -89,31 +90,31 @@
                             </label>
                         </div>
                     </div>
-    
+
                     <button type="submit">Anmelden</button>
                 </form>
             </section>
-    
+
             <section class="tournaments-container">
-                <h2>Turniere 2025</h2>
+                <h2>Tournament 2025</h2>
                 <div class="tournament-list">
                     <div class="tournament-card">
-                        <h3>Beispiel Tournament 1</h3>
-                        <div class="turnier-details">
+                        <h3>Exemple Tournament 1</h3>
+                        <div class="tournament-details">
                             <p class="datum">15-16 August 2025</p>
                             <p class="location">Limpach, Luxembourg</p>
                             <p class="Veranstaltung">International Mounted Archery Competition</p>
-                            <div class="status">Anmeldung offen</div>
+                            <div class="status">Registration open</div>
                         </div>
                     </div>
-    
+
                     <div class="tournament-card">
-                        <h3>Beispiel Tournament 2</h3>
-                        <div class="Turnier-details">
-                            <p class="datum">20-21 Mai 2025</p>
+                        <h3>Exemple Tournament 2</h3>
+                        <div class="tournament-details">
+                            <p class="datum">20-21 june 2025</p>
                             <p class="location">Rome, Italy</p>
                             <p class="Veranstaltung">European Championship Qualifiers</p>
-                            <div class="status">Demnächst</div>
+                            <div class="status">Coming soon</div>
                         </div>
                     </div>
                 </div>
@@ -140,21 +141,21 @@
             });
     </script>
     <script>document.addEventListener('DOMContentLoaded', function() {
-        // Find all links to rules.html
+        
         const rulesLinks = document.querySelectorAll('a[href*="rules.html"]');
         
         rulesLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                // Don't prevent default - we want the link to work
                 
-                // Get the form element
+                
+               
                 const form = this.closest('form');
                 if (!form) return;
                 
-                // Get the form ID to use as a key in localStorage
+              
                 const formId = form.id || 'form-data';
                 
-                // Create an object to store form data
+               
                 const formData = {};
                 
                 // Get all form inputs
