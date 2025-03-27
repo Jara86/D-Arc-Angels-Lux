@@ -134,13 +134,62 @@ button:hover {
     box-sizing: border-box;
 }
 
-/* Terms section styling */
-.terms-section {
-    margin: clamp(1rem, 2vw, 1.5rem) 0;
-    width: 100%;
-    box-sizing: border-box;
+
+.text-link {
+    display: inline;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: none !important;
+    border: none !important;
+    color: #183947 !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    font-size: inherit !important;
 }
 
+.text-link:hover {
+    color: #ff9800 !important;
+    background: none !important;
+}
+
+.rules-link {
+    color: #183947;
+    text-decoration: underline;
+}
+
+.rules-link:hover {
+    color: #ff9800;
+}
+
+/* Reset and fix the terms section */
+.terms-section {
+    margin: 20px 0;
+}
+
+.terms-section .checkbox-group {
+    display: flex !important;
+    align-items: flex-start !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.terms-section .checkbox-group input[type="checkbox"] {
+    margin: 3px 10px 0 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+}
+
+.terms-section .checkbox-group label {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    flex: 1 !important;
+}
 /* Fixed checkbox styling */
 .checkbox-group {
     display: flex;
