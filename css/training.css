@@ -33,6 +33,21 @@
     box-shadow: 0 10px 30px rgba(65, 50, 100, 0.08);
     margin-top: 2rem;
 }
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+.contact .cta-button {
+    min-width: 150px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact .cta-button:hover {
+    transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
     .training-sections-wrapper {
@@ -49,6 +64,7 @@
     border: none;
     text-decoration: none;
     display: inline-block;
+    text-align: center;
 }
 
 .btn-primary:hover, .cta-button:hover {
