@@ -230,4 +230,71 @@ textarea {
     .checkbox-group input[type="checkbox"] {
         top: 2px;
     }
+}/* Terms section styling with improved desktop alignment */
+.terms-section {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.terms-section .checkbox-group {
+    display: flex ;
+    align-items: flex-start ;
+    gap: 10px ;
+    margin: 0 ;
+    padding: 0 ;
+    position: relative ;
+    flex-direction: row ;
+}
+
+.terms-section .checkbox-group input[type="checkbox"] {
+    margin: 4px 0 0 0 ;
+    width: 20px ;
+    height: 20px ;
+    flex-shrink: 0 ;
+    position: static ;
+}
+
+.terms-section .checkbox-group label {
+    margin: 0 ;
+    padding: 0 ;
+    font-size: 16px ;
+    line-height: 1.5 ;
+    flex: 1 ;
+    display: inline ;
+}
+
+/* Text link styling for buttons that look like links */
+.text-link {
+    display: inline;
+    width: auto;
+    padding: 0;
+    margin: 0 ;
+    background: none ;
+    border: none ;
+    color: #183947 ;
+    text-decoration: underline ;
+    cursor: pointer ;
+    font-size: inherit ;
+}
+
+.text-link:hover {
+    color: #ff9800 ;
+    background: none ;
+}
+
+/* Ensure proper alignment on different screen sizes */
+@media (min-width: 768px) {
+    .terms-section .checkbox-group {
+        align-items: center ;
+    }
+}
+
+@media (max-width: 767px) {
+    .terms-section .checkbox-group {
+        align-items: flex-start ;
+    }
+    
+    .terms-section .checkbox-group input[type="checkbox"] {
+        margin-top: 4px ;
+    }
 }
