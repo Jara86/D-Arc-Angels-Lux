@@ -1,4 +1,3 @@
-// Update your button click handlers
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize event listeners after DOM is fully loaded
     document.querySelectorAll('.btn-primary').forEach(button => {
@@ -8,27 +7,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 const trainingType = trainingCard.querySelector('h3').textContent;
                 document.getElementById('training-type').value = trainingType;
                 
+                // Reset form before showing
+                document.getElementById('training-registration').reset();
+                
                 // Set up the date picker to only allow Sundays
                 setupDatePicker();
                 
-                document.getElementById('registration-modal').style.display = 'block';
+                // Show modal and prevent body scrolling
+                const modal = document.getElementById('registration-modal');
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             });
         }
     });
 
     // Close modal
     document.querySelector('.close').addEventListener('click', function() {
-        document.getElementById('registration-modal').style.display = 'none';
+        closeModal();
     });
 
     // Close modal when clicking outside of it
     window.addEventListener('click', function(event) {
         const modal = document.getElementById('registration-modal');
         if (event.target === modal) {
-            modal.style.display = 'none';
+            closeModal();
+        }
+    });
+    
+    // Add escape key support to close modal
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
         }
     });
 });
+
+// Function to close modal
+function closeModal() {
+    document.getElementById('registration-modal').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore body scrolling
+}
 
 // Set up date picker to only allow Sundays
 function setupDatePicker() {
@@ -76,7 +94,7 @@ function setupDatePicker() {
                 longhand: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
             }
         },
-        disableMobile: false, // Set to true if you want to use custom picker on mobile
+        disableMobile: false,
         onChange: function(selectedDates, dateStr) {
             // You can add custom validation here if needed
         }
@@ -107,17 +125,14 @@ Telefon: ${phone}
 Status: ${membership}`;
 
     // Replace with your WhatsApp number
-   // Hide WhatsApp number by splitting it
-   const countryCode = '00352';
-   const part1 = '621';
-   const part2 = '788';
-   const part3 = '349';
-   const whatsappNumber = countryCode + part1 + part2 + part3;
-   
-   window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
-   
-   document.getElementById('registration-modal').style.display = 'none';
-   document.getElementById('training-registration').reset();
-}
+    const countryCode = '00352';
+    const part1 = '621';
+    const part2 = '788';
+    const part3 = '349';
+    const whatsappNumber = countryCode + part1 + part2 + part3;
     
-
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
+    
+    closeModal();
+    document.getElementById('training-registration').reset();
+}
