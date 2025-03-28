@@ -55,3 +55,9 @@ document.getElementById('addParticipant').addEventListener('click', function() {
 function removeParticipant(button) {
     button.closest('.participant-section').remove();
 }
+function setCCEmail(email) {
+    document.querySelector('input[name="_cc"]').value = email;
+}
+
+// Example usage:
+// setCCEmail('another@example.com');

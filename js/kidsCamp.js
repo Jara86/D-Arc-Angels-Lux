@@ -31,3 +31,9 @@ function removeChild(button) {
 }
 
 
+function setCCEmail(email) {
+    document.querySelector('input[name="_cc"]').value = email;
+}
+
+// Example usage:
+// setCCEmail('another@example.com');
