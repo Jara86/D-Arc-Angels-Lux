@@ -166,6 +166,78 @@
     background-color: #183947;
 }
 
+.checkbox-group {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.checkbox-label {
+    font-weight: 500;
+    color: #183947;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 0.5rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.disciplines {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.disciplines h4 {
+    color: #183947;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.disciplines ul {
+    padding-left: 1.5rem;
+}
+
+.disciplines li {
+    margin-bottom: 0.5rem;
+}
+
+.registration-btn {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.conditional-section {
+    border-top: 1px dashed #ccc;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
 /* Responsive layout */
 @media (min-width: 768px) {
     /* For desktop: 2x2 grid layout */
@@ -178,19 +250,19 @@
     .select-group select {
         width: 100%;  /* Make select box full width on mobile */
     }
-
+    
     .form-group {
         flex-direction: column;  /* Stack form elements vertically */
     }
-
+    
     .tournament-card {
         padding: 1rem;
     }
-
+    
     .tournament-details, .Turnier-details {
         gap: 0.8rem;
     }
-
+    
     .status {
         width: 100%;
         text-align: center;
@@ -201,11 +273,11 @@
     .participant-section {
         padding: 1rem;
     }
-
+    
     .tournament-card {
         transform: none;  /* Disable hover effect on mobile */
     }
-
+    
     .tournament-card:hover {
         transform: none;
     }

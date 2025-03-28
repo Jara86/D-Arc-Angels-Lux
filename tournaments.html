@@ -27,97 +27,233 @@
     
     <div class="content-container">
         <main>
-            <section class="registration-section">
-                <h2>Turnier-Anmeldeformular</h2>
-                <form class="tournament-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
-                    <input type="hidden" name="_subject" value="Tournier Registration 🎯">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_cc" value="">
-                    
-                    <div class="participant-section">
-                        <h3>Hauptteilnehmer</h3>
-                        
-                        <div class="form-group select-group">
-                            <label for="turnier">Für welche Turniere möchtest du dich anmelden?</label>
-                            <select id="turnier" name="Turnier" required>
-                                <option value="">select Tournament</option>
-                                <option value="france"> beispiel 1</option>
-                                <option value="italy">beispiel 2</option>
-                                <option value="usa">beispiel 3</option>
-                                <option value="brazil">beispiel 4</option>
-                                <option value="japan"> beispiel 5</option>
-                            </select>
-                        </div>
+            <section class="tournaments-container">
+                <h2>Turniere 2025</h2>
+                <div class="tournament-list">
+                   
 
-                        <div class="form-group">
-                            <input type="text" name="Teilnehmer1_Vorname" placeholder="Vorname" required maxlength="100">
-                            <input type="text" name="Teilnehmer1_Nachname" placeholder="Nachname" required maxlength="100">
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="date" name="Teilnehmer1_Geburtsdatum" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" name="Teilnehmer1_email" placeholder="E-Mail-Adresse" required maxlength="250">
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="tel" name="Teilnehmer1_phone" placeholder="Handynummer" required maxlength="50">
-                        </div>
-
-                        <div class="form-group radio-group">
-                            <p class="radio-label">Teilnahmeart:</p>
-                            <div class="radio-options">
-                                <div class="radio-item">
-                                    <input type="radio" id="Teilnehmer1_foot" name="Teilnehmer1_art" value="foot" required>
-                                    <label for="Teilnehmer1_foot">Ich nehme am Turnier zu Fuß als Bodenschütze ohne Pferd teil (nur möglich, wenn vom Veranstalter angeboten).</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input type="radio" id="Teilnehmer1_Pferd" name="Teilnehmer1_art" value="Pferd" required>
-                                    <label for="Teilnehmer1_horse">Ich habe ein Pferd/Pony, das für das berittene Bogenschießen ausgebildet ist und den landesveterinärrechtlichen Bestimmungen des Turnierlandes entspricht. Den Transport organisiere ich selbst.</label>
-                                </div>
+                    <div class="tournament-card">
+                        <h3>Limpach Open</h3>
+                        <div class="tournament-details">
+                            <p class="datum">1/2/3 August 2025</p>
+                            <p class="location">Limpach, Luxembourg</p>
+                            <p class="Veranstaltung">International Mounted Archery Competition</p>
+                            <button class="status registration-toggle" data-tournament="tournament1">Registration open</button>
+                            <div id="kein_pferd_info" class="conditional-section" >
+                                <p>Wenn du kein eigenes Pferd hast, aber am Turnier teilnehmen möchtest, kontaktiere uns:</p>
+                                <a href="https://wa.me/+352123456789?text=Ich%20möchte%20am%20Turnier%20teilnehmen,%20habe%20aber%20kein%20eigenes%20Pferd." 
+                                   class="btn btn-success whatsapp-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp Kontakt
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div id="weitere-Teilnehmer"></div>
-                    <button type="button" id="addParticipant" class="btn-secondary">+ Weiteren Teilnehmer hinzufügen</button>
-                    <div class="terms-section">
-                        <div class="form-group checkbox-group">
-                            <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
-                            <label for="regeln">
-                                Ich habe die <button onclick="window.open('docs/rules.html', '_blank')" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer; padding: 0; font: inherit;">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu.
-                            </label>
+                    <div class="tournament-card">
+                        <h3>Waldrandranch Turnier</h3>
+                        <div class="tournament-details">
+                            <p class="datum">15-16 Juni 2025</p>
+                            <p class="location">Waldrandranch, Deutschland</p>
+                            <p class="Veranstaltung">Internationales Berittenes Bogenschießen Turnier</p>
+                           
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdA9V2q8En-edgefEfcTup0UAoXvl3R4y8P7LGOeSyuIkesNg/viewform" 
+                               class="btn btn-primary registration-btn" target="_blank">
+                               Google Formular Anmeldung
+                            </a>
                         </div>
                     </div>
+                  
+                </div>
+                <div class="disciplines">
+                    <h4>Disziplinen:</h4>
+                    <ul>
+                        <li>
+                            <a href="https://wfea.world/about-us/rules/" target="_blank">WFEA Wettkampf nach Original Kassai System Regeln</a> (99m, Drehscheibe)
+                        </li>
+                        <li>
+                            <a href="https://www.ihaa.info/" target="_blank">Koreanischer Wettkampf (Raid) (2-3-4) nach IHAA Regeln</a> (Seiten 50-51)
+                        </li>
+                    </ul>
+                </div>
 
-                    <button type="submit">Anmelden</button>
-                </form>
+                </div>
             </section>
 
-            <section class="tournaments-container">
-                <h2>Tournament 2025</h2>
-                <div class="tournament-list">
-                    <div class="tournament-card">
-                        <h3>Exemple Tournament 1</h3>
-                        <div class="tournament-details">
-                            <p class="datum">15-16 August 2025</p>
-                            <p class="location">Limpach, Luxembourg</p>
-                            <p class="Veranstaltung">International Mounted Archery Competition</p>
-                            <div class="status">Registration open</div>
+            <!-- Registration forms section - initially hidden -->
+            <section id="registration-forms" class="registration-section" style="display: none;">
+                <!-- Tournament 1 Registration Form -->
+                <div id="tournament1-form" class="tournament-form-container" style="display: none;">
+                    <h2>Anmeldeformular - Exemple Tournament 1</h2>
+                    <form class="tournament-form" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Tournament 1 Registration 🎯">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_cc" value="">
+                         <input type="hidden" name="Tournament" value="Exemple Tournament 1">
+                        
+                         <div class="participant-section">
+                            <h3>Hauptteilnehmer</h3>
+                            
+                            <div class="form-group">
+                                <input type="text" name="Vorname" placeholder="Vorname / Name" required maxlength="100">
+                                <input type="text" name="Nachname" placeholder="Nachname / Surname" required maxlength="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="date" name="Geburtsdatum" placeholder="Geburtsdatum / Birthday" required max="2050-12-31" min="1900-01-01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <select name="Geschlecht" required>
+                                    <option value="">Geschlecht / Gender</option>
+                                    <option value="männlich">Männlich / Male</option>
+                                    <option value="weiblich">Weiblich / Female</option>
+                                    <option value="divers">Divers / Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" name="Nationalität" placeholder="Nationalität / Nationality" required maxlength="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" name="Email" placeholder="E-Mail-Adresse" required maxlength="250">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" name="Telefonnummer" placeholder="Telefonnummer / Phone Number" required maxlength="50">
+                            </div>
+                            <div id="weitere-Kinder"></div>
+                    
+                            <!-- Add participant Button -->
+                            <button type="button" id="addparticipant" class="btn-secondary">
+                                <i class="fas fa-plus"></i> Weiteren Teilnehmer hinzufügen
+                            </button>
+                
+                            <div class="form-group radio-group">
+                                <p class="radio-label">Ich bin / I am:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="linkshänder" name="Händigkeit" value="Linkshänder" required>
+                                        <label for="linkshänder">Linkshänder / Left Handed</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="rechtshänder" name="Händigkeit" value="Rechtshänder" required>
+                                        <label for="rechtshänder">Rechtshänder / Right Handed</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
+                                <div class="checkbox-options">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="ungarisch" name="Teilnahme[]" value="Ungarisch nach Kassai Regeln">
+                                        <label for="ungarisch">Ungarisch nach Kassai Regeln / Hungarian Style according to Kassai Rules</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="koreanisch" name="Teilnahme[]" value="Koreanisch nach IHAA Regeln">
+                                        <label for="koreanisch">Koreanisch nach IHAA Regeln / Korean according to IHAA Rules</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="beide" name="Teilnahme[]" value="Ungarisch und Koreanisch">
+                                        <label for="beide">Ungarisch und Koreanisch / Hungarian and Korean Style</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="gast" name="Teilnahme[]" value="Gast">
+                                        <label for="gast">Ich komme nur als Gast. / I'm coming only as a guest.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group radio-group">
+                                <p class="radio-label">Ich möchte das meine Ergebnisse, anerkannt werden:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="ja_dm" name="Qualifikation" value="Ja" required>
+                                        <label for="ja_dm">Ja.</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="nein" name="Qualifikation" value="Nein" required>
+                                        <label for="nein_dm">Nein.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ankunft">Ich komme an am / I'll arrive  on the:</label>
+                                <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2023-01-01">
+                            </div>
+                            
+                            <div class="form-group radio-group">
+                                <p class="radio-label">Ich bringe die folgende Anzahl von Pferden mit / I'll bring the following number of horses:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="ein_pferd" name="Pferde_Anzahl" value="1">
+                                        <label for="ein_pferd">1</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="zwei_pferde" name="Pferde_Anzahl" value="2">
+                                        <label for="zwei_pferde">2 (bitte informiere uns, ob deine Pferde auf einem oder auf getrennten Paddocks stehen können. / Please inform us if your horses can stay on one paddock)</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="kein_pferd" name="Pferde_Anzahl" value="0">
+                                        <label for="kein_pferd">Ich habe kein eigenes Pferd / I don't have my own horse</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="pferd_details" class="conditional-section">
+                                <div class="form-group">
+                                    <input type="text" name="Pferdename" placeholder="Pferdenamen (wie im Pass) / Horse(s) Name (like in the Passport)">
+                                </div>
+                                
+                                <div class="form-group radio-group">
+                                    <p class="radio-label">Geschlecht vom Pferd / Horses Gender:</p>
+                                    <div class="radio-options">
+                                        <div class="radio-item">
+                                            <input type="radio" id="stute" name="Pferd_Geschlecht" value="Stute">
+                                            <label for="stute">Stute / Mare</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="wallach" name="Pferd_Geschlecht" value="Wallach">
+                                            <label for="wallach">Wallach / Gelding</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="hengst" name="Pferd_Geschlecht" value="Hengst">
+                                            <label for="hengst">Hengst / Stallion</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="pferd_geburtsdatum">Geburtsdatum Pferd / Horse's Birthday:</label>
+                                    <input type="date" id="pferd_geburtsdatum" name="Pferd_Geburtsdatum" max="2050-12-31" min="1980-01-01">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" name="Lebensnummer" placeholder="Lebensnummer (schau Equidenpass) / Identification No. (look in Horse Passport)">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" name="Pferdebesitzer" placeholder="Pferdebesitzer (Vorname/ Nachname) / Horse Owner (Name / Family Name)">
+                                </div>
+                            </div>
+                          
+                        <div class="terms-section">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
+                                <label for="regeln">
+                                    Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen </button>  Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I agree to all the conditions gelesen und stimme ihnen zu.
+                                </label>
+                                
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="tournament-card">
-                        <h3>Exemple Tournament 2</h3>
-                        <div class="tournament-details">
-                            <p class="datum">20-21 june 2025</p>
-                            <p class="location">Rome, Italy</p>
-                            <p class="Veranstaltung">European Championship Qualifiers</p>
-                            <div class="status">Coming soon</div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-secondary close-form">Abbrechen</button>
+                            <button type="submit" class="btn-primary">Anmelden / Register</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -133,85 +269,18 @@
 
 <script src="js/tournaments.js" defer></script>
 <script src="js/script.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
-    </script>
-    <script>document.addEventListener('DOMContentLoaded', function() {
-        
-        const rulesLinks = document.querySelectorAll('a[href*="rules.html"]');
-        
-        rulesLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                
-                
-               
-                const form = this.closest('form');
-                if (!form) return;
-                
-              
-                const formId = form.id || 'form-data';
-                
-               
-                const formData = {};
-                
-                // Get all form inputs
-                const inputs = form.querySelectorAll('input, select, textarea');
-                
-                inputs.forEach(input => {
-                    // Skip submit buttons
-                    if (input.type === 'submit') return;
-                    
-                    // Handle different input types
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        formData[input.name] = input.checked;
-                    } else {
-                        formData[input.name] = input.value;
-                    }
-                });
-                
-                // Save to localStorage
-                localStorage.setItem(formId, JSON.stringify(formData));
-                
-                // Also save which page we're on
-                localStorage.setItem('formPage', window.location.pathname);
-            });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
         });
-        
-        // Restore form data when page loads
-        const formId = document.querySelector('form')?.id || 'form-data';
-        const savedFormData = localStorage.getItem(formId);
-        const savedPage = localStorage.getItem('formPage');
-        
-        // Only restore if we're on the same page as when data was saved
-        if (savedFormData && savedPage === window.location.pathname) {
-            const formData = JSON.parse(savedFormData);
-            
-            // Get all form inputs
-            const form = document.getElementById(formId) || document.querySelector('form');
-            if (!form) return;
-            
-            const inputs = form.querySelectorAll('input, select, textarea');
-            
-            inputs.forEach(input => {
-                // Skip submit buttons
-                if (input.type === 'submit') return;
-                
-                // Restore value based on input type
-                if (input.name in formData) {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        input.checked = formData[input.name];
-                    } else {
-                        input.value = formData[input.name];
-                    }
-                }
-            });
-        }
-    });</script>
-    <script src="js/form-persistence.js"></script>
+</script>
+<script src="js/form-persistence.js"></script>
+<script>function setCCEmail(email) {
+    document.querySelector('input[name="_cc"]').value = email;
+}</script>
+
 </body>
 </html>
