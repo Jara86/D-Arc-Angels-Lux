@@ -1,4 +1,3 @@
-
 document.getElementById('addChild').addEventListener('click', function() {
     const childCount = document.querySelectorAll('.child-section').length + 1;
     
@@ -30,10 +29,6 @@ function removeChild(button) {
     button.closest('.child-section').remove();
 }
 
-
 function setCCEmail(email) {
     document.querySelector('input[name="_cc"]').value = email;
 }
-
-// Example usage:
-// setCCEmail('another@example.com');
