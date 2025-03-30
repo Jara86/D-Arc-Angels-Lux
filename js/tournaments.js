@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </select>
                 </div>
                 <div class="form-group radio-group">
-                    <p class="radio-label">Ich bin / I am:</p>
+                    <p class="radio-label">Ich bin :</p>
                     <div class="radio-options">
                         <div class="radio-item">
                             <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
