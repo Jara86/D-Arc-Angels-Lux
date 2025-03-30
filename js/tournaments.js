@@ -38,22 +38,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const pferdAnzahlRadios = document.querySelectorAll('input[name="Pferde_Anzahl"]');
     const pferdDetailsSection = document.getElementById('pferd_details');
     
-    pferdAnzahlRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.value === '0') {
-                pferdDetailsSection.style.display = 'none';
-            } else {
-                pferdDetailsSection.style.display = 'block';
-            }
+    if (pferdAnzahlRadios.length > 0 && pferdDetailsSection) {
+        pferdAnzahlRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === '0') {
+                    pferdDetailsSection.style.display = 'none';
+                } else {
+                    pferdDetailsSection.style.display = 'block';
+                }
+            });
         });
-    });
+        
+        // Initialize display based on current selection
+        const selectedRadio = document.querySelector('input[name="Pferde_Anzahl"]:checked');
+        if (selectedRadio && selectedRadio.value === '0') {
+            pferdDetailsSection.style.display = 'none';
+        }
+    }
     
     // Add participant functionality
     const addParticipantBtn = document.getElementById('addparticipant');
-    const weitereKinderContainer = document.getElementById('weitere-Kinder');
+    const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
+    
+    // If the container doesn't exist, look for the alternative container
+    let participantContainer = weitereTeilnehmerContainer;
+    if (!participantContainer) {
+        participantContainer = document.getElementById('weitere-Kinder');
+    }
+    
     let participantCount = 1;
     
-    if (addParticipantBtn) {
+    if (addParticipantBtn && participantContainer) {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
@@ -79,9 +94,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         <option value="divers">Divers / Other</option>
                     </select>
                 </div>
+                <div class="form-group radio-group">
+                    <p class="radio-label">Ich bin / I am:</p>
+                    <div class="radio-options">
+                        <div class="radio-item">
+                            <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
+                            <label for="linkshänder_${participantCount}">Linkshänder / Left Handed</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="rechtshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder">
+                            <label for="rechtshänder_${participantCount}">Rechtshänder / Right Handed</label>
+                        </div>
+                    </div>
+                </div>
             `;
             
-            weitereKinderContainer.appendChild(newParticipant);
+            participantContainer.appendChild(newParticipant);
             
             // Add event listener to remove button
             const removeBtn = newParticipant.querySelector('.remove-participant');
