@@ -1,11 +1,4 @@
-.participant-section {
-    border: 1px solid #183947;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
-    border-radius: 8px;
-}
-
-.main-participant-section {
+.participant-section, .main-participant-section {
     border: 1px solid #183947;
     padding: clamp(1rem, 2vw, 1.5rem);
     margin-bottom: clamp(1rem, 2vw, 1.5rem);
@@ -18,6 +11,27 @@
     color: #183947;
 }
 
+.participant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.remove-participant {
+    background-color: #183947;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.remove-participant:hover {
+    background-color: #0f2631;
+}
+
+/* Button styles */
 .btn-secondary {
     background-color: #ffffff;
     color: #183947;
@@ -33,6 +47,19 @@
     background-color: #f8f9fa;
 }
 
+.registration-btn {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Form element styles */
 .form-group {
     display: flex;
     gap: clamp(5px, 1vw, 10px);
@@ -54,6 +81,7 @@
     font-size: clamp(14px, 1.5vw, 16px);
 }
 
+/* Radio button styles */
 .radio-group {
     margin: 2rem 0;
     display: flex;
@@ -95,77 +123,7 @@
     padding-top: 2px;
 }
 
-/* Tournaments container styling */
-.tournaments-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    padding-bottom: 2rem;
-}
-
-.tournament-list {
-    display: grid;
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.tournament-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-}
-
-.tournament-card:hover {
-    transform: translateY(-5px);
-}
-
-.tournament-card h3 {
-    color: #183947;
-    margin-bottom: 1rem;
-}
-
-.tournament-details, .Turnier-details {
-    display: grid;
-    gap: 0.5rem;
-}
-
-.date, .location, .datum {
-    color: #666;
-    font-weight: 500;
-}
-
-.status {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 20px;
-    margin-top: 1rem;
-}
-
-.participant-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.remove-participant {
-    background-color: #183947;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.remove-participant:hover {
-    background-color: #183947;
-}
-
+/* Checkbox styles */
 .checkbox-group {
     margin: 1.5rem 0;
     display: flex;
@@ -199,13 +157,70 @@
     flex-shrink: 0;
 }
 
-.whatsapp-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+/* Tournaments container styling */
+.tournaments-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    padding-bottom: 2rem;
 }
 
+.tournament-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Tournament card styling */
+.tournament-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tournament-card:hover {
+    transform: translateY(-5px);
+}
+
+.tournament-card h3 {
+    color: #183947;
+    margin-bottom: 1rem;
+}
+
+.tournament-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+
+
+.date, .location, .datum {
+    color: #666;
+    font-weight: 500;
+}
+
+.status {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 20px;
+    margin-top: 1rem;
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+
+/* Disciplines section */
 .disciplines {
     background-color: #f8f9fa;
     padding: 1rem;
@@ -227,11 +242,7 @@
     margin-bottom: 0.5rem;
 }
 
-.registration-btn {
-    margin-top: 1rem;
-    display: inline-block;
-}
-
+/* Conditional sections */
 .conditional-section {
     border-top: 1px dashed #ccc;
     padding-top: 1rem;
@@ -247,12 +258,14 @@
 }
 
 @media (max-width: 768px) {
-    .select-group select {
-        width: 100%;  /* Make select box full width on mobile */
+    .select-group select,
+    .form-group input, 
+    .form-group select {
+        width: 100%;
     }
     
     .form-group {
-        flex-direction: column;  /* Stack form elements vertically */
+        flex-direction: column;
     }
     
     .tournament-card {
@@ -267,6 +280,10 @@
         width: 100%;
         text-align: center;
     }
+    
+    .tournament-image {
+        height: auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -274,69 +291,8 @@
         padding: 1rem;
     }
     
-    .tournament-card {
-        transform: none;  /* Disable hover effect on mobile */
-    }
-    
+    .tournament-card,
     .tournament-card:hover {
         transform: none;
     }
-}/* Fix responsive design issues */
-@media (max-width: 768px) {
-    .form-group {
-        flex-direction: column;
-    }
-    
-    .form-group input, 
-    .form-group select {
-        width: 100%;
-    }
-    
-    .select-group select {
-        width: 100%;
-    }
-    
-    .tournament-card {
-        padding: 1rem;
-    }
-    
-    .tournament-image {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-}
-
-/* Improve tournament card styling */
-.tournament-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.tournament-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.tournament-details {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.registration-btn, .status {
-    margin-top: auto;
-    align-self: flex-start;
-}
-
-/* Fix conditional section display */
-.conditional-section {
-    display: none;
-    border-top: 1px dashed #ccc;
-    padding-top: 1rem;
-    margin-top: 1rem;
 }
