@@ -26,7 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
             // Handle different input types
             if (input.type === 'checkbox' || input.type === 'radio') {
                 if (input.checked) {
-                    formData[input.name] = input.value;
+                    // For checkboxes with the same name (like Teilnahme[])
+                    if (input.name.endsWith('[]')) {
+                        if (!formData[input.name]) {
+                            formData[input.name] = [];
+                        }
+                        formData[input.name].push(input.value);
+                    } else {
+                        formData[input.name] = input.value;
+                    }
                 }
             } else {
                 formData[input.name] = input.value;
@@ -61,7 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Restore value based on input type
                 if (input.name in formData) {
                     if (input.type === 'checkbox' || input.type === 'radio') {
-                        if (input.value === formData[input.name]) {
+                        if (Array.isArray(formData[input.name])) {
+                            // For checkboxes with the same name
+                            if (formData[input.name].includes(input.value)) {
+                                input.checked = true;
+                            }
+                        } else if (input.value === formData[input.name]) {
                             input.checked = true;
                         }
                     } else {
