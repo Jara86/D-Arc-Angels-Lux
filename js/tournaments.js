@@ -60,15 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const addParticipantBtn = document.getElementById('addparticipant');
     const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
     
-    // If the container doesn't exist, look for the alternative container
-    let participantContainer = weitereTeilnehmerContainer;
-    if (!participantContainer) {
-        participantContainer = document.getElementById('weitere-Kinder');
-    }
-    
     let participantCount = 1;
     
-    if (addParticipantBtn && participantContainer) {
+    if (addParticipantBtn && weitereTeilnehmerContainer) {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
@@ -95,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </select>
                 </div>
                 <div class="form-group radio-group">
-                    <p class="radio-label">Ich bin :</p>
+                    <p class="radio-label">Ich bin / I am:</p>
                     <div class="radio-options">
                         <div class="radio-item">
                             <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
@@ -109,13 +103,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            participantContainer.appendChild(newParticipant);
+            weitereTeilnehmerContainer.appendChild(newParticipant);
             
             // Add event listener to remove button
             const removeBtn = newParticipant.querySelector('.remove-participant');
             removeBtn.addEventListener('click', function() {
                 newParticipant.remove();
             });
+        });
+    }
+    
+    // Update CC field when email changes
+    const emailField = document.querySelector('input[name="email"]');
+    if (emailField) {
+        emailField.addEventListener('input', function() {
+            const ccField = document.querySelector('input[name="_cc"]');
+            if (ccField) {
+                ccField.value = this.value;
+            }
+        });
+    }
+    
+    // Handle form submission
+    const tournamentForm = document.getElementById('tournament-registration');
+    if (tournamentForm) {
+        tournamentForm.addEventListener('submit', function(e) {
+            // Don't prevent default submission - let FormSubmit handle it
+            
+            // Update CC field with customer email
+            const customerEmail = document.querySelector('input[name="email"]')?.value;
+            if (customerEmail) {
+                const ccField = document.querySelector('input[name="_cc"]');
+                if (ccField) {
+                    ccField.value = customerEmail;
+                }
+            }
+            
+            // You could add additional validation here if needed
         });
     }
 });
