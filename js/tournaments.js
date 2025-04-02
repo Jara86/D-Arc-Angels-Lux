@@ -77,42 +77,68 @@ document.addEventListener('DOMContentLoaded', function() {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
-            const additionalParticipant = document.createElement('div');
-            additionalParticipant.className = 'participant-section';
-            additionalParticipant.innerHTML = `
-                <div class="participant-header">
-                    <h3>Teilnehmer ${participantCount}</h3>
-                    <button type="button" class="remove-participant">Entfernen</button>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" maxlength="100">
-                    <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" maxlength="100">
-                </div>
-                <div class="form-group">
-                    <input type="date" name="Geburtsdatum_${participantCount}" placeholder="Geburtsdatum / Birthday" max="2050-12-31" min="1900-01-01">
-                </div>
-                <div class="form-group">
-                    <select name="Geschlecht_${participantCount}">
-                        <option value="">Geschlecht / Gender</option>
-                        <option value="männlich">Männlich / Male</option>
-                        <option value="weiblich">Weiblich / Female</option>
-                        <option value="divers">Divers / Other</option>
-                    </select>
-                </div>
-                <div class="form-group radio-group">
-                    <p class="radio-label">Ich bin:</p>
-                    <div class="radio-options">
-                        <div class="radio-item">
-                            <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
-                            <label for="linkshänder_${participantCount}">Linkshänder / Left Handed</label>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" id="rechtshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder">
-                            <label for="rechtshänder_${participantCount}">Rechtshänder / Right Handed</label>
-                        </div>
-                    </div>
-                </div>
-            `;
+           // Update the additionalParticipant HTML template in your addParticipantBtn event listener
+const additionalParticipant = document.createElement('div');
+additionalParticipant.className = 'participant-section';
+additionalParticipant.innerHTML = `
+    <div class="participant-header">
+        <h3>Teilnehmer ${participantCount}</h3>
+        <button type="button" class="remove-participant">Entfernen</button>
+    </div>
+    <div class="form-group">
+        <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" maxlength="100">
+        <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" maxlength="100">
+    </div>
+    <div class="form-group">
+        <input type="date" name="Geburtsdatum_${participantCount}" placeholder="Geburtsdatum / Birthday" max="2050-12-31" min="1900-01-01">
+    </div>
+    <div class="form-group">
+        <select name="Geschlecht_${participantCount}">
+            <option value="">Geschlecht / Gender</option>
+            <option value="männlich">Männlich / Male</option>
+            <option value="weiblich">Weiblich / Female</option>
+            <option value="divers">Divers / Other</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität / Nationality" maxlength="100">
+    </div>
+    <div class="form-group radio-group">
+        <p class="radio-label">Ich bin / I am:</p>
+        <div class="radio-options">
+            <div class="radio-item">
+                <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
+                <label for="linkshänder_${participantCount}">Linkshänder / Left Handed</label>
+            </div>
+            <div class="radio-item">
+                <input type="radio" id="rechtshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder">
+                <label for="rechtshänder_${participantCount}">Rechtshänder / Right Handed</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group checkbox-group">
+        <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
+        <div class="checkbox-options">
+            <div class="checkbox-item">
+                <input type="checkbox" id="ungarisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln">
+                <label for="ungarisch_${participantCount}">Ungarisch nach Kassai Regeln / Hungarian Style according to Kassai Rules</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="koreanisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Koreanisch nach IHAA Regeln">
+                <label for="koreanisch_${participantCount}">Koreanisch nach IHAA Regeln / Korean according to IHAA Rules</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="beide_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch und Koreanisch">
+                <label for="beide_${participantCount}">Ungarisch und Koreanisch / Hungarian and Korean Style</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="gast_${participantCount}" name="Teilnahme_${participantCount}[]" value="Gast">
+                <label for="gast_${participantCount}">Ich komme nur als Gast. / I'm coming only as a guest.</label>
+            </div>
+        </div>
+    </div>
+`;
+
             
             weitereTeilnehmerContainer.appendChild(additionalParticipant);
             
