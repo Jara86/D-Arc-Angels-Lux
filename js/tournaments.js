@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
-            const newParticipant = document.createElement('div');
-            newParticipant.className = 'participant-section';
-            newParticipant.innerHTML = `
+            const additionalParticipant = document.createElement('div');
+            additionalParticipant.className = 'participant-section';
+            additionalParticipant.innerHTML = `
                 <div class="participant-header">
                     <h3>Teilnehmer ${participantCount}</h3>
                     <button type="button" class="remove-participant">Entfernen</button>
@@ -103,18 +103,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            weitereTeilnehmerContainer.appendChild(newParticipant);
+            weitereTeilnehmerContainer.appendChild(additionalParticipant);
             
             // Add event listener to remove button
-            const removeBtn = newParticipant.querySelector('.remove-participant');
+            const removeBtn = additionalParticipant.querySelector('.remove-participant');
             removeBtn.addEventListener('click', function() {
-                newParticipant.remove();
+                additionalParticipant.remove();
             });
         });
     }
     
     // Update CC field when email changes
-    const emailField = document.querySelector('input[name="email"]');
+    const emailField = document.querySelector('input[name="Email"]');
     if (emailField) {
         emailField.addEventListener('input', function() {
             const ccField = document.querySelector('input[name="_cc"]');
@@ -124,22 +124,73 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle form submission
+    // Handle form submission with AJAX
     const tournamentForm = document.getElementById('tournament-registration');
     if (tournamentForm) {
         tournamentForm.addEventListener('submit', function(e) {
-            // Don't prevent default submission - let FormSubmit handle it
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object
+            formData.forEach((value, key) => {
+                // Handle checkboxes with same name (arrays)
+                if (key.endsWith('[]')) {
+                    const baseKey = key.slice(0, -2);
+                    if (!formObject[baseKey]) {
+                        formObject[baseKey] = [];
+                    }
+                    formObject[baseKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
             
             // Update CC field with customer email
-            const customerEmail = document.querySelector('input[name="email"]')?.value;
-            if (customerEmail) {
-                const ccField = document.querySelector('input[name="_cc"]');
-                if (ccField) {
-                    ccField.value = customerEmail;
-                }
+            if (formObject.Email) {
+                formObject._cc = formObject.Email;
             }
             
-            // You could add additional validation here if needed
+            // Add subject
+            formObject._subject = "Tournament Limpach Open Registration 🎯";
+            
+            // Show loading indicator
+            const submitBtn = tournamentForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Send data to FormSubmit
+            $.ajax({
+                url: "https://formsubmit.co/ajax/jarouschka@gmail.com",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    // Show success message
+                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                    
+                    // Reset form
+                    tournamentForm.reset();
+                    
+                    // Hide the form section
+                    document.getElementById('registration-forms').style.display = 'none';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                },
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
         });
     }
 });

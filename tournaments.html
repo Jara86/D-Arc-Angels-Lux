@@ -87,21 +87,11 @@
                 <!-- Tournament 1 Registration Form -->
                 <div id="tournament1-form" class="tournament-form-container" style="display: none;">
                     <h2>Anmeldeformular </h2>
-                    <form name="tournament-registration" method="POST" data-netlify="true">
-                        <!-- Netlify Honeypot (verstecktes Feld zur Spam-Abwehr) -->
-                        <input type="hidden" name="form-name" value="tournament-registration">
-                        
-                        <!-- Optional: Honeypot-Feld zum Verhindern von Spam -->
-                        <p hidden>
-                            <label>Don’t fill this out if you're human: <input name="_honeypot"></label>
-                        </p>
-                    
-                        <!-- Turnierbezeichnung -->
-                        <input type="hidden" name="Tournament" value="Limpach Open">
+                    <form id="tournament-registration" method="POST">
                         <!-- Add these FormSubmit configuration fields -->
                         <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯">
                         <input type="hidden" name="_cc" value="">
-                     
+                        <input type="hidden" name="Tournament" value="Limpach Open">
                         
                         
                          <div class="participant-section">
@@ -194,8 +184,8 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="ankunft">Ich komme an am / I'll arrive  on the:</label>
-                                <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2023-01-01">
+                                <label for="ankunft">Ich komme an am:</label>
+                                <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2025-01-01">
                             </div>
                             
                             <div class="form-group radio-group">
@@ -284,6 +274,7 @@
 <script src="js/tournaments.js" defer></script>
 <script src="js/script.js" defer></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     fetch('nav.html')
         .then(response => response.text())
