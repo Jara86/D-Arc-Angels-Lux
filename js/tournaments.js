@@ -43,8 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
             radio.addEventListener('change', function() {
                 if (this.value === '0') {
                     pferdDetailsSection.style.display = 'none';
+                    // Remove required attribute from horse fields when not showing
+                    pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
+                        field.required = false;
+                    });
                 } else {
                     pferdDetailsSection.style.display = 'block';
+                    // Make horse name required when showing horse section
+                    const pferdeName = pferdDetailsSection.querySelector('input[name="Pferdename"]');
+                    if (pferdeName) pferdeName.required = true;
                 }
             });
         });
@@ -53,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedRadio = document.querySelector('input[name="Pferde_Anzahl"]:checked');
         if (selectedRadio && selectedRadio.value === '0') {
             pferdDetailsSection.style.display = 'none';
+            // Remove required attribute from horse fields
+            pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
+                field.required = false;
+            });
         }
     }
     
@@ -89,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </select>
                 </div>
                 <div class="form-group radio-group">
-                    <p class="radio-label">Ich bin / I am:</p>
+                    <p class="radio-label">Ich bin:</p>
                     <div class="radio-options">
                         <div class="radio-item">
                             <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
@@ -130,6 +141,12 @@ document.addEventListener('DOMContentLoaded', function() {
         tournamentForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent default form submission
             
+            // Check if the form is valid
+            if (!this.checkValidity()) {
+                // If not valid, trigger browser's validation UI
+                return false;
+            }
+            
             // Get form data
             const formData = new FormData(this);
             const formObject = {};
@@ -169,11 +186,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: formObject,
                 dataType: "json",
                 success: function(response) {
+                    console.log("Form submitted successfully:", response);
                     // Show success message
                     alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
                     
                     // Reset form
                     tournamentForm.reset();
+                    
+                    // Remove additional participants
+                    weitereTeilnehmerContainer.innerHTML = '';
+                    participantCount = 1;
                     
                     // Hide the form section
                     document.getElementById('registration-forms').style.display = 'none';
