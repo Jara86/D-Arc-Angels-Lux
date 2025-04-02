@@ -87,11 +87,21 @@
                 <!-- Tournament 1 Registration Form -->
                 <div id="tournament1-form" class="tournament-form-container" style="display: none;">
                     <h2>Anmeldeformular </h2>
-                    <form id="tournament-registration" action="https://formsubmit.co/jarouschka@gmail.com" method="POST">
+                    <form name="tournament-registration" method="POST" data-netlify="true">
+                        <!-- Netlify Honeypot (verstecktes Feld zur Spam-Abwehr) -->
+                        <input type="hidden" name="form-name" value="tournament-registration">
+                        
+                        <!-- Optional: Honeypot-Feld zum Verhindern von Spam -->
+                        <p hidden>
+                            <label>Don’t fill this out if you're human: <input name="_honeypot"></label>
+                        </p>
+                    
+                        <!-- Turnierbezeichnung -->
+                        <input type="hidden" name="Tournament" value="Limpach Open">
                         <!-- Add these FormSubmit configuration fields -->
                         <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯">
                         <input type="hidden" name="_cc" value="">
-                        <input type="hidden" name="Tournament" value="Limpach Open">
+                     
                         
                         
                          <div class="participant-section">
