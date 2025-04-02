@@ -43,8 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
             radio.addEventListener('change', function() {
                 if (this.value === '0') {
                     pferdDetailsSection.style.display = 'none';
+                    // Remove required attribute from horse fields when not showing
+                    pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
+                        field.required = false;
+                    });
                 } else {
                     pferdDetailsSection.style.display = 'block';
+                    // Make horse name required when showing horse section
+                    const pferdeName = pferdDetailsSection.querySelector('input[name="Pferdename"]');
+                    if (pferdeName) pferdeName.required = true;
                 }
             });
         });
@@ -53,22 +60,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedRadio = document.querySelector('input[name="Pferde_Anzahl"]:checked');
         if (selectedRadio && selectedRadio.value === '0') {
             pferdDetailsSection.style.display = 'none';
+            // Remove required attribute from horse fields
+            pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
+                field.required = false;
+            });
         }
     }
     
     // Add participant functionality
     const addParticipantBtn = document.getElementById('addparticipant');
-    const additionalParticipantSection = document.querySelector('.additional-participant-section');
+    // Use the correct container ID that matches your HTML
+    const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
     
     let participantCount = 1;
     
-    if (addParticipantBtn && additionalParticipantSection) {
+    if (addParticipantBtn && weitereTeilnehmerContainer) {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
-            const newParticipant = document.createElement('div');
-            newParticipant.className = 'participant-section';
-            newParticipant.innerHTML = `
+            const additionalParticipant = document.createElement('div');
+            additionalParticipant.className = 'participant-section';
+            additionalParticipant.innerHTML = `
                 <div class="participant-header">
                     <h3>Teilnehmer ${participantCount}</h3>
                     <button type="button" class="remove-participant">Entfernen</button>
@@ -81,9 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <input type="date" name="Geburtsdatum_${participantCount}" placeholder="Geburtsdatum / Birthday" max="2050-12-31" min="1900-01-01">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität / Nationality" maxlength="100">
-                </div>
-                <div class="form-group">
                     <select name="Geschlecht_${participantCount}">
                         <option value="">Geschlecht / Gender</option>
                         <option value="männlich">Männlich / Male</option>
@@ -91,8 +100,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <option value="divers">Divers / Other</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität / Nationality" maxlength="100">
+                </div>
                 <div class="form-group radio-group">
-                    <p class="radio-label">Ich bin:</p>
+                    <p class="radio-label">Ich bin / I am:</p>
                     <div class="radio-options">
                         <div class="radio-item">
                             <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
@@ -127,18 +139,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            additionalParticipantSection.appendChild(newParticipant);
+            weitereTeilnehmerContainer.appendChild(additionalParticipant);
+            
+            // Scroll to the new participant section
+            additionalParticipant.scrollIntoView({ behavior: 'smooth' });
             
             // Add event listener to remove button
-            const removeBtn = newParticipant.querySelector('.remove-participant');
+            const removeBtn = additionalParticipant.querySelector('.remove-participant');
             removeBtn.addEventListener('click', function() {
-                newParticipant.remove();
+                additionalParticipant.remove();
             });
         });
     }
     
     // Update CC field when email changes
-    const emailField = document.querySelector('input[name="email"]');
+    const emailField = document.querySelector('input[name="Email"]');
     if (emailField) {
         emailField.addEventListener('input', function() {
             const ccField = document.querySelector('input[name="_cc"]');
@@ -148,22 +163,119 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle form submission
+    // Handle form submission with AJAX
     const tournamentForm = document.getElementById('tournament-registration');
     if (tournamentForm) {
         tournamentForm.addEventListener('submit', function(e) {
-            // Don't prevent default submission - let FormSubmit handle it
+            e.preventDefault(); // Prevent default form submission
             
-            // Update CC field with customer email
-            const customerEmail = document.querySelector('input[name="email"]')?.value;
-            if (customerEmail) {
-                const ccField = document.querySelector('input[name="_cc"]');
-                if (ccField) {
-                    ccField.value = customerEmail;
-                }
+            // Check if the form is valid
+            if (!this.checkValidity()) {
+                // If not valid, trigger browser's validation UI
+                return false;
             }
             
-            // You could add additional validation here if needed
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object
+            formData.forEach((value, key) => {
+                // Handle checkboxes with same name (arrays)
+                if (key.endsWith('[]')) {
+                    const baseKey = key.slice(0, -2);
+                    if (!formObject[baseKey]) {
+                        formObject[baseKey] = [];
+                    }
+                    formObject[baseKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
+            
+            // Update CC field with customer email
+            if (formObject.Email) {
+                formObject._cc = formObject.Email;
+            }
+            
+            // Add subject
+            formObject._subject = "Tournament Limpach Open Registration 🎯";
+            
+            // Show loading indicator
+            const submitBtn = tournamentForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Send data to FormSubmit
+            $.ajax({
+                url: "https://formsubmit.co/ajax/jarouschka@gmail.com",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Form submitted successfully:", response);
+                    // Show success message
+                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                    
+                    // Reset form
+                    tournamentForm.reset();
+                    
+                    // Remove additional participants
+                    weitereTeilnehmerContainer.innerHTML = '';
+                    participantCount = 1;
+                    
+                    // Hide the form section
+                    document.getElementById('registration-forms').style.display = 'none';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                },
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        });
+    }
+    
+    // Handle rules checkbox validation
+    const rulesCheckbox = document.getElementById('regeln');
+    const rulesButton = document.querySelector('.text-link');
+    
+    if (rulesCheckbox && rulesButton) {
+        // Initially disable the checkbox
+        rulesCheckbox.disabled = true;
+        
+        // Add a flag to track if rules have been viewed
+        let rulesViewed = false;
+        
+        // Add click event to the rules button
+        rulesButton.addEventListener('click', function(e) {
+            // Open the rules in a new window/tab
+            window.open('docs/rules.html', '_blank');
+            
+            // Mark rules as viewed
+            rulesViewed = true;
+            
+            // Enable the checkbox
+            rulesCheckbox.disabled = false;
+            
+            // Add a visual indicator that the checkbox is now available
+            rulesCheckbox.parentElement.classList.add('rules-viewed');
+        });
+        
+        // Add a warning if someone tries to check the box without viewing rules
+        rulesCheckbox.addEventListener('click', function(e) {
+            if (!rulesViewed) {
+                e.preventDefault();
+                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+            }
         });
     }
 });
