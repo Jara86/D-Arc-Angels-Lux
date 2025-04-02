@@ -43,15 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
             radio.addEventListener('change', function() {
                 if (this.value === '0') {
                     pferdDetailsSection.style.display = 'none';
-                    // Remove required attribute from horse fields when not showing
-                    pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
-                        field.required = false;
-                    });
                 } else {
                     pferdDetailsSection.style.display = 'block';
-                    // Make horse name required when showing horse section
-                    const pferdeName = pferdDetailsSection.querySelector('input[name="Pferdename"]');
-                    if (pferdeName) pferdeName.required = true;
                 }
             });
         });
@@ -60,98 +53,92 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedRadio = document.querySelector('input[name="Pferde_Anzahl"]:checked');
         if (selectedRadio && selectedRadio.value === '0') {
             pferdDetailsSection.style.display = 'none';
-            // Remove required attribute from horse fields
-            pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
-                field.required = false;
-            });
         }
     }
     
     // Add participant functionality
     const addParticipantBtn = document.getElementById('addparticipant');
-    const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
+    const additionalParticipantSection = document.querySelector('.additional-participant-section');
     
     let participantCount = 1;
     
-    if (addParticipantBtn && weitereTeilnehmerContainer) {
+    if (addParticipantBtn && additionalParticipantSection) {
         addParticipantBtn.addEventListener('click', function() {
             participantCount++;
             
-           // Update the additionalParticipant HTML template in your addParticipantBtn event listener
-const additionalParticipant = document.createElement('div');
-additionalParticipant.className = 'participant-section';
-additionalParticipant.innerHTML = `
-    <div class="participant-header">
-        <h3>Teilnehmer ${participantCount}</h3>
-        <button type="button" class="remove-participant">Entfernen</button>
-    </div>
-    <div class="form-group">
-        <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" maxlength="100">
-        <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" maxlength="100">
-    </div>
-    <div class="form-group">
-        <input type="date" name="Geburtsdatum_${participantCount}" placeholder="Geburtsdatum / Birthday" max="2050-12-31" min="1900-01-01">
-    </div>
-    <div class="form-group">
-        <select name="Geschlecht_${participantCount}">
-            <option value="">Geschlecht / Gender</option>
-            <option value="männlich">Männlich / Male</option>
-            <option value="weiblich">Weiblich / Female</option>
-            <option value="divers">Divers / Other</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität / Nationality" maxlength="100">
-    </div>
-    <div class="form-group radio-group">
-        <p class="radio-label">Ich bin / I am:</p>
-        <div class="radio-options">
-            <div class="radio-item">
-                <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
-                <label for="linkshänder_${participantCount}">Linkshänder / Left Handed</label>
-            </div>
-            <div class="radio-item">
-                <input type="radio" id="rechtshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder">
-                <label for="rechtshänder_${participantCount}">Rechtshänder / Right Handed</label>
-            </div>
-        </div>
-    </div>
-    <div class="form-group checkbox-group">
-        <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
-        <div class="checkbox-options">
-            <div class="checkbox-item">
-                <input type="checkbox" id="ungarisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln">
-                <label for="ungarisch_${participantCount}">Ungarisch nach Kassai Regeln / Hungarian Style according to Kassai Rules</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="koreanisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Koreanisch nach IHAA Regeln">
-                <label for="koreanisch_${participantCount}">Koreanisch nach IHAA Regeln / Korean according to IHAA Rules</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="beide_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch und Koreanisch">
-                <label for="beide_${participantCount}">Ungarisch und Koreanisch / Hungarian and Korean Style</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="gast_${participantCount}" name="Teilnahme_${participantCount}[]" value="Gast">
-                <label for="gast_${participantCount}">Ich komme nur als Gast. / I'm coming only as a guest.</label>
-            </div>
-        </div>
-    </div>
-`;
-
+            const newParticipant = document.createElement('div');
+            newParticipant.className = 'participant-section';
+            newParticipant.innerHTML = `
+                <div class="participant-header">
+                    <h3>Teilnehmer ${participantCount}</h3>
+                    <button type="button" class="remove-participant">Entfernen</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" maxlength="100">
+                    <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" maxlength="100">
+                </div>
+                <div class="form-group">
+                    <input type="date" name="Geburtsdatum_${participantCount}" placeholder="Geburtsdatum / Birthday" max="2050-12-31" min="1900-01-01">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität / Nationality" maxlength="100">
+                </div>
+                <div class="form-group">
+                    <select name="Geschlecht_${participantCount}">
+                        <option value="">Geschlecht / Gender</option>
+                        <option value="männlich">Männlich / Male</option>
+                        <option value="weiblich">Weiblich / Female</option>
+                        <option value="divers">Divers / Other</option>
+                    </select>
+                </div>
+                <div class="form-group radio-group">
+                    <p class="radio-label">Ich bin:</p>
+                    <div class="radio-options">
+                        <div class="radio-item">
+                            <input type="radio" id="linkshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder">
+                            <label for="linkshänder_${participantCount}">Linkshänder / Left Handed</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="rechtshänder_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder">
+                            <label for="rechtshänder_${participantCount}">Rechtshänder / Right Handed</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
+                    <div class="checkbox-options">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ungarisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln">
+                            <label for="ungarisch_${participantCount}">Ungarisch nach Kassai Regeln / Hungarian Style according to Kassai Rules</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="koreanisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Koreanisch nach IHAA Regeln">
+                            <label for="koreanisch_${participantCount}">Koreanisch nach IHAA Regeln / Korean according to IHAA Rules</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="beide_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch und Koreanisch">
+                            <label for="beide_${participantCount}">Ungarisch und Koreanisch / Hungarian and Korean Style</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="gast_${participantCount}" name="Teilnahme_${participantCount}[]" value="Gast">
+                            <label for="gast_${participantCount}">Ich komme nur als Gast. / I'm coming only as a guest.</label>
+                        </div>
+                    </div>
+                </div>
+            `;
             
-            weitereTeilnehmerContainer.appendChild(additionalParticipant);
+            additionalParticipantSection.appendChild(newParticipant);
             
             // Add event listener to remove button
-            const removeBtn = additionalParticipant.querySelector('.remove-participant');
+            const removeBtn = newParticipant.querySelector('.remove-participant');
             removeBtn.addEventListener('click', function() {
-                additionalParticipant.remove();
+                newParticipant.remove();
             });
         });
     }
     
     // Update CC field when email changes
-    const emailField = document.querySelector('input[name="Email"]');
+    const emailField = document.querySelector('input[name="email"]');
     if (emailField) {
         emailField.addEventListener('input', function() {
             const ccField = document.querySelector('input[name="_cc"]');
@@ -161,84 +148,22 @@ additionalParticipant.innerHTML = `
         });
     }
     
-    // Handle form submission with AJAX
+    // Handle form submission
     const tournamentForm = document.getElementById('tournament-registration');
     if (tournamentForm) {
         tournamentForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-            
-            // Check if the form is valid
-            if (!this.checkValidity()) {
-                // If not valid, trigger browser's validation UI
-                return false;
-            }
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            // Convert FormData to object
-            formData.forEach((value, key) => {
-                // Handle checkboxes with same name (arrays)
-                if (key.endsWith('[]')) {
-                    const baseKey = key.slice(0, -2);
-                    if (!formObject[baseKey]) {
-                        formObject[baseKey] = [];
-                    }
-                    formObject[baseKey].push(value);
-                } else {
-                    formObject[key] = value;
-                }
-            });
+            // Don't prevent default submission - let FormSubmit handle it
             
             // Update CC field with customer email
-            if (formObject.Email) {
-                formObject._cc = formObject.Email;
+            const customerEmail = document.querySelector('input[name="email"]')?.value;
+            if (customerEmail) {
+                const ccField = document.querySelector('input[name="_cc"]');
+                if (ccField) {
+                    ccField.value = customerEmail;
+                }
             }
             
-            // Add subject
-            formObject._subject = "Tournament Limpach Open Registration 🎯";
-            
-            // Show loading indicator
-            const submitBtn = tournamentForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            // Send data to FormSubmit
-            $.ajax({
-                url: "https://formsubmit.co/ajax/jarouschka@gmail.com",
-                method: "POST",
-                data: formObject,
-                dataType: "json",
-                success: function(response) {
-                    console.log("Form submitted successfully:", response);
-                    // Show success message
-                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
-                    
-                    // Reset form
-                    tournamentForm.reset();
-                    
-                    // Remove additional participants
-                    weitereTeilnehmerContainer.innerHTML = '';
-                    participantCount = 1;
-                    
-                    // Hide the form section
-                    document.getElementById('registration-forms').style.display = 'none';
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                },
-                error: function(error) {
-                    console.error("Error submitting form:", error);
-                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                }
-            });
+            // You could add additional validation here if needed
         });
     }
 });

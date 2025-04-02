@@ -1,8 +1,32 @@
+/* Tournament form container styling */
+.tournament-form-container {
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.tournament-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Participant section styling */
 .participant-section, .main-participant-section {
+    background: white;
     border: 1px solid #183947;
     padding: clamp(1rem, 2vw, 1.5rem);
     margin-bottom: clamp(1rem, 2vw, 1.5rem);
     border-radius: 8px;
+}
+
+#weitere-Teilnehmer {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;}
+
+    .additional-participant-section {
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
 }
 
 .participant-section h3 {
@@ -37,10 +61,15 @@
     color: #183947;
     border: 2px solid #183947;
     padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2vw, 20px);
-    width: 100%;
     font-size: clamp(14px, 1.5vw, 16px);
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     cursor: pointer;
+    border-radius: 4px;
+}
+
+#addparticipant {
+    width: 100%;
+    margin: 1rem 0 2rem 0;
+    display: block;
 }
 
 .btn-secondary:hover {
@@ -201,8 +230,6 @@
     margin-bottom: 1rem;
 }
 
-
-
 .date, .location, .datum {
     color: #666;
     font-weight: 500;
@@ -219,10 +246,9 @@
     align-self: flex-start;
 }
 
-
 /* Disciplines section */
 .disciplines {
-    background:linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
     padding: 1rem;
     border-radius: 8px;
     margin: 1rem 0;
@@ -266,22 +292,7 @@
     
     .form-group {
         flex-direction: column;
-        
     }
-    /* Add this to your CSS file */
-.tournament-form-container {
-    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-}
-
-.tournament-form {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
     
     .tournament-card {
         padding: 1rem;
@@ -310,7 +321,9 @@
     .tournament-card:hover {
         transform: none;
     }
-}.fa-spinner {
+}
+
+.fa-spinner {
     animation: spin 1s linear infinite;
 }
 
@@ -322,5 +335,72 @@
 /* Style for disabled button */
 button:disabled {
     opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Registration forms container */
+#registration-forms {
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form buttons */
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    background-color: #183947;
+    color: white;
+    border: none;
+    padding: clamp(10px, 1.5vw, 12px) clamp(20px, 2vw, 25px);
+    border-radius: 4px;
+    font-size: clamp(14px, 1.5vw, 16px);
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    background-color: #0f2631;
+}
+
+.close-form {
+    flex: 1;
+}
+
+/* Text link style */
+.text-link {
+    background: none;
+    border: none;
+    color: #183947;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+}
+
+.text-link:hover {
+    color: #0f2631;
+}
+/* Add this to your CSS file */
+.rules-viewed label {
+    color: #183947;
+    font-weight: 500;
+}
+
+/* Style for disabled checkbox */
+input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Style for the checkbox label when disabled */
+input[type="checkbox"]:disabled + label {
+    color: #999;
     cursor: not-allowed;
 }
