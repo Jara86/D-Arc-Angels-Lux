@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Send data to FormSubmit
             $.ajax({
-                url: "https://formsubmit.co/ajax/jarouschka@gmail.com",
+                url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
                 method: "POST",
                 data: formObject,
                 dataType: "json",

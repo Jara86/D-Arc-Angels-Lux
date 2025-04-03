@@ -32,3 +32,37 @@ function removeChild(button) {
 function setCCEmail(email) {
     document.querySelector('input[name="_cc"]').value = email;
 }
+
+$.ajax({
+    url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
+    method: "POST",
+    data: formObject,
+    dataType: "json",
+    success: function(response) {
+        console.log("Form submitted successfully:", response);
+        // Show success message
+        alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+        
+        // Reset form
+        tournamentForm.reset();
+        
+        // Remove additional participants
+        weitereTeilnehmerContainer.innerHTML = '';
+        participantCount = 1;
+        
+        // Hide the form section
+        document.getElementById('registration-forms').style.display = 'none';
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    },
+    error: function(error) {
+        console.error("Error submitting form:", error);
+        alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+    }
+});
