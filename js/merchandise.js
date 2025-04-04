@@ -163,4 +163,44 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
+});// 
+// // Format order details for email
+function formatOrderForEmail() {
+    return orderItems.map((item, index) => {
+        return `Produkt ${index + 1}: ${item.product} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+    }).join('\n');
+}
+
+// Reset the form fields
+function resetForm() {
+    // Reset only the size and quantity fields
+    document.getElementById('size').value = '';
+    document.getElementById('quantity').value = '1';
+    document.getElementById('size-group').style.display = 'none';
+
+    // Do not reset the product field to preserve the selected product
+    // Leave the product dropdown as it is
+
+    // Update the order list
+    updateOrderList();
+}
+const addItemBtn = document.getElementById('add-item');
+if (addItemBtn) {
+    addItemBtn.addEventListener('click', function () {
+        const product = document.getElementById('product').value;
+        const size = document.getElementById('size').value;
+        const quantity = parseInt(document.getElementById('quantity').value);
+
+        if (!product) {
+            alert('Bitte wählen Sie ein Produkt aus.');
+            return;
+        }
+
+        // Add the item to the order list
+        orderItems.push({ product, size, quantity });
+
+        // Update the order list and reset the necessary fields
+        updateOrderList();
+        resetForm();
+    });
+}
