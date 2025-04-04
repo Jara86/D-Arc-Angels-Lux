@@ -62,88 +62,122 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add visual indicator when rules are viewed
-    document.querySelector('.text-link').addEventListener('click', function() {
-        document.getElementById('regeln').parentElement.classList.add('rules-viewed');
-    });
-    
-    // Form submission with AJAX
-    const form = document.getElementById('kidscamp-form');
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(form);
-        
-        // Disable submit button during submission
-        const submitBtn = form.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Wird gesendet...';
-        
-        // Send data using fetch API
-        fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    // Update CC field when email changes
+    const emailField = document.querySelector('input[name="Eltern_Email"]');
+    if (emailField) {
+        emailField.addEventListener('input', function() {
+            const ccField = document.querySelector('input[name="_cc"]');
+            if (ccField) {
+                ccField.value = this.value;
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            
-            // Show success message
-            alert('Vielen Dank für Ihre Anmeldung! Wir werden uns in Kürze bei Ihnen melden.');
-            
-            // Reset form
-            form.reset();
-            
-            // Remove any additional child sections
-            const additionalChildren = document.getElementById('weitere-Kinder');
-            additionalChildren.innerHTML = '';
-            childCount = 1;
-            
-            // Reset submit button
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-            
-            // Show add child button if it was hidden
-            document.getElementById('addChild').style.display = 'flex';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            
-            // Show error message
-            alert('Es gab ein Problem bei der Übermittlung des Formulars. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie uns direkt.');
-            
-            // Reset submit button
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
         });
-    });
+    }
     
-    // Set the form action for non-JS fallback
-    form.setAttribute('action', 'https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45');
+    // Handle rules checkbox validation
+    const rulesCheckbox = document.getElementById('regeln');
+    const rulesButton = document.querySelector('.text-link');
+    if (rulesCheckbox && rulesButton) {
+        // Initially disable the checkbox
+        rulesCheckbox.disabled = true;
+        
+        // Add click event to the rules button
+        rulesButton.addEventListener('click', function(e) {
+            // Open the rules in a new window/tab
+            window.open('docs/rules.html', '_blank');
+            
+            // Enable the checkbox
+            rulesCheckbox.disabled = false;
+            
+            // Add a visual indicator that the checkbox is now available
+            rulesCheckbox.parentElement.classList.add('rules-viewed');
+        });
+        
+        // Add a warning if someone tries to check the box without viewing rules
+        rulesCheckbox.addEventListener('click', function(e) {
+            if (rulesCheckbox.disabled) {
+                e.preventDefault();
+                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+            }
+        });
+    }
     
-    // Add necessary FormSubmit attributes
-    const honeypot = document.createElement('input');
-    honeypot.type = 'text';
-    honeypot.name = '_honey';
-    honeypot.style.display = 'none';
-    form.appendChild(honeypot);
-    
-    const disableAutocomplete = document.createElement('input');
-    disableAutocomplete.type = 'hidden';
-    disableAutocomplete.name = '_autoresponse';
-    disableAutocomplete.value = 'Vielen Dank für Ihre Anmeldung zum KidsCamp! Wir werden uns in Kürze bei Ihnen melden.';
-    form.appendChild(disableAutocomplete);
-    
-    const nextPage = document.createElement('input');
-    nextPage.type = 'hidden';
-    nextPage.name = '_next';
-    nextPage.value = window.location.href;
-    form.appendChild(nextPage);
+    // Handle form submission with AJAX
+    const kidsCampForm = document.getElementById('kidscamp-form');
+    if (kidsCampForm) {
+        kidsCampForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Show loading indicator immediately
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object for AJAX submission
+            formData.forEach((value, key) => {
+                // Handle checkboxes with same name (arrays)
+                if (key.endsWith('[]')) {
+                    const baseKey = key.slice(0, -2);
+                    if (!formObject[baseKey]) {
+                        formObject[baseKey] = [];
+                    }
+                    formObject[baseKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
+            
+            // Update CC field with parent email
+            if (formObject.Eltern_Email) {
+                formObject._cc = formObject.Eltern_Email;
+            }
+            
+            // Add FormSubmit configuration
+            formObject._subject = "KidsCamp Anmeldung 🏹";
+            
+            // Send data to FormSubmit
+            $.ajax({
+                url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Form submitted successfully:", response);
+                    // Show success message
+                    alert("Vielen Dank für Ihre Anmeldung! Wir werden uns in Kürze bei Ihnen melden.");
+                    
+                    // Reset form
+                    kidsCampForm.reset();
+                    
+                    // Remove additional children
+                    const weitereKinderContainer = document.getElementById('weitere-Kinder');
+                    if (weitereKinderContainer) {
+                        weitereKinderContainer.innerHTML = '';
+                    }
+                    
+                    // Reset child count
+                    childCount = 1;
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                    
+                    // Show add child button if it was hidden
+                    document.getElementById('addChild').style.display = 'flex';
+                },
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    alert("Es gab ein Problem bei der Übermittlung des Formulars. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie uns direkt.");
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        });
+    }
 });
