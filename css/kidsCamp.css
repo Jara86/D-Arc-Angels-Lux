@@ -87,7 +87,7 @@
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #f8f9fa;
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -232,43 +232,48 @@ textarea {
     }
 }
 
-/* Terms section styling with improved desktop alignment */
+/* Terms section styling */
 .terms-section {
     margin: 20px 0;
-    width: 100%;
+    padding: 20px;
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
 }
 
-.terms-section .checkbox-group {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
+.checkbox-label {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #3b2708;
+}
+
+.checkbox-item {
+    margin-bottom: 15px;
     position: relative;
-    flex-direction: row;
+    padding-left: 30px;
 }
 
-.terms-section .checkbox-group input[type="checkbox"] {
-    margin: 4px 0 0 0;
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    position: static;
+.checkbox-item:last-child {
+    margin-bottom: 0;
 }
 
-.terms-section .checkbox-group label {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-item label {
+    display: inline;
     line-height: 1.5;
-    flex: 1;
-    display: inline;
+    font-size: 0.95rem;
 }
 
-/* Text link styling for buttons that look like links */
-.text-link {
+/* Text link styling for buttons that look like links */.text-link {
     display: inline;
-    width: auto;
     padding: 0;
     margin: 0;
     background: none;
@@ -277,45 +282,11 @@ textarea {
     text-decoration: underline;
     cursor: pointer;
     font-size: inherit;
+    font-family: inherit;
 }
 
 .text-link:hover {
     color: #ff9800;
-    background: none;
-}
-
-/* Ensure proper alignment on different screen sizes */
-@media (min-width: 768px) {
-    .terms-section .checkbox-group {
-        align-items: center;
-    }
-}
-
-@media (max-width: 767px) {
-    .terms-section .checkbox-group {
-        align-items: flex-start;
-    }
-    
-    .terms-section .checkbox-group input[type="checkbox"] {
-        margin-top: 4px;
-    }
-}
-
-/* Styling for checkbox options */
-.checkbox-options {
-    width: 100%;
-}
-
-.checkbox-item {
-    margin-bottom: 10px;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-}
-
-.checkbox-label {
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 /* Style for rules-viewed class */
@@ -323,4 +294,20 @@ textarea {
     background-color: rgba(144, 238, 144, 0.2);
     padding: 5px;
     border-radius: 4px;
+}
+
+@media (max-width: 576px) {
+    .terms-section {
+        padding: 15px;
+    }
+    
+    .checkbox-item {
+        padding-left: 25px;
+    }
+    
+    .checkbox-item input[type="checkbox"] {
+        top: 3px;
+        width: 16px;
+        height: 16px;
+    }
 }

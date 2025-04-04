@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -72,19 +73,17 @@
                     <div class="terms-section">
                         <div class="form-group checkbox-group">
                             <p class="checkbox-label">Terms and Conditions</p>
-                            <div class="checkbox-options">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required disabled>
-                                    <label for="regeln">
-                                        Ich habe die <button type="button" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu. Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I have read and agree to all the conditions and terms.
-                                    </label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
-                                    <label for="no_photos">
-                                        Ich möchte keine Fotos von meinem Kind/er veröffentlicht haben (außer, wenn sie zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine/n).
-                                    </label>
-                                </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
+                                <label for="regeln">
+                                    Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu. Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I have read and agree to all the conditions and terms.
+                                </label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                                <label for="no_photos">
+                                    Ich möchte keine Fotos von meinem Kind/er veröffentlicht haben (außer, wenn sie zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine/n).
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -114,8 +113,8 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
-    <script src="js/form-persistence.js"></script>
     <script src="js/kidsCamp.js"></script>
     <script src="js/script.js" defer></script>
+    <script src="js/form-persistence.js"></script>
 </body>
 </html>
