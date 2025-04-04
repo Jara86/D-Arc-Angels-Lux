@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Format order details for email
     function formatOrderForEmail() {
         return orderItems.map((item, index) => {
-            return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+            return `Produkt ${index + 1}: ${item.product} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
         }).join('\n');
     }
 
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('size').value = '';
         document.getElementById('quantity').value = '1';
         document.getElementById('size-group').style.display = 'none';
+        orderItems = [];
+        updateOrderList();
     }
 
     // Update the order list display
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const orderList = document.getElementById('order-list');
         orderList.innerHTML = orderItems.map((item, index) => `
             <div class="order-item">
-                Produkt ${index + 1}: ${getProductName(item.product)} 
+                Produkt ${index + 1}: ${item.product} 
                 ${item.size ? `- Größe: ${item.size}` : ''} 
                 - ${item.quantity}x
                 <button type="button" onclick="removeItem(${index})" class="btn-remove">
@@ -37,13 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </button>
             </div>
         `).join('');
-    }
-
-    // Get the product name from the dropdown
-    function getProductName(productCode) {
-        const productSelect = document.getElementById('product');
-        const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
-        return option ? option.text : productCode;
     }
 
     // Remove an item from the order list
@@ -119,8 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(data => {
                 alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
-                orderItems = [];
-                updateOrderList();
+                resetForm();
                 form.reset();
             })
             .catch(error => {
