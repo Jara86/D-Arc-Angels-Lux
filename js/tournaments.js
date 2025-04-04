@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-   // Handle form submission with AJAX
+    // Handle form submission with AJAX
 const tournamentForm = document.getElementById('tournament-registration');
 if (tournamentForm) {
     tournamentForm.addEventListener('submit', function(e) {
@@ -200,7 +200,6 @@ if (tournamentForm) {
         
         // Add FormSubmit configuration
         formObject._subject = "Tournament Limpach Open Registration 🎯";
-        formObject._captcha = "false";
         
         // Show loading indicator
         const submitBtn = tournamentForm.querySelector('button[type="submit"]');
@@ -210,7 +209,7 @@ if (tournamentForm) {
         
         // Send data to FormSubmit
         $.ajax({
-            url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+            url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
             method: "POST",
             data: formObject,
             dataType: "json",
@@ -227,7 +226,9 @@ if (tournamentForm) {
                 if (weitereTeilnehmerContainer) {
                     weitereTeilnehmerContainer.innerHTML = '';
                 }
-                participantCount = 1;
+                
+                // Reset participant count
+                window.participantCount = 1;
                 
                 // Hide the form section
                 document.getElementById('registration-forms').style.display = 'none';
@@ -247,4 +248,40 @@ if (tournamentForm) {
         });
     });
 }
+
+    
+    // Handle rules checkbox validation
+    const rulesCheckbox = document.getElementById('regeln');
+    const rulesButton = document.querySelector('.text-link');
+    
+    if (rulesCheckbox && rulesButton) {
+        // Initially disable the checkbox
+        rulesCheckbox.disabled = true;
+        
+        // Add a flag to track if rules have been viewed
+        let rulesViewed = false;
+        
+        // Add click event to the rules button
+        rulesButton.addEventListener('click', function(e) {
+            // Open the rules in a new window/tab
+            window.open('docs/rules.html', '_blank');
+            
+            // Mark rules as viewed
+            rulesViewed = true;
+            
+            // Enable the checkbox
+            rulesCheckbox.disabled = false;
+            
+            // Add a visual indicator that the checkbox is now available
+            rulesCheckbox.parentElement.classList.add('rules-viewed');
+        });
+        
+        // Add a warning if someone tries to check the box without viewing rules
+        rulesCheckbox.addEventListener('click', function(e) {
+            if (!rulesViewed) {
+                e.preventDefault();
+                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+            }
+        });
+    }
 });
