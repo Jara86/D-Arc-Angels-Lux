@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const membershipForm = document.getElementById('membershipForm');
     const additionalMembersContainer = document.getElementById('additional-members');
     let memberCounter = 2;
-
     const PRICES = {
         'Aktive Mitgliedschaft': 40,
         'Mitgliedschaft Isis vum Roude Léiw': 25,
@@ -58,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="checkbox-group membership-options">
                         ${Object.entries(PRICES).map(([type, price]) => `
                             <div class="checkbox-option">
-                                <input type="checkbox" id="Member_${memberCounter}_${type.replace(/\s+/g, '_')}" 
-                                       name="Member_${memberCounter}_MembershipType[]" 
-                                       value="${type}">
+                                <input type="checkbox" id="Member_${memberCounter}_${type.replace(/\s+/g, '_')}"
+                                        name="Member_${memberCounter}_MembershipType[]"
+                                        value="${type}">
                                 <label for="Member_${memberCounter}_${type.replace(/\s+/g, '_')}">
                                     ${type} (${price}€)
                                 </label>
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             <button type="button" class="remove-member">×</button>
         `;
-
         memberDiv.querySelector('.remove-member').addEventListener('click', function() {
             memberDiv.remove();
             updateMemberNumbers();
@@ -133,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
             (() => {
                 const el = document.createElement('div');
                 el.id = 'total-amount';
+                el.className = 'total-amount';
                 membershipForm.appendChild(el);
                 return el;
             })();
@@ -145,60 +144,94 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.addEventListener('change', calculateTotal);
     });
 
-    // Add CC to customer and generate member number
-    membershipForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
+    // Handle rules checkbox validation
+    const rulesCheckbox = document.getElementById('regeln');
+    const rulesButton = document.querySelector('.text-link');
+    if (rulesCheckbox && rulesButton) {
+        // Initially disable the checkbox
+        rulesCheckbox.disabled = true;
         
-        // Get customer email
-        const customerEmail = document.querySelector('input[name="email"]').value;
-        
-        // Generate member number for primary member
-        const primaryMemberNumber = generateMemberNumber();
-        
-        // Add hidden fields for FormSubmit
-        const ccField = document.querySelector('input[name="_cc"]');
-        if (ccField) {
-            ccField.value = customerEmail;
-        } else {
-            const newCcField = document.createElement('input');
-            newCcField.type = 'hidden';
-            newCcField.name = '_cc';
-            newCcField.value = customerEmail;
-            membershipForm.appendChild(newCcField);
-        }
-        
-        // Add member number to form for primary member
-        const memberNumberField = document.createElement('input');
-        memberNumberField.type = 'hidden';
-        memberNumberField.name = 'Member_Number';
-        memberNumberField.value = primaryMemberNumber;
-        membershipForm.appendChild(memberNumberField);
-        
-        // Generate and add member numbers for additional members
-        const memberCards = document.querySelectorAll('.member-card');
-        memberCards.forEach((card, index) => {
-            const memberNum = index + 2; // Member numbers start at 2
-            const additionalMemberNumber = generateMemberNumber();
+        // Add click event to the rules button
+        rulesButton.addEventListener('click', function(e) {
+            // Open the rules in a new window/tab
+            window.open('docs/rules.html', '_blank');
             
-            const additionalMemberNumberField = document.createElement('input');
-            additionalMemberNumberField.type = 'hidden';
-            additionalMemberNumberField.name = `Member_${memberNum}_Number`;
-            additionalMemberNumberField.value = additionalMemberNumber;
-            membershipForm.appendChild(additionalMemberNumberField);
+            // Enable the checkbox
+            rulesCheckbox.disabled = false;
+            
+            // Add a visual indicator that the checkbox is now available
+            rulesCheckbox.parentElement.classList.add('rules-viewed');
+            
+            // Store in localStorage that rules have been viewed
+            localStorage.setItem('rulesAgreed', 'true');
         });
         
-        // Add member numbers to subject line
-        const subjectField = document.querySelector('input[name="_subject"]');
-        if (subjectField) {
+        // Add a warning if someone tries to check the box without viewing rules
+        rulesCheckbox.addEventListener('click', function(e) {
+            if (rulesCheckbox.disabled) {
+                e.preventDefault();
+                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+            }
+        });
+    }
+
+    // Handle form submission with AJAX
+    if (membershipForm) {
+        membershipForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Show loading indicator immediately
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Generate member number for primary member
+            const primaryMemberNumber = generateMemberNumber();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object for AJAX submission
+            formData.forEach((value, key) => {
+                // Handle checkboxes with same name (arrays)
+                if (key.endsWith('[]')) {
+                    const baseKey = key.slice(0, -2);
+                    if (!formObject[baseKey]) {
+                        formObject[baseKey] = [];
+                    }
+                    formObject[baseKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
+            
+            // Update CC field with customer email
+            if (formObject.email) {
+                formObject._cc = formObject.email;
+            }
+            
+            // Add member number to form data
+            formObject.Member_Number = primaryMemberNumber;
+            
+            // Generate and add member numbers for additional members
+            const memberCards = document.querySelectorAll('.member-card');
+            memberCards.forEach((card, index) => {
+                const memberNum = index + 2; // Member numbers start at 2
+                const additionalMemberNumber = generateMemberNumber();
+                formObject[`Member_${memberNum}_Number`] = additionalMemberNumber;
+            });
+            
+            // Update subject line with member numbers
             let subjectText = `en neie Member 🎯 - ${primaryMemberNumber}`;
             
             // Add additional member numbers to subject if they exist
-            const memberCards = document.querySelectorAll('.member-card');
             if (memberCards.length > 0) {
                 const additionalNumbers = [];
                 memberCards.forEach((card, index) => {
                     const memberNum = index + 2;
-                    const additionalMemberNumber = document.querySelector(`input[name="Member_${memberNum}_Number"]`).value;
+                    const additionalMemberNumber = formObject[`Member_${memberNum}_Number`];
                     additionalNumbers.push(additionalMemberNumber);
                 });
                 
@@ -207,13 +240,53 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
             
-            subjectField.value = subjectText;
-        }
-        
-        // Calculate total one last time
-        calculateTotal();
-        
-        // Submit the form
-        membershipForm.submit();
-    });
+            formObject._subject = subjectText;
+            
+            // Send data to FormSubmit
+            $.ajax({
+                url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Form submitted successfully:", response);
+                    
+                    // Show success message
+                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                    
+                    // Reset form
+                    membershipForm.reset();
+                    
+                    // Remove additional members
+                    additionalMembersContainer.innerHTML = '';
+                    
+                    // Reset member counter
+                    memberCounter = 2;
+                    
+                    // Reset total amount
+                    const totalElement = document.getElementById('total-amount');
+                    if (totalElement) {
+                        totalElement.textContent = 'Gesamtbetrag: 0€';
+                    }
+                    
+                    // Reset submit button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                },
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    
+                    // Show error message
+                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+                    
+                    // Reset submit button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        });
+    }
+
+    // Calculate total on page load
+    calculateTotal();
 });
