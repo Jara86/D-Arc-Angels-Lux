@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm'); // Replace with your form's ID
 
     if (contactForm) {
+        console.log("Contact form found and ready.");
+
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault(); // Prevent default form submission
+            console.log("Form submission prevented. Collecting form data...");
 
             // Collect form data
             const formData = new FormData(contactForm);
@@ -14,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
+
+            console.log("Form data collected:", formObject);
 
             // Make the AJAX request
             $.ajax({
@@ -38,5 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
+    } else {
+        console.error("Contact form not found. Check the form's ID.");
     }
 });
