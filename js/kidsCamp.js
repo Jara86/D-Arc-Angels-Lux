@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.innerHTML = 'Wird gesendet...';
         
         // Send data using fetch API
-        fetch('https://formsubmit.co/ajax/info@darc-angels.com', {
+        fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
             method: 'POST',
             body: formData
         })
