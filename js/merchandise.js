@@ -257,3 +257,109 @@ function removeItem(index) {
     orderItems.splice(index, 1);
     updateOrderList();
 }
+document.addEventListener('DOMContentLoaded', function () {
+    let orderItems = [];
+    let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
+
+    function generateOrderNumber() {
+        lastOrderNumber++;
+        localStorage.setItem('lastOrderNumber', lastOrderNumber.toString());
+        return `ORDER-${lastOrderNumber}`;
+    }
+
+    function formatOrderForEmail() {
+        return orderItems.map((item, index) => {
+            return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+        }).join('\n');
+    }
+
+    function resetForm() {
+        document.getElementById('product').value = '';
+        document.getElementById('size').value = '';
+        document.getElementById('quantity').value = '1';
+        document.getElementById('size-group').style.display = 'none';
+    }
+
+    function updateOrderList() {
+        const orderList = document.getElementById('order-list');
+        orderList.innerHTML = orderItems.map((item, index) => `
+            <div class="order-item">
+                Produkt ${index + 1}: ${getProductName(item.product)} 
+                ${item.size ? `- Größe: ${item.size}` : ''} 
+                - ${item.quantity}x
+                <button type="button" onclick="removeItem(${index})" class="btn-remove">
+                    🗑️
+                </button>
+            </div>
+        `).join('');
+    }
+
+    function getProductName(productCode) {
+        const productSelect = document.getElementById('product');
+        const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
+        return option ? option.text : productCode;
+    }
+
+    function removeItem(index) {
+        orderItems.splice(index, 1);
+        updateOrderList();
+    }
+
+    // Handle form submission with AJAX
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (orderItems.length === 0) {
+                alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(form);
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            // Add order details to the form object
+            const orderNumber = generateOrderNumber();
+            formObject.order_number = orderNumber;
+            formObject.order_details = formatOrderForEmail();
+
+            console.log("Submitting order:", formObject);
+
+            // Submit the form using fetch
+            fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formObject)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Order submitted successfully:", data);
+
+                // Show confirmation message
+                alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}\nEine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.`);
+
+                // Reset the form and order list
+                orderItems = [];
+                updateOrderList();
+                resetForm();
+            })
+            .catch(error => {
+                console.error("Error submitting order:", error);
+                alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
+            });
+        });
+    }
+});
