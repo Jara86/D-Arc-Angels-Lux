@@ -244,38 +244,33 @@ if (tournamentForm) {
 }
 
     
-    // Handle rules checkbox validation
-    const rulesCheckbox = document.getElementById('regeln');
-    const rulesButton = document.querySelector('.text-link');
+   // Handle rules checkbox validation
+const rulesCheckbox = document.getElementById('regeln');
+const rulesButton = document.querySelector('.text-link');
+
+if (rulesCheckbox && rulesButton) {
+    // Initially disable the checkbox
+    rulesCheckbox.disabled = true;
     
-    if (rulesCheckbox && rulesButton) {
-        // Initially disable the checkbox
-        rulesCheckbox.disabled = true;
+    // Add click event to the rules button
+    rulesButton.addEventListener('click', function(e) {
+        // Open the rules in a new window/tab
+        window.open('docs/rules.html', '_blank');
         
-        // Add a flag to track if rules have been viewed
-        let rulesViewed = false;
+        // Enable the checkbox
+        rulesCheckbox.disabled = false;
         
-        // Add click event to the rules button
-        rulesButton.addEventListener('click', function(e) {
-            // Open the rules in a new window/tab
-            window.open('docs/rules.html', '_blank');
-            
-            // Mark rules as viewed
-            rulesViewed = true;
-            
-            // Enable the checkbox
-            rulesCheckbox.disabled = false;
-            
-            // Add a visual indicator that the checkbox is now available
-            rulesCheckbox.parentElement.classList.add('rules-viewed');
-        });
-        
-        // Add a warning if someone tries to check the box without viewing rules
-        rulesCheckbox.addEventListener('click', function(e) {
-            if (!rulesViewed) {
-                e.preventDefault();
-                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
-            }
-        });
-    }
+        // Add a visual indicator that the checkbox is now available
+        rulesCheckbox.parentElement.classList.add('rules-viewed');
+    });
+    
+    // Add a warning if someone tries to check the box without viewing rules
+    rulesCheckbox.addEventListener('click', function(e) {
+        if (rulesCheckbox.disabled) {
+            e.preventDefault();
+            alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+        }
+    });
+}
+
 });
