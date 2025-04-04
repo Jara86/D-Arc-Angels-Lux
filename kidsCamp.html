@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +12,6 @@
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/hero.css">
     <link rel="stylesheet" href="./css/kidsCamp.css">
-
 </head>
 <body>
     <div class="hero">
@@ -22,21 +20,19 @@
     </div>
     <div id="nav-placeholder"></div>
       
-
-        <main class="content-container">
-<section class="KidsCamp-section">
-    <h2>KidsCamp</h2>
-    <p>Wir bieten ein spannendes und abwechslungsreiches Ferienprogramm für Kinder und Jugendliche zwischen 8 und 16 Jahren an. Die Teilnehmer erwartet eine Woche voller Spaß und Action mit Pferden und Bogenschießen. Die Kinder lernen den Umgang mit Pferden und Bögen, trainieren ihre Geschicklichkeit und Koordination und erleben gemeinsam mit anderen Kindern ein unvergessliches Abenteuer.</p>
-
-<img src="images/kidsCamp1.jpg" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
-<img src="images/kidsCamp2.png" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
+    <main class="content-container">
+        <section class="KidsCamp-section">
+            <h2>KidsCamp</h2>
+            <p>Wir bieten ein spannendes und abwechslungsreiches Ferienprogramm für Kinder und Jugendliche zwischen 8 und 16 Jahren an. Die Teilnehmer erwartet eine Woche voller Spaß und Action mit Pferden und Bogenschießen. Die Kinder lernen den Umgang mit Pferden und Bögen, trainieren ihre Geschicklichkeit und Koordination und erleben gemeinsam mit anderen Kindern ein unvergessliches Abenteuer.</p>
+            <img src="images/kidsCamp1.jpg" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
+            <img src="images/kidsCamp2.png" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
+            
             <section class="registration-section">
                 <h2>KidsCamp Anmeldeformular</h2>
-                <form class="kidscamp-form"  method="POST">
+                <form id="kidscamp-form" class="kidscamp-form" method="POST">
                     <input type="hidden" name="_subject" value="KidsCamp Anmeldung 🏹">
-                   
                     <input type="hidden" name="_cc" value="">
-        
+                    
                     <!-- Parent Information -->
                     <div class="parent-section">
                         <h3>Eltern/Erziehungsberechtigte</h3>
@@ -49,7 +45,7 @@
                             <input type="tel" name="Eltern_Telefon" placeholder="Handynummer" required maxlength="50">
                         </div>
                     </div>
-        
+                    
                     <!-- First Child (Required) -->
                     <div class="child-section">
                         <h3>Kind 1</h3>
@@ -64,7 +60,7 @@
                             <textarea name="Kind1_Allergien" placeholder="Allergien oder besondere Bedürfnisse" rows="2"></textarea>
                         </div>
                     </div>
-        
+                    
                     <!-- Container for Additional Children -->
                     <div id="weitere-Kinder"></div>
                     
@@ -72,34 +68,44 @@
                     <button type="button" id="addChild" class="btn-secondary">
                         <i class="fas fa-plus"></i> Weiteres Kind hinzufügen
                     </button>
-        
+                    
                     <div class="terms-section">
                         <div class="form-group checkbox-group">
-                            <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
-                            <label for="regeln">
-                                Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu.
-                            </label>
+                            <p class="checkbox-label">Terms and Conditions</p>
+                            <div class="checkbox-options">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required disabled>
+                                    <label for="regeln">
+                                        Ich habe die <button type="button" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu. Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I have read and agree to all the conditions and terms.
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                                    <label for="no_photos">
+                                        Ich möchte keine Fotos von meinem Kind/er veröffentlicht haben (außer, wenn sie zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine/n).
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-        
+                    
                     <!-- Submit Button -->
                     <button type="submit" class="submit-btn">Anmelden</button>
                 </form>
             </section>
-        </main>
+        </section>
+    </main>
+    
+    <hr class="footer-line">
+    <footer class="footer">
+        <p class="footer-text">
+            Code and design by 
+            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a>
+        </p>
+        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+        <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
+    </footer>
 
-        <hr class="footer-line">
-        <footer class="footer">
-          <p class="footer-text">
-              Code and design by 
-              <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-          </p>
-          <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-          <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
-      </footer>
-
-<script src="js/kidsCamp.js"></script>
-<script src="js/script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         fetch('nav.html')
@@ -108,79 +114,8 @@
                 document.getElementById('nav-placeholder').innerHTML = data;
             });
     </script>
-   
     <script src="js/form-persistence.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function() {
-        // Find all links to rules.html
-        const rulesLinks = document.querySelectorAll('a[href*="rules.html"], button.text-link');
-        
-        rulesLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Don't prevent default - we want the link to work
-                
-                // Get the form element
-                const form = this.closest('form');
-                if (!form) return;
-                
-                // Get the form ID to use as a key in localStorage
-                const formId = form.id || 'form-data';
-                
-                // Create an object to store form data
-                const formData = {};
-                
-                // Get all form inputs
-                const inputs = form.querySelectorAll('input, select, textarea');
-                
-                inputs.forEach(input => {
-                    // Skip submit buttons
-                    if (input.type === 'submit') return;
-                    
-                    // Handle different input types
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        formData[input.name] = input.checked;
-                    } else {
-                        formData[input.name] = input.value;
-                    }
-                });
-                
-                // Save to localStorage
-                localStorage.setItem(formId, JSON.stringify(formData));
-                
-                // Also save which page we're on
-                localStorage.setItem('formPage', window.location.pathname);
-            });
-        });
-        
-        // Restore form data when page loads
-        const formId = document.querySelector('form')?.id || 'form-data';
-        const savedFormData = localStorage.getItem(formId);
-        const savedPage = localStorage.getItem('formPage');
-        
-        // Only restore if we're on the same page as when data was saved
-        if (savedFormData && savedPage === window.location.pathname) {
-            const formData = JSON.parse(savedFormData);
-            
-            // Get all form inputs
-            const form = document.getElementById(formId) || document.querySelector('form');
-            if (!form) return;
-            
-            const inputs = form.querySelectorAll('input, select, textarea');
-            
-            inputs.forEach(input => {
-                // Skip submit buttons
-                if (input.type === 'submit') return;
-                
-                // Restore value based on input type
-                if (input.name in formData) {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        input.checked = formData[input.name];
-                    } else {
-                        input.value = formData[input.name];
-                    }
-                }
-            });
-        }
-    });</script>
-  
+    <script src="js/kidsCamp.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>
