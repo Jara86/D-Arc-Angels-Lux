@@ -163,23 +163,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle form submission with AJAX
+   // Handle form submission with AJAX
 const tournamentForm = document.getElementById('tournament-registration');
 if (tournamentForm) {
     tournamentForm.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
         
-        // Check if the form is valid
-        if (!this.checkValidity()) {
-            // If not valid, trigger browser's validation UI
-            return false;
-        }
+        // Show loading indicator immediately
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         
         // Get form data
         const formData = new FormData(this);
+        const formObject = {};
         
         // Convert FormData to object for AJAX submission
-        const formObject = {};
         formData.forEach((value, key) => {
             // Handle checkboxes with same name (arrays)
             if (key.endsWith('[]')) {
@@ -200,12 +200,6 @@ if (tournamentForm) {
         
         // Add FormSubmit configuration
         formObject._subject = "Tournament Limpach Open Registration 🎯";
-        
-        // Show loading indicator
-        const submitBtn = tournamentForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         
         // Send data to FormSubmit
         $.ajax({
@@ -228,7 +222,7 @@ if (tournamentForm) {
                 }
                 
                 // Reset participant count
-                window.participantCount = 1;
+                participantCount = 1;
                 
                 // Hide the form section
                 document.getElementById('registration-forms').style.display = 'none';
