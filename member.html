@@ -29,35 +29,37 @@
         <div class="content-container">
             <form id="membershipForm" method="POST">
                 <input type="hidden" name="_subject" value="en neie Member 🎯">
-             
-             
                 <input type="hidden" name="_cc" value="">
                 <input type="hidden" name="additional_members" style="display:none">
             
                 <div class="member-section primary">
                     <h3>Hauptmitglied</h3>
-                    
+            
                     <div class="form-group">
                         <input type="text" name="Nachname" placeholder="Nachname" required maxlength="100">
                         <input type="text" name="Vorname" placeholder="Vorname" required maxlength="100">
                     </div>
             
                     <div class="form-group">
-                        <input type="date" name="Geburtsdatum" placeholder="Geburtsdatum" required max="2050-12-31" min="1900-01-01">
+                        <input type="date" name="Geburtsdatum" placeholder="Geburtsdatum" required max="2050-12-31"
+                            min="1900-01-01">
                     </div>
             
                     <div class="form-group">
-                        <input type="text" name="Strasse_und_Hausnummer" placeholder="Nr, Straße" required pattern="^[a-zA-ZäöüÄÖÜß0-9\s\-\/\.]{3,}$" maxlength="100">
+                        <input type="text" name="Strasse_und_Hausnummer" placeholder="Nr, Straße"
+                            required pattern="^[a-zA-ZäöüÄÖÜß0-9\s\-\/\.]{3,}$" maxlength="100">
                     </div>
             
                     <div class="form-group">
                         <input type="text" name="PLZ" placeholder="Postleitzahl" required pattern="[0-9]{4}" maxlength="4">
-                        <input type="text" name="Ort" placeholder="Ort" required pattern="^[a-zA-Z\s]{2,}$" maxlength="100">
+                        <input type="text" name="Ort" placeholder="Ort" required pattern="^[a-zA-Z\s]{2,}$"
+                            maxlength="100">
                         <input type="text" name="Land" placeholder="Land" required maxlength="100">
                     </div>
             
                     <div class="form-group">
-                        <input type="tel" name="Telefonnummer" placeholder="Telefonnummer" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
+                        <input type="tel" name="Telefonnummer" placeholder="Telefonnummer" required minlength="6"
+                            maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
                         <input type="email" name="email" placeholder="E-Mail-Adresse" required maxlength="250">
                     </div>
             
@@ -68,17 +70,18 @@
                                 <input type="checkbox" id="active" name="membership_type[]" value="Aktive Mitgliedschaft">
                                 <label for="active">Aktive Mitgliedschaft (40€)</label>
                             </div>
-                            
+            
                             <div class="checkbox-option">
-                                <input type="checkbox" id="isis" name="membership_type[]" value="Mitgliedschaft Isis vum Roude Léiw">
+                                <input type="checkbox" id="isis" name="membership_type[]"
+                                    value="Mitgliedschaft Isis vum Roude Léiw">
                                 <label for="isis">Mitgliedschaft Isis vum Roude Léiw (25€)</label>
                             </div>
-                            
+            
                             <div class="checkbox-option">
                                 <input type="checkbox" id="family" name="membership_type[]" value="Familienmitgliedschaft">
                                 <label for="family">Familienmitgliedschaft (75€)</label>
                             </div>
-                            
+            
                             <div class="checkbox-option">
                                 <input type="checkbox" id="flse" name="membership_type[]" value="FLSE Freizeitlizenz">
                                 <label for="flse">FLSE Freizeitlizenz (25€)</label>
@@ -96,17 +99,18 @@
             
                 <div class="bank-info">
                     <p>Der Betrag ist zu überweisen auf das Konto von D'Arc Angels Lëtzebuerg:</p>
-                    
+            
                     <p><strong>Verwendungszweck:</strong> Deine E-Mail-Adresse + Mitgliedschafts Nr. </p>
-                   
+            
                     <p class="iban">IBAN: LU17 1111 7008 0577 0000 <br>Swift: (CCPLLULL)</p>
                 </div>
             
-              
                 <div class="form-group checkbox-group">
-                    <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
+                    <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln"
+                        value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
                     <label for="regeln">
-                        Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu.
+                        Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')"
+                            class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu.
                     </label>
                 </div>
                 <div class="form-group checkbox-group">
@@ -115,15 +119,9 @@
                         Ich möchte keine Fotos von mir veröffentlicht haben ( Ausnahmen, wenn ich zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine).
                     </label>
                 </div>
-                   
             
-     
-          
-            
-        <button type="submit">Absenden</button>
-    </div>     
-</div>
-    </form>
+                <button type="submit">Absenden</button>
+            </form>
 
 
         <div id="member-actions" class="membership-section">
