@@ -163,119 +163,88 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle form submission with AJAX
-    const tournamentForm = document.getElementById('tournament-registration');
-    if (tournamentForm) {
-        tournamentForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-            
-            // Check if the form is valid
-            if (!this.checkValidity()) {
-                // If not valid, trigger browser's validation UI
-                return false;
-            }
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            // Convert FormData to object
-            formData.forEach((value, key) => {
-                // Handle checkboxes with same name (arrays)
-                if (key.endsWith('[]')) {
-                    const baseKey = key.slice(0, -2);
-                    if (!formObject[baseKey]) {
-                        formObject[baseKey] = [];
-                    }
-                    formObject[baseKey].push(value);
-                } else {
-                    formObject[key] = value;
+   // Handle form submission with AJAX
+const tournamentForm = document.getElementById('tournament-registration');
+if (tournamentForm) {
+    tournamentForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        
+        // Check if the form is valid
+        if (!this.checkValidity()) {
+            // If not valid, trigger browser's validation UI
+            return false;
+        }
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Convert FormData to object for AJAX submission
+        const formObject = {};
+        formData.forEach((value, key) => {
+            // Handle checkboxes with same name (arrays)
+            if (key.endsWith('[]')) {
+                const baseKey = key.slice(0, -2);
+                if (!formObject[baseKey]) {
+                    formObject[baseKey] = [];
                 }
-            });
-            
-            // Update CC field with customer email
-            if (formObject.Email) {
-                formObject._cc = formObject.Email;
+                formObject[baseKey].push(value);
+            } else {
+                formObject[key] = value;
             }
-            
-            // Add subject
-            formObject._subject = "Tournament Limpach Open Registration 🎯";
-            
-            // Show loading indicator
-            const submitBtn = tournamentForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            
-            // Send data to FormSubmit
-            $.ajax({
-                url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
-                method: "POST",
-                data: formObject,
-                dataType: "json",
-                success: function(response) {
-                    console.log("Form submitted successfully:", response);
-                    // Show success message
-                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
-                    
-                    // Reset form
-                    tournamentForm.reset();
-                    
-                    // Remove additional participants
+        });
+        
+        // Update CC field with customer email
+        if (formObject.Email) {
+            formObject._cc = formObject.Email;
+        }
+        
+        // Add FormSubmit configuration
+        formObject._subject = "Tournament Limpach Open Registration 🎯";
+        formObject._captcha = "false";
+        
+        // Show loading indicator
+        const submitBtn = tournamentForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        // Send data to FormSubmit
+        $.ajax({
+            url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+            method: "POST",
+            data: formObject,
+            dataType: "json",
+            success: function(response) {
+                console.log("Form submitted successfully:", response);
+                // Show success message
+                alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                
+                // Reset form
+                tournamentForm.reset();
+                
+                // Remove additional participants
+                const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
+                if (weitereTeilnehmerContainer) {
                     weitereTeilnehmerContainer.innerHTML = '';
-                    participantCount = 1;
-                    
-                    // Hide the form section
-                    document.getElementById('registration-forms').style.display = 'none';
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                },
-                error: function(error) {
-                    console.error("Error submitting form:", error);
-                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
                 }
-            });
-        });
-    }
-    
-    // Handle rules checkbox validation
-    const rulesCheckbox = document.getElementById('regeln');
-    const rulesButton = document.querySelector('.text-link');
-    
-    if (rulesCheckbox && rulesButton) {
-        // Initially disable the checkbox
-        rulesCheckbox.disabled = true;
-        
-        // Add a flag to track if rules have been viewed
-        let rulesViewed = false;
-        
-        // Add click event to the rules button
-        rulesButton.addEventListener('click', function(e) {
-            // Open the rules in a new window/tab
-            window.open('docs/rules.html', '_blank');
-            
-            // Mark rules as viewed
-            rulesViewed = true;
-            
-            // Enable the checkbox
-            rulesCheckbox.disabled = false;
-            
-            // Add a visual indicator that the checkbox is now available
-            rulesCheckbox.parentElement.classList.add('rules-viewed');
-        });
-        
-        // Add a warning if someone tries to check the box without viewing rules
-        rulesCheckbox.addEventListener('click', function(e) {
-            if (!rulesViewed) {
-                e.preventDefault();
-                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+                participantCount = 1;
+                
+                // Hide the form section
+                document.getElementById('registration-forms').style.display = 'none';
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            },
+            error: function(error) {
+                console.error("Error submitting form:", error);
+                alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             }
         });
-    }
+    });
+}
 });
