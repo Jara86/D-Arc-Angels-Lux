@@ -1,6 +1,6 @@
 /* Tournament form container styling */
 .tournament-form-container {
-   
+    background: white;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -475,12 +475,6 @@ input[type="checkbox"]:disabled + label {
     cursor: not-allowed;
 }
 /* Horse section styling */
-.horse-section {
-    background: white;
-    border: 1px solid #183947;
-    padding: clamp(1rem, 2vw, 1.5rem);
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
-    border-radius: 8px;
-}
+
  
 
