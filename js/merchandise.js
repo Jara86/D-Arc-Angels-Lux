@@ -91,69 +91,77 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Handle form submission with AJAX
-    const form = document.querySelector('form.order-form');
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            
-            if (orderItems.length === 0) {
-                alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu.');
-                return;
-            }
-            
-            const customerEmail = document.getElementById('email').value;
-            if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-                alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
-                return;
-            }
-            
-            const formData = new FormData(form);
-            const formObject = {};
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            
-            const orderNumber = generateOrderNumber();
-            formObject.order_number = orderNumber;
-            formObject.order_details = formatOrderForEmail();
-            
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
-            
-            fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formObject)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
-                resetForm();
-                form.reset();
-                orderItems = []; // Clear all items after successful submission
-                updateOrderList();
-            })
-            .catch(error => {
-                console.error("Error submitting order:", error);
-                alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
-            });
+   // Replace the form submission part of your merchandise.js file with this updated code
+const form = document.querySelector('form.order-form');
+if (form) {
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        if (orderItems.length === 0) {
+            alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu.');
+            return;
+        }
+        
+        const customerEmail = document.getElementById('email').value;
+        if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+            alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+            return;
+        }
+        
+        // Create form data object
+        const formData = new FormData(form);
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
         });
-    }
+        
+        // Add order details
+        const orderNumber = generateOrderNumber();
+        formObject.order_number = orderNumber;
+        formObject.order_details = formatOrderForEmail();
+        
+        // Update button state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
+        
+        console.log("Sending form data:", formObject); // Debug log
+        
+        // Send the form data
+        fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        })
+        .then(response => {
+            console.log("Response status:", response.status); // Debug log
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Success data:", data); // Debug log
+            alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
+            orderItems = []; // Clear all items after successful submission
+            updateOrderList();
+            form.reset();
+        })
+        .catch(error => {
+            console.error("Error submitting order:", error);
+            alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        });
+    });
+}
+
 
     // Show or hide the size dropdown based on the selected product
     const productSelect = document.getElementById('product');
@@ -190,4 +198,17 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+});// Add this to the end of your merchandise.js file
+document.addEventListener('DOMContentLoaded', function() {
+    const submitButton = document.querySelector('.submit-btn');
+    if (submitButton) {
+        console.log("Submit button found");
+        submitButton.addEventListener('click', function(e) {
+            console.log("Submit button clicked");
+            // The form's submit event should handle the rest
+        });
+    } else {
+        console.error("Submit button not found");
+    }
 });
+
