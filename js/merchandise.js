@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Form submission handler
+    // Form submission handler - USING JQUERY LIKE THE TOURNAMENT FORM
     const form = document.querySelector('form.order-form');
     if (form) {
         form.addEventListener('submit', function (e) {
@@ -108,9 +108,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             
-            // Create form data object
+            // Show loading indicator
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
+            
+            // Get form data
             const formData = new FormData(form);
             const formObject = {};
+            
+            // Convert FormData to object for AJAX submission
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
@@ -120,44 +128,36 @@ document.addEventListener('DOMContentLoaded', function () {
             formObject.order_number = orderNumber;
             formObject.order_details = formatOrderForEmail();
             
-            // Update button state
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
-            
             console.log("Sending form data:", formObject); // Debug log
             
-            // Send the form data
-            fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+            // Send data using jQuery AJAX (like in tournament form)
+            $.ajax({
+                url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Form submitted successfully:", response);
+                    // Show success message
+                    alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
+                    
+                    // Reset form and order items
+                    orderItems = [];
+                    updateOrderList();
+                    form.reset();
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
                 },
-                body: JSON.stringify(formObject)
-            })
-            .then(response => {
-                console.log("Response status:", response.status); // Debug log
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.status);
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
                 }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Success data:", data); // Debug log
-                alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
-                orderItems = []; // Clear all items after successful submission
-                updateOrderList();
-                form.reset();
-            })
-            .catch(error => {
-                console.error("Error submitting order:", error);
-                alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
             });
         });
     }
