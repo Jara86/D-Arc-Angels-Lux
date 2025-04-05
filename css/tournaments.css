@@ -1,6 +1,6 @@
 /* Tournament form container styling */
 .tournament-form-container {
-    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+   
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -404,3 +404,83 @@ input[type="checkbox"]:disabled + label {
     color: #999;
     cursor: not-allowed;
 }
+/* Terms section styling to match member page */
+.terms-section {
+    margin: 20px 0;
+}
+
+/* Hide the extra label */
+.terms-section .checkbox-label {
+    display: none;
+}
+
+/* Fix the container */
+.terms-section .checkbox-options {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Fix the checkbox item layout */
+.terms-section .checkbox-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    margin-bottom: 15px !important;
+    padding: 0 !important;
+}
+
+/* Fix the checkbox positioning */
+.terms-section .checkbox-item input[type="checkbox"] {
+    margin: 3px 0 0 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    flex-shrink: 0 !important;
+    position: static !important;
+    order: 1;
+}
+
+/* Fix the label positioning */
+.terms-section .checkbox-item label {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    flex: 1 !important;
+    color: #183947;
+    order: 2;
+}
+
+.terms-section a, 
+.terms-section .text-link {
+    color: #183947;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.terms-section a:hover,
+.terms-section .text-link:hover {
+    color: #ff9800;
+}
+
+/* Style for disabled checkbox */
+.terms-section input[type="checkbox"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Style for the checkbox label when disabled */
+.terms-section input[type="checkbox"]:disabled + label {
+    color: #183947;
+    cursor: not-allowed;
+}
+/* Horse section styling */
+.horse-section {
+    background: white;
+    border: 1px solid #183947;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    border-radius: 8px;
+}
+ 
+
