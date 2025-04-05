@@ -1,4 +1,105 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    const clothingItems = ['grey-shirt', 'turquoise-shirt', 'black-shirt', 'hoodie', 'gilet-m', 'gilet-w'];
+    let orderItems = [];
+    let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
+
+    // Debug function to help troubleshoot form submission issues
+    function debugFormSubmission() {
+        console.log("Form submission debugging enabled");
+        
+        const submitBtn = document.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            console.log("Submit button found:", submitBtn);
+            
+            // Add a click event listener for debugging
+            submitBtn.addEventListener('click', function(e) {
+                console.log("Submit button clicked");
+                const form = document.querySelector('form');
+                if (form) {
+                    console.log("Form validity:", form.checkValidity());
+                    console.log("Form elements:", form.elements);
+                    console.log("Order items:", orderItems);
+                }
+            });
+        } else {
+            console.error("Submit button not found!");
+        }
+    }
+
+    // Call debug function
+    debugFormSubmission();
+
+    // Make removeItem function available globally
+    window.removeItem = function(index) {
+        orderItems.splice(index, 1);
+        updateOrderList();
+    };
+
+    // Generate a unique order number
+    function generateOrderNumber() {
+        lastOrderNumber++;
+        localStorage.setItem('lastOrderNumber', lastOrderNumber.toString());
+        return `ORDER-${lastOrderNumber}`;
+    }
+
+    // Format order details for email
+    function formatOrderForEmail() {
+        return orderItems.map((item, index) => {
+            const productSelect = document.getElementById('product');
+            const options = Array.from(productSelect.options);
+            const productName = options.find(option => option.value === item.product)?.textContent || item.product;
+            
+            return `Produkt ${index + 1}: ${productName} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+        }).join('\n');
+    }
+
+    // Reset the form fields after adding an item
+    function resetForm() {
+        document.getElementById('size').value = '';
+        document.getElementById('quantity').value = '1';
+        document.getElementById('size-group').style.display = 'none';
+        // Do not reset the product field to preserve the selected product
+    }
+
+    // Update the order list display
+    function updateOrderList() {
+        const orderList = document.getElementById('order-list');
+        if (!orderList) return;
+        
+        if (orderItems.length === 0) {
+            orderList.innerHTML = '<p>Keine Artikel in der Bestellung</p>';
+            return;
+        }
+        
+        orderList.innerHTML = orderItems.map((item, index) => {
+            const productSelect = document.getElementById('product');
+            const options = Array.from(productSelect.options);
+            const productName = options.find(option => option.value === item.product)?.textContent || item.product;
+            
+            return `
+                <div class="order-item">
+                    Produkt ${index + 1}: ${productName} 
+                    ${item.size ? `- Größe: ${item.size}` : ''}
+                    - ${item.quantity}x
+                    <button type="button" onclick="removeItem(${index})" class="btn-remove">
+                        🗑️
+                    </button>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Show confirmation message after order submission
+    function showConfirmation(orderNumber) {
+        alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
+        
+        // Reset form and order items
+        orderItems = [];
+        updateOrderList();
+        document.querySelector('form').reset();
+    }
+
     // Set up product change event
     const productSelect = document.getElementById('product');
     if (productSelect) {
@@ -15,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('size').value = '';
             }
         });
-    } // Set up email field to update CC
+    }
+
+    // Set up email field to update CC
     const emailField = document.getElementById('email');
     if (emailField) {
         emailField.addEventListener('input', function() {
@@ -24,10 +127,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 ccField.value = this.value;
             }
         });
-    }   // Set up country select
+    }
+
+    // Set up country select
     const countrySelect = document.getElementById('country');
     const otherCountryField = document.getElementById('other_country_field');
-    const otherCountryInput = document.getElementById('other_country');   if (countrySelect) {
+    const otherCountryInput = document.getElementById('other_country');
+    
+    if (countrySelect) {
         countrySelect.addEventListener('change', function() {
             if (this.value === 'other') {
                 otherCountryField.style.display = 'block';
@@ -38,7 +145,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 otherCountryInput.value = '';
             }
         });
-    } // Set up add item button
+    }
+
+    // Set up add item button
     const addItemBtn = document.getElementById('add-item');
     if (addItemBtn) {
         addItemBtn.addEventListener('click', function() {
@@ -70,16 +179,39 @@ document.addEventListener('DOMContentLoaded', function() {
             updateOrderList();
             resetForm();
         });
-    } // Set up form submission - COMBINED EVENT LISTENER
+    }
+
+    // Fallback submit function for direct form submission
+    function submitFormDirectly(form) {
+        console.log("Attempting direct form submission");
+        
+        if (form) {
+            form.action = "https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45";
+            form.method = "POST";
+            form.submit();
+        } else {
+            console.error("Form not found for direct submission");
+        }
+    }
+
+    // Set up form submission with fallbacks
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            console.log("Form submission started");
+            
             if (orderItems.length === 0) {
                 alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
                 return;
             }
+            
+            // Show loading indicator
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
             
             // Get customer email for CC
             const customerEmail = document.getElementById('email').value;
@@ -169,15 +301,107 @@ document.addEventListener('DOMContentLoaded', function() {
             
             orderInput.value = orderDetails;
             
+            // Add subject line
+            let subjectInput = document.querySelector('input[name="_subject"]');
+            if (!subjectInput) {
+                subjectInput = document.createElement('input');
+                subjectInput.type = 'hidden';
+                subjectInput.name = '_subject';
+                this.appendChild(subjectInput);
+            }
+            subjectInput.value = `Merchandise Bestellung: ${orderNumber}`;
+            
             // Store order number for confirmation
             const orderNumForConfirmation = orderNumber;
             
-            // Show confirmation after submission
-            setTimeout(() => {
-                showConfirmation(orderNumForConfirmation);
-            }, 100);
+            // Get form data for AJAX submission
+            const formData = new FormData(this);
+            const formObject = {};
             
-            this.submit();
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            console.log("Preparing to send form data:", formObject);
+            
+            // Try using jQuery AJAX first (since it works in your other forms)
+            if (typeof $ !== 'undefined') {
+                console.log("Using jQuery AJAX for submission");
+                
+                $.ajax({
+                    url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+                    method: "POST",
+                    data: formObject,
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("Form submitted successfully with jQuery:", response);
+                        
+                        // Show success message
+                        showConfirmation(orderNumForConfirmation);
+                        
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    },
+                    error: function(error) {
+                        console.error("Error submitting form with jQuery:", error);
+                        
+                        // Try direct form submission as fallback
+                        console.log("Falling back to direct form submission");
+                        submitFormDirectly(form);
+                        
+                        // Reset button after a delay
+                        setTimeout(function() {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnText;
+                        }, 3000);
+                    }
+                });
+            } else {
+                // If jQuery is not available, try fetch API
+                console.log("jQuery not available, using fetch API");
+                
+                fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Form submitted successfully with fetch:", data);
+                    
+                    // Show success message
+                    showConfirmation(orderNumForConfirmation);
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                })
+                .catch(error => {
+                    console.error("Error with fetch API:", error);
+                    
+                    // Try direct form submission as last resort
+                    console.log("Falling back to direct form submission");
+                    submitFormDirectly(form);
+                    
+                    // Reset button after a delay
+                    setTimeout(function() {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    }, 3000);
+                });
+            }
         });
     }
+
+    // Initialize the order list
+    updateOrderList();
 });
