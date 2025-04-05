@@ -1,296 +1,42 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the order items array
-    let orderItems = [];
-    let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
+let orderItems = [];
 
-    // Debug function to help troubleshoot form submission issues
-    function debugFormSubmission() {
-        console.log("Form submission debugging enabled");
-        
-        const submitBtn = document.querySelector('.submit-btn');
-        if (submitBtn) {
-            console.log("Submit button found:", submitBtn);
-            
-            // Add a click event listener for debugging
-            submitBtn.addEventListener('click', function(e) {
-                console.log("Submit button clicked");
-                const form = document.querySelector('form.order-form');
-                if (form) {
-                    console.log("Form validity:", form.checkValidity());
-                    console.log("Form elements:", form.elements);
-                    console.log("Order items:", orderItems);
-                }
-            });
-        } else {
-            console.error("Submit button not found!");
-        }
-    }
+let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
 
-    // Call debug function
-    debugFormSubmission();
+function generateOrderNumber() {
+    // Increment the last order number
+    lastOrderNumber++;
+    
+    // Store the updated number in localStorage
+    localStorage.setItem('lastOrderNumber', lastOrderNumber.toString());
+    
+    // Format the order number with a prefix
+    return `ORDER-${lastOrderNumber}`;
+}
 
-    // Make removeItem function available globally
-    window.removeItem = function(index) {
-        orderItems.splice(index, 1);
-        updateOrderList();
-    };
+function formatOrderForEmail() {
+    return orderItems.map((item, index) => {
+        return `Produkt ${index + 1}: ${getProductName(item.product)} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
+    }).join('\n');
+}
 
-    // Generate a unique order number
-    function generateOrderNumber() {
-        lastOrderNumber++;
-        localStorage.setItem('lastOrderNumber', lastOrderNumber.toString());
-        return `ORDER-${lastOrderNumber}`;
-    }
+const clothingItems = [
+    'grey-shirt',
+    'turquoise-shirt',
+    'black-shirt',
+    'hoodie',
+    'gilet-m',
+    'gilet-w'
+];
 
-    // Format order details for email
-    function formatOrderForEmail() {
-        return orderItems.map((item, index) => {
-            return `Produkt ${index + 1}: ${item.product} ${item.size ? `- Größe: ${item.size}` : ''} - ${item.quantity}x`;
-        }).join('\n');
-    }
-
-    // Reset the form fields
-    function resetForm() {
-        document.getElementById('size').value = '';
-        document.getElementById('quantity').value = '1';
-        document.getElementById('size-group').style.display = 'none';
-        // Do not reset the product field to preserve the selected product
-        updateOrderList();
-    }
-
-    // Update the order list display
-    function updateOrderList() {
-        const orderList = document.getElementById('order-list');
-        if (!orderList) return;
-        
-        orderList.innerHTML = orderItems.map((item, index) => `
-            <div class="order-item">
-                Produkt ${index + 1}: ${item.product} 
-                ${item.size ? `- Größe: ${item.size}` : ''}
-                - ${item.quantity}x
-                <button type="button" onclick="removeItem(${index})" class="btn-remove">
-                    🗑️
-                </button>
-            </div>
-        `).join('');
-        
-        // Update the hidden input for form submission
-        const orderDetailsInput = document.querySelector('input[name="order_details"]');
-        if (orderDetailsInput) {
-            orderDetailsInput.value = formatOrderForEmail();
-        }
-    }
-
-    // Add an item to the order list
-    const addItemBtn = document.getElementById('add-item');
-    if (addItemBtn) {
-        addItemBtn.addEventListener('click', function () {
-            const product = document.getElementById('product').value;
-            const size = document.getElementById('size').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-            
-            if (!product) {
-                alert('Bitte wählen Sie ein Produkt aus.');
-                return;
-            }
-            
-            // For products that require sizes, validate size selection
-            const requiresSize = ['grey-shirt', 'turquoise-shirt', 'black-shirt', 'hoodie', 'gilet-m', 'gilet-w'].includes(product);
-            if (requiresSize && !size) {
-                alert('Bitte wählen Sie eine Größe aus.');
-                return;
-            }
-            
-            // Get the product display name from the select option
-            const productSelect = document.getElementById('product');
-            const selectedOption = productSelect.options[productSelect.selectedIndex];
-            const productDisplayName = selectedOption.textContent;
-            
-            orderItems.push({ 
-                product: productDisplayName, 
-                size, 
-                quantity 
-            });
-            
-            updateOrderList();
-            resetForm();
-        });
-    }
-
-    // Fallback submit function for direct form submission
-    function submitFormDirectly() {
-        console.log("Attempting direct form submission");
-        const form = document.querySelector('form.order-form');
-        if (form) {
-            // Add order details to hidden field before direct submission
-            const orderDetailsInput = form.querySelector('input[name="order_details"]');
-            if (orderDetailsInput) {
-                orderDetailsInput.value = formatOrderForEmail();
-            }
-            
-            // Add order number to hidden field
-            const orderNumberInput = document.createElement('input');
-            orderNumberInput.type = 'hidden';
-            orderNumberInput.name = 'order_number';
-            orderNumberInput.value = generateOrderNumber();
-            form.appendChild(orderNumberInput);
-            
-            form.action = "https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45";
-            form.method = "POST";
-            form.submit();
-        } else {
-            console.error("Form not found for direct submission");
-        }
-    }
-
-    // Form submission handler with multiple fallbacks
-    const form = document.querySelector('form.order-form');
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            
-            console.log("Form submission started");
-            
-            if (orderItems.length === 0) {
-                alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu.');
-                return;
-            }
-            
-            const customerEmail = document.getElementById('email').value;
-            if (!customerEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-                alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
-                return;
-            }
-            
-            // Show loading indicator
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
-            
-            // Get form data
-            const formData = new FormData(form);
-            const formObject = {};
-            
-            // Convert FormData to object for submission
-            formData.forEach((value, key) => {
-                formObject[key] = value;
-            });
-            
-            // Add order details
-            const orderNumber = generateOrderNumber();
-            formObject.order_number = orderNumber;
-            formObject.order_details = formatOrderForEmail();
-            
-            // Add CC field with customer email
-            if (formObject.email) {
-                formObject._cc = formObject.email;
-            }
-            
-            // Add subject line
-            formObject._subject = `Merchandise Bestellung: ${orderNumber}`;
-            
-            console.log("Preparing to send form data:", formObject);
-            
-            // Try using fetch API first
-            try {
-                fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(formObject)
-                })
-                .then(response => {
-                    console.log("Response status:", response.status);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok: ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Success data:", data);
-                    alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
-                    
-                    // Reset form and order items
-                    orderItems = [];
-                    updateOrderList();
-                    form.reset();
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                })
-                .catch(error => {
-                    console.error("Error with fetch API:", error);
-                    
-                    // Fall back to jQuery if fetch fails
-                    fallbackToJQuery();
-                });
-            } catch (error) {
-                console.error("Error with fetch attempt:", error);
-                
-                // Fall back to jQuery
-                fallbackToJQuery();
-            }
-            
-            // Fallback to jQuery AJAX if fetch fails
-            function fallbackToJQuery() {
-                console.log("Falling back to jQuery AJAX");
-                
-                if (typeof $ === 'undefined') {
-                    console.error("jQuery not available, trying direct submission");
-                    submitFormDirectly();
-                    return;
-                }
-                
-                $.ajax({
-                    url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
-                    method: "POST",
-                    data: formObject,
-                    dataType: "json",
-                    success: function(response) {
-                        console.log("Form submitted successfully with jQuery:", response);
-                        
-                        // Show success message
-                        alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
-                        
-                        // Reset form and order items
-                        orderItems = [];
-                        updateOrderList();
-                        form.reset();
-                        
-                        // Reset button
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = originalBtnText;
-                    },
-                    error: function(error) {
-                        console.error("Error submitting form with jQuery:", error);
-                        
-                        // Try direct form submission as last resort
-                        console.log("Trying direct form submission as last resort");
-                        submitFormDirectly();
-                        
-                        // Reset submit button after a delay
-                        setTimeout(function() {
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = originalBtnText;
-                        }, 3000);
-                    }
-                });
-            }
-        });
-    }
-
-    // Show or hide the size dropdown based on the selected product
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up product change event
     const productSelect = document.getElementById('product');
     if (productSelect) {
-        productSelect.addEventListener('change', function () {
+        productSelect.addEventListener('change', function() {
             const sizeGroup = document.getElementById('size-group');
             const selectedProduct = this.value;
             
-            if (['grey-shirt', 'turquoise-shirt', 'black-shirt', 'hoodie', 'gilet-m', 'gilet-w'].includes(selectedProduct)) {
+            if (clothingItems.includes(selectedProduct)) {
                 sizeGroup.style.display = 'block';
                 document.getElementById('size').required = true;
             } else {
@@ -300,14 +46,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // Show the "other country" field if "other" is selected in the country dropdown
+    
+    // Set up email field to update CC
+    const emailField = document.getElementById('email');
+    if (emailField) {
+        emailField.addEventListener('input', function() {
+            const ccField = document.querySelector('input[name="_cc"]');
+            if (ccField) {
+                ccField.value = this.value;
+            }
+        });
+    }
+    
+    // Set up country select
     const countrySelect = document.getElementById('country');
     const otherCountryField = document.getElementById('other_country_field');
     const otherCountryInput = document.getElementById('other_country');
     
     if (countrySelect) {
-        countrySelect.addEventListener('change', function () {
+        countrySelect.addEventListener('change', function() {
             if (this.value === 'other') {
                 otherCountryField.style.display = 'block';
                 otherCountryInput.required = true;
@@ -318,4 +75,185 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    
+    // Set up add item button
+    const addItemBtn = document.getElementById('add-item');
+    if (addItemBtn) {
+        addItemBtn.addEventListener('click', function() {
+            const product = document.getElementById('product');
+            const size = document.getElementById('size');
+            const quantity = document.getElementById('quantity');
+            
+            if (!product.value) {
+                alert('Bitte wählen Sie ein Produkt aus');
+                return;
+            }
+            
+            if (clothingItems.includes(product.value) && !size.value) {
+                alert('Bitte wählen Sie eine Größe für Kleidungsstücke');
+                return;
+            }
+            
+            if (!quantity.value || quantity.value < 1) {
+                alert('Bitte geben Sie eine gültige Menge ein');
+                return;
+            }
+            
+            orderItems.push({
+                product: product.value,
+                size: clothingItems.includes(product.value) ? size.value : null,
+                quantity: quantity.value
+            });
+            
+            updateOrderList();
+            resetForm();
+        });
+    }
+    
+    // Set up form submission - COMBINED EVENT LISTENER
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (orderItems.length === 0) {
+                alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
+                return;
+            }
+            
+            // Get customer email for CC
+            const customerEmail = document.getElementById('email').value;
+            
+            // Create or update the CC field
+            let ccField = document.querySelector('input[name="_cc"]');
+            if (!ccField) {
+                ccField = document.createElement('input');
+                ccField.type = 'hidden';
+                ccField.name = '_cc';
+                this.appendChild(ccField);
+            }
+            ccField.value = customerEmail;
+            
+            // Also add a replyto field as a backup
+            let replyToField = document.querySelector('input[name="_replyto"]');
+            if (!replyToField) {
+                replyToField = document.createElement('input');
+                replyToField.type = 'hidden';
+                replyToField.name = '_replyto';
+                this.appendChild(replyToField);
+            }
+            replyToField.value = customerEmail;
+            
+            // Combine address fields into a formatted address
+            const street = document.getElementById('street').value;
+            const houseNumber = document.getElementById('house_number').value;
+            const zipCode = document.getElementById('zip_code').value;
+            const city = document.getElementById('city').value;
+            const countrySelect = document.getElementById('country');
+            let country = countrySelect.value;
+            
+            if (country === 'other') {
+                country = document.getElementById('other_country').value;
+            } else {
+                country = countrySelect.options[countrySelect.selectedIndex].text;
+            }
+            
+            const formattedAddress = `${street} ${houseNumber}, ${zipCode} ${city}, ${country}`;
+            
+            // Create a hidden field for the formatted address
+            let addressField = document.querySelector('input[name="formatted_address"]');
+            if (!addressField) {
+                addressField = document.createElement('input');
+                addressField.type = 'hidden';
+                addressField.name = 'formatted_address';
+                this.appendChild(addressField);
+            }
+            addressField.value = formattedAddress;
+            
+            // Generate order number and create order details
+            const orderNumber = generateOrderNumber();
+            let orderDetails = '';
+            
+            // Add order number at the top
+            orderDetails += `Bestellnummer: ${orderNumber}\n\n`;
+            
+            // Add order items
+            orderDetails += 'Bestellte Artikel:\n';
+            orderDetails += formatOrderForEmail();
+            
+            // Add payment instructions
+            orderDetails += '\n\n-----------------------------------\n';
+            orderDetails += 'Zahlungsinformationen:\n';
+            orderDetails += `Bitte geben Sie bei der Überweisung die Bestellnummer ${orderNumber} an.\n`;
+            orderDetails += 'Bankverbindung: IBAN: LU17 1111 7008 0577 0000 Swift: CCPLLULL\n';
+            orderDetails += '-----------------------------------\n';
+            
+            // Add hidden input for order number
+            let orderNumberInput = document.querySelector('input[name="order_number"]');
+            if (!orderNumberInput) {
+                orderNumberInput = document.createElement('input');
+                orderNumberInput.type = 'hidden';
+                orderNumberInput.name = 'order_number';
+                this.appendChild(orderNumberInput);
+            }
+            orderNumberInput.value = orderNumber;
+            
+            // Add order details
+            let orderInput = document.querySelector('input[name="order_details"]');
+            if (!orderInput) {
+                orderInput = document.createElement('input');
+                orderInput.type = 'hidden';
+                orderInput.name = 'order_details';
+                this.appendChild(orderInput);
+            }
+            
+            orderInput.value = orderDetails;
+            
+            // Store order number for confirmation
+            const orderNumForConfirmation = orderNumber;
+            
+            // Show confirmation after submission
+            setTimeout(() => {
+                showConfirmation(orderNumForConfirmation);
+            }, 100);
+            
+            this.submit();
+        });
+    }
 });
+
+function showConfirmation(orderNumber) {
+    alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}\nEine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.`);
+}
+
+function resetForm() {
+    document.getElementById('product').value = '';
+    document.getElementById('size').value = '';
+    document.getElementById('quantity').value = '1';
+    document.getElementById('size-group').style.display = 'none';
+}
+
+function updateOrderList() {
+    const orderList = document.getElementById('order-list');
+    orderList.innerHTML = orderItems.map((item, index) => `
+        <div class="order-item">
+            Produkt ${index + 1}: ${getProductName(item.product)} 
+            ${item.size ? `- Größe: ${item.size}` : ''} 
+            - ${item.quantity}x
+            <button type="button" onclick="removeItem(${index})" class="btn-remove">
+                🗑️
+            </button>
+        </div>
+    `).join('');
+}
+
+function getProductName(productCode) {
+    const productSelect = document.getElementById('product');
+    const option = Array.from(productSelect.options).find(opt => opt.value === productCode);
+    return option ? option.text : productCode;
+}
+
+function removeItem(index) {
+    orderItems.splice(index, 1);
+    updateOrderList();
+}

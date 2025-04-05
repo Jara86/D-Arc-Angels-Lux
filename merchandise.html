@@ -199,10 +199,17 @@
 </section>
 <section class="order-section">
     <h3>Bestellformular</h3>
-    <form name="merchandise-order" class="order-form"  method="POST">
+    <form name="merchandise-order" class="order-form" method="POST" action="https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45">
+     
         <input type="hidden" name="_subject" value="New Merchandise Bestellung 🛒">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_cc" value="">
+          
+        <input type="text" name="_honey" style="display:none">
+       
+        <input type="hidden" name="_captcha" value="false">
+        <!-- Add success page redirect -->
+        <input type="hidden" name="_next" value="https://your-website.com/thanks.html">
         
         <div class="form-group">
             <label for="name">Name:</label>
