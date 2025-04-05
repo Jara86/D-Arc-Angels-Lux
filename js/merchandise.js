@@ -3,6 +3,32 @@ document.addEventListener('DOMContentLoaded', function () {
     let orderItems = [];
     let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
 
+    // Debug function to help troubleshoot form submission issues
+    function debugFormSubmission() {
+        console.log("Form submission debugging enabled");
+        
+        const submitBtn = document.querySelector('.submit-btn');
+        if (submitBtn) {
+            console.log("Submit button found:", submitBtn);
+            
+            // Add a click event listener for debugging
+            submitBtn.addEventListener('click', function(e) {
+                console.log("Submit button clicked");
+                const form = document.querySelector('form.order-form');
+                if (form) {
+                    console.log("Form validity:", form.checkValidity());
+                    console.log("Form elements:", form.elements);
+                    console.log("Order items:", orderItems);
+                }
+            });
+        } else {
+            console.error("Submit button not found!");
+        }
+    }
+
+    // Call debug function
+    debugFormSubmission();
+
     // Make removeItem function available globally
     window.removeItem = function(index) {
         orderItems.splice(index, 1);
@@ -91,11 +117,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Form submission handler - USING JQUERY LIKE THE TOURNAMENT FORM
+    // Fallback submit function for direct form submission
+    function submitFormDirectly() {
+        console.log("Attempting direct form submission");
+        const form = document.querySelector('form.order-form');
+        if (form) {
+            // Add order details to hidden field before direct submission
+            const orderDetailsInput = form.querySelector('input[name="order_details"]');
+            if (orderDetailsInput) {
+                orderDetailsInput.value = formatOrderForEmail();
+            }
+            
+            // Add order number to hidden field
+            const orderNumberInput = document.createElement('input');
+            orderNumberInput.type = 'hidden';
+            orderNumberInput.name = 'order_number';
+            orderNumberInput.value = generateOrderNumber();
+            form.appendChild(orderNumberInput);
+            
+            form.action = "https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45";
+            form.method = "POST";
+            form.submit();
+        } else {
+            console.error("Form not found for direct submission");
+        }
+    }
+
+    // Form submission handler with multiple fallbacks
     const form = document.querySelector('form.order-form');
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+            
+            console.log("Form submission started");
             
             if (orderItems.length === 0) {
                 alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu.');
@@ -118,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(form);
             const formObject = {};
             
-            // Convert FormData to object for AJAX submission
+            // Convert FormData to object for submission
             formData.forEach((value, key) => {
                 formObject[key] = value;
             });
@@ -128,17 +182,35 @@ document.addEventListener('DOMContentLoaded', function () {
             formObject.order_number = orderNumber;
             formObject.order_details = formatOrderForEmail();
             
-            console.log("Sending form data:", formObject); // Debug log
+            // Add CC field with customer email
+            if (formObject.email) {
+                formObject._cc = formObject.email;
+            }
             
-            // Send data using jQuery AJAX (like in tournament form)
-            $.ajax({
-                url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
-                method: "POST",
-                data: formObject,
-                dataType: "json",
-                success: function(response) {
-                    console.log("Form submitted successfully:", response);
-                    // Show success message
+            // Add subject line
+            formObject._subject = `Merchandise Bestellung: ${orderNumber}`;
+            
+            console.log("Preparing to send form data:", formObject);
+            
+            // Try using fetch API first
+            try {
+                fetch('https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formObject)
+                })
+                .then(response => {
+                    console.log("Response status:", response.status);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Success data:", data);
                     alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
                     
                     // Reset form and order items
@@ -149,16 +221,65 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Reset button
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = originalBtnText;
-                },
-                error: function(error) {
-                    console.error("Error submitting form:", error);
-                    alert("Es gab ein Problem beim Senden der Bestellung. Bitte versuchen Sie es erneut.");
+                })
+                .catch(error => {
+                    console.error("Error with fetch API:", error);
                     
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
+                    // Fall back to jQuery if fetch fails
+                    fallbackToJQuery();
+                });
+            } catch (error) {
+                console.error("Error with fetch attempt:", error);
+                
+                // Fall back to jQuery
+                fallbackToJQuery();
+            }
+            
+            // Fallback to jQuery AJAX if fetch fails
+            function fallbackToJQuery() {
+                console.log("Falling back to jQuery AJAX");
+                
+                if (typeof $ === 'undefined') {
+                    console.error("jQuery not available, trying direct submission");
+                    submitFormDirectly();
+                    return;
                 }
-            });
+                
+                $.ajax({
+                    url: "https://formsubmit.co/ajax/e1ac178ac36d6dc694765e53c76b9a45",
+                    method: "POST",
+                    data: formObject,
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("Form submitted successfully with jQuery:", response);
+                        
+                        // Show success message
+                        alert(`Vielen Dank für Ihre Bestellung!\nIhre Bestellnummer lautet: ${orderNumber}`);
+                        
+                        // Reset form and order items
+                        orderItems = [];
+                        updateOrderList();
+                        form.reset();
+                        
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    },
+                    error: function(error) {
+                        console.error("Error submitting form with jQuery:", error);
+                        
+                        // Try direct form submission as last resort
+                        console.log("Trying direct form submission as last resort");
+                        submitFormDirectly();
+                        
+                        // Reset submit button after a delay
+                        setTimeout(function() {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnText;
+                        }, 3000);
+                    }
+                });
+            }
         });
     }
 
@@ -196,17 +317,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 otherCountryInput.value = '';
             }
         });
-    }
-
-    // Additional submit button event listener for debugging
-    const submitButton = document.querySelector('.submit-btn');
-    if (submitButton) {
-        console.log("Submit button found");
-        submitButton.addEventListener('click', function(e) {
-            console.log("Submit button clicked");
-            // The form's submit event should handle the rest
-        });
-    } else {
-        console.error("Submit button not found");
     }
 });
