@@ -9,7 +9,7 @@
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  z-index: 9999; /* Very high z-index */
+  z-index: 9999 !important; /* Very high z-index with !important */
   overflow: visible !important; /* This is crucial - was set to hidden */
 }
 
@@ -57,7 +57,7 @@ nav .nav-items li a:hover {
   color: #000;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu - CRITICAL FIXES */
 .dropdown {
   position: relative;
 }
@@ -72,11 +72,12 @@ nav .nav-items li a:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 10px;
   min-width: 200px;
-  z-index: 10000; /* Even higher than navigation container */
+  z-index: 10000 !important; /* Even higher than navigation container with !important */
 }
 
+/* Force dropdown to show on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: block !important;
 }
 
 .dropdown-content li {
@@ -380,13 +381,8 @@ body {
   }
 }
 
-/* CRITICAL FIX: Ensure hero section has lower z-index than dropdown */
-.hero {
-  position: relative;
-  z-index: 1 !important; /* Force lower z-index */
-}
-
-/* Ensure content sections have lower z-index */
+/* CRITICAL FIX: Force all content to have lower z-index than navigation */
+.hero,
 .content-container,
 main,
 section,
@@ -394,9 +390,49 @@ section,
 .top-section,
 .offers-container,
 .offer-card,
-#join {
+#join,
+article,
+.container,
+.box,
+.card,
+.placeholder-content,
+.page-content,
+.about-content,
+.about-section,
+.about-container,
+.about-header,
+.about-text,
+.about-image,
+.about-box,
+.about-card,
+.about-hero,
+.about-main,
+.about-footer,
+.about-navigation,
+.about-navigation-container,
+.about-nav,
+.about-nav-items,
+.about-dropdown,
+.about-dropdown-content,
+.about-special-section,
+.about-fire-devils-link,
+.about-flame-icon,
+.about-menu-icon,
+.about-cancel-icon,
+.about-special-icon,
+.about-logo,
+.about-nav-items li,
+.about-nav-items li a,
+.about-dropdown-content li,
+.about-dropdown-content li a,
+.about-fire-devils-link,
+.about-flame-icon,
+.about-menu-icon,
+.about-cancel-icon,
+.about-special-icon,
+.about-logo {
   position: relative;
-  z-index: 1;
+  z-index: 1 !important; /* Force lower z-index with !important */
 }
 
 /* Additional fixes for potential overflow issues */
@@ -404,8 +440,63 @@ section,
 .content-container,
 main,
 section,
-footer {
+footer,
+article,
+.container,
+.box,
+.card,
+.placeholder-content,
+.page-content {
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
+}
+/* Add these font styling rules to your nav.css file */
+
+/* Global font styling for navigation */
+nav, 
+nav .nav-items li a,
+.dropdown-content li a,
+.fire-devils-link {
+  font-family: 'Montserrat', sans-serif;
+  color: #183947;
+}
+
+/* Navigation links styling */
+nav .nav-items li a {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav .nav-items li a:hover {
+  color: #000;
+}
+
+/* Dropdown links styling */
+.dropdown-content li a {
+  font-size: 16px;
+  font-weight: 400;
+  color: #183947;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Fire Devils link styling */
+.fire-devils-link {
+  font-weight: 800;
+  font-size: 20px;
+  color: #183947 !important;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.fire-devils-link:hover {
+  color: #6F1308 !important;
+  transform: translateY(-2px);
 }
