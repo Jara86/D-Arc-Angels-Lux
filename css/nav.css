@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 
 /* Navigation Container */
 .navigation-container {
@@ -28,6 +29,7 @@ nav {
 }
 
 nav .logo {
+  font-family: 'Marcellus', serif !important;
   color: #183947;
   font-size: 30px;
   font-weight: 600;
@@ -47,6 +49,7 @@ nav .nav-items li {
 }
 
 nav .nav-items li a {
+  font-family: 'Montserrat', sans-serif;
   color: #183947;
   font-size: 18px;
   font-weight: 500;
@@ -86,9 +89,14 @@ nav .nav-items li a:hover {
 }
 
 .dropdown-content li a {
+  font-family: 'Montserrat', sans-serif;
   padding: 8px 15px;
   display: block;
   border-radius: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #183947;
+  transition: background-color 0.3s ease;
 }
 
 .dropdown-content li a:hover {
@@ -107,8 +115,10 @@ nav .nav-items li a:hover {
 }
 
 .fire-devils-link {
+  font-family: 'Marcellus', serif !important;
   color: #183947 !important;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 20px;
   text-decoration: none;
   padding: 0 20px;
   line-height: 36px;
@@ -119,10 +129,12 @@ nav .nav-items li a:hover {
 
 .fire-devils-link:hover {
   color: #6F1308 !important;
+  transform: translateY(-2px);
 }
 
 .flame-icon {
   margin-left: 5px;
+  font-size: 22px;
 }
 
 /* Mobile Navigation Icons */
@@ -272,38 +284,6 @@ nav .special-icon {
   }
 }
 
-/* Updated Fire Devils Special Section */
-.special-section {
-  display: flex;
-  height: 40px;
-  padding: 2px;
-  background: transparent;
-  border: none;
-  margin-left: 20px;
-}
-
-.fire-devils-link {
-  color: #183947 !important;
-  font-weight: 800;
-  font-size: 20px;
-  text-decoration: none;
-  padding: 0 20px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.fire-devils-link:hover {
-  color: #6F1308 !important;
-  transform: translateY(-2px);
-}
-
-.flame-icon {
-  margin-left: 5px;
-  font-size: 22px;
-}
-
 /* Keep the mobile styles as they were */
 @media (max-width: 1140px) {
   .special-section {
@@ -313,6 +293,8 @@ nav .special-icon {
     opacity: 0;
     pointer-events: none;
     transition: top 0.3s ease, opacity 0.1s ease;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(155, 155, 155, 0.2);
   }
   
   .special-section.active {
@@ -341,6 +323,7 @@ nav .special-icon {
 @media (max-width: 767px) {
   nav .logo {
     display: block;
+    font-family: 'Marcellus', serif !important;
     color: #183947;
     font-size: 24px;
     font-weight: 600;
@@ -450,53 +433,4 @@ article,
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
-}
-/* Add these font styling rules to your nav.css file */
-
-/* Global font styling for navigation */
-nav, 
-nav .nav-items li a,
-.dropdown-content li a,
-.fire-devils-link {
-  font-family: 'Montserrat', sans-serif;
-  color: #183947;
-}
-
-/* Navigation links styling */
-nav .nav-items li a {
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-nav .nav-items li a:hover {
-  color: #000;
-}
-
-/* Dropdown links styling */
-.dropdown-content li a {
-  font-size: 16px;
-  font-weight: 400;
-  color: #183947;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-content {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Fire Devils link styling */
-.fire-devils-link {
-  font-weight: 800;
-  font-size: 20px;
-  color: #183947 !important;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.fire-devils-link:hover {
-  color: #6F1308 !important;
-  transform: translateY(-2px);
 }
