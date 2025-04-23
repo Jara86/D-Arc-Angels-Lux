@@ -8,6 +8,9 @@
   border-radius: 0 0 10px 10px;
   margin-bottom: 20px;
   padding-bottom: 20px;
+  position: relative;
+  z-index: 9999; /* Very high z-index */
+  overflow: visible !important; /* This is crucial - was set to hidden */
 }
 
 /* Main Navigation */
@@ -20,6 +23,8 @@ nav {
   padding: 0 100px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1000;
 }
 
 nav .logo {
@@ -53,6 +58,10 @@ nav .nav-items li a:hover {
 }
 
 /* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -63,7 +72,7 @@ nav .nav-items li a:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 10px;
   min-width: 200px;
-  z-index: 1000;
+  z-index: 10000; /* Even higher than navigation container */
 }
 
 .dropdown:hover .dropdown-content {
@@ -84,41 +93,6 @@ nav .nav-items li a:hover {
 .dropdown-content li a:hover {
   background-color: rgba(41, 96, 119, 0.1);
 }
-/* Add only these specific fixes to your original CSS */
-/* Add only these specific fixes to your CSS */
-
-/* Fix for dropdown menus on desktop */
-nav {
-  position: relative;
-  z-index: 1000; /* Higher z-index for the entire navigation */
-}
-
-.dropdown-content {
-  position: absolute;
-  z-index: 1001; /* Even higher z-index for the dropdown */
-  top: 100%;
-  left: 0;
-  /* Add these to ensure the dropdown is visible */
-  background: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Ensure the dropdown stays visible when hovered */
-.dropdown:hover .dropdown-content {
-  display: block !important;
-}
-
-/* Make sure other content doesn't overlap */
-.hero, 
-.content-container,
-main,
-section,
-.box,
-.card,
-.container {
-  z-index: 1; /* Lower z-index than the dropdown */
-}
-
 
 /* Fire Devils Special Section */
 .special-section {
@@ -296,187 +270,142 @@ nav .special-icon {
     font-size: 16px;
   }
 }
+
 /* Updated Fire Devils Special Section */
 .special-section {
-    display: flex;
-    height: 40px;
-    padding: 2px;
-    /* Remove the background and border to eliminate the box */
-    background: transparent;
-    border: none;
-    margin-left: 20px;
+  display: flex;
+  height: 40px;
+  padding: 2px;
+  background: transparent;
+  border: none;
+  margin-left: 20px;
+}
+
+.fire-devils-link {
+  color: #183947 !important;
+  font-weight: 800;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 0 20px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.fire-devils-link:hover {
+  color: #6F1308 !important;
+  transform: translateY(-2px);
+}
+
+.flame-icon {
+  margin-left: 5px;
+  font-size: 22px;
+}
+
+/* Keep the mobile styles as they were */
+@media (max-width: 1140px) {
+  .special-section {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    opacity: 0;
+    pointer-events: none;
+    transition: top 0.3s ease, opacity 0.1s ease;
+  }
+  
+  .special-section.active {
+    top: 95px;
+    opacity: 1;
+    pointer-events: auto;
+    width: calc(100% - 100px);
+    max-width: 300px;
+    margin: 0 auto;
   }
   
   .fire-devils-link {
-    color: #183947 !important;
-    /* Make the text bolder */
-    font-weight: 800;
-    font-size: 20px;
-    text-decoration: none;
-    padding: 0 20px;
-    line-height: 36px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
   }
-  
-  .fire-devils-link:hover {
-    color: #6F1308 !important;
-    transform: translateY(-2px);
-  }
-  
-  .flame-icon {
-    margin-left: 5px;
-    font-size: 22px; /* Make the flame icon slightly larger */
-  }
-  
-  /* Keep the mobile styles as they were */
-  @media (max-width: 1140px) {
-    .special-section {
-      position: absolute;
-      top: 80px;
-      right: 50px;
-      opacity: 0;
-      pointer-events: none;
-      transition: top 0.3s ease, opacity 0.1s ease;
-    }
-    
-    .special-section.active {
-      top: 95px;
-      opacity: 1;
-      pointer-events: auto;
-      width: calc(100% - 100px);
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    
-    .fire-devils-link {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-  /* Add this to your nav.css file */
+}
 
 /* Hide the logo in navigation on larger screens */
 @media (min-width: 768px) {
-    nav .logo {
-        display: none;
-    }
+  nav .logo {
+    display: none;
+  }
 }
 
 /* Show the logo in navigation on smaller screens */
 @media (max-width: 767px) {
-    nav .logo {
-        display: block;
-        color: #183947;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -1px;
-    }
+  nav .logo {
+    display: block;
+    color: #183947;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
 }
-/* Updated Fire Devils Special Section */
-.special-section {
-    display: flex;
-    height: 40px;
-    padding: 2px;
-    /* Remove the background and border to eliminate the box */
-    background: transparent;
-    border: none;
-    margin-left: 20px;
-  }
-  
-  .fire-devils-link {
-    color: #183947 !important;
-    /* Make the text bolder */
-    font-weight: 800;
-    font-size: 20px;
-    text-decoration: none;
-    padding: 0 20px;
-    line-height: 36px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-  
-  .fire-devils-link:hover {
-    color: #6F1308 !important;
-    transform: translateY(-2px);
-  }
-  
-  .flame-icon {
-    margin-left: 5px;
-    font-size: 22px; /* Make the flame icon slightly larger */
-  }
-  
-  /* Keep the mobile styles as they were */
-  @media (max-width: 1140px) {
-    .special-section {
-      position: absolute;
-      top: 80px;
-      right: 50px;
-      opacity: 0;
-      pointer-events: none;
-      transition: top 0.3s ease, opacity 0.1s ease;
-    }
-    
-    .special-section.active {
-      top: 95px;
-      opacity: 1;
-      pointer-events: auto;
-      width: calc(100% - 100px);
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    
-    .fire-devils-link {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-  /* Add these rules to your nav.css file to fix the blue column issue */
 
 /* Fix for the body overflow */
 body {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100%;
-    position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Fix for the navigation container */
+.navigation-container {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+
+/* Fix for the mobile nav */
+@media (max-width: 1140px) {
+  nav .nav-items {
+    width: 100vw;
+    left: -100vw;
+    box-sizing: border-box;
   }
   
-  /* Fix for the navigation container */
-  .navigation-container {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
+  nav .nav-items.active {
     left: 0;
-    right: 0;
-    margin-left: 0;
-    margin-right: 0;
-    box-sizing: border-box;
   }
-  
-  /* Fix for the mobile nav */
-  @media (max-width: 1140px) {
-    nav .nav-items {
-      width: 100vw; /* Use viewport width instead of percentage */
-      left: -100vw; /* Start completely off-screen */
-      box-sizing: border-box;
-    }
-    
-    nav .nav-items.active {
-      left: 0;
-    }
-  }
-  
-  /* Additional fixes for potential overflow issues */
-  .hero, 
-  .content-container,
-  main,
-  section,
-  footer {
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-  }
-  
+}
+
+/* CRITICAL FIX: Ensure hero section has lower z-index than dropdown */
+.hero {
+  position: relative;
+  z-index: 1 !important; /* Force lower z-index */
+}
+
+/* Ensure content sections have lower z-index */
+.content-container,
+main,
+section,
+.secondary-header,
+.top-section,
+.offers-container,
+.offer-card,
+#join {
+  position: relative;
+  z-index: 1;
+}
+
+/* Additional fixes for potential overflow issues */
+.hero,
+.content-container,
+main,
+section,
+footer {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
