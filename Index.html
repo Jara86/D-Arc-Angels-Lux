@@ -29,15 +29,15 @@
 </head>
 
 <body>
-    
-    <div class="hero">
-        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
-    </div>
-    
     <div class="navigation-container">
-        <nav class="main-nav">
-            <ul class="nav-list">
+        <nav>
+            <div class="menu-icon">
+                <span class="fas fa-bars"></span>
+            </div>
+            
+            <div class="logo">D'Arc Angels</div>
+            
+            <ul class="nav-items">
                 <li><a href="index.html">Home</a></li>
                 
                 <li class="dropdown">
@@ -47,10 +47,9 @@
                         <li><a href="sponsor.html">Partner und Sponsoren</a></li>
                         <li><a href="links.html">Links</a></li>
                         <li><a href="galerie.html">Galerie</a></li>
-                       
                     </ul>
                 </li>
-    
+                
                 <li class="dropdown">
                     <a href="training.html">Training & Turniere</a>
                     <ul class="dropdown-content">
@@ -72,6 +71,15 @@
                     </ul>
                 </li>
             </ul>
+            
+            <div class="special-icon">
+                <span class="fas fa-fire"></span>
+            </div>
+            
+            <div class="cancel-icon">
+                <span class="fas fa-times"></span>
+            </div>
+            
             <div class="special-section">
                 <a href="https://fire-devils-letzebuerg.netlify.app/" class="fire-devils-link">
                     Fire Devils <span class="flame-icon">🔥</span>
@@ -79,6 +87,13 @@
             </div>
         </nav>
     </div>
+
+    <div class="hero">
+        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
+        <h1>D'Arc Angels Lëtzebuerg</h1>
+    </div>
+    
+    
 
     <main class="content-container">
         <header class="secondary-header">
@@ -200,5 +215,6 @@
             }
         }
         </script>
+        <script src="js/nav.js"></script>
 </body>
 </html>

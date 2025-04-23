@@ -1,4 +1,4 @@
-/* Hero section styling to match the header-container on training page */
+/* Hero.css file section styling to match the header-container on training page */
 .hero {
     display: flex;
     align-items: center;
@@ -10,7 +10,7 @@
     max-width: 900px; /* Match your content width */
     margin: 0 auto 20px auto;
     background: radial-gradient(circle, #75e0f1, #296077);
-    border-radius: 10px;
+    border-radius: 10%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,8 +31,6 @@
     text-align: center;
 }
 
-
-
 /* Responsive hero - match the training page layout on desktop */
 @media (min-width: 768px) {
     .hero {
@@ -43,5 +41,12 @@
     
     .hero img {
         margin-bottom: 0;
+    }
+}
+
+/* New media query for mobile screens */
+@media (max-width: 767px) {
+    .hero h1 {
+        display: none; /* Hide the hero heading on mobile */
     }
 }
