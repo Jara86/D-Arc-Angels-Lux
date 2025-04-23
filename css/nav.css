@@ -85,17 +85,27 @@ nav .nav-items li a:hover {
   background-color: rgba(41, 96, 119, 0.1);
 }
 /* Add only these specific fixes to your original CSS */
+/* Add only these specific fixes to your CSS */
 
 /* Fix for dropdown menus on desktop */
-.dropdown {
+nav {
   position: relative;
+  z-index: 1000; /* Higher z-index for the entire navigation */
 }
 
 .dropdown-content {
   position: absolute;
-  z-index: 9999; /* Very high z-index to ensure it's above everything */
+  z-index: 1001; /* Even higher z-index for the dropdown */
   top: 100%;
   left: 0;
+  /* Add these to ensure the dropdown is visible */
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure the dropdown stays visible when hovered */
+.dropdown:hover .dropdown-content {
+  display: block !important;
 }
 
 /* Make sure other content doesn't overlap */
