@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Attempting direct form submission");
         
         if (form) {
-            form.action = "https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45";
+            form.action = "https://formsubmit.co/darcangelsletzebuerg@gmail.com";
             form.method = "POST";
             form.submit();
         } else {

@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitFormDirectly() {
         console.log("Attempting direct form submission");
         if (membershipForm) {
-            membershipForm.action = "https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45";
+            membershipForm.action = "https://formsubmit.co/darcangelsletzebuerg@gmail.com";
             membershipForm.method = "POST";
             membershipForm.submit();
         } else {
