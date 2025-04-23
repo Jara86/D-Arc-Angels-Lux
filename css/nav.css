@@ -465,7 +465,7 @@ nav .nav-items li a,
 /* Navigation links styling */
 nav .nav-items li a {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
 }
