@@ -1,3 +1,6 @@
 {
-    "checkpoints.showActiveFileOnly": false
+    "checkpoints.showActiveFileOnly": false,
+    "cSpell.words": [
+        "IHAA"
+    ]
 }
