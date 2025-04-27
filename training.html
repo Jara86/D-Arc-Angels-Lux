@@ -1,180 +1,195 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="D'Arc Angels Lëtzebuerg training page">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/training.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="D'Arc Angels Lëtzebuerg: Professionelles Training im intuitiven und berittenen Bogenschießen. Jetzt mehr erfahren und anmelden!">
+  <meta name="keywords" content="Bogenschießen Luxemburg, berittenes Bogenschießen, intuitives Bogenschießen, Training Luxemburg, D'Arc Angels, Manege Medinger">
+  <meta name="author" content="D'Arc Angels Lëtzebuerg">
 
-    <title>Training - D'Arc Angels Lëtzebuerg</title>
+  <!-- Open Graph Tags für bessere Vorschau -->
+  <meta property="og:title" content="D'Arc Angels Lëtzebuerg | Training im Bogenschießen">
+  <meta property="og:description" content="Erlebe berittenes und intuitives Bogenschießen in Luxemburg. Werde Teil unserer Trainings!">
+  <meta property="og:image" content="images/logo-darc%20angels.avif">
+  <meta property="og:url" content="https://darc-angels-letzebuerg.netlify.app">
+  <meta property="og:type" content="website">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/training.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+
+  <title>Training für intuitives und berittenes Bogenschießen | D'Arc Angels Lëtzebuerg</title>
 </head>
+
 <body>
-   
-    <div id="nav-placeholder"></div>
 
-    <div class="hero">
-        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
-    </div>
-    
- 
-    <dialog id="registration-modal" class="modal" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <span class="close" aria-label="Schließen">&times;</span>
-            <h2 id="modal-title">Training Anmeldung</h2>
-            <form id="training-registration" onsubmit="sendToWhatsApp(event)">
-                <div class="form-group">
-                    <label for="participant-name">Name:</label>
-                    <input type="text" id="participant-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="participant-phone">Telefon:</label>
-                    <input type="tel" id="participant-phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="training-date">Datum (nur Sonntage):</label>
-                    <input type="text" id="training-date" placeholder="Wähle Sonntage aus" required readonly>
-                    <small>Klicke auf mehrere Sonntage, um mehrere Termine auszuwählen</small>
-                </div>
-                <div class="form-group">
-                    <label for="membership">Mitgliedschaft:</label>
-                    <select id="membership" required>
-                        <option value="member">Member</option>
-                        <option value="non-member">Non-Member</option>
-                    </select>
-                </div>
-                <input type="hidden" id="training-type">
-                <button type="submit" class="btn-primary">Anmelden</button>
-            </form>
+  <div id="nav-placeholder"></div>
+
+  <header class="hero">
+    <img src="images/logo-darc%20angels.avif" alt="Logo D'Arc Angels Lëtzebuerg – Berittenes und intuitives Bogenschießen" width="200" height="200" loading="lazy">
+    <h1>D'Arc Angels Lëtzebuerg</h1>
+  </header>
+
+  <dialog id="registration-modal" class="modal" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="close" aria-label="Schließen">&times;</button>
+      <h2 id="modal-title">Training Anmeldung</h2>
+      <form id="training-registration" onsubmit="sendToWhatsApp(event)">
+        <div class="form-group">
+          <label for="participant-name">Name:</label>
+          <input type="text" id="participant-name" name="participant-name" required>
         </div>
+        <div class="form-group">
+          <label for="participant-phone">Telefon:</label>
+          <input type="tel" id="participant-phone" name="participant-phone" required>
+        </div>
+        <div class="form-group">
+          <label for="training-date">Datum (nur Sonntage):</label>
+          <input type="text" id="training-date" name="training-date" placeholder="Wähle Sonntage aus" required readonly>
+          <small>Klicke auf mehrere Sonntage, um mehrere Termine auszuwählen.</small>
+        </div>
+        <div class="form-group">
+          <label for="membership">Mitgliedschaft:</label>
+          <select id="membership" name="membership" required>
+            <option value="member">Mitglied</option>
+            <option value="non-member">Nicht-Mitglied</option>
+          </select>
+        </div>
+        <input type="hidden" id="training-type" name="training-type">
+        <button type="submit" class="btn-primary">Jetzt anmelden</button>
+      </form>
     </div>
-    
-    <main class="content-container">
-        <h1>Unsere Trainingsangebote</h1>
-        
-        <div class="training-sections-wrapper">
-            <!-- First card -->
-            <div class="training-card">
-                <img src="images/training3.jpg" alt="Intuitives Bogenschiessen Training">
-                <h3>Intuitives Bogenschiessen</h3>
-                <div class="training-details">
-                    <p class="training-date"> Sonntags 2025 | 10:00-12:00</p>
-                    <p class="training-location">Contern - Manege Medinger</p>
-                    <div class="training-description">
-                        <p>Training by foot with Geraldine Feltz<br><em>official trainer from D'Arc Angels</em></p>
-                        <p>Duration: 2 hours</p>
-                        <a href="https://www.facebook.com/manegemedinger" class="venue-link">Manege Medinger / Aktivstall Niderbierg</a>
-                    </div>
-                    <div class="training-pricing">
-                        <p>Prices:</p>
-                        <ul>
-                            <li>Members: 20€</li>
-                            <li>Non-members: 30€</li>
-                        </ul>
-                    </div>
-                    <button class="btn-primary">Anmelden</button>
-                </div>
-            </div>
-    
-            <!-- Second card -->
-            <div class="training-card">
-                <img src="images/training-horse1.jpg" alt="Berittenes Bogenschiessen Training">
-                <h3>Berittenes Bogenschiessen</h3>
-                <div class="training-details">
-                    <p class="training-date">sonntags 2025 | 12:00-13:00</p>
-                    <p class="training-location">Contern - Manege Medinger </p>
-                    <div class="training-description">
-                        <p>Training  with Geraldine Feltz <br><em>official trainer from D'Arc Angels</em></p>
-                        <p>Duration: 2 hours</p>
-                        <a href="https://www.facebook.com/manegemedinger" class="venue-link">Manege Medinger / Aktivstall Niderbierg</a>
-                    </div>
-                    <div class="training-pricing">
-                        <p>Prices:</p>
-                        <ul>
-                            <li>Members: 30€</li>
-                            <li>Non-members: 40€</li>
-                        </ul>
-                    </div>
-                    <button class="btn-primary">Anmelden</button>
-                </div>
-            </div>
-    
-            <!-- Third card -->
-          <div class="training-card">
-        <img src="images/training1.webp" alt="Intuitives Bogenschiessen Training">
+  </dialog>
+
+  <main class="content-container">
+    <h1>Unsere Trainingsangebote im Bogenschießen</h1>
+
+    <section class="training-sections-wrapper">
+
+      <!-- Intuitives Bogenschießen -->
+      <article class="training-card">
+        <img src="images/training3.jpg" alt="Intuitives Bogenschießen Training - Manege Medinger" loading="lazy">
+        <h2>Intuitives Bogenschießen</h2>
+        <div class="training-details">
+          <p class="training-date">Sonntags 2025 | 10:00–12:00</p>
+          <p class="training-location">Contern - Manege Medinger</p>
+          <div class="training-description">
+            <p>Training zu Fuß mit Geraldine Feltz<br><em>offizielle Trainerin von D'Arc Angels</em></p>
+            <p>Dauer: 2 Stunden</p>
+            <a href="https://www.facebook.com/manegemedinger" class="venue-link" target="_blank" rel="noopener">Mehr zur Manege Medinger</a>
+          </div>
+          <div class="training-pricing">
+            <p>Preise:</p>
+            <ul>
+              <li>Mitglieder: 20 €</li>
+              <li>Nicht-Mitglieder: 30 €</li>
+            </ul>
+          </div>
+          <button class="btn-primary">Jetzt anmelden</button>
+        </div>
+      </article>
+
+      <!-- Berittenes Bogenschießen -->
+      <article class="training-card">
+        <img src="images/training-horse1.jpg" alt="Berittenes Bogenschießen Training - Manege Medinger" loading="lazy">
+        <h2>Berittenes Bogenschießen</h2>
+        <div class="training-details">
+          <p class="training-date">Sonntags 2025 | 12:00–13:00</p>
+          <p class="training-location">Contern - Manege Medinger</p>
+          <div class="training-description">
+            <p>Training mit Geraldine Feltz<br><em>offizielle Trainerin von D'Arc Angels</em></p>
+            <p>Dauer: 2 Stunden</p>
+            <a href="https://www.facebook.com/manegemedinger" class="venue-link" target="_blank" rel="noopener">Mehr zur Manege Medinger</a>
+          </div>
+          <div class="training-pricing">
+            <p>Preise:</p>
+            <ul>
+              <li>Mitglieder: 30 €</li>
+              <li>Nicht-Mitglieder: 40 €</li>
+            </ul>
+          </div>
+          <button class="btn-primary">Jetzt anmelden</button>
+        </div>
+      </article>
+
+      <!-- Regelmäßige Trainings -->
+      <section class="training-card">
+        <img src="images/training1.webp" alt="Regelmäßige Bogenschießtrainings" loading="lazy">
         <h2>Regelmäßige Trainings</h2>
-        <div class="schedule-details"> <!-- Remove the nested training-card class -->
-            <div class="schedule-item">
-                                <h4>Donnerstags in Abweiler</h4>
-                                <p class="time">17.00</p>
-                                <p class="location">Trainingsgelände Abweiler</p>
-                            </div>
-                            <div class="schedule-item">
-                                <h4>Sonntags in Contern</h4>
-                                <p class="time">10:00 - 12:00</p>
-                                <p class="location">Manege Medinger</p>
-                            </div>
-            </div>
-            </div>
-    
-            <!-- Fourth card -->
-            <div class="training-card">
-                <img src="images/Einzel_training-horse1.avif" alt="Mobiles Einzel-Training mit Pferd">
-                <h2>Mobiles Einzel-Training mit Pferd</h2>
-                <div class="trainer-info">
-                <h3>Trainerin:<br> Géraldine Feltz</h3>
-                <section class="contact">
-                    <a href="mailto:darcangelsletzebuerg@gmail.com" class="cta-button">Jetzt anfragen</a>
-                </section>
-            </div>
-    </div>
-            <!-- Fifth card - full width -->
-            <section class="equipment-rental">
-                <img src="images/arrow.jpg" alt="Intuitives Bogenschiessen Training">
-                <h2>Materialverleih</h2>
-                <div class="info-box">
-                    <p>Kaution: 45€</p>
-                   
-                </div>
-                <section class="contact">
-                    <a href="mailto:darcangelsletzebuerg@gmail.com" class="cta-button">Jetzt anfragen</a>
-                </section>
-            </section>
+        <div class="schedule-details">
+          <div class="schedule-item">
+            <h3>Donnerstags in Abweiler</h3>
+            <p class="time">17:00 Uhr</p>
+            <p class="location">Trainingsgelände Abweiler</p>
+          </div>
+          <div class="schedule-item">
+            <h3>Sonntags in Contern</h3>
+            <p class="time">10:00–12:00 Uhr</p>
+            <p class="location">Manege Medinger</p>
+          </div>
         </div>
-    </main>
+      </section>
 
+      <!-- Mobiles Einzeltraining -->
+      <article class="training-card">
+        <img src="images/Einzel_training-horse1.avif" alt="Mobiles Einzel-Training im Bogenschießen mit Pferd" loading="lazy">
+        <h2>Mobiles Einzel-Training mit Pferd</h2>
+        <div class="trainer-info">
+          <h3>Trainerin:<br> Géraldine Feltz</h3>
+          <section class="contact">
+            <a href="mailto:darcangelsletzebuerg@gmail.com" class="cta-button">Jetzt anfragen</a>
+          </section>
+        </div>
+      </article>
 
-    <hr class="footer-line">
+      <!-- Materialverleih -->
+      <section class="equipment-rental">
+        <img src="images/arrow.jpg" alt="Materialverleih für Bogenschießen" loading="lazy">
+        <h2>Materialverleih</h2>
+        <div class="info-box">
+          <p>Kaution: 45 €</p>
+        </div>
+        <section class="contact">
+          <a href="mailto:darcangelsletzebuerg@gmail.com" class="cta-button">Jetzt anfragen</a>
+        </section>
+      </section>
+
+    </section>
+  </main>
+
+  <hr class="footer-line">
+
   <footer class="footer">
     <p class="footer-text">
-        Code and design by 
-        <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
+      Code und Design von 
+      <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a>
     </p>
-    <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+    <p class="footer-text">©2022 D'Arc Angels Lëtzebuerg</p>
     <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
-</footer>
-      
-        <script src="js/training.js"></script>
-        <script src="js/script.js" defer></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            fetch('nav.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('nav-placeholder').innerHTML = data;
-                });
-        </script>
-    </body>
-    </html>
+  </footer>
+
+  <!-- Scripts am Ende für bessere Ladezeit -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+  <script src="js/training.js" defer></script>
+  <script src="js/script.js" defer></script>
+
+  <script defer>
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>
