@@ -77,6 +77,71 @@ section {
 }
 
 
+#intro {
+    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center; /* Centering text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Ensures proper alignment */
+    height: 50%; /* Ensures that the height of the section is filled */
+}
+
+/* Title (Heading) inside intro */
+#intro h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #183947;
+    margin-bottom: 1rem;
+}
+
+/* Text within intro */
+#intro p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Button inside intro */
+#intro .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #183947;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+#intro .btn:hover {
+    background: #2c5464;
+    transform: translateY(-2px); /* Hover effect for button */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow on hover */
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    #intro {
+        padding: 1.5rem; /* Reduce padding for smaller screens */
+    }
+
+    #intro h2 {
+        font-size: 1.5rem; /* Smaller font for heading */
+    }
+
+    #intro p {
+        font-size: 1rem; /* Smaller font for text */
+    }
+
+    #intro .btn {
+        padding: 10px 20px; /* Slightly smaller button */
+    }
+}
 
 
 @media (max-width: 768px) {
