@@ -116,28 +116,33 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                 </div>
-                <div class="form-group checkbox-group">
-                    <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
-                    <div class="checkbox-options">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="ungarisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln">
-                            <label for="ungarisch_${participantCount}">Ungarisch nach Kassai Regeln / Hungarian Style according to Kassai Rules</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="koreanisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Koreanisch nach IHAA Regeln">
-                            <label for="koreanisch_${participantCount}">Koreanisch nach IHAA Regeln / Korean according to IHAA Rules</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="beide_${participantCount}" name="Teilnahme_${participantCount}[]" value="Ungarisch und Koreanisch">
-                            <label for="beide_${participantCount}">Ungarisch und Koreanisch / Hungarian and Korean Style</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="gast_${participantCount}" name="Teilnahme_${participantCount}[]" value="Gast">
-                            <label for="gast_${participantCount}">Ich komme nur als Gast. / I'm coming only as a guest.</label>
-                        </div>
+                  <div class="form-group checkbox-group">
+                <p class="checkbox-label">Ich möchte an folgenden Turnieren mitmachen / I'd like to participate in the following Styles:</p>
+                <div class="checkbox-options">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ungarisch_${participantCount}_1" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln am 1.08.25">
+                        <label for="ungarisch_${participantCount}_1">Ungarisch nach Kassai Regeln am 1.08.25 / Hungarian Style according to Kassai Rules the 1.08.25</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ungarisch_${participantCount}_2" name="Teilnahme_${participantCount}[]" value="Ungarisch nach Kassai Regeln am 2.08.25">
+                        <label for="ungarisch_${participantCount}_2">Ungarisch nach Kassai Regeln am 2.08.25 / Hungarian Style according to Kassai Rules the 2.08.25</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="koreanisch_${participantCount}" name="Teilnahme_${participantCount}[]" value="Koreanisch nach IHAA Regeln am 3.8.25">
+                        <label for="koreanisch_${participantCount}">Turnier nach IHAA (Five Demons) am 3.8.25 / Korean (Five Demons) according to IHAA Rules</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="beginner_${participantCount}" name="Teilnahme_${participantCount}[]" value="Beginner Competition am 3.8.2025">
+                        <label for="beginner_${participantCount}">Beginner Competition nach IHAA am 3.8.2025</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="children_${participantCount}" name="Teilnahme_${participantCount}[]" value="Children Competition am 3.8.2025">
+                        <label for="children_${participantCount}">Children Competition am 3.8.2025</label>
                     </div>
                 </div>
-            `;
+            </div>
+        </div>
+    `;
             
             weitereTeilnehmerContainer.appendChild(additionalParticipant);
             
