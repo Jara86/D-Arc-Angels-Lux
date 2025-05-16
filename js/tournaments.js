@@ -247,36 +247,43 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Send data to FormSubmit
             $.ajax({
-                url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
+                url: "https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com",
                 method: "POST",
                 data: formObject,
                 dataType: "json",
                 success: function(response) {
                     console.log("Form submitted successfully:", response);
                     
-                    // Increment registration count
-                    registrationCount += participantCount;
-                    
-                    // Update registration status
-                    updateRegistrationStatus();
-                    
-                    // Show success message
-                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
-                    
-                    // Reset form
-                    tournamentForm.reset();
-                    
-                    // Remove additional participants
-                    const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
-                    if (weitereTeilnehmerContainer) {
-                        weitereTeilnehmerContainer.innerHTML = '';
+                    // Check if the response indicates success
+                    if (response.success === "true" || response.success === true) {
+                        // Increment registration count
+                        registrationCount += participantCount;
+                        
+                        // Update registration status
+                        updateRegistrationStatus();
+                        
+                        // Show success message
+                        alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                        
+                        // Reset form
+                        tournamentForm.reset();
+                        
+                        // Remove additional participants
+                        const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
+                        if (weitereTeilnehmerContainer) {
+                            weitereTeilnehmerContainer.innerHTML = '';
+                        }
+                        
+                        // Reset participant count
+                        participantCount = 1;
+                        
+                        // Hide the form section
+                        document.getElementById('registration-forms').style.display = 'none';
+                    } else {
+                        // Something went wrong with FormSubmit
+                        console.error("FormSubmit response indicates failure:", response);
+                        alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
                     }
-                    
-                    // Reset participant count
-                    participantCount = 1;
-                    
-                    // Hide the form section
-                    document.getElementById('registration-forms').style.display = 'none';
                     
                     // Reset button
                     submitBtn.disabled = false;
@@ -284,6 +291,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 error: function(error) {
                     console.error("Error submitting form:", error);
+                    
+                    // Try to log more details about the error
+                    if (error.responseJSON) {
+                        console.error("Response details:", error.responseJSON);
+                    }
+                    
                     alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
                     
                     // Reset button
@@ -292,6 +305,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        // Add a fallback submit button to the form
+        const fallbackBtn = document.createElement('button');
+        fallbackBtn.type = 'submit';
+        fallbackBtn.className = 'fallback-submit';
+        fallbackBtn.style.display = 'none';
+        fallbackBtn.textContent = 'Fallback Submit';
+        tournamentForm.appendChild(fallbackBtn);
+        
+        // Set up the form for traditional submission as a fallback
+        tournamentForm.setAttribute('action', 'https://formsubmit.co/darcangelsletzebuerg@gmail.com');
+        tournamentForm.setAttribute('method', 'POST');
     }
     
     // Handle rules checkbox validation
@@ -309,16 +334,4 @@ document.addEventListener('DOMContentLoaded', function() {
             // Enable the checkbox
             rulesCheckbox.disabled = false;
             
-            // Add a visual indicator that the checkbox is now available
-            rulesCheckbox.parentElement.classList.add('rules-viewed');
-        });
-        
-        // Add a warning if someone tries to check the box without viewing rules
-        rulesCheckbox.addEventListener('click', function(e) {
-            if (rulesCheckbox.disabled) {
-                e.preventDefault();
-                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
-            }
-        });
-    }
-});
+            // Add a visual indicator that the checkbox is
