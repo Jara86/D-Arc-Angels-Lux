@@ -5,9 +5,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const formContainers = document.querySelectorAll('.tournament-form-container');
     const closeBtns = document.querySelectorAll('.close-form');
     
+    // Registration counter and limit
+    let registrationCount = 0;
+    const registrationLimit = 25;
+    
+    // For testing purposes - simulate some existing registrations
+    // Change this number as needed for testing
+    const testRegistrations = 22; // This means only 3 spots left
+    registrationCount = testRegistrations;
+    
+    // Update registration button text based on available spots
+    function updateRegistrationStatus() {
+        registrationToggles.forEach(toggle => {
+            if (registrationCount >= registrationLimit) {
+                toggle.textContent = "Registration closed - Fully booked";
+                toggle.classList.add("registration-closed");
+                toggle.disabled = true;
+            } else {
+                const spotsLeft = registrationLimit - registrationCount;
+                toggle.textContent = `Registration open (${spotsLeft} spots left)`;
+            }
+        });
+    }
+    
+    // Call initially to set the correct status
+    updateRegistrationStatus();
+    
     // Show the appropriate form when clicking on "Registration open"
     registrationToggles.forEach(toggle => {
         toggle.addEventListener('click', function() {
+            // Check if registration is still open
+            if (registrationCount >= registrationLimit) {
+                alert("Sorry, this tournament is fully booked.");
+                return;
+            }
+            
             const tournamentId = this.getAttribute('data-tournament');
             const formContainer = document.getElementById(`${tournamentId}-form`);
             
@@ -153,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const removeBtn = additionalParticipant.querySelector('.remove-participant');
             removeBtn.addEventListener('click', function() {
                 additionalParticipant.remove();
+                participantCount--;
             });
         });
     }
@@ -167,114 +200,125 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+     
+    // Handle form submission with AJAX 
+    const tournamentForm = document.getElementById('tournament-registration');
+    if (tournamentForm) {
+        tournamentForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Check if registration is still open
+            if (registrationCount >= registrationLimit) {
+                alert("Sorry, this tournament is fully booked.");
+                return;
+            }
+            
+            // Show loading indicator immediately
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object for AJAX submission
+            formData.forEach((value, key) => {
+                // Handle checkboxes with same name (arrays)
+                if (key.endsWith('[]')) {
+                    const baseKey = key.slice(0, -2);
+                    if (!formObject[baseKey]) {
+                        formObject[baseKey] = [];
+                    }
+                    formObject[baseKey].push(value);
+                } else {
+                    formObject[key] = value;
+                }
+            });
+            
+            // Update CC field with customer email
+            if (formObject.Email) {
+                formObject._cc = formObject.Email;
+            }
+            
+            // Add FormSubmit configuration
+            formObject._subject = "Tournament Limpach Open Registration 🎯";
+            
+            // Send data to FormSubmit
+            $.ajax({
+                url: "https://formsubmit.co/ajax/itdarcangels@gmail.com",
+                method: "POST",
+                data: formObject,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Form submitted successfully:", response);
+                    
+                    // Increment registration count
+                    registrationCount += participantCount;
+                    
+                    // Update registration status
+                    updateRegistrationStatus();
+                    
+                    // Show success message
+                    alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
+                    
+                    // Reset form
+                    tournamentForm.reset();
+                    
+                    // Remove additional participants
+                    const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
+                    if (weitereTeilnehmerContainer) {
+                        weitereTeilnehmerContainer.innerHTML = '';
+                    }
+                    
+                    // Reset participant count
+                    participantCount = 1;
+                    
+                    // Hide the form section
+                    document.getElementById('registration-forms').style.display = 'none';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                },
+                error: function(error) {
+                    console.error("Error submitting form:", error);
+                    alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        });
+    }
     
-     // Handle form submission with AJAX
-     const tournamentForm = document.getElementById('tournament-registration');
-     if (tournamentForm) {
-         tournamentForm.addEventListener('submit', function(e) {
-             e.preventDefault(); // Prevent default form submission
-             
-             // Show loading indicator immediately
-             const submitBtn = this.querySelector('button[type="submit"]');
-             const originalBtnText = submitBtn.innerHTML;
-             submitBtn.disabled = true;
-             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-             
-             // Get form data
-             const formData = new FormData(this);
-             const formObject = {};
-             
-             // Convert FormData to object for AJAX submission
-             formData.forEach((value, key) => {
-                 // Handle checkboxes with same name (arrays)
-                 if (key.endsWith('[]')) {
-                     const baseKey = key.slice(0, -2);
-                     if (!formObject[baseKey]) {
-                         formObject[baseKey] = [];
-                     }
-                     formObject[baseKey].push(value);
-                 } else {
-                     formObject[key] = value;
-                 }
-             });
-             
-             // Update CC field with customer email
-             if (formObject.Email) {
-                 formObject._cc = formObject.Email;
-             }
-             
-             // Add FormSubmit configuration
-             formObject._subject = "Tournament Limpach Open Registration 🎯";
-             
-             // Send data to FormSubmit
-             $.ajax({
-                 url: "https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com",
-                 method: "POST",
-                 data: formObject,
-                 dataType: "json",
-                 success: function(response) {
-                     console.log("Form submitted successfully:", response);
-                     // Show success message
-                     alert("Vielen Dank für deine Anmeldung! / Thank you for your registration!");
-                     
-                     // Reset form
-                     tournamentForm.reset();
-                     
-                     // Remove additional participants
-                     const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
-                     if (weitereTeilnehmerContainer) {
-                         weitereTeilnehmerContainer.innerHTML = '';
-                     }
-                     
-                     // Reset participant count
-                     participantCount = 1;
-                     
-                     // Hide the form section
-                     document.getElementById('registration-forms').style.display = 'none';
-                     
-                     // Reset button
-                     submitBtn.disabled = false;
-                     submitBtn.innerHTML = originalBtnText;
-                 },
-                 error: function(error) {
-                     console.error("Error submitting form:", error);
-                     alert("Es gab ein Problem bei der Anmeldung. Bitte versuche es später noch einmal. / There was a problem with the registration. Please try again later.");
-                     
-                     // Reset button
-                     submitBtn.disabled = false;
-                     submitBtn.innerHTML = originalBtnText;
-                 }
-             });
-         });
-     }
-
-    
-      // Handle rules checkbox validation
-      const rulesCheckbox = document.getElementById('regeln');
-      const rulesButton = document.querySelector('.text-link');
-      if (rulesCheckbox && rulesButton) {
-          // Initially disable the checkbox
-          rulesCheckbox.disabled = true;
-          
-          // Add click event to the rules button
-          rulesButton.addEventListener('click', function(e) {
-              // Open the rules in a new window/tab
-              window.open('docs/rules.html', '_blank');
-              
-              // Enable the checkbox
-              rulesCheckbox.disabled = false;
-              
-              // Add a visual indicator that the checkbox is now available
-              rulesCheckbox.parentElement.classList.add('rules-viewed');
-          });
-          
-          // Add a warning if someone tries to check the box without viewing rules
-          rulesCheckbox.addEventListener('click', function(e) {
-              if (rulesCheckbox.disabled) {
-                  e.preventDefault();
-                  alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
-              }
-          });
-      }
-  });
-  
+    // Handle rules checkbox validation
+    const rulesCheckbox = document.getElementById('regeln');
+    const rulesButton = document.querySelector('.text-link');
+    if (rulesCheckbox && rulesButton) {
+        // Initially disable the checkbox
+        rulesCheckbox.disabled = true;
+        
+        // Add click event to the rules button
+        rulesButton.addEventListener('click', function(e) {
+            // Open the rules in a new window/tab
+            window.open('docs/rules.html', '_blank');
+            
+            // Enable the checkbox
+            rulesCheckbox.disabled = false;
+            
+            // Add a visual indicator that the checkbox is now available
+            rulesCheckbox.parentElement.classList.add('rules-viewed');
+        });
+        
+        // Add a warning if someone tries to check the box without viewing rules
+        rulesCheckbox.addEventListener('click', function(e) {
+            if (rulesCheckbox.disabled) {
+                e.preventDefault();
+                alert('Bitte lesen Sie zuerst die Regeln, indem Sie auf den Link klicken. / Please read the rules first by clicking on the link.');
+            }
+        });
+    }
+});
