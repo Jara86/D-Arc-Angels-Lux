@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rulesCheckbox = document.getElementById('regeln');
   const rulesButton = document.querySelector('.text-link');
 
-  let registrationCount = 22;
+  let registrationCount = 0;
   const registrationLimit = 25;
   let participantCount = 1;
 
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.Email) data._cc = data.Email;
 
       try {
-        const response = await fetch("https://formsubmit.co/ajax/itdarcangels@gmail.com", {
+        const response = await fetch("https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com", {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
