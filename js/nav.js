@@ -7,15 +7,13 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeNavigation();
     } else {
         // We're on a page that loads navigation via AJAX
-        // The navigation will be initialized after it's loaded
-        // (handled by the AJAX callback in the HTML)
         fetch('nav.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('nav-placeholder').innerHTML = data;
                 
                 // Initialize navigation functionality after loading
-                initializeNavigation();
+                setTimeout(initializeNavigation, 100);
             })
             .catch(error => {
                 console.error('Error loading navigation:', error);
@@ -66,12 +64,24 @@ function initializeNavigation() {
     
     dropdowns.forEach(dropdown => {
         const link = dropdown.querySelector('a');
+        const dropdownContent = dropdown.querySelector('.dropdown-content');
         
-        if (link) {
-            link.addEventListener('click', function(e) {
-                // Only toggle dropdown on mobile
-                if (window.innerWidth <= 1140) {
+        // Add a toggle button for mobile
+        if (link && dropdownContent && window.innerWidth <= 1140) {
+            // Create a toggle button if it doesn't exist yet
+            if (!dropdown.querySelector('.dropdown-toggle')) {
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = 'dropdown-toggle';
+                toggleBtn.innerHTML = '<span>▼</span>';
+                toggleBtn.setAttribute('aria-label', 'Toggle dropdown menu');
+                
+                // Insert the toggle button after the link
+                link.parentNode.insertBefore(toggleBtn, link.nextSibling);
+                
+                // Toggle button click handler
+                toggleBtn.addEventListener('click', function(e) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                     
                     // Close other dropdowns
@@ -80,8 +90,8 @@ function initializeNavigation() {
                             otherDropdown.classList.remove('active');
                         }
                     });
-                }
-            });
+                });
+            }
         }
     });
     
@@ -116,6 +126,38 @@ function initializeNavigation() {
             
             dropdowns.forEach(dropdown => {
                 dropdown.classList.remove('active');
+                // Remove toggle buttons when resizing to desktop
+                const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+                if (toggleBtn) {
+                    toggleBtn.remove();
+                }
+            });
+        } else {
+            // Re-add toggle buttons when resizing to mobile
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                const dropdownContent = dropdown.querySelector('.dropdown-content');
+                
+                if (link && dropdownContent && !dropdown.querySelector('.dropdown-toggle')) {
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'dropdown-toggle';
+                    toggleBtn.innerHTML = '<span>▼</span>';
+                    toggleBtn.setAttribute('aria-label', 'Toggle dropdown menu');
+                    
+                    link.parentNode.insertBefore(toggleBtn, link.nextSibling);
+                    
+                    toggleBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        dropdown.classList.toggle('active');
+                        
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                    });
+                }
             });
         }
     });

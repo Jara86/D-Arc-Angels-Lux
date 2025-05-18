@@ -434,3 +434,33 @@ article,
   overflow-x: hidden;
   box-sizing: border-box;
 }
+/* Add this to your nav.css file */
+.dropdown-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #183947;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+@media (max-width: 1140px) {
+  .dropdown-toggle {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown > a {
+    display: inline-block;
+    width: calc(100% - 40px);
+  }
+}
