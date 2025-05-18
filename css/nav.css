@@ -274,28 +274,29 @@ article,
     display: block;
   }
   
-  /* Mobile Navigation Container */
+  /* Mobile Navigation Container - FIXED */
   nav .nav-items {
     position: fixed;
     z-index: 99;
     top: 70px;
-    width: 90%;
-    max-width: 900px;
-    height: 100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
     padding: 20px;
     text-align: center;
     background: radial-gradient(circle, #75e0f1, #296077);
     display: block;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     overflow-y: auto;
-    left: 50%;
-    transform: translateX(-150%);
-    border-radius: 10%;
+    left: -100%; /* Start off-screen to the left */
+    transform: none; /* Remove transform that was causing issues */
+    border-radius: 0 10% 10% 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   nav .nav-items.active {
-    transform: translateX(-50%);
+    left: 0; /* Slide in from the left */
+    transform: none; /* No transform needed */
   }
   
   nav .nav-items li {
@@ -328,6 +329,8 @@ article,
     max-width: 300px;
     margin: 0 auto;
     border-radius: 36px;
+    left: 0;
+    right: 0;
   }
   
   .fire-devils-link {
@@ -407,7 +410,7 @@ article,
 
 @media (max-width: 767px) {
   nav .nav-items {
-    width: 90%;
+    width: 80%;
     padding: 10px 20px;
   }
   
@@ -435,5 +438,9 @@ article,
   nav .special-icon {
     margin: 0 10px;
     font-size: 16px;
+  }
+  
+  nav .nav-items {
+    width: 85%;
   }
 }
