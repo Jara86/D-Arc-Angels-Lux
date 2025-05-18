@@ -10,8 +10,8 @@
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
-  z-index: 9999 !important; /* Very high z-index with !important */
-  overflow: visible !important; /* This is crucial - was set to hidden */
+  z-index: 9999 !important;
+  overflow: visible !important;
 }
 
 /* Main Navigation */
@@ -60,7 +60,7 @@ nav .nav-items li a:hover {
   color: #000;
 }
 
-/* Dropdown Menu - CRITICAL FIXES */
+/* Dropdown Menu */
 .dropdown {
   position: relative;
 }
@@ -75,10 +75,9 @@ nav .nav-items li a:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   padding: 10px;
   min-width: 200px;
-  z-index: 10000 !important; /* Even higher than navigation container with !important */
+  z-index: 10000 !important;
 }
 
-/* Force dropdown to show on hover */
 .dropdown:hover .dropdown-content {
   display: block !important;
 }
@@ -156,179 +155,17 @@ nav .special-icon {
   display: none;
 }
 
-/* Responsive Design */
-@media (max-width: 1245px) {
-  nav {
-    padding: 0 50px;
-  }
-}
-
-@media (max-width: 1140px) {
-  nav {
-    padding: 0 20px;
-  }
-  
-  nav .logo {
-    flex: 2;
-    text-align: center;
-    font-size: 22px;
-  }
-  
-  nav .nav-items {
-    position: fixed;
-    z-index: 99;
-    top: 70px;
-    width: 100%;
-    left: -100%;
-    height: 100%;
-    padding: 10px 50px 0 50px;
-    text-align: center;
-    background: rgba(117, 224, 241, 0.95);
-    display: inline-block;
-    transition: left 0.3s ease;
-    overflow-y: auto;
-  }
-  
-  nav .nav-items.active {
-    left: 0px;
-  }
-  
-  nav .nav-items li {
-    line-height: 40px;
-    margin: 30px 0;
-  }
-  
-  nav .nav-items li a {
-    font-size: 20px;
-  }
-  
-  .special-section {
-    position: absolute;
-    top: 80px;
-    right: 50px;
-    opacity: 0;
-    pointer-events: none;
-    transition: top 0.3s ease, opacity 0.1s ease;
-  }
-  
-  .special-section.active {
-    top: 95px;
-    opacity: 1;
-    pointer-events: auto;
-    width: calc(100% - 100px);
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .fire-devils-link {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  nav .menu-icon {
-    display: block;
-  }
-  
-  nav .menu-icon span,
-  nav .special-icon {
-    display: block;
-  }
-  
-  nav .menu-icon span.hide,
-  nav .special-icon.hide {
-    display: none;
-  }
-  
-  nav .cancel-icon.show {
-    display: block;
-    color: #183947;
-  }
-  
-  /* Dropdown adjustments for mobile */
-  .dropdown-content {
-    position: static;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: none;
-    margin-top: 10px;
-    display: none;
-  }
-  
-  .dropdown.active .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown-content li {
-    margin: 5px 0 !important;
-  }
-}
-
-@media (max-width: 980px) {
-  nav .menu-icon,
-  nav .cancel-icon,
-  nav .special-icon {
-    margin: 0 20px;
-  }
-  
-  .special-section {
-    right: 30px;
-  }
-}
-
-@media (max-width: 350px) {
-  nav .menu-icon,
-  nav .cancel-icon,
-  nav .special-icon {
-    margin: 0 10px;
-    font-size: 16px;
-  }
-}
-
-/* Keep the mobile styles as they were */
-@media (max-width: 1140px) {
-  .special-section {
-    position: absolute;
-    top: 80px;
-    right: 50px;
-    opacity: 0;
-    pointer-events: none;
-    transition: top 0.3s ease, opacity 0.1s ease;
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(155, 155, 155, 0.2);
-  }
-  
-  .special-section.active {
-    top: 95px;
-    opacity: 1;
-    pointer-events: auto;
-    width: calc(100% - 100px);
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .fire-devils-link {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Hide the logo in navigation on larger screens */
-@media (min-width: 768px) {
-  nav .logo {
-    display: none;
-  }
-}
-
-/* Show the logo in navigation on smaller screens */
-@media (max-width: 767px) {
-  nav .logo {
-    display: block;
-    font-family: 'Marcellus', serif !important;
-    color: #183947;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: -1px;
-  }
+/* Dropdown Toggle for Mobile */
+.dropdown-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #183947;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 5px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 /* Fix for the body overflow */
@@ -337,31 +174,6 @@ body {
   width: 100%;
   max-width: 100%;
   position: relative;
-}
-
-/* Fix for the navigation container */
-.navigation-container {
-  width: 100%;
-  max-width: 100%;
-  position: relative;
-  left: 0;
-  right: 0;
-  margin-left: 0;
-  margin-right: 0;
-  box-sizing: border-box;
-}
-
-/* Fix for the mobile nav */
-@media (max-width: 1140px) {
-  nav .nav-items {
-    width: 100vw;
-    left: -100vw;
-    box-sizing: border-box;
-  }
-  
-  nav .nav-items.active {
-    left: 0;
-  }
 }
 
 /* CRITICAL FIX: Force all content to have lower z-index than navigation */
@@ -415,7 +227,7 @@ article,
 .about-special-icon,
 .about-logo {
   position: relative;
-  z-index: 1 !important; /* Force lower z-index with !important */
+  z-index: 1 !important;
 }
 
 /* Additional fixes for potential overflow issues */
@@ -434,20 +246,135 @@ article,
   overflow-x: hidden;
   box-sizing: border-box;
 }
-/* Add this to your nav.css file */
-.dropdown-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #183947;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 0 5px;
-  margin-left: 5px;
-  vertical-align: middle;
+
+/* Responsive Design */
+@media (max-width: 1245px) {
+  nav {
+    padding: 0 50px;
+  }
 }
 
+/* Hide the logo in navigation on larger screens */
+@media (min-width: 768px) {
+  nav .logo {
+    display: none;
+  }
+}
+
+/* RESPONSIVE MOBILE STYLES */
 @media (max-width: 1140px) {
+  nav {
+    padding: 0 20px;
+  }
+  
+  nav .logo {
+    flex: 2;
+    text-align: center;
+    font-size: 22px;
+    display: block;
+  }
+  
+  /* Mobile Navigation Container */
+  nav .nav-items {
+    position: fixed;
+    z-index: 99;
+    top: 70px;
+    width: 90%;
+    max-width: 900px;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+    background: radial-gradient(circle, #75e0f1, #296077);
+    display: block;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    left: 50%;
+    transform: translateX(-150%);
+    border-radius: 10%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav .nav-items.active {
+    transform: translateX(-50%);
+  }
+  
+  nav .nav-items li {
+    line-height: 40px;
+    margin: 20px 0;
+    padding: 0 15px;
+  }
+  
+  nav .nav-items li a {
+    font-size: 20px;
+  }
+  
+  /* Special Section */
+  .special-section {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    opacity: 0;
+    pointer-events: none;
+    transition: top 0.3s ease, opacity 0.1s ease;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(155, 155, 155, 0.2);
+  }
+  
+  .special-section.active {
+    top: 95px;
+    opacity: 1;
+    pointer-events: auto;
+    width: calc(100% - 100px);
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 36px;
+  }
+  
+  .fire-devils-link {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Mobile Menu Icons */
+  nav .menu-icon {
+    display: block;
+  }
+  
+  nav .menu-icon span,
+  nav .special-icon {
+    display: block;
+  }
+  
+  nav .menu-icon span.hide,
+  nav .special-icon.hide {
+    display: none;
+  }
+  
+  nav .cancel-icon.show {
+    display: block;
+    color: #183947;
+  }
+  
+  /* Dropdown for Mobile */
+  .dropdown-content {
+    position: static;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+    margin: 10px auto;
+    display: none;
+    border-radius: 8px;
+  }
+  
+  .dropdown.active .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content li {
+    margin: 5px 0 !important;
+  }
+  
+  /* Dropdown Toggle */
   .dropdown-toggle {
     display: inline-block;
     position: absolute;
@@ -464,78 +391,49 @@ article,
     width: calc(100% - 40px);
   }
 }
-/* HARMONIOUS MOBILE NAVIGATION - NEW STYLES */
-@media (max-width: 1140px) {
-  nav .nav-items {
-    position: fixed;
-    z-index: 99;
-    top: 70px;
-    width: 100%;
-    max-width: 900px; /* Match the max-width of your hero box */
-    left: -100%;
-    height: 100%;
-    padding: 10px 50px 0 50px;
-    text-align: center;
-    background: radial-gradient(circle, #75e0f1, #296077); /* Match hero gradient */
-    display: inline-block;
-    transition: left 0.3s ease;
-    overflow-y: auto;
-    margin: 0 auto; /* Center the navigation */
-    right: 0; /* Needed for centering with fixed position */
-    left: 0;
-    transform: translateX(-100%); /* Start off-screen */
+
+/* Additional media queries for smaller screens */
+@media (max-width: 980px) {
+  nav .menu-icon,
+  nav .cancel-icon,
+  nav .special-icon {
+    margin: 0 20px;
   }
   
-  nav .nav-items.active {
-    left: 0;
-    transform: translateX(0); /* Move on-screen */
-    margin: 0 auto; /* Center the navigation */
-    border-radius: 10%; /* Match hero box border-radius */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Match hero box shadow */
-  }
-  
-  /* Adjust the special section to match the navigation width */
-  .special-section.active {
-    top: 95px;
-    opacity: 1;
-    pointer-events: auto;
-    width: calc(100% - 100px);
-    max-width: 300px;
-    margin: 0 auto;
-    border-radius: 36px; /* Keep the rounded corners */
-  }
-  
-  /* Improve the appearance of dropdown items */
-  .dropdown-content {
-    position: static;
-    width: 90%; /* Slightly narrower than parent */
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: none;
-    margin: 10px auto; /* Center within parent */
-    display: none;
-    border-radius: 8px; /* Match other rounded corners */
-  }
-  
-  /* Ensure the mobile menu has proper padding */
-  nav .nav-items li {
-    line-height: 40px;
-    margin: 20px 0; /* Slightly reduced margin for better spacing */
-    padding: 0 15px;
+  .special-section {
+    right: 30px;
   }
 }
 
-/* Additional media query for smaller screens */
 @media (max-width: 767px) {
   nav .nav-items {
-    width: 90%; /* Slightly narrower on very small screens */
-    padding: 10px 30px 0 30px; /* Reduced padding */
+    width: 90%;
+    padding: 10px 20px;
   }
   
   nav .nav-items li {
-    margin: 15px 0; /* Further reduce margins on small screens */
+    margin: 15px 0;
   }
   
   nav .nav-items li a {
-    font-size: 18px; /* Slightly smaller font */
+    font-size: 18px;
+  }
+  
+  nav .logo {
+    display: block;
+    font-family: 'Marcellus', serif !important;
+    color: #183947;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+}
+
+@media (max-width: 350px) {
+  nav .menu-icon,
+  nav .cancel-icon,
+  nav .special-icon {
+    margin: 0 10px;
+    font-size: 16px;
   }
 }
