@@ -225,7 +225,7 @@
 
                 <!-- Adresse -->
                 <div class="form-group address-group">
-                    <label>Adresse:</label>
+                    <label for="street">Adresse:</label>
                     <div class="address-fields">
                         <div class="form-row">
                             <div class="form-field">
@@ -351,14 +351,18 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Placeholder für Navigation und Footer einfügen
-        document.getElementById("nav-placeholder").innerHTML = `<nav><!-- Navigation HTML Code --></nav>`;
-        document.getElementById("footer-placeholder").innerHTML = `<footer><!-- Footer HTML Code --></footer>`;
-    </script>
-    <script src="js/script.js" defer></script>
-    <script src="js/nav.js" defer></script>
+  <script src="js/script.js" defer></script>
+<script src="js/nav.js" defer></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+        });
+</script>
+<script src=
+"js/merchandise.js" defer></script>
 </body>
 
 </html>
