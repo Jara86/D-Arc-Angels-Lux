@@ -124,57 +124,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (tournamentForm) {
     tournamentForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (registrationCount >= registrationLimit) {
-        alert("Sorry, this tournament is fully booked.");
-        return;
-      }
-
-      const submitBtn = tournamentForm.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending...';
-
-      const formData = new FormData(tournamentForm);
-      const data = {};
-      formData.forEach((value, key) => {
-        if (key.endsWith('[]')) {
-          const name = key.slice(0, -2);
-          if (!data[name]) data[name] = [];
-          data[name].push(value);
-        } else {
-          data[key] = value;
+        e.preventDefault();
+        
+        if (registrationCount >= registrationLimit) {
+            alert("Sorry, this tournament is fully booked.");
+            return;
         }
-      });
-      data._subject = "Tournament Limpach Open Registration 🎯";
-      if (data.Email) data._cc = data.Email;
 
-      try {
-        const response = await fetch("https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com", {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const result = await response.json();
+        const submitBtn = tournamentForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending...';
 
-        if (result.success) {
-          registrationCount += participantCount;
-          updateRegistrationStatus();
-          alert("Vielen Dank für deine Anmeldung!");
-          tournamentForm.reset();
-          weitereTeilnehmerContainer.innerHTML = '';
-          participantCount = 1;
-          registrationForms.style.display = 'none';
-        } else {
-          throw new Error("Submission failed");
+        // Use FormData instead of JSON (better mobile compatibility)
+        const formData = new FormData(tournamentForm);
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+
+        try {
+            const response = await fetch("https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com", {
+                method: "POST",
+                body: formData // Changed from JSON to FormData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            
+            if (result.success) {
+                registrationCount += participantCount;
+                updateRegistrationStatus();
+                alert("Vielen Dank für deine Anmeldung!");
+                tournamentForm.reset();
+                weitereTeilnehmerContainer.innerHTML = '';
+                participantCount = 1;
+                registrationForms.style.display = 'none';
+            } else {
+                throw new Error("Submission failed");
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            alert("Ein Fehler ist aufgetreten. Bitte versuche es später erneut.");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
         }
-      } catch (error) {
-        alert("Ein Fehler ist aufgetreten. Bitte versuche es später erneut.");
-        console.error(error);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }
     });
   }
 });
