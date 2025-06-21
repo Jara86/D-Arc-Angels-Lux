@@ -1,3 +1,6 @@
+const isTestMode = window.location.search.includes('test=true');
+const submitEmail = isTestMode ? 'your-test-email@gmail.com' : 'darcangelsletzebuerg@gmail.com';
+
 document.addEventListener('DOMContentLoaded', () => {
   const registrationToggles = document.querySelectorAll('.registration-toggle');
   const registrationForms = document.getElementById('registration-forms');
@@ -142,9 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('_template', 'table');
 
         try {
-            const response = await fetch("https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com", {
+            // Use submitEmail variable here
+            const response = await fetch(`https://formsubmit.co/ajax/${submitEmail}`, {
                 method: "POST",
-                body: formData // Changed from JSON to FormData
+                body: formData
             });
 
             if (!response.ok) {
