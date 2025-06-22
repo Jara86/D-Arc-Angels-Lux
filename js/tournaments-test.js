@@ -41,11 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateRegistrationStatus = () => {
         const spotsLeft = registrationLimit - registrationCount;
         registrationToggles.forEach(toggle => {
-            toggle.textContent = spotsLeft > 0
-                ? `Registration open (${spotsLeft} spots left) - TEST MODE`
-                : "Registration closed - Fully booked - TEST MODE";
-            toggle.disabled = spotsLeft <= 0;
-            toggle.classList.toggle("registration-closed", spotsLeft <= 0);
+            toggle.textContent = `🧪 TEST: ${spotsLeft} spots left (Count: ${registrationCount}/${registrationLimit})`;
+            toggle.disabled = false; // Always allow registration in test mode
+            toggle.classList.remove("registration-closed");
         });
     };
 
