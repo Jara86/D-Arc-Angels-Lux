@@ -99,8 +99,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name">
                 <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname">
             </div>
-            <div class="form-group">
-                <input type="date" name="Geburtsdatum_${participantCount}">
+            <div class="form-group geburtsdatum-group">
+                <select name="Geburtsdatum_Tag" id="geburtsdatum_tag" required>
+                    <option value="">Tag</option>
+                    <!-- 1-31 will be filled by JS -->
+                </select>
+                <select name="Geburtsdatum_Monat" id="geburtsdatum_monat" required>
+                    <option value="">Monat</option>
+                    <option value="01">Januar</option>
+                    <option value="02">Februar</option>
+                    <option value="03">März</option>
+                    <option value="04">April</option>
+                    <option value="05">Mai</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Dezember</option>
+                </select>
+                <select name="Geburtsdatum_Jahr" id="geburtsdatum_jahr" required>
+                    <option value="">Jahr</option>
+                    <!-- Years will be filled by JS -->
+                </select>
             </div>
             <div class="form-group">
                 <select name="Geschlecht_${participantCount}">
