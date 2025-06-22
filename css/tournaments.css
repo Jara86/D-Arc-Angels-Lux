@@ -503,3 +503,31 @@ input[type="checkbox"]:disabled + label {
 .registration-toggle.registration-closed:hover {
     background-color: #d32f2f;
 }
+
+/* Style the group of dropdowns to appear as a single field */
+.geburtsdatum-group {
+    display: flex;
+    gap: 8px; /* space between dropdowns */
+    align-items: center;
+}
+
+.geburtsdatum-group select {
+    padding: 6px 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    min-width: 80px;
+}
+
+@media (max-width: 600px) {
+    .geburtsdatum-group {
+        flex-direction: column;
+        gap: 4px;
+        align-items: stretch;
+    }
+    .geburtsdatum-group select {
+        min-width: 0;
+        width: 100%;
+    }
+}
