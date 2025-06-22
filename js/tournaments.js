@@ -177,4 +177,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
   }
+
+  // Fill day dropdown
+  const daySelect = document.getElementById('geburtsdatum_tag');
+  if (daySelect) {
+      for (let d = 1; d <= 31; d++) {
+          const opt = document.createElement('option');
+          opt.value = d.toString().padStart(2, '0');
+          opt.textContent = d;
+          daySelect.appendChild(opt);
+      }
+  }
+
+  // Fill year dropdown (e.g. 1920–2015)
+  const yearSelect = document.getElementById('geburtsdatum_jahr');
+  if (yearSelect) {
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear - 5; y >= 1920; y--) {
+          const opt = document.createElement('option');
+          opt.value = y;
+          opt.textContent = y;
+          yearSelect.appendChild(opt);
+      }
+  }
+
+  const form = document.getElementById('tournament-registration');
+  if (form) {
+      form.addEventListener('submit', function(e) {
+          const tag = document.getElementById('geburtsdatum_tag').value;
+          const monat = document.getElementById('geburtsdatum_monat').value;
+          const jahr = document.getElementById('geburtsdatum_jahr').value;
+          let hidden = document.getElementById('geburtsdatum_hidden');
+          if (!hidden) {
+              hidden = document.createElement('input');
+              hidden.type = 'hidden';
+              hidden.name = 'Geburtsdatum';
+              hidden.id = 'geburtsdatum_hidden';
+              form.appendChild(hidden);
+          }
+          hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : '';
+      });
+  }
 });
