@@ -100,11 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname">
             </div>
             <div class="form-group geburtsdatum-group">
-                <select name="Geburtsdatum_Tag" id="geburtsdatum_tag" required>
+                <label for="geburtsdatum_tag_${participantCount}" style="display:block; margin-bottom:4px;">Geburtsdatum</label>
+                <select name="Geburtsdatum_Tag_${participantCount}" id="geburtsdatum_tag_${participantCount}" required>
                     <option value="">Tag</option>
-                    <!-- 1-31 will be filled by JS -->
                 </select>
-                <select name="Geburtsdatum_Monat" id="geburtsdatum_monat" required>
+                <select name="Geburtsdatum_Monat_${participantCount}" id="geburtsdatum_monat_${participantCount}" required>
                     <option value="">Monat</option>
                     <option value="01">Januar</option>
                     <option value="02">Februar</option>
@@ -119,9 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <option value="11">November</option>
                     <option value="12">Dezember</option>
                 </select>
-                <select name="Geburtsdatum_Jahr" id="geburtsdatum_jahr" required>
+                <select name="Geburtsdatum_Jahr_${participantCount}" id="geburtsdatum_jahr_${participantCount}" required>
                     <option value="">Jahr</option>
-                    <!-- Years will be filled by JS -->
                 </select>
             </div>
             <div class="form-group">
@@ -185,6 +184,24 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('_template', 'table');
             formData.append('_subject', 'TEST: Tournament Registration 🧪');
 
+            // For additional participants:
+            for (let i = 2; i <= participantCount; i++) {
+                const tag = document.getElementById(`geburtsdatum_tag_${i}`)?.value;
+                const monat = document.getElementById(`geburtsdatum_monat_${i}`)?.value;
+                const jahr = document.getElementById(`geburtsdatum_jahr_${i}`)?.value;
+                if (tag && monat && jahr) {
+                    let hidden = document.getElementById(`geburtsdatum_hidden_${i}`);
+                    if (!hidden) {
+                        hidden = document.createElement('input');
+                        hidden.type = 'hidden';
+                        hidden.name = `Geburtsdatum_${i}`;
+                        hidden.id = `geburtsdatum_hidden_${i}`;
+                        tournamentForm.appendChild(hidden);
+                    }
+                    hidden.value = `${jahr}-${monat}-${tag}`;
+                }
+            }
+
             try {
                 console.log('TEST: Submitting to', submitEmail);
                 
@@ -218,6 +235,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.innerHTML = originalText;
             }
         });
+    }
+
+    // Pferd Geburtsdatum Tag (Day)
+    const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
+    if (pferdTag) {
+        for (let d = 1; d <= 31; d++) {
+            const opt = document.createElement('option');
+            opt.value = d.toString().padStart(2, '0');
+            opt.textContent = d;
+            pferdTag.appendChild(opt);
+        }
+    }
+
+    // Pferd Geburtsdatum Jahr (Year)
+    const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
+    if (pferdJahr) {
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear; y >= 1980; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            pferdJahr.appendChild(opt);
+        }
     }
 });
 

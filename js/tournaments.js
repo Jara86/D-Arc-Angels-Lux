@@ -82,8 +82,29 @@ document.addEventListener('DOMContentLoaded', () => {
         <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name">
         <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname">
       </div>
-      <div class="form-group">
-        <input type="date" name="Geburtsdatum_${participantCount}">
+      <div class="form-group geburtsdatum-group">
+        <label for="geburtsdatum_tag_${participantCount}" style="display:block; margin-bottom:4px;">Geburtsdatum</label>
+        <select name="Geburtsdatum_Tag_${participantCount}" id="geburtsdatum_tag_${participantCount}" required>
+          <option value="">Tag</option>
+        </select>
+        <select name="Geburtsdatum_Monat_${participantCount}" id="geburtsdatum_monat_${participantCount}" required>
+          <option value="">Monat</option>
+          <option value="01">Januar</option>
+          <option value="02">Februar</option>
+          <option value="03">März</option>
+          <option value="04">April</option>
+          <option value="05">Mai</option>
+          <option value="06">Juni</option>
+          <option value="07">Juli</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">Oktober</option>
+          <option value="11">November</option>
+          <option value="12">Dezember</option>
+        </select>
+        <select name="Geburtsdatum_Jahr_${participantCount}" id="geburtsdatum_jahr_${participantCount}" required>
+          <option value="">Jahr</option>
+        </select>
       </div>
       <div class="form-group">
         <select name="Geschlecht_${participantCount}">
@@ -104,6 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
       div.remove();
       participantCount--;
     });
+
+    // Fill day dropdown
+    const daySelect = div.querySelector(`#geburtsdatum_tag_${participantCount}`);
+    if (daySelect) {
+        for (let d = 1; d <= 31; d++) {
+            const opt = document.createElement('option');
+            opt.value = d.toString().padStart(2, '0');
+            opt.textContent = d;
+            daySelect.appendChild(opt);
+        }
+    }
+
+    // Fill year dropdown (e.g. 1920–2015)
+    const yearSelect = div.querySelector(`#geburtsdatum_jahr_${participantCount}`);
+    if (yearSelect) {
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear - 5; y >= 1920; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+    }
   };
 
   if (addParticipantBtn && weitereTeilnehmerContainer) {
@@ -178,29 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Fill day dropdown
-  const daySelect = document.getElementById('geburtsdatum_tag');
-  if (daySelect) {
-      for (let d = 1; d <= 31; d++) {
-          const opt = document.createElement('option');
-          opt.value = d.toString().padStart(2, '0');
-          opt.textContent = d;
-          daySelect.appendChild(opt);
-      }
-  }
-
-  // Fill year dropdown (e.g. 1920–2015)
-  const yearSelect = document.getElementById('geburtsdatum_jahr');
-  if (yearSelect) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear - 5; y >= 1920; y--) {
-          const opt = document.createElement('option');
-          opt.value = y;
-          opt.textContent = y;
-          yearSelect.appendChild(opt);
-      }
-  }
-
   const form = document.getElementById('tournament-registration');
   if (form) {
       form.addEventListener('submit', function(e) {
@@ -217,5 +238,28 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : '';
       });
+  }
+
+  // Pferd Geburtsdatum Tag (Day)
+  const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
+  if (pferdTag) {
+      for (let d = 1; d <= 31; d++) {
+          const opt = document.createElement('option');
+          opt.value = d.toString().padStart(2, '0');
+          opt.textContent = d;
+          pferdTag.appendChild(opt);
+      }
+  }
+
+  // Pferd Geburtsdatum Jahr (Year)
+  const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
+  if (pferdJahr) {
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear; y >= 1980; y--) {
+          const opt = document.createElement('option');
+          opt.value = y;
+          opt.textContent = y;
+          pferdJahr.appendChild(opt);
+      }
   }
 });
