@@ -19,6 +19,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const registrationLimit = 25;
   let participantCount = 1;
 
+  // Fill Hauptteilnehmer birthday dropdowns
+  const tagSelect = document.getElementById('geburtsdatum_tag');
+  if (tagSelect) {
+      for (let d = 1; d <= 31; d++) {
+          const opt = document.createElement('option');
+          opt.value = d.toString().padStart(2, '0');
+          opt.textContent = d;
+          tagSelect.appendChild(opt);
+      }
+  }
+  const yearSelect = document.getElementById('geburtsdatum_jahr');
+  if (yearSelect) {
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear - 5; y >= 1920; y--) {
+          const opt = document.createElement('option');
+          opt.value = y;
+          opt.textContent = y;
+          yearSelect.appendChild(opt);
+      }
+  }
+  // Fill Pferd birthday dropdowns
+  const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
+  if (pferdTag) {
+      for (let d = 1; d <= 31; d++) {
+          const opt = document.createElement('option');
+          opt.value = d.toString().padStart(2, '0');
+          opt.textContent = d;
+          pferdTag.appendChild(opt);
+      }
+  }
+  const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
+  if (pferdJahr) {
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear; y >= 1980; y--) {
+          const opt = document.createElement('option');
+          opt.value = y;
+          opt.textContent = y;
+          pferdJahr.appendChild(opt);
+      }
+  }
+
   const updateRegistrationStatus = () => {
     const spotsLeft = registrationLimit - registrationCount;
     registrationToggles.forEach(toggle => {
@@ -172,7 +213,21 @@ document.addEventListener('DOMContentLoaded', () => {
   if (tournamentForm) {
     tournamentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
+        // Combine main participant birthday into hidden field
+        const tag = document.getElementById('geburtsdatum_tag').value;
+        const monat = document.getElementById('geburtsdatum_monat').value;
+        const jahr = document.getElementById('geburtsdatum_jahr').value;
+        let hidden = document.getElementById('geburtsdatum_hidden');
+        if (!hidden) {
+            hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = 'Geburtsdatum';
+            hidden.id = 'geburtsdatum_hidden';
+            tournamentForm.appendChild(hidden);
+        }
+        hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : '';
+
         if (registrationCount >= registrationLimit) {
             alert("Sorry, this tournament is fully booked.");
             return;
@@ -200,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const result = await response.json();
-            
+
             if (result.success) {
                 registrationCount += participantCount;
                 updateRegistrationStatus();
@@ -219,71 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;
         }
-    }
+    });
   }
-
-  const form = document.getElementById('tournament-registration');
-  if (form) {
-      form.addEventListener('submit', function(e) {
-          const tag = document.getElementById('geburtsdatum_tag').value;
-          const monat = document.getElementById('geburtsdatum_monat').value;
-          const jahr = document.getElementById('geburtsdatum_jahr').value;
-          let hidden = document.getElementById('geburtsdatum_hidden');
-          if (!hidden) {
-              hidden = document.createElement('input');
-              hidden.type = 'hidden';
-              hidden.name = 'Geburtsdatum';
-              hidden.id = 'geburtsdatum_hidden';
-              form.appendChild(hidden);
-          }
-          hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : '';
-      });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Hauptteilnehmer: Tag
-    const tagSelect = document.getElementById('geburtsdatum_tag');
-    if (tagSelect) {
-        for (let d = 1; d <= 31; d++) {
-            const opt = document.createElement('option');
-            opt.value = d.toString().padStart(2, '0');
-            opt.textContent = d;
-            tagSelect.appendChild(opt);
-        }
-    }
-
-    // Hauptteilnehmer: Jahr
-    const yearSelect = document.getElementById('geburtsdatum_jahr');
-    if (yearSelect) {
-        const currentYear = new Date().getFullYear();
-        for (let y = currentYear - 5; y >= 1920; y--) {
-            const opt = document.createElement('option');
-            opt.value = y;
-            opt.textContent = y;
-            yearSelect.appendChild(opt);
-        }
-    }
-
-    // Pferd: Tag
-    const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
-    if (pferdTag) {
-        for (let d = 1; d <= 31; d++) {
-            const opt = document.createElement('option');
-            opt.value = d.toString().padStart(2, '0');
-            opt.textContent = d;
-            pferdTag.appendChild(opt);
-        }
-    }
-
-    // Pferd: Jahr
-    const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
-    if (pferdJahr) {
-        const currentYear = new Date().getFullYear();
-        for (let y = currentYear; y >= 1980; y--) {
-            const opt = document.createElement('option');
-            opt.value = y;
-            opt.textContent = y;
-            pferdJahr.appendChild(opt);
-        }
-    }
 });
