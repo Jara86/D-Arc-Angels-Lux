@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalText;
         }
-    });
+    }
   }
 
   const form = document.getElementById('tournament-registration');
@@ -286,4 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
             pferdJahr.appendChild(opt);
         }
     }
-});});
+});
