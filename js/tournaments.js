@@ -286,4 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
             pferdJahr.appendChild(opt);
         }
     }
-});
+});});
