@@ -240,26 +240,50 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // Pferd Geburtsdatum Tag (Day)
-  const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
-  if (pferdTag) {
-      for (let d = 1; d <= 31; d++) {
-          const opt = document.createElement('option');
-          opt.value = d.toString().padStart(2, '0');
-          opt.textContent = d;
-          pferdTag.appendChild(opt);
-      }
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    // Hauptteilnehmer: Tag
+    const tagSelect = document.getElementById('geburtsdatum_tag');
+    if (tagSelect) {
+        for (let d = 1; d <= 31; d++) {
+            const opt = document.createElement('option');
+            opt.value = d.toString().padStart(2, '0');
+            opt.textContent = d;
+            tagSelect.appendChild(opt);
+        }
+    }
 
-  // Pferd Geburtsdatum Jahr (Year)
-  const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
-  if (pferdJahr) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 1980; y--) {
-          const opt = document.createElement('option');
-          opt.value = y;
-          opt.textContent = y;
-          pferdJahr.appendChild(opt);
-      }
-  }
+    // Hauptteilnehmer: Jahr
+    const yearSelect = document.getElementById('geburtsdatum_jahr');
+    if (yearSelect) {
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear - 5; y >= 1920; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+    }
+
+    // Pferd: Tag
+    const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
+    if (pferdTag) {
+        for (let d = 1; d <= 31; d++) {
+            const opt = document.createElement('option');
+            opt.value = d.toString().padStart(2, '0');
+            opt.textContent = d;
+            pferdTag.appendChild(opt);
+        }
+    }
+
+    // Pferd: Jahr
+    const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
+    if (pferdJahr) {
+        const currentYear = new Date().getFullYear();
+        for (let y = currentYear; y >= 1980; y--) {
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            pferdJahr.appendChild(opt);
+        }
+    }
 });
