@@ -1,5 +1,5 @@
 const isTestMode = window.location.search.includes('test=true');
-const submitEmail = isTestMode ? 'your-test-email@gmail.com' : 'darcangelsletzebuerg@gmail.com';
+const submitEmail = 'darcangelsletzebuerg@gmail.com';
 
 document.addEventListener('DOMContentLoaded', () => {
   const registrationToggles = document.querySelectorAll('.registration-toggle');
@@ -61,13 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const updateRegistrationStatus = () => {
-    const spotsLeft = registrationLimit - registrationCount;
     registrationToggles.forEach(toggle => {
-      toggle.textContent = spotsLeft > 0
-        ? `Registration open (${spotsLeft} spots left)`
-        : "Registration closed - Fully booked";
-      toggle.disabled = spotsLeft <= 0;
-      toggle.classList.toggle("registration-closed", spotsLeft <= 0);
+      toggle.textContent = "Registration closed - Fully booked";
+      toggle.disabled = true;
+      toggle.classList.add("registration-closed");
     });
   };
 
