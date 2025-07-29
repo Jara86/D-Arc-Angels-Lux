@@ -19,7 +19,9 @@ img#main {
     margin-right: auto;
     border-radius: 12px;
     width: 80%;
-    object-fit: fill;
+    max-width: 800px;      /* Optional: prevents image from getting too large */
+    height: auto;
+    object-fit: cover;     /* 'cover' is usually better than 'fill' for photos */
     margin-bottom: 2rem;
 }
 
@@ -378,4 +380,33 @@ img#main {
         flex-direction: column;
         gap: 15px;
     }
+
+}
+.gallery-section {
+    padding: 2rem;
+    background: linear-gradient(-20deg, #fcfced, #f0eafb);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 3rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }

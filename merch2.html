@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Meta-Daten für SEO und Mobiloptimierung -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Offizielles Merchandise der D'Arc Angels Lëtzebuerg - T-Shirts, Hoodies und mehr">
+    <meta name="keywords" content="D'Arc Angels, Merchandise, T-Shirt, Hoodie, Bogenschießen, Luxemburg, Team">
+    <meta name="author" content="Jarouschka Buis">
+    
+    <!-- OpenGraph Tags für Social Media -->
+    <meta property="og:title" content="Merchandise - D'Arc Angels Lëtzebuerg">
+    <meta property="og:description" content="Entdecke die exklusive Kollektion der D'Arc Angels Lëtzebuerg. T-Shirts, Hoodies und Accessoires erhältlich.">
+    <meta property="og:image" content="images/logo-darc-angels.avif">
+    <meta property="og:url" content="https://www.darc-angels-letzebuerg.lu">
+    <meta property="og:type" content="website">
+    
+    <title>Merchandise - D'Arc Angels Lëtzebuerg</title>
+    
+    <!-- Bootstrap & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Eigene Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/merchandise.css">
+
+</head>
+
+<body>
+  <div id="nav-placeholder"></div>
+
+    <div class="hero">
+        <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
+        <h1>D'Arc Angels Lëtzebuerg</h1>
+    </div>
+    <main class="content-container">
+
+        <!-- Merchandise Section Title -->
+        <h1>D'Arc Angels Lëtzebuerg Merchandise</h1>
+
+        <!-- Hauptbild des Merchandise -->
+        <img src="images/hoodie_front.avif" id="main" alt="D'Arc Angels Lëtzebuerg Merchandise" width="800" height="400">
+
+        <!-- Produktkategorien -->
+        <section class="products">
+    <h2>Merchandise Galerie</h2>
+<div class="gallery">
+  <img src="images/merchandise/MK208694.jpg" alt="Merch Item 1">
+  <img src="images/merchandise/MK208697.jpg" alt="Merch Item 2">
+  <img src="images/merchandise/MK208705.jpg" alt="Merch Item 3">
+  <img src="images/merchandise/MK208746.jpg" alt="Merch Item 4">
+  <img src="images/merchandise/MK208789.jpg" alt="Merch Item 5">
+  <img src="images/merchandise/MK208794.jpg" alt="Merch Item 6">
+  <img src="images/merchandise/MK208834.jpg" alt="Merch Item 7">
+  <img src="images/merchandise/MK208852.jpg" alt="Merch Item 8">
+  <img src="images/merchandise/MK208858.jpg" alt="Merch Item 9">
+  <img src="images/merchandise/MK208869.jpg" alt="Merch Item 10">
+  <img src="images/merchandise/MK208922.jpg" alt="Merch Item 11">
+  <img src="images/merchandise/MK208932.jpg" alt="Merch Item 12">
+</div>
+
+<style>
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+</style>
+
+
+        <!-- Bestellformular -->
+        <section class="order-section">
+            <h3>Bestellformular</h3>
+            <form name="merchandise-order" class="order-form" method="POST">
+                <input type="hidden" name="_subject" value="Neue Merchandise Bestellung 🛒">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_cc" value="">
+
+                <!-- Benutzerinformationen -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Handynummer">Handynummer:</label>
+                    <input type="tel" id="Handynummer" name="Handynummer" placeholder="+352 123 4567890" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
+                </div>
+
+                <!-- Adresse -->
+                <div class="form-group address-group">
+                    <label for="street">Adresse:</label>
+                    <div class="address-fields">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="street">Straße:</label>
+                                <input type="text" id="street" name="street" required placeholder="z.B. Musterstraße">
+                            </div>
+                            <div class="form-field">
+                                <label for="house_number">Hausnummer:</label>
+                                <input type="text" id="house_number" name="house_number" required placeholder="z.B. 12">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="zip_code">Postleitzahl:</label>
+                                <input type="text" id="zip_code" name="zip_code" required placeholder="z.B. 12345">
+                            </div>
+                            <div class="form-field">
+                                <label for="city">Ort:</label>
+                                <input type="text" id="city" name="city" required placeholder="z.B. Musterstadt">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="country">Land:</label>
+                            <select id="country" name="country" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="Luxembourg">Luxemburg</option>
+                                <option value="Germany">Deutschland</option>
+                                <option value="Belgium">Belgien</option>
+                                <option value="France">Frankreich</option>
+                                <option value="Netherlands">Niederlande</option>
+                                <option value="other">Anderes Land</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Abholung:</label>
+                    <div class="pickup-options">
+                        <label>
+                            <input type="radio" name="pickup" value="training" required>
+                            Abholung beim Training
+                        </label>
+                        <label>
+                            <input type="radio" name="pickup" value="turnier" required>
+                            Abholung bei Turnier
+                        </label>
+                    
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="member">Mitgliedschaft:</label>
+                    <select id="member" name="member" required>
+                        <option value="member">Member</option>
+                        <option value="non-member">Non-Member</option>
+                    </select>
+                </div>
+                <div class="order-items">
+                    <h3>Deine Bestellung</h3>
+                    <div id="order-list"></div>
+                    
+                    <div class="add-item-form">
+                        <div class="form-group">
+                            <label for="product">Produkt:</label>
+                            <select id="product" name="product">
+                                <option value="">Bitte wählen</option>
+                                <option value="grey-shirt">T-shirt - Dunkel grau</option>
+                                <option value="turquoise-shirt">T-Shirt - Türkis</option>
+                                <option value="black-shirt">T-shirt - Schwarz</option>
+                                <option value="hoodie">Hoodie</option>
+                                <option value="gilet-m">Fleece Gilet Herren</option>
+                                <option value="gilet-w">Fleece Gilet Damen</option>
+                                <option value="cup">Tassen</option>
+                                <option value="sticker">Runde Sticker</option>
+                                <option value="pen">Bic'er</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group" id="size-group">
+                            <label for="size">Größe:</label>
+                            <select id="size" name="size">
+                                <option value="">Bitte wählen</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="quantity">Anzahl:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                        </div>
+        
+                        <button type="button" id="add-item" class="btn-secondary">Artikel hinzufügen</button>
+                    </div>
+                </div>
+                <input type="hidden" name="order_details">
+        
+        
+                <button type="submit" class="submit-btn">Bestellung absenden</button>
+            </form> 
+            
+        </section>
+        </main>
+
+   <hr class="footer-line">
+    <footer class="footer">
+        <p class="footer-text">
+            Code and design by 
+            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
+        </p>
+        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+        <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
+    </footer>
+
+    <!-- Scripts -->
+  <script src="js/script.js" defer></script>
+<script src="js/nav.js" defer></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            const nav = document.getElementById('nav-placeholder');
+            if (nav) {
+                nav.innerHTML = data;
+            }
+        })
+        .catch(error => {
+            // Optional: log or handle the error
+            console.error('Navigation could not be loaded:', error);
+        });
+</script>
+<script src=
+"js/merchandise.js" defer></script>
+</body>
+
+</html>
