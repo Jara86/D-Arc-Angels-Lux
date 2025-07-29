@@ -22,12 +22,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
-    <!-- Eigene Stylesheets -->
+    <!-- Critical CSS for above-the-fold content -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/merchandise.css">
+    
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="preload" href="css/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/merchandise.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/merchandise.css">
+    </noscript>
 
 </head>
 
@@ -61,7 +67,7 @@
     <img src="images/merchandise/MK208922.jpg" alt="Merch Item 11">
     <img src="images/merchandise/MK208932.jpg" alt="Merch Item 12">
   </div>
-</section>
+
 
         <!-- Produktkategorien -->
         <section class="products">
@@ -69,7 +75,7 @@
             <!-- Damenkollektion -->
             <div class="product-category">
                 <div class="category-title">
-                    <h2>Ladies Collection</h2>
+                    <h2></h2>
                 </div>
                 
                 <div class="product-card">
@@ -78,9 +84,7 @@
                         <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
                         <img src="images/turquoise-shirt_front.avif" alt="Türkises T-Shirt mit Logo" width="300" height="200">
                         <img src="images/turquoise-shirt_back.avif" alt="Türkises T-Shirt mit Logo" width="300" height="200">
-                        <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL</p>
-                        </div>
+                       
                      
                     </div>
                 </div>
@@ -91,62 +95,53 @@
                         <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
                         <img src="images/grey-shirt.avif" alt="Dunkelgraues T-Shirt mit Logo" width="300" height="200">
                       
-                        <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL</p>
-                        </div>
+                     
                     
                     </div>
                 </div>
 
-            </div>
+            
+            
+                <div class="product-card">
+                    <h3>T-shirt -Kinder</h3>
+                    <div class="product-details">
+                        <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
+                         <img src="images/merchandise/MK208694.jpg" alt="Merch Item 1" width="300" height="200">
+                      
+                       
+                    
+                    </div>
+                </div>
+                    
 
             <!-- Team Lëtzebuerg Collection -->
             <div class="product-category">
                 <div class="category-title">
-                    <h2>Team Lëtzebuerg Collection</h2>
+                     
+                  
                 </div>
                 
                 <div class="product-card">
-                    <h3>Polo Shirt - Türkis</h3>
+                    <h3> Team Lëtzebuerg Collection</h3>
                     <div class="product-details">
                         <p class="exclusive-tag">Exklusiv fir Turnéier-Reider</p>
                         <img src="images/Polo Shirt turquaois back1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
                         <img src="images/Polo Shirt turquaois front1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
                         <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL</p>
+                          
                         </div>
                       
                 </div>
             </div>
 
-            <!-- Männerkollektion -->
-            <div class="product-category">
-                <div class="category-title">
-                    <h2>Men's Collection</h2>
-                </div>
-                
-                <div class="product-card">
-                    <h3>T-shirt - Schwarz</h3>
-                    <div class="product-details">
-                        <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
-                        <img src="images/black-shirt_front.avif" alt="Schwarzes T-Shirt mit Logo" width="300" height="200">
-                        <img src="images/black-shirt_back.avif" alt="Schwarzes T-Shirt mit Logo" width="300" height="200">
-                        <div class="pricing">
-                            <p>Member: €</p>
-                            <p>Non-Member: €</p>
-                        </div>
-                        <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL, XXL</p>
-                        </div>
+          
                        
-                    </div>
-                </div>
-            </div>
+                
 
             <!-- Unisex Collection -->
             <div class="product-category">
                 <div class="category-title">
-                    <h2>Unisex Collection</h2>
+                 
                 </div>
                 <div class="product-card">
                     <h3>Hoodie</h3>
@@ -156,7 +151,7 @@
                         <img src="images/hoodie_back.avif" alt="Blauer Hoodie mit Logo" width="300" height="200">
                        
                         <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL</p>
+                        
                         </div>
                     
                     </div>
@@ -168,14 +163,7 @@
                         <p class="description">Schwarzen Gilet aus Fleece mit Logo und Vorname</p>
                         <img src="images/gilet_unisex_back.avif" alt="Schwarzes Gilet mit Logo" width="300" height="200">
                         
-                        <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL, XXL</p>
-                        </div>
-                        <div class="order-codes">
-                            <p>Herren: Gilet M + "anzahl" + "ihre größe"</p>
-                            <p>Damen: Gilet W + "anzahl" + "ihre größe"</p>
-                        </div>
-                    </div>
+         
                 </div>
             </div>
         </section>
@@ -201,7 +189,7 @@
                 </div>
             </div>
         </section>
-
+</section>
         <!-- Bestellformular -->
         <section class="order-section">
             <h3>Bestellformular</h3>
@@ -228,7 +216,8 @@
 
                 <!-- Adresse -->
                 <div class="form-group address-group">
-                    <label for="street">Adresse:</label>
+                    <fieldset>
+                        <legend>Adresse:</legend>
                     <div class="address-fields">
                         <div class="form-row">
                             <div class="form-field">
@@ -265,21 +254,23 @@
                             </select>
                         </div>
                     </div>
+                    </fieldset>
                 </div>
 
                 <div class="form-group">
-                    <label>Abholung:</label>
-                    <div class="pickup-options">
-                        <label>
-                            <input type="radio" name="pickup" value="training" required>
-                            Abholung beim Training
-                        </label>
-                        <label>
-                            <input type="radio" name="pickup" value="turnier" required>
-                            Abholung bei Turnier
-                        </label>
-                    
-                    </div>
+                    <fieldset>
+                        <legend>Abholung:</legend>
+                        <div class="pickup-options">
+                            <label>
+                                <input type="radio" name="pickup" value="training" required>
+                                Abholung beim Training
+                            </label>
+                            <label>
+                                <input type="radio" name="pickup" value="turnier" required>
+                                Abholung bei Turnier
+                            </label>
+                        </div>
+                    </fieldset>
                 </div>
         
                 <div class="form-group">
@@ -351,25 +342,10 @@
     </footer>
 
     <!-- Scripts -->
-  <script src="js/script.js" defer></script>
-<script src="js/nav.js" defer></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    fetch('nav.html')
-        .then(response => response.text())
-        .then(data => {
-            const nav = document.getElementById('nav-placeholder');
-            if (nav) {
-                nav.innerHTML = data;
-            }
-        })
-        .catch(error => {
-            // Optional: log or handle the error
-            console.error('Navigation could not be loaded:', error);
-        });
-</script>
-<script src=
-"js/merchandise.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/merchandise.js" defer></script>
 </body>
 
 </html>
