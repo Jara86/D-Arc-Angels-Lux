@@ -168,7 +168,14 @@
         fetch('nav.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
+                const nav = document.getElementById('nav-placeholder');
+                if (nav) {
+                    nav.innerHTML = data;
+                }
+            })
+            .catch(error => {
+                // Optional: log or handle the error
+                console.error('Navigation could not be loaded:', error);
             });
     </script>
     <script>
