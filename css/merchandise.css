@@ -229,12 +229,40 @@ img#main {
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-secondary:hover,
 .submit-btn:hover {
     background: #2c5464;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(24, 57, 71, 0.3);
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #183947, #2c5464);
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(24, 57, 71, 0.2);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #2c5464, #3a6b7a);
+    box-shadow: 0 6px 20px rgba(24, 57, 71, 0.4);
+}
+
+.submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-btn:disabled:hover {
+    background: #ccc;
+    transform: none;
+    box-shadow: none;
 }
 
 /* Media Queries */
@@ -330,6 +358,29 @@ img#main {
     background: #f8f9fa;
     border-radius: 8px;
     padding: 15px;
+}
+
+/* Instruction boxes */
+.order-instructions, 
+.submit-instructions {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty order list styling */
+#order-list p {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f0f0f0;
+    border-radius: 6px;
+    border: 2px dashed #ccc;
 }
 
 .order-item {
