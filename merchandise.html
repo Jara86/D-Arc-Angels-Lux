@@ -297,6 +297,9 @@
                 </div>
                 <div class="order-items">
                     <h3>Deine Bestellung</h3>
+                    <div class="order-instructions" style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #2196f3;">
+                        <p style="margin: 0; color: #1565c0;"><strong>📝 Wichtiger Hinweis:</strong> Bitte fügen Sie zuerst Artikel zu Ihrer Bestellung hinzu, bevor Sie das Formular absenden. Wählen Sie unten ein Produkt aus und klicken Sie auf "Artikel hinzufügen".</p>
+                    </div>
                     <div id="order-list"></div>
                     
                     <div class="add-item-form">
@@ -340,7 +343,14 @@
                 <input type="hidden" name="order_details">
         
         
-                <button type="submit" class="submit-btn">Bestellung absenden</button>
+                <div class="submit-section" style="text-align: center; margin-top: 2rem;">
+                    <div class="submit-instructions" style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #ffc107;">
+                        <p style="margin: 0; color: #856404;"><strong>✉️ Bestellung absenden:</strong> Stellen Sie sicher, dass alle Felder ausgefüllt und Artikel hinzugefügt wurden, bevor Sie auf "Bestellung absenden" klicken.</p>
+                    </div>
+                    <button type="submit" class="submit-btn" style="font-size: 1.1rem; padding: 15px 30px; min-width: 200px;">
+                        📦 Bestellung absenden
+                    </button>
+                </div>
                 
                 <!-- Fallback for users without JavaScript -->
                 <noscript>
