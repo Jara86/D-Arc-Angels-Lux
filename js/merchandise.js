@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log("Using jQuery AJAX for submission");
                 
                 $.ajax({
-                    url: "https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com",
+                    url: "https://formsubmit.co/ajax/merchdarcangels@gmail.com",
                     method: "POST",
                     data: formObject,
                     dataType: "json",
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // If jQuery is not available, try fetch API
                 console.log("jQuery not available, using fetch API");
                 
-                fetch('https://formsubmit.co/ajax/darcangelsletzebuerg@gmail.com', {
+                fetch('https://formsubmit.co/ajax/merchdarcangels@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
