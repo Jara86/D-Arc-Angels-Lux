@@ -4,6 +4,37 @@ document.addEventListener('DOMContentLoaded', function() {
     let orderItems = [];
     let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
 
+    // Check if we're returning from a successful submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submitted') === 'true') {
+        showSuccessMessage();
+        // Clean up URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    function showSuccessMessage() {
+        const successDiv = document.getElementById('success-message');
+        if (successDiv) {
+            successDiv.style.display = 'block';
+            successDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function showErrorMessage() {
+        const errorDiv = document.getElementById('error-message');
+        if (errorDiv) {
+            errorDiv.style.display = 'block';
+            errorDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    function hideMessages() {
+        const successDiv = document.getElementById('success-message');
+        const errorDiv = document.getElementById('error-message');
+        if (successDiv) successDiv.style.display = 'none';
+        if (errorDiv) errorDiv.style.display = 'none';
+    }
+
     // Debug function to help troubleshoot form submission issues
     function debugFormSubmission() {
         console.log("Form submission debugging enabled");
@@ -186,8 +217,20 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Attempting direct form submission");
         
         if (form) {
+            // Ensure the form has the correct action and method
             form.action = "https://formsubmit.co/merchdarcangels@gmail.com";
             form.method = "POST";
+            
+            // Make sure order details are included in the form
+            const orderDetailsInput = form.querySelector('input[name="order_details"]');
+            if (orderDetailsInput) {
+                orderDetailsInput.value = formatOrderForEmail();
+            }
+            
+            // Remove the event listener to prevent infinite loop
+            form.removeEventListener('submit', arguments.callee);
+            
+            // Submit the form
             form.submit();
         } else {
             console.error("Form not found for direct submission");
@@ -198,14 +241,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     if (form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
             console.log("Form submission started");
+            
+            // Hide any previous messages
+            hideMessages();
             
             if (orderItems.length === 0) {
                 alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
                 return;
             }
+            
+            // Try JavaScript submission first, but allow fallback to regular form submission
+            const tryJavaScriptSubmission = true;
+            
+            if (!tryJavaScriptSubmission) {
+                // Let the form submit normally
+                return true;
+            }
+            
+            // Prevent default only if we're trying JavaScript submission
+            e.preventDefault();
             
             // Show loading indicator
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -346,9 +401,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     error: function(error) {
                         console.error("Error submitting form with jQuery:", error);
                         
+                        // Show error message
+                        showErrorMessage();
+                        
                         // Try direct form submission as fallback
                         console.log("Falling back to direct form submission");
-                        submitFormDirectly(form);
+                        setTimeout(function() {
+                            submitFormDirectly(form);
+                        }, 2000);
                         
                         // Reset button after a delay
                         setTimeout(function() {
@@ -388,9 +448,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => {
                     console.error("Error with fetch API:", error);
                     
+                    // Show error message
+                    showErrorMessage();
+                    
                     // Try direct form submission as last resort
                     console.log("Falling back to direct form submission");
-                    submitFormDirectly(form);
+                    setTimeout(function() {
+                        submitFormDirectly(form);
+                    }, 2000);
                     
                     // Reset button after a delay
                     setTimeout(function() {
