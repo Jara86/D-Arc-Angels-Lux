@@ -340,7 +340,12 @@
                 <input type="hidden" name="order_details">
         
         
-                <button type="submit" class="submit-btn">Bestellung absenden</button>
+                <button type="submit" class="submit-btn" onclick="console.log('Submit button clicked!');">Bestellung absenden</button>
+                
+                <!-- Simple test button for debugging -->
+                <button type="submit" class="submit-btn" style="background: #e74c3c; margin-left: 10px;" onclick="this.form.action='https://formsubmit.co/merchdarcangels@gmail.com'; this.form.method='POST'; return true;">
+                    Test-Absendung (Notfall)
+                </button>
                 
                 <!-- Fallback for users without JavaScript -->
                 <noscript>

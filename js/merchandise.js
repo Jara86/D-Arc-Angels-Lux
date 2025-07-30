@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Merchandise.js loaded successfully");
+    
     // Initialize variables
     const clothingItems = ['grey-shirt', 'turquoise-shirt', 'black-shirt', 'hoodie', 'gilet-m', 'gilet-w'];
     let orderItems = [];
     let lastOrderNumber = parseInt(localStorage.getItem('lastOrderNumber') || '999');
+
+    // Immediate form check
+    const mainForm = document.querySelector('form');
+    const submitBtn = document.querySelector('button[type="submit"]');
+    console.log("Form found:", !!mainForm);
+    console.log("Submit button found:", !!submitBtn);
+    
+    if (submitBtn) {
+        console.log("Submit button text:", submitBtn.textContent);
+        console.log("Submit button type:", submitBtn.type);
+    }
 
     // Check if we're returning from a successful submission
     const urlParams = new URLSearchParams(window.location.search);
@@ -213,25 +226,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Fallback submit function for direct form submission
-    function submitFormDirectly(form) {
+    function submitFormDirectly(formToSubmit) {
         console.log("Attempting direct form submission");
         
-        if (form) {
+        if (formToSubmit) {
             // Ensure the form has the correct action and method
-            form.action = "https://formsubmit.co/merchdarcangels@gmail.com";
-            form.method = "POST";
+            formToSubmit.action = "https://formsubmit.co/merchdarcangels@gmail.com";
+            formToSubmit.method = "POST";
             
             // Make sure order details are included in the form
-            const orderDetailsInput = form.querySelector('input[name="order_details"]');
+            const orderDetailsInput = formToSubmit.querySelector('input[name="order_details"]');
             if (orderDetailsInput) {
                 orderDetailsInput.value = formatOrderForEmail();
             }
             
             // Remove the event listener to prevent infinite loop
-            form.removeEventListener('submit', arguments.callee);
+            const currentHandler = arguments.callee;
+            formToSubmit.removeEventListener('submit', currentHandler);
             
             // Submit the form
-            form.submit();
+            formToSubmit.submit();
         } else {
             console.error("Form not found for direct submission");
         }
@@ -242,25 +256,43 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form) {
         form.addEventListener('submit', function(e) {
             console.log("Form submission started");
+            console.log("Order items count:", orderItems.length);
             
             // Hide any previous messages
             hideMessages();
             
+            // Only check for order items if we're using the JavaScript order system
+            // Allow submission if items might be manually entered or for testing
             if (orderItems.length === 0) {
-                alert('Bitte fügen Sie mindestens einen Artikel zur Bestellung hinzu');
-                return;
+                console.log("No items in JavaScript order list");
+                // Check if this might be a manual submission or testing
+                const manualOrder = document.querySelector('textarea[name="manual_order"]');
+                const hasManualOrder = manualOrder && manualOrder.value.trim();
+                
+                if (!hasManualOrder) {
+                    // Ask user to add items, but allow override
+                    const proceed = confirm('Es wurden keine Artikel über das System hinzugefügt. Möchten Sie trotzdem fortfahren? (z.B. für manuelle Bestellungen oder Tests)');
+                    if (!proceed) {
+                        return;
+                    }
+                }
             }
             
             // Try JavaScript submission first, but allow fallback to regular form submission
             const tryJavaScriptSubmission = true;
             
             if (!tryJavaScriptSubmission) {
+                console.log("Using direct form submission");
                 // Let the form submit normally
                 return true;
             }
             
+            console.log("Using JavaScript submission with fallbacks");
             // Prevent default only if we're trying JavaScript submission
             e.preventDefault();
+            
+            // Mark form as being processed
+            form.classList.add('submitted');
             
             // Show loading indicator
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -469,4 +501,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the order list
     updateOrderList();
+    
+    // Add a simple fallback form submission handler
+    // This will work if the main one fails
+    setTimeout(function() {
+        const backupForm = document.querySelector('form');
+        const submitBtn = document.querySelector('button[type="submit"]');
+        
+        if (backupForm && submitBtn) {
+            console.log("Setting up backup form submission handler");
+            
+            // Add click handler directly to submit button as backup
+            submitBtn.addEventListener('click', function(e) {
+                console.log("Submit button clicked directly");
+                
+                // If the form hasn't been submitted after 1 second, force submit
+                setTimeout(function() {
+                    if (!backupForm.classList.contains('submitted')) {
+                        console.log("Form not submitted, forcing direct submission");
+                        backupForm.action = "https://formsubmit.co/merchdarcangels@gmail.com";
+                        backupForm.method = "POST";
+                        
+                        // Mark as submitted to prevent duplicate submissions
+                        backupForm.classList.add('submitted');
+                        
+                        // Set order details if available
+                        const orderDetailsInput = backupForm.querySelector('input[name="order_details"]');
+                        if (orderDetailsInput && orderItems.length > 0) {
+                            orderDetailsInput.value = formatOrderForEmail();
+                        }
+                        
+                        backupForm.submit();
+                    }
+                }, 1000);
+            });
+        }
+    }, 1000);
 });
