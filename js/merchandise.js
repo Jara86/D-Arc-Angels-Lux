@@ -377,11 +377,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             orderNumberInput.value = orderNumber;
             
-                        console.log("Form prepared for submission with order:", orderNumber);
+            console.log("Form prepared for submission with order:", orderNumber);
             
-            // Allow the form to submit naturally - don't prevent default
-            // FormSubmit.co will handle the submission
+            // IMPORTANT: Don't prevent default - let the form submit naturally
+            // The form will submit to FormSubmit.co automatically
             
+            // Reset button after a delay (in case of errors)
             setTimeout(function() {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
