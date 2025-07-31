@@ -1,40 +1,82 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+    <!-- Meta-Daten für SEO und Mobiloptimierung -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="D'Arc Angels Lëtzebuerg links page">
+    <meta name="description" content="Offizielles Merchandise der D'Arc Angels Lëtzebuerg - T-Shirts, Hoodies und mehr">
+    <meta name="keywords" content="D'Arc Angels, Merchandise, T-Shirt, Hoodie, Bogenschießen, Luxemburg, Team">
+    <meta name="author" content="Jarouschka Buis">
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
-          crossorigin="anonymous">
+    <!-- OpenGraph Tags für Social Media -->
+    <meta property="og:title" content="Merchandise - D'Arc Angels Lëtzebuerg">
+    <meta property="og:description" content="Entdecke die exklusive Kollektion der D'Arc Angels Lëtzebuerg. T-Shirts, Hoodies und Accessoires erhältlich.">
+    <meta property="og:image" content="images/logo-darc-angels.avif">
+    <meta property="og:url" content="https://www.darcangels.com">
+    <meta property="og:type" content="website">
+    
+    <title>Merchandise - D'Arc Angels Lëtzebuerg</title>
+    
+    <!-- Bootstrap & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <!-- Critical CSS for above-the-fold content -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/merchandise.css">
+    
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="preload" href="css/footer.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/merchandise.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/merchandise.css">
+    </noscript>
 
-    <title>Merchandise - D'Arc Angels Lëtzebuerg</title>
 </head>
+
 <body>
+  <div id="nav-placeholder"></div>
+
     <div class="hero">
         <img src="images/logo-darc angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
         <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
-
-    <div id="nav-placeholder"></div>
-
     <main class="content-container">
+
+        <!-- Merchandise Section Title -->
         <h1>D'Arc Angels Lëtzebuerg Merchandise</h1>
 
-        <img src="images/hoodie_front.avif" id="main" alt="D'Arc Angels Lëtzebuerg Merchandise" width="800" height="400">
+        <!-- Hauptbild des Merchandise -->
+        <img src="images/merchandise/MK208922.jpg"  id="main" alt="D'Arc Angels Lëtzebuerg Merchandise" width="800" height="400">
+        <section class="gallery-section">
+  <h2 class="text-center mt-5">Merchandise Galerie</h2>
+  <div class="gallery">
+    <img src="images/merchandise/MK208694.jpg" alt="Merch Item 1">
+    <img src="images/merchandise/MK208697.jpg" alt="Merch Item 2">
+    <img src="images/merchandise/MK208705.jpg" alt="Merch Item 3">
+    <img src="images/merchandise/MK208746.jpg" alt="Merch Item 4">
+    <img src="images/merchandise/MK208789.jpg" alt="Merch Item 5">
+    <img src="images/merchandise/MK208794.jpg" alt="Merch Item 6">
+    <img src="images/merchandise/MK208834.jpg" alt="Merch Item 7">
+    <img src="images/merchandise/MK208852.jpg" alt="Merch Item 8">
+    <img src="images/merchandise/MK208858.jpg" alt="Merch Item 9">
+    <img src="images/merchandise/MK208869.jpg" alt="Merch Item 10">
+    <img src="images/merchandise/MK208922.jpg" alt="Merch Item 11">
+    <img src="images/merchandise/MK208932.jpg" alt="Merch Item 12">
+  </div>
 
+
+        <!-- Produktkategorien -->
         <section class="products">
-            <!-- Ladies Collection -->
-            <div class="product-category ">
-                <h2 class="category-title">Ladies Collection</h2>
+
+            <!-- Damenkollektion -->
+            <div class="product-category">
+                <div class="category-title">
+                    <h2></h2>
+                </div>
                 
                 <div class="product-card">
                     <h3>T-Shirt - Türkis</h3>
@@ -42,335 +84,301 @@
                         <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
                         <img src="images/turquoise-shirt_front.avif" alt="Türkises T-Shirt mit Logo" width="300" height="200">
                         <img src="images/turquoise-shirt_back.avif" alt="Türkises T-Shirt mit Logo" width="300" height="200">
-                        <div class="pricing">
-                            <p>Member: €</p>
-                            <p>Non-Member: €</p>
-                        </div>
-                        <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL</p>
-                        </div>
-                        <div class="order-code">
-                            <p>Bestellcode: TURQUOISE + "anzahl" + "ihre größe"</p>
-                        </div>
+                       
+                     
                     </div>
                 </div>
-            </div>
 
-            <div class="product-card">
-                <h3>T-shirt - Dunkel grau</h3>
-                <div class="product-details">
-                    <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
-                    
-                    <img src="images/grey-shirt.avif" alt="Dunkelgraues T-Shirt mit Logo" width="300" height="200">
-                    <div class="pricing">
-                        <p>Member: €</p>
-                        <p>Non-Member: 25€</p>
-                    </div>
-                    <div class="sizes">
-                        <p>Größen: XS, S, M, L, XL</p>
-                    </div>
-                    <div class="order-code">
-                        <p>Bestellcode: GREY + "anzahl" + "ihre größe" </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-      
-        <div class="product-category">
-            <h2 class="category-title">Team Lëtzebuerg Collection</h2>
-            
-            <div class="product-card ">
-                <h3>Polo Shirt - Türkis</h3>
-                <div class="product-details">
-                    <p class="exclusive-tag">Exklusiv fir Turnéier-Reider</p>
-                    <img src="images/Polo Shirt turquaois back1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
-                    
-                   
-                    <img src="images/Polo Shirt turquaois front1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
-                    <div class="sizes">
-                        <p>Größen: XS, S, M, L, XL</p>
-                    </div>
-                    <p class="price-inquiry">Präiss auf Anfrage</p>
-                </div>
-            </div>
-        </div>
-        
-        
-            <!-- Men's Collection -->
-            <div class="product-category">
-                <h2 class="category-title">Men's Collection</h2>
-                
                 <div class="product-card">
-                    <h3>T-shirt - Schwarz</h3>
+                    <h3>T-shirt - Dunkel grau</h3>
                     <div class="product-details">
                         <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
-                        <img src="images/black-shirt_front.avif" alt="Schwarzes T-Shirt mit Logo" width="300" height="200">
-                        <img src="images/black-shirt_back.avif" alt="Schwarzes T-Shirt mit Logo" width="300" height="200">
-                        <div class="pricing">
-                            <p>Member: €</p>
-                            <p>Non-Member: €</p>
-                        </div>
+                        <img src="images/grey-shirt.avif" alt="Dunkelgraues T-Shirt mit Logo" width="300" height="200">
+                      
+                     
+                    
+                    </div>
+                </div>
+
+            
+            
+                <div class="product-card">
+                    <h3>T-shirt -Kinder</h3>
+                    <div class="product-details">
+                        <p class="description">T-Shirt mit dem Logo von den d'Arc Angels Lëtzebuerg</p>
+                         <img src="images/merchandise/MK208694.jpg" alt="Merch Item 1" width="300" height="200">
+                      
+                       
+                    
+                    </div>
+                </div>
+                    
+
+            <!-- Team Lëtzebuerg Collection -->
+            <div class="product-category">
+                <div class="category-title">
+                     
+                  
+                </div>
+                
+                <div class="product-card">
+                    <h3> Team Lëtzebuerg Collection</h3>
+                    <div class="product-details">
+                        <p class="exclusive-tag">Exklusiv fir Turnéier-Reider</p>
+                        <img src="images/Polo Shirt turquaois back1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
+                        <img src="images/Polo Shirt turquaois front1_tournaments.avif" alt="Türkises Polo Shirt mit Logo" width="300" height="200">
                         <div class="sizes">
-                            <p>Größen: XS, S, M, L, XL, XXL</p>
+                          
                         </div>
-                        <div class="order-code">
-                            <p>Bestellcode: BLACK + "anzahl" + "ihre größe"</p>
-                        </div>
-                    </div>
+                      
                 </div>
             </div>
-        
 
-               
-            
-            
-              
-            
-            
-                 <!-- Unisex Collection -->
-    <div class="product-category ">
-        <h2 >Unisex Collection</h2>
-        
-            <div class="product-card">
-        <div class="product-card">
-            <h3>Hoodie</h3>
-            <div class="product-details">
-                <p class="description">Blauer Hoodie mit Logo und Vorname</p>
-                <img src="images/hoodie_front.avif" alt="Blauer Hoodie mit Logo" width="300" height="200">
-                <img src="images/hoodie_back.avif" alt="Blauer Hoodie mit Logo" width="300" height="200">
-                <div class="pricing">
-                    <p>Member: €</p>
-                    <p>Non-Member: €</p>
-                </div>
-                <div class="sizes">
-                    <p>Größen: XS, S, M, L, XL</p>
-                </div>
-                <div class="order-code">
-                    <p>Bestellcode: HOODIE + "anzahl" + "ihre größe"</p>
-                </div>
-            </div>
-        </div>
-        </div>
-</div>
-        <div class="product-card">
-            <h3>Fleece Gilet</h3>
-            <div class="product-details">
-                <p class="description">Schwarzen Gilet aus Fleece mit Logo und Vorname</p>
-                <img src="images/gilet_unisex_back.avif" alt="Schwarzes Gilet mit Logo" width="300" height="200">
-                <div class="pricing">
-                    <p>Member: €</p>
-                    <p>Non-Member: €</p>
-                </div>
-                <div class="sizes">
-                    <p>Größen: XS, S, M, L, XL, XXL</p>
-                </div>
-                <div class="order-codes">
-                    <p>Herren: Gilet M + "anzahl" + "ihre größe"</p>
-                    <p>Damen: Gilet W + "anzahl" + "ihre größe"</p>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-</section>
-<section class = "accessories-section">
-            <div class="accessories">
-    <h3>Weiteres Merchandise</h3>
-    <div class="accessories-grid">
-        <div class="accessory-item">
-            <h4>Tassen</h4>
-            <img src="images/cup.avif" id= cup alt="Tasse mit Logo" width="200" height="200">
-            <p class="price">€</p>
-        </div>
-        <div class="accessory-item">
-            <h4>Runde Sticker</h4>
-            <img src="images/sticker.avif" id=sticker alt="Runder Sticker mit Logo" width="200" height="200">
-            <p class="price">ab €</p>
-        </div>
-        <div class="accessory-item">
-            <h4>Bic'er</h4>
-            <img src="images/pen.avif" id=pen alt="Kugelschreiber mit Logo" width="200" height="200">
-            <p class="price">€</p>
-        </div>
-    </div>
-</div>
-</div>
-</section>
-<section class="order-section">
-    <h3>Bestellformular</h3>
-    <form name="merchandise-order" class="order-form" method="POST" action="https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45">
-     
-        <input type="hidden" name="_subject" value="New Merchandise Bestellung 🛒">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_cc" value="">
           
-        <input type="text" name="_honey" style="display:none">
-        <!-- Disable captcha -->
-        <input type="hidden" name="_captcha" value="false">
-        <!-- Add success page redirect -->
-        <input type="hidden" name="_next" value="https://your-website.com/thanks.html">
-        
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
+                       
+                
 
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="Handynummer">Handynummer:</label>
-            <input type="tel" id="Handynummer" name="Handynummer" placeholder="+352 123 4567890" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
-           
-        </div>
-
-        <div class="form-group address-group">
-            <label>Adresse:</label>
-            
-            <div class="address-fields">
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="street">Straße:</label>
-                        <input type="text" id="street" name="street" required placeholder="z.B. Musterstraße">
-                    </div>
+            <!-- Unisex Collection -->
+            <div class="product-category">
+                <div class="category-title">
+                 
+                </div>
+                <div class="product-card">
+                    <h3>Hoodie</h3>
+                    <div class="product-details">
+                        <p class="description">Blauer Hoodie mit Logo und Vorname</p>
+                        <img src="images/hoodie_front.avif" alt="Blauer Hoodie mit Logo" width="300" height="200">
+                        <img src="images/hoodie_back.avif" alt="Blauer Hoodie mit Logo" width="300" height="200">
+                       
+                        <div class="sizes">
+                        
+                        </div>
                     
-                    <div class="form-field">
-                        <label for="house_number">Hausnummer:</label>
-                        <input type="text" id="house_number" name="house_number" required placeholder="z.B. 12">
                     </div>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="zip_code">Postleitzahl:</label>
-                        <input type="text" id="zip_code" name="zip_code" required placeholder="z.B. 12345">
-                    </div>
-                    
-                    <div class="form-field">
-                        <label for="city">Ort:</label>
-                        <input type="text" id="city" name="city" required placeholder="z.B. Musterstadt">
-                    </div>
-                </div>
-                
-                <div class="form-field">
-                    <label for="country">Land:</label>
-                    <select id="country" name="country" required>
-                        <option value="">Bitte wählen</option>
-                        <option value="Luxembourg">Luxemburg</option>
-                        <option value="Germany">Deutschland</option>
-                        <option value="Belgium">Belgien</option>
-                        <option value="France">Frankreich</option>
-                        <option value="Netherlands">Niederlande</option>
-                        <option value="other">Anderes Land</option>
-                    </select>
-                </div>
-                
-                <div class="form-field" id="other_country_field" style="display: none;">
-                    <label for="other_country">Anderes Land:</label>
-                    <input type="text" id="other_country" name="other_country" placeholder="Bitte Land eingeben">
+
+                <div class="product-card">
+                    <h3>Fleece Gilet</h3>
+                    <div class="product-details">
+                        <p class="description">Schwarzen Gilet aus Fleece mit Logo und Vorname</p>
+                        <img src="images/gilet_unisex_back.avif" alt="Schwarzes Gilet mit Logo" width="300" height="200">
+                        
+         
                 </div>
             </div>
-        </div>
-        
-        <div class="form-group">
-            <label>Abholung:</label>
-            <div class="pickup-options">
-                <label>
-                    <input type="radio" name="pickup" value="training" required>
-                    Abholung beim Training
-                </label>
-                <label>
-                    <input type="radio" name="pickup" value="turnier" required>
-                    Abholung bei Turnier
-                </label>
-                <label>
-                    <input type="radio" name="pickup" value="delivery" required>
-                    Lieferung an Adresse
-                </label>
+        </section>
+
+        <!-- Zubehör -->
+        <section class="accessories-section">
+            <h3>Weiteres Merchandise</h3>
+            <div class="accessories-grid">
+                <div class="accessory-item">
+                    <h4>Tassen</h4>
+                    <img src="images/cup.avif" alt="Tasse mit Logo" width="200" height="200">
+                   
+                </div>
+                <div class="accessory-item">
+                    <h4>Runde Sticker</h4>
+                    <img src="images/sticker.avif" alt="Runder Sticker mit Logo" width="200" height="200">
+                   
+                </div>
+                <div class="accessory-item">
+                    <h4>Bic'er</h4>
+                    <img src="images/pen.avif" alt="Kugelschreiber mit Logo" width="200" height="200">
+                   
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <label for="member">Mitgliedschaft:</label>
-            <select id="member" name="member" required>
-                <option value="member">Member</option>
-                <option value="non-member">Non-Member</option>
-            </select>
-        </div>
-
-        <div class="order-items">
-            <h3>Deine Bestellung</h3>
-            <div id="order-list"></div>
-            
-            <div class="add-item-form">
-                <div class="form-group">
-                    <label for="product">Produkt:</label>
-                    <select id="product" name="product">
-                        <option value="">Bitte wählen</option>
-                        <option value="grey-shirt">T-shirt - Dunkel grau</option>
-                        <option value="turquoise-shirt">T-Shirt - Türkis</option>
-                        <option value="black-shirt">T-shirt - Schwarz</option>
-                        <option value="hoodie">Hoodie</option>
-                        <option value="gilet-m">Fleece Gilet Herren</option>
-                        <option value="gilet-w">Fleece Gilet Damen</option>
-                        <option value="cup">Tassen</option>
-                        <option value="sticker">Runde Sticker</option>
-                        <option value="pen">Bic'er</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="size-group">
-                    <label for="size">Größe:</label>
-                    <select id="size" name="size">
-                        <option value="">Bitte wählen</option>
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Anzahl:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-                </div>
-
-                <button type="button" id="add-item" class="btn-secondary">Artikel hinzufügen</button>
-            </div>
-        </div>
-        <input type="hidden" name="order_details">
-
-
-        <button type="submit" class="submit-btn">Bestellung absenden</button>
-    </form> 
-    
+        </section>
 </section>
-</main>
+        <!-- Bestellformular -->
+        <section class="order-section">
+            <h3>Bestellformular</h3>
+            
+            <!-- Success message display -->
+            <div id="success-message" style="display: none; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <h4>✅ Bestellung erfolgreich übermittelt!</h4>
+                <p>Vielen Dank für Ihre Bestellung. Sie erhalten in Kürze eine Bestätigungs-E-Mail.</p>
+            </div>
+            
+            <!-- Error message display -->
+            <div id="error-message" style="display: none; background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <h4>❌ Fehler beim Senden</h4>
+                <p>Es gab ein Problem beim Übermitteln Ihrer Bestellung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.</p>
+            </div>
+            
+            <form name="merchandise-order" class="order-form" method="POST" action="https://formsubmit.co/el/merchdarcangels@gmail.com">
+                <input type="hidden" name="_subject" value="Neue Merchandise Bestellung 🛒">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_cc" value="">
+                <input type="hidden" name="_next" value="https://darcangels.com/merchandise.html?submitted=true">
+                <input type="hidden" name="_captcha" value="false">
 
-<hr class="footer-line">
-<footer class="footer">
-  <p class="footer-text">
-      Code and design by 
-      <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-  </p>
-  <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-  <a href="https://darc-angels-letzebuerg.netlify.app/impressum" class="footer-link">Impressum</a>
-</footer>
+                <!-- Benutzerinformationen -->
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
 
-    <script src="js/merchandise.js"></script>
-    <script src="js/script.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
-    </script>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="Handynummer">Handynummer:</label>
+                    <input type="tel" id="Handynummer" name="Handynummer" placeholder="+352 123 4567890" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
+                </div>
+
+                <!-- Adresse -->
+                <div class="form-group address-group">
+                    <fieldset>
+                        <legend>Adresse:</legend>
+                    <div class="address-fields">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="street">Straße:</label>
+                                <input type="text" id="street" name="street" required placeholder="z.B. Musterstraße">
+                            </div>
+                            <div class="form-field">
+                                <label for="house_number">Hausnummer:</label>
+                                <input type="text" id="house_number" name="house_number" required placeholder="z.B. 12">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="zip_code">Postleitzahl:</label>
+                                <input type="text" id="zip_code" name="zip_code" required placeholder="z.B. 12345">
+                            </div>
+                            <div class="form-field">
+                                <label for="city">Ort:</label>
+                                <input type="text" id="city" name="city" required placeholder="z.B. Musterstadt">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="country">Land:</label>
+                            <select id="country" name="country" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="Luxembourg">Luxemburg</option>
+                                <option value="Germany">Deutschland</option>
+                                <option value="Belgium">Belgien</option>
+                                <option value="France">Frankreich</option>
+                                <option value="Netherlands">Niederlande</option>
+                                <option value="other">Anderes Land</option>
+                            </select>
+                        </div>
+                        <div class="form-field" id="other_country_field" style="display: none;">
+                            <label for="other_country">Anderes Land:</label>
+                            <input type="text" id="other_country" name="other_country" placeholder="Land eingeben">
+                        </div>
+                    </div>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    <fieldset>
+                        <legend>Abholung:</legend>
+                        <div class="pickup-options">
+                            <label>
+                                <input type="radio" name="pickup" value="training" required>
+                                Abholung beim Training
+                            </label>
+                            <label>
+                                <input type="radio" name="pickup" value="turnier" required>
+                                Abholung bei Turnier
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+        
+                <div class="form-group">
+                    <label for="member">Mitgliedschaft:</label>
+                    <select id="member" name="member" required>
+                        <option value="member">Member</option>
+                        <option value="non-member">Non-Member</option>
+                    </select>
+                </div>
+                <div class="order-items">
+                    <h3>Deine Bestellung</h3>
+    
+                    <div id="order-list"></div>
+                    
+                    <div class="add-item-form">
+                        <div class="form-group">
+                            <label for="product">Produkt:</label>
+                            <select id="product" name="product">
+                                <option value="">Bitte wählen</option>
+                                <option value="grey-shirt">T-shirt - Dunkel grau</option>
+                                <option value="turquoise-shirt">T-Shirt - Türkis</option>
+                                <option value="black-shirt">T-shirt - Schwarz</option>
+                                <option value="hoodie">Hoodie</option>
+                                <option value="gilet-m">Fleece Gilet Herren</option>
+                                <option value="gilet-w">Fleece Gilet Damen</option>
+                                <option value="cup">Tassen</option>
+                                <option value="sticker">Runde Sticker</option>
+                                <option value="pen">Bic'er</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group" id="size-group">
+                            <label for="size">Größe:</label>
+                            <select id="size" name="size">
+                                <option value="">Bitte wählen</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group">
+                            <label for="quantity">Anzahl:</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                        </div>
+        
+                        <button type="button" id="add-item" class="btn-secondary">Artikel hinzufügen</button>
+                    </div>
+                </div>
+                <input type="hidden" name="order_details">
+        
+        
+                <div class="submit-section" style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="submit-btn" style="font-size: 1.1rem; padding: 15px 30px; min-width: 200px;">
+                        📦 Bestellung absenden
+                    </button>
+                </div>
+                
+                <!-- Fallback for users without JavaScript -->
+                <noscript>
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                        <p><strong>Hinweis:</strong> Da JavaScript deaktiviert ist, werden Ihre Artikel-Auswahl nicht automatisch übertragen. Bitte geben Sie Ihre gewünschten Artikel im folgenden Textfeld an:</p>
+                        <textarea name="manual_order" placeholder="Bitte geben Sie hier Ihre gewünschten Artikel an (z.B. 'T-Shirt Türkis Größe M - 2x, Hoodie Größe L - 1x')" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                    </div>
+                </noscript>
+            </form> 
+            
+        </section>
+        </main>
+
+   <hr class="footer-line">
+    <footer class="footer">
+        <p class="footer-text">
+            Code and design by 
+            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
+        </p>
+        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+        <a href="https://darcangels.com/impressum" class="footer-link">Impressum</a>
+    </footer>
+
+    <!-- Scripts -->
+   
+   <!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/merchandise.js"></script>
 </body>
 </html>
