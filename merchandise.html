@@ -192,175 +192,105 @@
 </section>
         <!-- Bestellformular -->
         <section class="order-section">
-            <h3>Bestellformular</h3>
-            
-            <!-- Success message display -->
-            <div id="success-message" style="display: none; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                <h4>✅ Bestellung erfolgreich übermittelt!</h4>
-                <p>Vielen Dank für Ihre Bestellung. Sie erhalten in Kürze eine Bestätigungs-E-Mail.</p>
-            </div>
-            
-            <!-- Error message display -->
-            <div id="error-message" style="display: none; background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                <h4>❌ Fehler beim Senden</h4>
-                <p>Es gab ein Problem beim Übermitteln Ihrer Bestellung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.</p>
-            </div>
-            
-            <form name="merchandise-order" class="order-form" method="POST" action="https://formsubmit.co/ded7da31f6eeb61c8b12b2647308c36b">
-                <input type="hidden" name="_subject" value="Neue Merchandise Bestellung 🛒">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_cc" value="">
-                <input type="hidden" name="_next" value="https://darcangels.com/merchandise.html?submitted=true">
-                <input type="hidden" name="_captcha" value="false">
+  <h3>Bestellformular</h3>
+  <form id="multi-item-form" method="POST" action="https://formsubmit.co/ded7da31f6eeb61c8b12b2647308c36b">
+    <input type="hidden" name="_subject" value="Neue Merchandise Bestellung 🛒">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://darcangels.com/merchandise.html?submitted=true">
 
-                <!-- Benutzerinformationen -->
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
+    <div class="form-group">
+      <label for="lastname">Nachname:</label>
+      <input type="text" id="lastname" name="lastname" required>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Vorname:</label>
+      <input type="text" id="firstname" name="firstname" required>
+    </div>
+    <div class="form-group">
+      <label for="street">Straße:</label>
+      <input type="text" id="street" name="street" required>
+    </div>
+    <div class="form-group">
+      <label for="house_number">Hausnummer:</label>
+      <input type="text" id="house_number" name="house_number" required>
+    </div>
+    <div class="form-group">
+      <label for="zip_code">PLZ:</label>
+      <input type="text" id="zip_code" name="zip_code" required>
+    </div>
+    <div class="form-group">
+      <label for="city">Ort:</label>
+      <input type="text" id="city" name="city" required>
+    </div>
+    <div class="form-group">
+      <label for="country">Land:</label>
+      <select id="country" name="country" required>
+        <option value="">Bitte wählen</option>
+        <option value="Luxemburg">Luxemburg</option>
+        <option value="Deutschland">Deutschland</option>
+        <option value="Belgien">Belgien</option>
+        <option value="Frankreich">Frankreich</option>
+        <option value="Niederlande">Niederlande</option>
+        <option value="other">Anderes Land</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
 
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+    <div id="items-container" class="form-group"></div>
 
-                <div class="form-group">
-                    <label for="Handynummer">Handynummer:</label>
-                    <input type="tel" id="Handynummer" name="Handynummer" placeholder="+352 123 4567890" required minlength="6" maxlength="50" pattern="^\+?[0-9 ]{6,50}$">
-                </div>
+    <div class="form-group">
+      <label for="notes">Notizen (z.B. Name auf dem Produkt, besondere Wünsche):</label>
+      <textarea id="notes" name="notes" rows="2" placeholder="z.B. Bitte Name 'Anna' auf Hoodie sticken"></textarea>
+    </div>
 
-                <!-- Adresse -->
-                <div class="form-group address-group">
-                    <fieldset>
-                        <legend>Adresse:</legend>
-                    <div class="address-fields">
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="street">Straße:</label>
-                                <input type="text" id="street" name="street" required placeholder="z.B. Musterstraße">
-                            </div>
-                            <div class="form-field">
-                                <label for="house_number">Hausnummer:</label>
-                                <input type="text" id="house_number" name="house_number" required placeholder="z.B. 12">
-                            </div>
-                        </div>
+    <div class="form-group">
+      <button type="button" id="add-item-btn">Artikel hinzufügen</button>
+    </div>
+    <div class="form-group">
+      <button type="submit">Bestellung absenden</button>
+    </div>
+  </form>
+</section>
+<script>
+function createItemRow() {
+  const div = document.createElement('div');
+  div.className = 'item-row';
+  div.innerHTML = `
+    <label>Produkt:
+      <select name="product[]" required>
+        <option value="">Bitte wählen</option>
+        <option value="grey-shirt">T-shirt - Dunkel grau</option>
+        <option value="turquoise-shirt">T-Shirt - Türkis</option>
+        <option value="hoodie">Hoodie</option>
+        <option value="cup">Tassen</option>
+        <option value="sticker">Runde Sticker</option>
+        <option value="pen">Bic'er</option>
+      </select>
+    </label>
+    <label>Größe:
+      <input type="text" name="size[]" placeholder="optional">
+    </label>
+    <label>Anzahl:
+      <input type="number" name="quantity[]" min="1" max="10" value="1" required>
+    </label>
+    <button type="button" onclick="this.parentElement.remove()">Entfernen</button>
+    <br>
+  `;
+  return div;
+}
 
-                        <div class="form-row">
-                            <div class="form-field">
-                                <label for="zip_code">Postleitzahl:</label>
-                                <input type="text" id="zip_code" name="zip_code" required placeholder="z.B. 12345">
-                            </div>
-                            <div class="form-field">
-                                <label for="city">Ort:</label>
-                                <input type="text" id="city" name="city" required placeholder="z.B. Musterstadt">
-                            </div>
-                        </div>
-
-                        <div class="form-field">
-                            <label for="country">Land:</label>
-                            <select id="country" name="country" required>
-                                <option value="">Bitte wählen</option>
-                                <option value="Luxembourg">Luxemburg</option>
-                                <option value="Germany">Deutschland</option>
-                                <option value="Belgium">Belgien</option>
-                                <option value="France">Frankreich</option>
-                                <option value="Netherlands">Niederlande</option>
-                                <option value="other">Anderes Land</option>
-                            </select>
-                        </div>
-                        <div class="form-field" id="other_country_field" style="display: none;">
-                            <label for="other_country">Anderes Land:</label>
-                            <input type="text" id="other_country" name="other_country" placeholder="Land eingeben">
-                        </div>
-                    </div>
-                    </fieldset>
-                </div>
-
-                <div class="form-group">
-                    <fieldset>
-                        <legend>Abholung:</legend>
-                        <div class="pickup-options">
-                            <label>
-                                <input type="radio" name="pickup" value="training" required>
-                                Abholung beim Training
-                            </label>
-                            <label>
-                                <input type="radio" name="pickup" value="turnier" required>
-                                Abholung bei Turnier
-                            </label>
-                        </div>
-                    </fieldset>
-                </div>
-        
-                <div class="form-group">
-                    <label for="member">Mitgliedschaft:</label>
-                    <select id="member" name="member" required>
-                        <option value="member">Member</option>
-                        <option value="non-member">Non-Member</option>
-                    </select>
-                </div>
-                <div class="order-items">
-                    <h3>Deine Bestellung</h3>
-    
-                    <div id="order-list"></div>
-                    
-                    <div class="add-item-form">
-                        <div class="form-group">
-                            <label for="product">Produkt:</label>
-                            <select id="product" name="product">
-                                <option value="">Bitte wählen</option>
-                                <option value="grey-shirt">T-shirt - Dunkel grau</option>
-                                <option value="turquoise-shirt">T-Shirt - Türkis</option>
-                                <option value="black-shirt">T-shirt - Schwarz</option>
-                                <option value="hoodie">Hoodie</option>
-                                <option value="gilet-m">Fleece Gilet Herren</option>
-                                <option value="gilet-w">Fleece Gilet Damen</option>
-                                <option value="cup">Tassen</option>
-                                <option value="sticker">Runde Sticker</option>
-                                <option value="pen">Bic'er</option>
-                            </select>
-                        </div>
-        
-                        <div class="form-group" id="size-group">
-                            <label for="size">Größe:</label>
-                            <select id="size" name="size">
-                                <option value="">Bitte wählen</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
-                            </select>
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="quantity">Anzahl:</label>
-                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
-                        </div>
-        
-                        <button type="button" id="add-item" class="btn-secondary">Artikel hinzufügen</button>
-                    </div>
-                </div>
-                <input type="hidden" name="order_details">
-        
-        
-                <div class="submit-section" style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="submit-btn" style="font-size: 1.1rem; padding: 15px 30px; min-width: 200px;">
-                        📦 Bestellung absenden
-                    </button>
-                </div>
-                
-                <!-- Fallback for users without JavaScript -->
-                <noscript>
-                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
-                        <p><strong>Hinweis:</strong> Da JavaScript deaktiviert ist, werden Ihre Artikel-Auswahl nicht automatisch übertragen. Bitte geben Sie Ihre gewünschten Artikel im folgenden Textfeld an:</p>
-                        <textarea name="manual_order" placeholder="Bitte geben Sie hier Ihre gewünschten Artikel an (z.B. 'T-Shirt Türkis Größe M - 2x, Hoodie Größe L - 1x')" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
-                    </div>
-                </noscript>
-            </form> 
-            
-        </section>
+document.getElementById('add-item-btn').onclick = function() {
+  document.getElementById('items-container').appendChild(createItemRow());
+};
+// Add the first row by default
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('items-container').appendChild(createItemRow());
+});
+</script>
         </main>
 
    <hr class="footer-line">

@@ -188,7 +188,9 @@ img#main {
 .order-form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem; /* was 2rem */
+    max-width: 500px; /* was 800px */
+    padding: 1.2rem;  /* was 2rem */
 }
 
 .form-group {
@@ -200,16 +202,16 @@ img#main {
 .form-group label {
     font-weight: 600;
     color: #183947;
-    font-size: 0.95rem;
+    font-size: 0.92rem; /* slightly smaller */
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    padding: 12px;
+    padding: 8px;      /* was 12px */
     border: 2px solid #e1e5e8;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.97rem; /* was 1rem */
     transition: border-color 0.3s ease;
 }
 
