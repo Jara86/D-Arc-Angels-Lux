@@ -105,15 +105,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productSelect) {
         productSelect.addEventListener('change', function() {
             const sizeGroup = document.getElementById('size-group');
+            const size = document.getElementById('size');
             const selectedProduct = this.value;
             
             if (clothingItems.includes(selectedProduct)) {
                 sizeGroup.style.display = 'block';
-                document.getElementById('size').required = true;
+                size.required = true;
+                size.disabled = false;
             } else {
                 sizeGroup.style.display = 'none';
-                document.getElementById('size').required = false;
-                document.getElementById('size').value = '';
+                size.required = false;
+                size.disabled = true;
+                size.value = '';
             }
         });
     }
