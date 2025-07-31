@@ -271,9 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             console.log("Form submission started");
             
-            // Hide any previous messages
-            hideMessages();
-            
             // Validate form before proceeding
             if (!validateForm()) {
                 e.preventDefault();
@@ -286,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
             
-            // Get customer email for CC
+            // Prepare form data
             const customerEmail = document.getElementById('email').value;
             
             // Update CC field
@@ -298,43 +295,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.appendChild(ccField);
             }
             ccField.value = customerEmail;
-            
-            // Add replyto field
-            let replyToField = document.querySelector('input[name="_replyto"]');
-            if (!replyToField) {
-                replyToField = document.createElement('input');
-                replyToField.type = 'hidden';
-                replyToField.name = '_replyto';
-                this.appendChild(replyToField);
-            }
-            replyToField.value = customerEmail;
-            
-            // Format address
-            const street = document.getElementById('street').value;
-            const houseNumber = document.getElementById('house_number').value;
-            const zipCode = document.getElementById('zip_code').value;
-            const city = document.getElementById('city').value;
-            const countrySelect = document.getElementById('country');
-            let country = countrySelect.value;
-            
-            if (country === 'other') {
-                const otherCountryInput = document.getElementById('other_country');
-                country = otherCountryInput ? otherCountryInput.value : 'Unknown';
-            } else {
-                country = countrySelect.options[countrySelect.selectedIndex].text;
-            }
-            
-            const formattedAddress = `${street} ${houseNumber}, ${zipCode} ${city}, ${country}`;
-            
-            // Add formatted address field
-            let addressField = document.querySelector('input[name="formatted_address"]');
-            if (!addressField) {
-                addressField = document.createElement('input');
-                addressField.type = 'hidden';
-                addressField.name = 'formatted_address';
-                this.appendChild(addressField);
-            }
-            addressField.value = formattedAddress;
             
             // Generate order details
             const orderNumber = generateOrderNumber();
@@ -357,30 +317,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             orderInput.value = orderDetails;
             
-            // Update subject field
-            let subjectInput = document.querySelector('input[name="_subject"]');
-            if (!subjectInput) {
-                subjectInput = document.createElement('input');
-                subjectInput.type = 'hidden';
-                subjectInput.name = '_subject';
-                this.appendChild(subjectInput);
-            }
-            subjectInput.value = `Merchandise Bestellung: ${orderNumber}`;
-            
-            // Add order number field
-            let orderNumberInput = document.querySelector('input[name="order_number"]');
-            if (!orderNumberInput) {
-                orderNumberInput = document.createElement('input');
-                orderNumberInput.type = 'hidden';
-                orderNumberInput.name = 'order_number';
-                this.appendChild(orderNumberInput);
-            }
-            orderNumberInput.value = orderNumber;
-            
             console.log("Form prepared for submission with order:", orderNumber);
             
-            // IMPORTANT: Don't prevent default - let the form submit naturally
-            // The form will submit to FormSubmit.co automatically
+            // Let the form submit naturally - don't prevent default
+            // FormSubmit.co will handle the submission
             
             // Reset button after a delay (in case of errors)
             setTimeout(function() {
