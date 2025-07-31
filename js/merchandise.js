@@ -271,11 +271,11 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             console.log("Form submission started");
             
-            // Validate form before proceeding
-            if (!validateForm()) {
-                e.preventDefault();
-                return false;
-            }
+            // TEMPORARILY DISABLE VALIDATION FOR TESTING
+            // if (!validateForm()) {
+            //     e.preventDefault();
+            //     return false;
+            // }
             
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
@@ -283,41 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Senden...';
             
-            // Prepare form data
-            const customerEmail = document.getElementById('email').value;
-            
-            // Update CC field
-            let ccField = document.querySelector('input[name="_cc"]');
-            if (!ccField) {
-                ccField = document.createElement('input');
-                ccField.type = 'hidden';
-                ccField.name = '_cc';
-                this.appendChild(ccField);
-            }
-            ccField.value = customerEmail;
-            
-            // Generate order details
-            const orderNumber = generateOrderNumber();
-            let orderDetails = `Bestellnummer: ${orderNumber}\n\n`;
-            orderDetails += 'Bestellte Artikel:\n';
-            orderDetails += formatOrderForEmail();
-            orderDetails += '\n\n-----------------------------------\n';
-            orderDetails += 'Zahlungsinformationen:\n';
-            orderDetails += `Bitte geben Sie bei der Überweisung die Bestellnummer ${orderNumber} an.\n`;
-            orderDetails += 'Bankverbindung: IBAN: LU17 1111 7008 0577 0000 Swift: CCPLLULL\n';
-            orderDetails += '-----------------------------------\n';
-            
-            // Update order details field
-            let orderInput = document.querySelector('input[name="order_details"]');
-            if (!orderInput) {
-                orderInput = document.createElement('input');
-                orderInput.type = 'hidden';
-                orderInput.name = 'order_details';
-                this.appendChild(orderInput);
-            }
-            orderInput.value = orderDetails;
-            
-            console.log("Form prepared for submission with order:", orderNumber);
+            console.log("Form is submitting to:", this.action);
             
             // Let the form submit naturally - don't prevent default
             // FormSubmit.co will handle the submission
