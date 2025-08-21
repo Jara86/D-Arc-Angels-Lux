@@ -105,3 +105,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+const submitEmail = 'itdarcangels@gmail.com';
