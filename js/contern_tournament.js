@@ -101,6 +101,63 @@ document.addEventListener('DOMContentLoaded', () => {
           <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" required maxlength="100">
           <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" required maxlength="100">
         </div>
+        <div class="form-group geburtsdatum-group">
+          <label for="geburtsdatum_tag_${participantCount}" style="display:block; margin-bottom:4px;">Geburtsdatum</label>
+          <select id="geburtsdatum_tag_${participantCount}" name="Geburtsdatum_Tag_${participantCount}" required>
+            <option value="">Tag</option>
+            ${Array.from({length: 31}, (_, i) => `<option value="${(i+1).toString().padStart(2,'0')}">${i+1}</option>`).join('')}
+          </select>
+          <select name="Geburtsdatum_Monat_${participantCount}" id="geburtsdatum_monat_${participantCount}" required>
+            <option value="">Monat</option>
+            <option value="01">Januar</option>
+            <option value="02">Februar</option>
+            <option value="03">März</option>
+            <option value="04">April</option>
+            <option value="05">Mai</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Dezember</option>
+          </select>
+          <select id="geburtsdatum_jahr_${participantCount}" name="Geburtsdatum_Jahr_${participantCount}" required>
+            <option value="">Jahr</option>
+            ${(() => {
+              const currentYear = new Date().getFullYear();
+              let options = '';
+              for (let y = currentYear - 5; y >= 1920; y--) {
+                options += `<option value="${y}">${y}</option>`;
+              }
+              return options;
+            })()}
+          </select>
+        </div>
+        <div class="form-group radio-group">
+          <p class="radio-label">Ich bin:</p>
+          <div class="radio-options">
+            <div class="radio-item">
+              <input type="radio" id="linkshaender_${participantCount}" name="Haendigkeit_${participantCount}" value="Linkshänder" required>
+              <label for="linkshaender_${participantCount}">Linkshänder / Left Handed</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="rechtshaender_${participantCount}" name="Haendigkeit_${participantCount}" value="Rechtshänder" required>
+              <label for="rechtshaender_${participantCount}">Rechtshänder / Right Handed</label>
+            </div>
+          </div>
+          <p class="radio-label">Ich habe eine Licence:</p>
+          <div class="radio-options">
+            <div class="radio-item">
+              <input type="radio" id="licence_yes_${participantCount}" name="Licence_${participantCount}" value="Yes" required>
+              <label for="licence_yes_${participantCount}">Ja</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" id="licence_no_${participantCount}" name="Licence_${participantCount}" value="No" required>
+              <label for="licence_no_${participantCount}">Nein</label>
+            </div>
+          </div>
+        </div>
       `;
       weitereTeilnehmerContainer.appendChild(newParticipant);
     });

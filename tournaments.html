@@ -156,8 +156,18 @@
                                     <div class="radio-item">
                                         <input type="radio" id="rechtshänder" name="Händigkeit" value="Rechtshänder" required>
                                         <label for="rechtshänder">Rechtshänder / Right Handed</label>
-                                        
+
+                                    
                                     </div>
+                                      <p class="radio-label">Ich habe eine Licence:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="Yes" name="Licence" value="Yes" required>
+                                        <label for="linkshänder">Ja</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="No" name="Licence" value="No" required>
+                                        <label for="rechtshänder">No</label>
                                 </div>
                             </div>
 
@@ -243,9 +253,10 @@
                              
                         </div>
                         
-                        <div id="weitere-Teilnehmer-contern"></div>
+                    
                         
                         <!-- Add participant Button -->
+                         <div id="weitere-Teilnehmer-contern"></div>
                          <button type="button" id="addparticipant-contern" class="btn-secondary">
                             <i class="fas fa-plus"></i> Weiteren Teilnehmer hinzufügen
                         </button>
@@ -317,6 +328,7 @@
         <!-- Years will be filled by JS -->
     </select>
 </div>
+
                                                             
                             <div class="form-group">
                                 <input type="text" name="Lebensnummer" placeholder="Lebensnummer (schau Equidenpass) / Identification No. (look in Horse Passport)">
