@@ -9,12 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeBtns = document.querySelectorAll('.close-form-contern');
   const pferdAnzahlRadios = document.querySelectorAll('input[name="Pferde_Anzahl_Contern"]');
   const pferdDetailsSection = document.getElementById('pferd_details_contern');
-  const addParticipantBtn = document.getElementById('addparticipant-contern');
-  const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer-contern');
+  const addParticipantBtn = document.getElementById('addparticipant'); // was 'addparticipant-contern'
+  const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer'); // was 'weitere-Teilnehmer-contern'
   const tournamentForm = document.getElementById('tournament-registration-contern');
   const emailField = document.querySelector('input[name="Email_Contern"]');
-  const rulesCheckbox = document.getElementById('regeln-contern');
-  const rulesButton = document.querySelector('.text-link-contern');
+  // Enable rules checkbox only after reading
+  const rulesCheckbox = document.getElementById('regeln');
+  const rulesButton = document.getElementById('read-rules-btn');
+  if (rulesCheckbox && rulesButton) {
+    rulesCheckbox.disabled = true;
+    rulesButton.addEventListener('click', () => {
+      window.open('rules.html', '_blank'); // Use your rules.html file
+      rulesCheckbox.disabled = false;
+    });
+  }
 
   let registrationCount = 0;
   const registrationLimit = 25; // Limit für Contern
@@ -182,15 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
     emailField.addEventListener('input', () => {
       const ccField = document.querySelector('input[name="_cc_Contern"]');
       if (ccField) ccField.value = emailField.value;
-    });
-  }
-
-  // Regeln
-  if (rulesCheckbox && rulesButton) {
-    rulesCheckbox.disabled = true;
-    rulesButton.addEventListener('click', () => {
-      window.open('docs/rules_contern.html', '_blank');
-      rulesCheckbox.disabled = false;
     });
   }
 
