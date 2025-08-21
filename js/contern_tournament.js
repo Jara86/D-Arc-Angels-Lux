@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rulesCheckbox && rulesButton) {
     rulesCheckbox.disabled = true;
     rulesButton.addEventListener('click', () => {
-      window.open('rules.html', '_blank');
+      window.open('docs/rules.html', '_blank'); // Use the correct path!
       rulesCheckbox.disabled = false;
     });
   }
