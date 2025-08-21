@@ -1,6 +1,7 @@
 // js/contern_tournament.js
 document.addEventListener('DOMContentLoaded', () => {
   // Only Contern selectors and logic here
+  const submitEmail = 'itdarcangels@gmail.com';
   const conternToggle = document.querySelector('.registration-toggle[data-tournament="tournament2-contern"]');
   const conternForm = document.getElementById('tournament2-form');
   const conternRegistrationForm = document.getElementById('tournament2-registration');
@@ -106,4 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const submitEmail = 'itdarcangels@gmail.com';
+
+
