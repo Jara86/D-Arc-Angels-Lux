@@ -3,6 +3,15 @@ const isTestMode = window.location.search.includes('test=true');
 const submitEmail = 'itdarcangels@gmail.com';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const rulesCheckbox = document.getElementById('regeln');
+  const rulesButton = document.getElementById('read-rules-btn');
+  if (rulesCheckbox && rulesButton) {
+    rulesCheckbox.disabled = true;
+    rulesButton.addEventListener('click', () => {
+      window.open('docs/rules.html', '_blank');
+      rulesCheckbox.disabled = false;
+    });
+  }
   const registrationToggles = document.querySelectorAll('.registration-toggle-contern');
   const registrationForms = document.getElementById('registration-forms-contern');
   const formContainers = document.querySelectorAll('.tournament-form-container-contern');
@@ -290,11 +299,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-function MyComponent(props) {
-  if (!props.shouldRender) {
-    return null;
-  }
-  return <div>Content</div>;
-}
 
