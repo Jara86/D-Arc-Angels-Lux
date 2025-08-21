@@ -1,4 +1,4 @@
-const isTestMode = window.location.search.includes('test=true');
+
 const submitEmail = 'darcangelsletzebuerg@gmail.com';
 
 document.addEventListener('DOMContentLoaded', () => {

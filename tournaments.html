@@ -54,12 +54,301 @@
         <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
     
-    
+    <h2>Turniere 2025</h2>
+                <div class="tournament-list">
     <div class="content-container">
         <main>
             <section class="tournaments-container">
-                <h2>Turniere 2025</h2>
-                <div class="tournament-list">
+                <div class="tournament-card">
+                    <h3>Turnier an der Manège Medinger</h3>
+                    <img src="https://scontent-bru2-1.xx.fbcdn.net/v/t39.30808-1/275617600_3286046564976527_3465462220260682098_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=tgN9hiftlhUQ7kNvwH2v8Ju&_nc_oc=AdkkP1OjzNbqAn2uyye8ddbiBTfetX1Kg1Hs_vTjOlPZ3t3-SXBG3Rj3z74TZjFEueY&_nc_zt=24&_nc_ht=scontent-bru2-1.xx&_nc_gid=YgWCiKAsyDOfUYa4a3SaRw&oh=00_AfJcoBdh6CNIjb6F__VlO8Ih91Vx7rkmvdenYFOksKKsvw&oe=682E6055" alt="Manège Medinger Turnier" class="tournament-image">
+                   
+                        
+                        <div class="tournament-details">
+                          <p class="datum">📅 7. September 2025</p>
+                          <p class="location">📍 Manège Medinger, Rue de Syren, Contern, Luxembourg</p>
+                          <p class="Veranstaltung">🏹 Turnier im berittenen Bogenschießen</p>
+                          <p>Tracks nach IHAA: Gorilla Course & Danish Devil Course</p>
+                        </div>
+                         <button class="status registration-toggle" data-tournament="tournament2">Registration open</button>
+                          <div id="kein_pferd_info" class="conditional-section" >
+                                <p>Wenn du kein eigenes Pferd hast, aber am Turnier teilnehmen möchtest, kontaktiere uns:</p>
+                                <a href="https://wa.me/+352123456789?text=Ich%20möchte%20am%20Turnier%20teilnehmen,%20habe%20aber%20kein%20eigenes%20Pferd." 
+                                   class="btn btn-success whatsapp-btn" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp Kontakt
+                                </a>
+                            </div>
+                
+                       <!-- Tournament 2 Registration Form (Contern) -->
+<div id="tournament2-form" class="tournament-form-container" style="display: none;">
+  <h2>Anmeldeformular – Contern Turnier</h2>
+  <form id="tournament2-registration" method="POST" novalidate>
+    
+    <!-- Hidden Config -->
+    <input type="hidden" name="_subject" value="Tournament Contern Registration 🎯">
+    <input type="hidden" name="_cc" value="">
+    <input type="hidden" name="Tournament" value="Contern Turnier">
+    
+    <!-- Teilnehmerdaten -->
+    <div class="participant-section">
+                            <h3>Hauptteilnehmer</h3>
+                                                    
+                            <div class="form-group">
+                                <input type="text" name="Vorname" placeholder="Vorname / Name" required maxlength="100">
+                                <input type="text" name="Nachname" placeholder="Nachname / Surname" required maxlength="100">
+                            </div>
+                                                    
+                            <div class="form-group geburtsdatum-group">
+    <label for="geburtsdatum_tag" style="display:block; margin-bottom:4px;">Geburtsdatum</label>
+    <select id="geburtsdatum_tag" name="Geburtsdatum_Tag" required>
+        <option value="">Tag</option>
+        <!-- 1-31 will be filled by JS -->
+    </select>
+    <select name="Geburtsdatum_Monat" id="geburtsdatum_monat" required>
+        <option value="">Monat</option>
+        <option value="01">Januar</option>
+        <option value="02">Februar</option>
+        <option value="03">März</option>
+        <option value="04">April</option>
+        <option value="05">Mai</option>
+        <option value="06">Juni</option>
+        <option value="07">Juli</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">Oktober</option>
+        <option value="11">November</option>
+        <option value="12">Dezember</option>
+    </select>
+    <select id="geburtsdatum_jahr" name="Geburtsdatum_Jahr" required>
+        <option value="">Jahr</option>
+        <!-- Years will be filled by JS -->
+    </select>
+</div>
+                                                    
+                            <div class="form-group">
+                                <select name="Geschlecht" required>
+                                    <option value="">Geschlecht / Gender</option>
+                                    <option value="männlich">Männlich / Male</option>
+                                    <option value="weiblich">Weiblich / Female</option>
+                                    <option value="divers">Divers / Other</option>
+                                </select>
+                            </div>
+                               <div class="form-group">
+                                <input type="text" name="Nationalität" placeholder="Nationalität / Nationality" required maxlength="100">
+                            </div>
+                                                    
+                            <div class="form-group">
+                                <input type="email" name="Email" placeholder="E-Mail-Adresse" required maxlength="250">
+                            </div>
+                                                    
+                            <div class="form-group">
+                                <input type="tel" name="Telefonnummer" placeholder="Telefonnummer / Phone Number" required maxlength="50">
+                            </div>
+                                                                                                   
+                            <div class="form-group radio-group">
+                                <p class="radio-label">Ich bin:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="linkshänder" name="Händigkeit" value="Linkshänder" required>
+                                        <label for="linkshänder">Linkshänder / Left Handed</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="rechtshänder" name="Händigkeit" value="Rechtshänder" required>
+                                        <label for="rechtshänder">Rechtshänder / Right Handed</label>
+                                    </div>
+                                </div>
+                            </div>
+
+  
+
+    <!-- Disziplinen -->
+    <div class="form-section">
+      <h3>Disziplinen</h3>
+      <div class="form-group checkbox-group">
+        <p class="checkbox-label">Ich möchte an folgenden Disziplinen teilnehmen:</p>
+        <div class="checkbox-options">
+          <div class="checkbox-item">
+            <input type="checkbox" id="gorilla_galopp" name="Disziplin[]" value="Gorilla Course (Galopp)">
+            <label for="gorilla_galopp">Gorilla Course – Galopp Gruppe</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="danish_devil" name="Disziplin[]" value="Danish Devil Course (Galopp)">
+            <label for="danish_devil">Danish Devil Course – Galopp Gruppe</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="gorilla_schritt" name="Disziplin[]" value="Gorilla Course (Schritt)">
+            <label for="gorilla_schritt">Schritt-Competition – Gorilla Course</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pferdeunterbringung -->
+    <div class="form-section">
+      <h3>Pferdeunterbringung</h3>
+      <div class="form-group radio-group">
+        <p class="radio-label">🐴 Unterkunft:</p>
+        <div class="radio-options">
+          <div class="radio-item">
+            <input type="radio" id="box_innen" name="Unterbringung" value="Box (innen) – 29€/Nacht">
+            <label for="box_innen">Box (innen) – 29€ pro Nacht (7 frei)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="box_aussen" name="Unterbringung" value="Box (außen) – 29€/Nacht">
+            <label for="box_aussen">Box (außen) – 29€ pro Nacht (4 frei)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="doppelbox" name="Unterbringung" value="Doppelbox (2er Gruppe) – 29€/Nacht">
+            <label for="doppelbox">Doppelbox (2er Gruppe) – 29€ pro Nacht (5 frei)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="paddock" name="Unterbringung" value="Paddock – 15€/Nacht">
+            <label for="paddock">Paddock – 15€ pro Nacht (unbegrenzt)</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="tagesplatz" name="Unterbringung" value="Tagesplatz ohne Übernachtung – 10€">
+            <label for="tagesplatz">Tagesplatz – 10€ (unbegrenzt)</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group radio-group">
+                                <p class="radio-label">Ich möchte dass meine Ergebnisse, anerkannt werden:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="ja_dm" name="Qualifikation" value="Ja" required>
+                                        <label for="ja_dm">Ja.</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="nein_dm" name="Qualifikation" value="Nein" required>
+                                        <label for="nein_dm">Nein.</label>
+                                    </div>
+                                </div>
+                            </div>
+                                                    
+                            <div class="form-group">
+                                <ratio for="ankunft">Ich komme einen Tag vorher an       </ratio>
+                                
+                            </div>
+                        </div>
+                        
+                        <div id="weitere-Teilnehmer"></div>
+                        
+                        <!-- Add participant Button -->
+                        <button type="button" id="addparticipant" class="btn-secondary">
+                            <i class="fas fa-plus"></i> Weiteren Teilnehmer hinzufügen
+                        </button>
+                        
+                        
+                        <div class="form-group radio-group">
+                            <p class="radio-label">Ich bringe die folgende Anzahl von Pferden mit / I'll bring the following number of horses:</p>
+                            <div class="radio-options">
+                                <div class="radio-item">
+                                    <input type="radio" id="ein_pferd" name="Pferde_Anzahl" value="1">
+                                    <label for="ein_pferd">1</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="zwei_pferde" name="Pferde_Anzahl" value="2">
+                                    <label for="zwei_pferde">2 (bitte informiere uns, ob deine Pferde auf einem oder auf getrennten Paddocks stehen können. / Please inform us if your horses can stay on one paddock)</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="kein_pferd" name="Pferde_Anzahl" value="0">
+                                    <label for="kein_pferd">Ich habe kein eigenes Pferd / I don't have my own horse</label>
+                                </div>
+                            </div>
+                        </div>
+                                                    
+                        <div id="pferd_details" class="conditional-section">
+                            <div class="form-group">
+                                <input type="text" name="Pferdename" placeholder="Pferdenamen (wie im Pass) / Horse(s) Name (like in the Passport)">
+                            </div>
+                                                            
+                            <div class="form-group radio-group">
+                                <p class="radio-label">Geschlecht vom Pferd / Horses Gender:</p>
+                                <div class="radio-options">
+                                    <div class="radio-item">
+                                        <input type="radio" id="stute" name="Pferd_Geschlecht" value="Stute">
+                                        <label for="stute">Stute / Mare</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="wallach" name="Pferd_Geschlecht" value="Wallach">
+                                        <label for="wallach">Wallach / Gelding</label>
+                                    </div>
+                                    <div class="radio-item">
+                                        <input type="radio" id="hengst" name="Pferd_Geschlecht" value="Hengst">
+                                        <label for="hengst">Hengst / Stallion</label>
+                                    </div>
+                                </div>
+                            </div>
+                                                            
+                            <div class="form-group pferd-geburtsdatum-group">
+    <label for="pferd_geburtsdatum_tag" style="display:block; margin-bottom:4px;">Geburtsdatum Pferd / Horse's Birthday</label>
+    <select id="pferd_geburtsdatum_tag" name="Pferd_Geburtsdatum_Tag">
+        <option value="">Tag</option>
+        <!-- 1-31 will be filled by JS -->
+    </select>
+    <select name="Pferd_Geburtsdatum_Monat" id="pferd_geburtsdatum_monat">
+        <option value="">Monat</option>
+        <option value="01">Januar</option>
+        <option value="02">Februar</option>
+        <option value="03">März</option>
+        <option value="04">April</option>
+        <option value="05">Mai</option>
+        <option value="06">Juni</option>
+        <option value="07">Juli</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">Oktober</option>
+        <option value="11">November</option>
+        <option value="12">Dezember</option>
+    </select>
+    <select id="pferd_geburtsdatum_jahr" name="Pferd_Geburtsdatum_Jahr">
+        <option value="">Jahr</option>
+        <!-- Years will be filled by JS -->
+    </select>
+</div>
+                                                            
+                            <div class="form-group">
+                                <input type="text" name="Lebensnummer" placeholder="Lebensnummer (schau Equidenpass) / Identification No. (look in Horse Passport)">
+                            </div>
+                                                            
+                            <div class="form-group">
+                                <input type="text" name="Pferdebesitzer" placeholder="Pferdebesitzer (Vorname/ Nachname) / Horse Owner (Name / Family Name)">
+                            </div>
+                        </div>
+                                             
+                        <div class="terms-section">
+                            <div class="form-group checkbox-group">
+                                <p class="checkbox-label">Terms and Conditions</p>
+                                <div class="checkbox-options">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required disabled>
+                                        <label for="regeln">
+                                            Ich habe die <button type="button" class="text-link">Teilnahme/Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu. Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I have read and agree to all the conditions and terms.
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                                        <label for="no_photos">
+                                            Ich möchte keine Fotos von mir veröffentlicht haben ( Ausnahmen, wenn ich zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine).
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                        
+                        <div class="form-buttons">
+                            <button type="button" class="btn-secondary close-form">Abbrechen</button>
+                            <button type="submit" class="btn-primary">Anmelden / Register</button>
+                        </div>
+                    </form>
+</div>
+
+                   
+                </div>
+
+                
                    
 
                     <div class="tournament-card">
@@ -69,14 +358,9 @@
                             <p class="datum">1/2/3 August 2025</p>
                             <p class="location">Limpach, Luxembourg</p>
                             <p class="Veranstaltung">International Mounted Archery Competition</p>
-                            <button class="status registration-toggle" data-tournament="tournament1">Registration open</button>
-                            <div id="kein_pferd_info" class="conditional-section" >
-                                <p>Wenn du kein eigenes Pferd hast, aber am Turnier teilnehmen möchtest, kontaktiere uns:</p>
-                                <a href="https://wa.me/+352123456789?text=Ich%20möchte%20am%20Turnier%20teilnehmen,%20habe%20aber%20kein%20eigenes%20Pferd." 
-                                   class="btn btn-success whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp Kontakt
-                                </a>
-                            </div>
+                            <!--button class="status registration-toggle" data-tournament="tournament1">Registration open</button-->
+                            <button class="status">Registration closed</button>
+                          
                         </div>
                     </div>
 
@@ -107,16 +391,7 @@
                 </div>
 
                 </div>
-                 <div class="tournament-card">
-        <h3>Turnier an der Manège Medinger</h3>
-        <img src="https://scontent-bru2-1.xx.fbcdn.net/v/t39.30808-1/275617600_3286046564976527_3465462220260682098_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=tgN9hiftlhUQ7kNvwH2v8Ju&_nc_oc=AdkkP1OjzNbqAn2uyye8ddbiBTfetX1Kg1Hs_vTjOlPZ3t3-SXBG3Rj3z74TZjFEueY&_nc_zt=24&_nc_ht=scontent-bru2-1.xx&_nc_gid=YgWCiKAsyDOfUYa4a3SaRw&oh=00_AfJcoBdh6CNIjb6F__VlO8Ih91Vx7rkmvdenYFOksKKsvw&oe=682E6055" alt="Manège Medinger Turnier" class="tournament-image">
-        <div class="tournament-details">
-            <p class="datum">7. September 2025</p>
-            <p class="location">Manège Medinger,Rue de Syren, Contern, Luxembourg</p>
-            <p class="Veranstaltung"> Turnier im berittenen Bogenschießen</p>
-            <p>Weitere Informationen folgen.</p>
-        </div>
-    </div>
+                
 </div>
             </section>
 
@@ -371,7 +646,11 @@
           <a href="https://darcangels.com/impressum" class="footer-link">Impressum</a>
       </footer>
 
-<script src="js/tournaments.js" defer></script>
+
+
+<!--script src="js/limpach_open.js" defer></script-->
+
+<script src="js/contern_tournament.js" defer></script>
 <script src="js/script.js" defer></script>
 <script src="js/nav.js" defer></script>
 <script src="js/mobile-debug.js"defer></script>
