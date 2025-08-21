@@ -182,6 +182,13 @@ body {
     border-radius: 8px;
     margin-bottom: 1rem;
 }
+.curse-images img {
+  width: 100%;
+  max-width: 250px;
+  height: 150px;     /* feste Höhe */
+  object-fit: cover; /* Bild wird zugeschnitten, aber gleichmäßig */
+  border-radius: 8px;
+}
 
 .status {
     display: inline-block;
