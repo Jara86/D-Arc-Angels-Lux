@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <label for="rechtshaender_${participantCount}">Rechtshänder / Right Handed</label>
             </div>
           </div>
-          <p class="radio-label">Ich habe eine Licence:</p>
+          <p class="radio-label">Ich habe eine Lizenze:</p>
           <div class="radio-options">
             <div class="radio-item">
               <input type="radio" id="licence_yes_${participantCount}" name="Licence_${participantCount}" value="Yes" required>
