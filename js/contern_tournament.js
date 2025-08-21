@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spotsLeft = registrationLimit - registrationCount;
     if (conternToggle) {
       conternToggle.textContent = spotsLeft > 0
-        ? `Registration open (${spotsLeft} spots left)`
+        ? `Registration open `
         : "Registration closed - Fully booked";
       conternToggle.disabled = spotsLeft <= 0;
       conternToggle.classList.toggle("registration-closed", spotsLeft <= 0);
