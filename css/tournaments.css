@@ -193,6 +193,8 @@
     margin: 2rem auto;
     padding: 1rem;
     padding-bottom: 2rem;
+    text-align: center;
+    padding-bottom: 20px;
 }
 
 .tournament-list {
