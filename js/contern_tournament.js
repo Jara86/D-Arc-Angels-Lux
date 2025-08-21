@@ -291,3 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+function MyComponent(props) {
+  if (!props.shouldRender) {
+    return null;
+  }
+  return <div>Content</div>;
+}
+
