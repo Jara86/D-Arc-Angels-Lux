@@ -1,4 +1,3 @@
-
 const submitEmail = 'darcangelsletzebuerg@gmail.com';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -272,5 +271,34 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = originalText;
         }
     });
+  }
+
+  const limpachToggle = document.querySelector('.registration-toggle[data-tournament="tournament1-Limpach"]');
+  const conternToggle = document.querySelector('.registration-toggle[data-tournament="tournament2-contern"]');
+
+  // Limpach is closed
+  if (limpachToggle) {
+    limpachToggle.textContent = "Registration closed - Fully booked";
+    limpachToggle.disabled = true;
+    limpachToggle.classList.add("registration-closed");
+  }
+
+  // Contern is open
+  if (conternToggle) {
+    conternToggle.textContent = "Registration open";
+    conternToggle.disabled = false;
+    conternToggle.classList.remove("registration-closed");
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Only Limpach selectors and logic here
+  const limpachToggle = document.querySelector('.registration-toggle[data-tournament="tournament1-Limpach"]');
+
+  // Limpach is closed
+  if (limpachToggle) {
+    limpachToggle.textContent = "Registration closed - Fully booked";
+    limpachToggle.disabled = true;
+    limpachToggle.classList.add("registration-closed");
   }
 });

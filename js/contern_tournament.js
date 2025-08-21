@@ -1,43 +1,26 @@
-// contern.js
-const isTestMode = window.location.search.includes('test=true');
-const submitEmail = 'itdarcangels@gmail.com';
-
+// js/contern_tournament.js
 document.addEventListener('DOMContentLoaded', () => {
-  const registrationToggles = document.querySelectorAll('.registration-toggle');
-  const registrationForms = document.getElementById('registration-forms');
-  const formContainers = document.querySelectorAll('.tournament-form-container');
-  const closeBtns = document.querySelectorAll('.close-form');
+  // Only Contern selectors and logic here
+  const conternToggle = document.querySelector('.registration-toggle[data-tournament="tournament2-contern"]');
+  const conternForm = document.getElementById('tournament2-form');
+  const conternRegistrationForm = document.getElementById('tournament2-registration');
 
   let registrationCount = 0;
   const registrationLimit = 15; // Limit für Contern
-  let participantCount = 1;
 
   // Registrierungstoggle öffnen
-  registrationToggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
+  if (conternToggle) {
+    conternToggle.addEventListener('click', () => {
       if (registrationCount >= registrationLimit) {
         alert("Sorry, this tournament is fully booked.");
         return;
       }
-      const tournamentId = toggle.dataset.tournament;
-      formContainers.forEach(container => container.style.display = 'none');
-      document.getElementById(`${tournamentId}-form`).style.display = 'block';
-      registrationForms.style.display = 'block';
-      registrationForms.scrollIntoView({ behavior: 'smooth' });
+      if (conternForm) {
+        conternForm.style.display = 'block';
+        conternForm.scrollIntoView({ behavior: 'smooth' });
+      }
     });
-  });
-
-  // Close buttons
-  closeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      registrationForms.style.display = 'none';
-    });
-  });
-
-  // --- Formular für Contern (tournament2) ---
-  const conternToggle = document.querySelector('.registration-toggle[data-tournament="tournament2"]');
-  const conternForm = document.getElementById('tournament2-form');
-  const conternRegistrationForm = document.getElementById('tournament2-registration');
+  }
 
   function updateConternStatus() {
     const spotsLeft = registrationLimit - registrationCount;
@@ -51,19 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateConternStatus();
-
-  if (conternToggle) {
-    conternToggle.addEventListener('click', () => {
-      if (registrationCount >= registrationLimit) {
-        alert("Sorry, this tournament is fully booked.");
-        return;
-      }
-      if (conternForm) {
-        conternForm.style.display = 'block';
-        conternForm.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
 
   if (conternRegistrationForm) {
     conternRegistrationForm.addEventListener('submit', async (e) => {
@@ -111,6 +81,27 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
       }
+    });
+  }
+
+  // Add participant logic
+  const addParticipantBtn = document.getElementById('addparticipant-contern');
+  const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer-contern');
+  let participantCount = 1;
+
+  if (addParticipantBtn && weitereTeilnehmerContainer) {
+    addParticipantBtn.addEventListener('click', () => {
+      participantCount++;
+      const newParticipant = document.createElement('div');
+      newParticipant.className = 'participant-section';
+      newParticipant.innerHTML = `
+        <h3>Teilnehmer ${participantCount}</h3>
+        <div class="form-group">
+          <input type="text" name="Vorname_${participantCount}" placeholder="Vorname / Name" required maxlength="100">
+          <input type="text" name="Nachname_${participantCount}" placeholder="Nachname / Surname" required maxlength="100">
+        </div>
+      `;
+      weitereTeilnehmerContainer.appendChild(newParticipant);
     });
   }
 });
