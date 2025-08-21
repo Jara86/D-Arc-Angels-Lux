@@ -290,39 +290,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-document.addEventListener("DOMContentLoaded", function() {
-  const form = document.getElementById("conternForm");
-
-  const limits = {
-    box_innen: 7,
-    box_aussen: 4,
-    gruppenbox: 5 // 5x 2er Gruppen
-  };
-
-  const counts = {};
-  Object.keys(limits).forEach(k => counts[k] = 0);
-
-  function updateSlots() {
-    const options = form.querySelectorAll("input[name=unterbringung]");
-    options.forEach(opt => {
-      const type = opt.value;
-      const frei = limits[type] - counts[type];
-      opt.nextSibling.textContent = ` ${type} (${frei} frei)`;
-      opt.disabled = frei <= 0;
-    });
-  }
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-    const selected = form.querySelector("input[name=unterbringung]:checked");
-    if (selected) {
-      counts[selected.value]++;
-      updateSlots();
-      alert("Anmeldung für Contern gespeichert!");
-      form.reset();
-    }
-  });
-
-  updateSlots();
-});
 
