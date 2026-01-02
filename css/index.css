@@ -302,7 +302,7 @@ section {
 
 .competition-program.fancy-section-2 img {
   width: 100%;
-  max-width: 500px; /* keeps the image from getting too wide on large screens */
+  max-width: 800px; /* keeps the image from getting too wide on large screens */
   height: auto;
   display: block;
   border-radius: 10px;
