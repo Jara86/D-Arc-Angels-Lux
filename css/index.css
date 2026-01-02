@@ -282,3 +282,59 @@ section {
     margin: 0;
   }
 }
+
+/* Competition program (promo image) - neat, responsive styling */
+.competition-program.fancy-section-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(25, 57, 71, 0.03),
+    rgba(25, 57, 71, 0.06)
+  );
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.competition-program.fancy-section-2 img {
+  width: 100%;
+  max-width: 500px; /* keeps the image from getting too wide on large screens */
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease;
+}
+
+.competition-program.fancy-section-2 img:hover {
+  transform: translateY(-6px) scale(1.01);
+  filter: saturate(1.05) brightness(1.02);
+}
+
+@media (max-width: 900px) {
+  .competition-program.fancy-section-2 {
+    padding: 1rem;
+  }
+
+  .competition-program.fancy-section-2 img {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 480px) {
+  .competition-program.fancy-section-2 {
+    padding: 0.6rem;
+    border-radius: 8px;
+  }
+
+  .competition-program.fancy-section-2 img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+}
