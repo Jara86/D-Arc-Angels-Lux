@@ -1,0 +1,284 @@
+.secondary-header {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.secondary-header img {
+  max-width: 400px;
+  height: auto;
+  transition: transform 0.3s ease;
+  border-radius: 20%;
+}
+
+.secondary-header img:hover {
+  transform: scale(1.05);
+}
+
+section {
+  background: radial-gradient(circle, #75e0f1, #296077);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.top-section {
+  padding: 2rem;
+}
+
+.content-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start; /* This helps with alignment */
+}
+
+.banner {
+  width: 100%; /* Oder eine feste Pixelgröße */
+  height: 400px; /* Proportional skalieren */
+  object-fit: contain; /* Das gesamte Bild bleibt sichtbar */
+
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* For better mobile display */
+@media (max-width: 768px) {
+  .banner {
+    height: 300px;
+  }
+}
+
+.text-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#intro,
+#news {
+  background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#intro {
+  background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centering text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Ensures proper alignment */
+  height: 50%; /* Ensures that the height of the section is filled */
+}
+
+/* Title (Heading) inside intro */
+#intro h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #183947;
+  margin-bottom: 1rem;
+}
+
+/* Text within intro */
+#intro p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Button inside intro */
+#intro .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #183947;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  font-weight: bold;
+}
+
+#intro .btn:hover {
+  background: #2c5464;
+  transform: translateY(-2px); /* Hover effect for button */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+@media (max-width: 768px) {
+  #intro {
+    padding: 1.5rem; /* Reduce padding for smaller screens */
+  }
+
+  #intro h2 {
+    font-size: 1.5rem; /* Smaller font for heading */
+  }
+
+  #intro p {
+    font-size: 1rem; /* Smaller font for text */
+  }
+
+  #intro .btn {
+    padding: 10px 20px; /* Slightly smaller button */
+  }
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.offers-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.offer-card {
+  background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-5px);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #183947;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #2c5464;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.social-links img {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .offers-container {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+  }
+}
+#join {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+#join img {
+  width: 100%;
+
+  object-fit: cover;
+  object-position: center; /* Ensures proper image centering */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#join img:hover {
+  transform: scale(1.05);
+}
+
+#join h2 {
+  color: #183947;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+#join p {
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+#join .btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #183947;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+#join .btn:hover {
+  background-color: #2c5f73;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Invitation images: stacked by default, side-by-side on small screens (smartphones) */
+.invitation-wrapper {
+  display: block;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.invitation-wrapper img {
+  display: block;
+  max-width: 90%;
+  height: auto;
+  margin: 0.5rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* On narrow screens (phones) show the two images side-by-side */
+@media (max-width: 600px) {
+  .invitation-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .invitation-wrapper img {
+    width: 48%;
+    max-width: none;
+    margin: 0;
+  }
+}
