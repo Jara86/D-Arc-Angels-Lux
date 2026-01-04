@@ -302,7 +302,7 @@ section {
 
 .competition-program.fancy-section-2 img {
   width: 100%;
-  max-width: 800px; /* keeps the image from getting too wide on large screens */
+  max-width: 750px; /* keeps the image from getting too wide on large screens */
   height: auto;
   display: block;
   border-radius: 10px;
@@ -316,7 +316,7 @@ section {
   filter: saturate(1.05) brightness(1.02);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 750px) {
   .competition-program.fancy-section-2 {
     padding: 1rem;
   }
