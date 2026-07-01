@@ -108,7 +108,9 @@ section {
   color: white;
   text-decoration: none;
   border-radius: 8px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
   font-weight: bold;
 }
 
@@ -302,13 +304,15 @@ section {
 
 .competition-program.fancy-section-2 img {
   width: 100%;
-  max-width: 750px; /* keeps the image from getting too wide on large screens */
+  max-width: 705px; /* keeps the image from getting too wide on large screens */
   height: auto;
   display: block;
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease;
+  transition:
+    transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 300ms ease;
 }
 
 .competition-program.fancy-section-2 img:hover {

@@ -1,115 +1,133 @@
-const submitEmail = 'darcangelsletzebuerg@gmail.com';
+const isTestMode = window.location.search.includes("test=true");
+const submitEmail = "darcangelsletzebuerg@gmail.com";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const registrationToggles = document.querySelectorAll('.registration-toggle');
-  const registrationForms = document.getElementById('registration-forms');
-  const formContainers = document.querySelectorAll('.tournament-form-container');
-  const closeBtns = document.querySelectorAll('.close-form');
-  const pferdAnzahlRadios = document.querySelectorAll('input[name="Pferde_Anzahl"]');
-  const pferdDetailsSection = document.getElementById('pferd_details');
-  const addParticipantBtn = document.getElementById('addparticipant');
-  const weitereTeilnehmerContainer = document.getElementById('weitere-Teilnehmer');
-  const tournamentForm = document.getElementById('tournament-registration');
+document.addEventListener("DOMContentLoaded", () => {
+  const registrationToggles = document.querySelectorAll(".registration-toggle");
+  const registrationForms = document.getElementById("registration-forms");
+  const formContainers = document.querySelectorAll(
+    ".tournament-form-container"
+  );
+  const closeBtns = document.querySelectorAll(".close-form");
+  const pferdAnzahlRadios = document.querySelectorAll(
+    'input[name="Pferde_Anzahl"]'
+  );
+  const pferdDetailsSection = document.getElementById("pferd_details");
+  const addParticipantBtn = document.getElementById("addparticipant");
+  const weitereTeilnehmerContainer =
+    document.getElementById("weitere-Teilnehmer");
+  const tournamentForm = document.getElementById("tournament-registration");
   const emailField = document.querySelector('input[name="Email"]');
-  const rulesCheckbox = document.getElementById('regeln');
-  const rulesButton = document.querySelector('.text-link');
+  const rulesCheckbox = document.getElementById("regeln");
+  const rulesButton = document.querySelector(".text-link");
 
   let registrationCount = 0;
   const registrationLimit = 25;
   let participantCount = 1;
 
   // Fill Hauptteilnehmer birthday dropdowns
-  const tagSelect = document.getElementById('geburtsdatum_tag');
+  const tagSelect = document.getElementById("geburtsdatum_tag");
   if (tagSelect) {
-      for (let d = 1; d <= 31; d++) {
-          const opt = document.createElement('option');
-          opt.value = d.toString().padStart(2, '0');
-          opt.textContent = d;
-          tagSelect.appendChild(opt);
-      }
+    for (let d = 1; d <= 31; d++) {
+      const opt = document.createElement("option");
+      opt.value = d.toString().padStart(2, "0");
+      opt.textContent = d;
+      tagSelect.appendChild(opt);
+    }
   }
-  const yearSelect = document.getElementById('geburtsdatum_jahr');
+  const yearSelect = document.getElementById("geburtsdatum_jahr");
   if (yearSelect) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear - 5; y >= 1920; y--) {
-          const opt = document.createElement('option');
-          opt.value = y;
-          opt.textContent = y;
-          yearSelect.appendChild(opt);
-      }
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear - 5; y >= 1920; y--) {
+      const opt = document.createElement("option");
+      opt.value = y;
+      opt.textContent = y;
+      yearSelect.appendChild(opt);
+    }
   }
   // Fill Pferd birthday dropdowns
-  const pferdTag = document.getElementById('pferd_geburtsdatum_tag');
+  const pferdTag = document.getElementById("pferd_geburtsdatum_tag");
   if (pferdTag) {
-      for (let d = 1; d <= 31; d++) {
-          const opt = document.createElement('option');
-          opt.value = d.toString().padStart(2, '0');
-          opt.textContent = d;
-          pferdTag.appendChild(opt);
-      }
+    for (let d = 1; d <= 31; d++) {
+      const opt = document.createElement("option");
+      opt.value = d.toString().padStart(2, "0");
+      opt.textContent = d;
+      pferdTag.appendChild(opt);
+    }
   }
-  const pferdJahr = document.getElementById('pferd_geburtsdatum_jahr');
+  const pferdJahr = document.getElementById("pferd_geburtsdatum_jahr");
   if (pferdJahr) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 1980; y--) {
-          const opt = document.createElement('option');
-          opt.value = y;
-          opt.textContent = y;
-          pferdJahr.appendChild(opt);
-      }
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear; y >= 1980; y--) {
+      const opt = document.createElement("option");
+      opt.value = y;
+      opt.textContent = y;
+      pferdJahr.appendChild(opt);
+    }
   }
 
   const updateRegistrationStatus = () => {
-    registrationToggles.forEach(toggle => {
-      toggle.textContent = "Registration closed - Fully booked";
-      toggle.disabled = true;
-      toggle.classList.add("registration-closed");
+    registrationToggles.forEach((toggle) => {
+      if (registrationCount >= registrationLimit) {
+        toggle.textContent = "Registration closed - Fully booked";
+        toggle.disabled = true;
+        toggle.classList.add("registration-closed");
+      } else {
+        toggle.textContent = "Registration open";
+        toggle.disabled = false;
+        toggle.classList.remove("registration-closed");
+      }
     });
   };
 
   updateRegistrationStatus();
 
-  registrationToggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
+  registrationToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
       if (registrationCount >= registrationLimit) {
         alert("Sorry, this tournament is fully booked.");
         return;
       }
       const tournamentId = toggle.dataset.tournament;
-      formContainers.forEach(container => container.style.display = 'none');
-      document.getElementById(`${tournamentId}-form`).style.display = 'block';
-      registrationForms.style.display = 'block';
-      registrationForms.scrollIntoView({ behavior: 'smooth' });
+      formContainers.forEach((container) => (container.style.display = "none"));
+      document.getElementById(`${tournamentId}-form`).style.display = "block";
+      registrationForms.style.display = "block";
+      registrationForms.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  closeBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      registrationForms.style.display = 'none';
+  closeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      registrationForms.style.display = "none";
     });
   });
 
   if (pferdAnzahlRadios.length && pferdDetailsSection) {
-    pferdAnzahlRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        const show = radio.value !== '0';
-        pferdDetailsSection.style.display = show ? 'block' : 'none';
-        pferdDetailsSection.querySelectorAll('input, select').forEach(field => {
-          field.required = show;
-        });
+    pferdAnzahlRadios.forEach((radio) => {
+      radio.addEventListener("change", () => {
+        const show = radio.value !== "0";
+        pferdDetailsSection.style.display = show ? "block" : "none";
+        pferdDetailsSection
+          .querySelectorAll("input, select")
+          .forEach((field) => {
+            field.required = show;
+          });
       });
     });
-    const selectedRadio = document.querySelector('input[name="Pferde_Anzahl"]:checked');
-    if (selectedRadio && selectedRadio.value === '0') {
-      pferdDetailsSection.style.display = 'none';
-      pferdDetailsSection.querySelectorAll('input, select').forEach(field => field.required = false);
+    const selectedRadio = document.querySelector(
+      'input[name="Pferde_Anzahl"]:checked'
+    );
+    if (selectedRadio && selectedRadio.value === "0") {
+      pferdDetailsSection.style.display = "none";
+      pferdDetailsSection
+        .querySelectorAll("input, select")
+        .forEach((field) => (field.required = false));
     }
   }
 
   const createParticipant = () => {
     participantCount++;
-    const div = document.createElement('div');
-    div.className = 'participant-section';
+    const div = document.createElement("div");
+    div.className = "participant-section";
     div.innerHTML = `
       <div class="participant-header">
         <h3>Teilnehmer ${participantCount}</h3>
@@ -157,42 +175,46 @@ document.addEventListener('DOMContentLoaded', () => {
       <!-- Checkbox options here (abgekürzt zur Übersicht) -->
     `;
     weitereTeilnehmerContainer.appendChild(div);
-    div.scrollIntoView({ behavior: 'smooth' });
-    div.querySelector('.remove-participant').addEventListener('click', () => {
+    div.scrollIntoView({ behavior: "smooth" });
+    div.querySelector(".remove-participant").addEventListener("click", () => {
       div.remove();
       participantCount--;
     });
 
     // Fill day dropdown
-    const daySelect = div.querySelector(`#geburtsdatum_tag_${participantCount}`);
+    const daySelect = div.querySelector(
+      `#geburtsdatum_tag_${participantCount}`
+    );
     if (daySelect) {
-        for (let d = 1; d <= 31; d++) {
-            const opt = document.createElement('option');
-            opt.value = d.toString().padStart(2, '0');
-            opt.textContent = d;
-            daySelect.appendChild(opt);
-        }
+      for (let d = 1; d <= 31; d++) {
+        const opt = document.createElement("option");
+        opt.value = d.toString().padStart(2, "0");
+        opt.textContent = d;
+        daySelect.appendChild(opt);
+      }
     }
 
     // Fill year dropdown (e.g. 1920–2015)
-    const yearSelect = div.querySelector(`#geburtsdatum_jahr_${participantCount}`);
+    const yearSelect = div.querySelector(
+      `#geburtsdatum_jahr_${participantCount}`
+    );
     if (yearSelect) {
-        const currentYear = new Date().getFullYear();
-        for (let y = currentYear - 5; y >= 1920; y--) {
-            const opt = document.createElement('option');
-            opt.value = y;
-            opt.textContent = y;
-            yearSelect.appendChild(opt);
-        }
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear - 5; y >= 1920; y--) {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = y;
+        yearSelect.appendChild(opt);
+      }
     }
   };
 
   if (addParticipantBtn && weitereTeilnehmerContainer) {
-    addParticipantBtn.addEventListener('click', createParticipant);
+    addParticipantBtn.addEventListener("click", createParticipant);
   }
 
   if (emailField) {
-    emailField.addEventListener('input', () => {
+    emailField.addEventListener("input", () => {
       const ccField = document.querySelector('input[name="_cc"]');
       if (ccField) ccField.value = emailField.value;
     });
@@ -200,105 +222,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (rulesCheckbox && rulesButton) {
     rulesCheckbox.disabled = true;
-    rulesButton.addEventListener('click', () => {
-      window.open('docs/rules.html', '_blank');
+    rulesButton.addEventListener("click", () => {
+      window.open("docs/rules.html", "_blank");
       rulesCheckbox.disabled = false;
     });
   }
 
   if (tournamentForm) {
-    tournamentForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    tournamentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-        // Combine main participant birthday into hidden field
-        const tag = document.getElementById('geburtsdatum_tag').value;
-        const monat = document.getElementById('geburtsdatum_monat').value;
-        const jahr = document.getElementById('geburtsdatum_jahr').value;
-        let hidden = document.getElementById('geburtsdatum_hidden');
-        if (!hidden) {
-            hidden = document.createElement('input');
-            hidden.type = 'hidden';
-            hidden.name = 'Geburtsdatum';
-            hidden.id = 'geburtsdatum_hidden';
-            tournamentForm.appendChild(hidden);
+      // Combine main participant birthday into hidden field
+      const tag = document.getElementById("geburtsdatum_tag").value;
+      const monat = document.getElementById("geburtsdatum_monat").value;
+      const jahr = document.getElementById("geburtsdatum_jahr").value;
+      let hidden = document.getElementById("geburtsdatum_hidden");
+      if (!hidden) {
+        hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = "Geburtsdatum";
+        hidden.id = "geburtsdatum_hidden";
+        tournamentForm.appendChild(hidden);
+      }
+      hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : "";
+
+      if (registrationCount >= registrationLimit) {
+        alert("Sorry, this tournament is fully booked.");
+        return;
+      }
+
+      const submitBtn = tournamentForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "Sending...";
+
+      // Use FormData instead of JSON (better mobile compatibility)
+      const formData = new FormData(tournamentForm);
+      formData.append("_captcha", "false");
+      formData.append("_template", "table");
+
+      try {
+        // Use submitEmail variable here
+        const response = await fetch(
+          `https://formsubmit.co/ajax/${submitEmail}`,
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        hidden.value = jahr && monat && tag ? `${jahr}-${monat}-${tag}` : '';
 
-        if (registrationCount >= registrationLimit) {
-            alert("Sorry, this tournament is fully booked.");
-            return;
+        const result = await response.json();
+
+        if (result.success) {
+          registrationCount += participantCount;
+          updateRegistrationStatus();
+          alert("Vielen Dank für deine Anmeldung!");
+          tournamentForm.reset();
+          weitereTeilnehmerContainer.innerHTML = "";
+          participantCount = 1;
+          registrationForms.style.display = "none";
+        } else {
+          throw new Error("Submission failed");
         }
-
-        const submitBtn = tournamentForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Sending...';
-
-        // Use FormData instead of JSON (better mobile compatibility)
-        const formData = new FormData(tournamentForm);
-        formData.append('_captcha', 'false');
-        formData.append('_template', 'table');
-
-        try {
-            // Use submitEmail variable here
-            const response = await fetch(`https://formsubmit.co/ajax/${submitEmail}`, {
-                method: "POST",
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-
-            if (result.success) {
-                registrationCount += participantCount;
-                updateRegistrationStatus();
-                alert("Vielen Dank für deine Anmeldung!");
-                tournamentForm.reset();
-                weitereTeilnehmerContainer.innerHTML = '';
-                participantCount = 1;
-                registrationForms.style.display = 'none';
-            } else {
-                throw new Error("Submission failed");
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            alert("Ein Fehler ist aufgetreten. Bitte versuche es später erneut.");
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        alert("Ein Fehler ist aufgetreten. Bitte versuche es später erneut.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
     });
-  }
-
-  const limpachToggle = document.querySelector('.registration-toggle[data-tournament="tournament1-Limpach"]');
-  const conternToggle = document.querySelector('.registration-toggle[data-tournament="tournament2-contern"]');
-
-  // Limpach is closed
-  if (limpachToggle) {
-    limpachToggle.textContent = "Registration closed - Fully booked";
-    limpachToggle.disabled = true;
-    limpachToggle.classList.add("registration-closed");
-  }
-
-  // Contern is open
-  if (conternToggle) {
-    conternToggle.textContent = "Registration open";
-    conternToggle.disabled = false;
-    conternToggle.classList.remove("registration-closed");
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Only Limpach selectors and logic here
-  const limpachToggle = document.querySelector('.registration-toggle[data-tournament="tournament1-Limpach"]');
-
-  // Limpach is closed
-  if (limpachToggle) {
-    limpachToggle.textContent = "Registration closed - Fully booked";
-    limpachToggle.disabled = true;
-    limpachToggle.classList.add("registration-closed");
   }
 });
