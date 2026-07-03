@@ -577,7 +577,13 @@
 
               <div class="terms-section">
     <div class="form-group checkbox-group">
-        <p class="checkbox-label" id="terms-label">Terms and Conditions</p>
+       
+         <a href="docs/rules.html" 
+           target="_blank" 
+           class="text-link" 
+           id="rules-link-text"
+           onclick="handleRulesClick(event)"
+           style="display:block; margin-top:10px;">Regeln lesen</a>
         <div class="checkbox-options">
             <div class="checkbox-item">
                 <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Regeln akzeptiert" required disabled>
@@ -593,12 +599,7 @@
             </div>
         </div>
        
-        <a href="docs/rules.html" 
-           target="_blank" 
-           class="text-link" 
-           id="rules-link-text"
-           onclick="handleRulesClick(event)"
-           style="display:block; margin-top:10px;">Regeln lesen</a>
+       
     </div>
 </div>
                 </div>
@@ -621,7 +622,7 @@
                 </button>
               </div>
             </form>
-          </div>
+          </div> <p class="checkbox-label" id="terms-label"></p>
         </section>
       </main>
 
