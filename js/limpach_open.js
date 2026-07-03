@@ -623,6 +623,24 @@ function changeLanguage(lang) {
     });
   });
 
+  // Update day/month/year dropdown placeholder options
+  const dayLabel = lang === "de" ? "Tag" : lang === "en" ? "Day" : "Jour";
+  const monthLabel = lang === "de" ? "Monat" : lang === "en" ? "Month" : "Mois";
+  const yearLabel = lang === "de" ? "Jahr" : lang === "en" ? "Year" : "Année";
+
+  document.querySelectorAll('select[id*="tag"]').forEach((select) => {
+    if (select.options[0] && !select.options[0].value)
+      select.options[0].textContent = dayLabel;
+  });
+  document.querySelectorAll('select[id*="monat"]').forEach((select) => {
+    if (select.options[0] && !select.options[0].value)
+      select.options[0].textContent = monthLabel;
+  });
+  document.querySelectorAll('select[id*="jahr"]').forEach((select) => {
+    if (select.options[0] && !select.options[0].value)
+      select.options[0].textContent = yearLabel;
+  });
+
   // Update horse gender label
   const horseGenderLabel = document.getElementById("horse-gender-label");
   if (horseGenderLabel) horseGenderLabel.textContent = t.horse_gender_label;
