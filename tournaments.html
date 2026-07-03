@@ -576,44 +576,31 @@
               </div>
 
               <div class="terms-section">
-                <div class="form-group checkbox-group">
-                  <p class="checkbox-label" id="terms-label">
-                    Terms and Conditions
-                  </p>
-                  <div class="checkbox-options">
-                    <div class="checkbox-item">
-                      <input
-                        type="checkbox"
-                        id="regeln"
-                        name="Mitgliedschaftsregeln"
-                        value="Regeln akzeptiert"
-                        required
-                        disabled
-                      />
-                      <label for="regeln" id="checkbox-rules">
-                        Teilnahme/Mitgliedschaftsregeln und
-                        Datenschutzbestimmungen akzeptiert
-                      </label>
-                    </div>
-                    <div class="checkbox-item">
-                      <input
-                        type="checkbox"
-                        id="no_photos"
-                        name="NoPhotos"
-                        value="Keine Fotos veröffentlichen"
-                      />
-                      <label for="no_photos" id="checkbox-nophotos">
-                        Keine Fotos von mir veröffentlichen
-                      </label>
-                    </div>
-                  </div>
-                  <a
-                    href="docs/rules.html"
-                    target="_blank"
-                    class="text-link"
-                    id="rules-link-text"
-                    >Regeln lesen</a
-                  >
+    <div class="form-group checkbox-group">
+        <p class="checkbox-label" id="terms-label">Terms and Conditions</p>
+        <div class="checkbox-options">
+            <div class="checkbox-item">
+                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Regeln akzeptiert" required disabled>
+                <label for="regeln" id="checkbox-rules">
+                    Teilnahme/Mitgliedschaftsregeln und Datenschutzbestimmungen akzeptiert
+                </label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                <label for="no_photos" id="checkbox-nophotos">
+                    Keine Fotos von mir veröffentlichen
+                </label>
+            </div>
+        </div>
+       
+        <a href="docs/rules.html" 
+           target="_blank" 
+           class="text-link" 
+           id="rules-link-text"
+           onclick="handleRulesClick(event)"
+           style="display:block; margin-top:10px;">Regeln lesen</a>
+    </div>
+</div>
                 </div>
               </div>
 

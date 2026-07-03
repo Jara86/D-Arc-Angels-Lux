@@ -135,9 +135,9 @@ const translations = {
   },
 };
 
-// Global variables
+// Global variables - USING SECURE HASH CODE
 const isTestMode = window.location.search.includes("test=true");
-const submitEmail = "darcangelsletzebuerg@gmail.com";
+const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
 
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
@@ -156,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const tournamentForm = document.getElementById("tournament-registration");
   const emailField = document.querySelector('input[name="Email"]');
   const rulesCheckbox = document.getElementById("regeln");
-  const rulesButton = document.getElementById("rules-link-text");
 
   let registrationCount = 0;
   const registrationLimit = 25;
@@ -379,12 +378,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (rulesCheckbox && rulesButton) {
+  // RULES LINK HANDLER - Enabled after clicking "Read Rules" link
+  if (rulesCheckbox) {
     rulesCheckbox.disabled = true;
-    rulesButton.addEventListener("click", () => {
-      window.open("docs/rules.html", "_blank");
-      rulesCheckbox.disabled = false;
-    });
+
+    // Set up global function for popup to call
+    window.rulesAccepted = function () {
+      console.log("Rules acceptance confirmed from popup");
+      if (rulesCheckbox) {
+        rulesCheckbox.disabled = false;
+      }
+    };
   }
 
   if (tournamentForm) {
@@ -608,9 +612,9 @@ function changeLanguage(lang) {
   if (checkboxNophotos) checkboxNophotos.textContent = t.checkbox_nophotos;
 
   // Update add participant button
-  const addParticipantBtn = document.getElementById("addparticipant");
-  if (addParticipantBtn)
-    addParticipantBtn.innerHTML = `<i class="fas fa-plus"></i> ${t.add_participant_btn}`;
+  const addParticipantBtnElement = document.getElementById("addparticipant");
+  if (addParticipantBtnElement)
+    addParticipantBtnElement.innerHTML = `<i class="fas fa-plus"></i> ${t.add_participant_btn}`;
 
   // Update rules link text
   const rulesLink = document.getElementById("rules-link-text");
@@ -623,4 +627,24 @@ function changeLanguage(lang) {
   // Update submit button
   const submitButton = document.getElementById("submit-btn");
   if (submitButton) submitButton.textContent = t.register_btn;
+}
+
+// ==================== RULES POPUP HANDLER ====================
+function handleRulesClick(e) {
+  e.preventDefault();
+
+  // Open regelspagina in nieuw venster
+  window.open(
+    this.href,
+    "_blank",
+    "width=900,height=700,scrollbars=yes,resizable=yes",
+  );
+
+  // Maakt checkbox beschikbaar na korte delay
+  setTimeout(() => {
+    const rulesCheckbox = document.getElementById("regeln");
+    if (rulesCheckbox) {
+      rulesCheckbox.disabled = false;
+    }
+  }, 100);
 }
