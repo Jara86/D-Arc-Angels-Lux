@@ -1,134 +1,248 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KidsCamp - D'Arc Angels Lëtzebuerg</title>
-    
+
     <!-- CSS Links -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/nav.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/hero.css">
-    <link rel="stylesheet" href="./css/kidsCamp.css">
-</head>
-<body>
- 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/nav.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/hero.css" />
+    <link rel="stylesheet" href="./css/kidsCamp.css" />
+  </head>
+  <body>
     <div id="nav-placeholder"></div>
 
     <div class="hero">
-        <img src="images/logo-darc-angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
+      <img
+        src="images/logo-darc-angels.avif"
+        alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team"
+        width="200"
+        height="200"
+      />
+      <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
-    
-      
-    <main class="content-container">
-        <section class="KidsCamp-section">
-            <h2>KidsCamp 23-25. Juli 2025 <br><em>"An Collaboration mat Pony Adventure"</em></h2>
-            <p>Wir bieten ein spannendes und abwechslungsreiches Ferienprogramm für Kinder und Jugendliche zwischen 4 und 16 Jahren an. Die Teilnehmer erwartet eine Woche voller Spaß und Action mit Pferden und Bogenschießen. Die Kinder lernen den Umgang mit Pferden und Bögen, trainieren ihre Geschicklichkeit und Koordination und erleben gemeinsam mit anderen Kindern ein unvergessliches Abenteuer.</p>
-            <hr>
-            <p>Für weitere Informationen gerne bei Trainer Gigi melden:<br>
-                00352123456789 oder<br>
-             <a href="https://wa.me/+352123456789?text=Ich%20möchte%20am%20Turnier%20teilnehmen,%20habe%20aber%20kein%20eigenes%20Pferd." 
-                                   class="btn btn-success whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp Kontakt
-                                </a>
-                                </p>
 
-            <img src="images/kidsCamp1.jpg" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
-            <img src="images/kidsCamp2.png" alt="KidsCamp - D'Arc Angels Lëtzebuerg" width="400" height="400">
-            
-            <section class="registration-section">
-                <h2>KidsCamp Anmeldeformular 2025</h2>
-                <form id="kidscamp-form" class="kidscamp-form" method="POST">
-                    <input type="hidden" name="_subject" value="KidsCamp Anmeldung 🏹">
-                    <input type="hidden" name="_cc" value="">
-                    
-                    <!-- Parent Information -->
-                    <div class="parent-section">
-                        <h3>Eltern/Erziehungsberechtigte</h3>
-                        <div class="form-group">
-                            <input type="text" name="Eltern_Vorname" placeholder="Vorname" required maxlength="100">
-                            <input type="text" name="Eltern_Nachname" placeholder="Nachname" required maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="Eltern_Email" placeholder="E-Mail-Adresse" required maxlength="250">
-                            <input type="tel" name="Eltern_Telefon" placeholder="Handynummer" required maxlength="50">
-                        </div>
-                    </div>
-                    
-                    <!-- First Child (Required) -->
-                    <div class="child-section">
-                        <h3>Kind 1</h3>
-                        <div class="form-group">
-                            <input type="text" name="Kind1_Vorname" placeholder="Vorname" required maxlength="100">
-                            <input type="text" name="Kind1_Nachname" placeholder="Nachname" required maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <input type="date" name="Kind1_Geburtsdatum" required max="2024-12-31" min="2010-01-01">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="Kind1_Allergien" placeholder="Allergien oder besondere Bedürfnisse" rows="2"></textarea>
-                        </div>
-                    </div>
-                    
-                    <!-- Container for Additional Children -->
-                    <div id="weitere-Kinder"></div>
-                    
-                    <!-- Add Child Button -->
-                    <button type="button" id="addChild" class="btn-secondary">
-                        <i class="fas fa-plus"></i> Weiteres Kind hinzufügen
-                    </button>
-                    
-                    <div class="terms-section">
-                        <div class="form-group checkbox-group">
-                            <p class="checkbox-label">Terms and Conditions</p>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert" required>
-                                <label for="regeln">
-                                    Ich habe die <button type="button" onclick="window.open('docs/rules.html', '_blank')" class="text-link">Mitgliedschaftsregeln und Datenschutzbestimmungen</button> gelesen und stimme ihnen zu. Ich stimme den allgemeinen Haftungserklärung Bedingungen zu. / I have read and agree to all the conditions and terms.
-                                </label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
-                                <label for="no_photos">
-                                    Ich möchte keine Fotos von meinem Kind/er veröffentlicht haben (außer, wenn sie zufällig im Hintergrund auf Gruppenfotos oder allgemeinen Aufnahmen erscheine/n).
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn">Anmelden</button>
-                </form>
-            </section>
-        </section>
-    </main>
-    
-    <hr class="footer-line">
-    <footer class="footer">
-        <p class="footer-text">
-            Code and design by 
-            <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a>
+    <main class="content-container">
+      <section class="KidsCamp-section">
+        <h2>
+          KidsCamp 23-25. Juli 2025 <br /><em
+            >"An Collaboration mat Pony Adventure"</em
+          >
+        </h2>
+        <p>
+          Wir bieten ein spannendes und abwechslungsreiches Ferienprogramm für
+          Kinder und Jugendliche zwischen 4 und 16 Jahren an. Die Teilnehmer
+          erwartet eine Woche voller Spaß und Action mit Pferden und
+          Bogenschießen. Die Kinder lernen den Umgang mit Pferden und Bögen,
+          trainieren ihre Geschicklichkeit und Koordination und erleben
+          gemeinsam mit anderen Kindern ein unvergessliches Abenteuer.
         </p>
-        <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-         <a href="https://darcangels.com/impressum" class="footer-link">Impressum</a>
+        <hr />
+        <p>
+          Für weitere Informationen gerne bei Trainer Gigi melden:<br />
+          00352123456789 oder<br />
+          <a
+            href="https://wa.me/+352123456789?text=Ich%20möchte%20am%20Turnier%20teilnehmen,%20habe%20aber%20kein%20eigenes%20Pferd."
+            class="btn btn-success whatsapp-btn"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i> WhatsApp Kontakt
+          </a>
+        </p>
+
+        <img
+          src="images/kidsCamp1.jpg"
+          alt="KidsCamp - D'Arc Angels Lëtzebuerg"
+          width="400"
+          height="400"
+        />
+        <img
+          src="images/kidsCamp2.png"
+          alt="KidsCamp - D'Arc Angels Lëtzebuerg"
+          width="400"
+          height="400"
+        />
+
+        <section class="registration-section">
+          <h2>KidsCamp Anmeldeformular 2025</h2>
+          <form id="kidscamp-form" class="kidscamp-form" method="POST">
+            <input
+              type="hidden"
+              name="_subject"
+              value="KidsCamp Anmeldung 🏹"
+            />
+            <input type="hidden" name="_cc" value="" />
+
+            <!-- Parent Information -->
+            <div class="parent-section">
+              <h3>Eltern/Erziehungsberechtigte</h3>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="Eltern_Vorname"
+                  placeholder="Vorname"
+                  required
+                  maxlength="100"
+                />
+                <input
+                  type="text"
+                  name="Eltern_Nachname"
+                  placeholder="Nachname"
+                  required
+                  maxlength="100"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  name="Eltern_Email"
+                  placeholder="E-Mail-Adresse"
+                  required
+                  maxlength="250"
+                />
+                <input
+                  type="tel"
+                  name="Eltern_Telefon"
+                  placeholder="Handynummer"
+                  required
+                  maxlength="50"
+                />
+              </div>
+            </div>
+
+            <!-- First Child (Required) -->
+            <div class="child-section">
+              <h3>Kind 1</h3>
+              <div class="form-group">
+                <input
+                  type="text"
+                  name="Kind1_Vorname"
+                  placeholder="Vorname"
+                  required
+                  maxlength="100"
+                />
+                <input
+                  type="text"
+                  name="Kind1_Nachname"
+                  placeholder="Nachname"
+                  required
+                  maxlength="100"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="date"
+                  name="Kind1_Geburtsdatum"
+                  required
+                  max="2024-12-31"
+                  min="2010-01-01"
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  name="Kind1_Allergien"
+                  placeholder="Allergien oder besondere Bedürfnisse"
+                  rows="2"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Container for Additional Children -->
+            <div id="weitere-Kinder"></div>
+
+            <!-- Add Child Button -->
+            <button type="button" id="addChild" class="btn-secondary">
+              <i class="fas fa-plus"></i> Weiteres Kind hinzufügen
+            </button>
+
+            <div class="terms-section">
+              <div class="form-group checkbox-group">
+                <p class="checkbox-label">Terms and Conditions</p>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="regeln"
+                    name="Mitgliedschaftsregeln"
+                    value="Mitgliedschaftsregeln / Teilnahmebedingungen akzeptiert"
+                    required
+                  />
+                  <label for="regeln">
+                    Ich habe die
+                    <button
+                      type="button"
+                      onclick="window.open('docs/rules.html', '_blank')"
+                      class="text-link"
+                    >
+                      Mitgliedschaftsregeln und Datenschutzbestimmungen
+                    </button>
+                    gelesen und stimme ihnen zu. Ich stimme den allgemeinen
+                    Haftungserklärung Bedingungen zu. / I have read and agree to
+                    all the conditions and terms.
+                  </label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="no_photos"
+                    name="NoPhotos"
+                    value="Keine Fotos veröffentlichen"
+                  />
+                  <label for="no_photos">
+                    Ich möchte keine Fotos von meinem Kind/er veröffentlicht
+                    haben (außer, wenn sie zufällig im Hintergrund auf
+                    Gruppenfotos oder allgemeinen Aufnahmen erscheine/n).
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Anmelden</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <hr class="footer-line" />
+    <footer class="footer">
+      <p class="footer-text">
+        Code and design by
+        <a
+          href="https://github.com/Jara86/D-Arc-Angels-Lux"
+          target="_blank"
+          class="footer-link"
+          >Jarouschka Buis</a
+        >
+      </p>
+      <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+      <a href="https://darcangels.com/impressum" class="footer-link"
+        >Impressum</a
+      >
     </footer>
     <script src="js/script.js" defer></script>
     <script src="js/nav.js" defer></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
+      fetch("nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("nav-placeholder").innerHTML = data;
+        });
     </script>
     <script src="js/kidsCamp.js"></script>
     <script src="js/script.js" defer></script>
     <script src="js/form-persistence.js"></script>
-</body>
+  </body>
 </html>

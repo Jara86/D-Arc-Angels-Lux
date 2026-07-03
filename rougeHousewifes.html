@@ -1,62 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rogue Housewifes - D'Arc Angels Lëtzebuerg">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" 
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/rogueHousewifes.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rogue Housewifes - D'Arc Angels Lëtzebuerg"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/rogueHousewifes.css" />
 
     <title>Rogue Housewifes - D'Arc Angels Lëtzebuerg</title>
-</head>
-<body>
-  
+  </head>
+  <body>
     <div id="nav-placeholder"></div>
 
     <div class="hero">
-        <img src="images/logo-darc-angels.avif" alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team" width="200" height="200">
-        <h1>D'Arc Angels Lëtzebuerg</h1>
+      <img
+        src="images/logo-darc-angels.avif"
+        alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team"
+        width="200"
+        height="200"
+      />
+      <h1>D'Arc Angels Lëtzebuerg</h1>
     </div>
-    
 
-<main class="content-container">
-    <section class="rogue-housewifes">
+    <main class="content-container">
+      <section class="rogue-housewifes">
         <h1>Rogue Housewifes</h1>
-        <p>come and have fun with us<br>and learn how to shoot a bow and forget the stress just chill and have fun</p>
-<img src="images/rogueHousewifes1.jpg" alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg" width="400" height="400">
-<img src="images/rogueHousewifes2.jpg" alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg" width="400" height="400">
-<img src="images/rogueHousewifes3.jpg" alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg" width="400" height="400">
-    </section>
-</main>
+        <p>
+          come and have fun with us<br />and learn how to shoot a bow and forget
+          the stress just chill and have fun
+        </p>
+        <img
+          src="images/rogueHousewifes1.jpg"
+          alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg"
+          width="400"
+          height="400"
+        />
+        <img
+          src="images/rogueHousewifes2.jpg"
+          alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg"
+          width="400"
+          height="400"
+        />
+        <img
+          src="images/rogueHousewifes3.jpg"
+          alt="Rogue Housewifes - D'Arc Angels Lëtzebuerg"
+          width="400"
+          height="400"
+        />
+      </section>
+    </main>
 
-<hr class="footer-line">
-<footer class="footer">
-  <p class="footer-text">
-      Code and design by 
-      <a href="https://github.com/Jara86/D-Arc-Angels-Lux" target="_blank" class="footer-link">Jarouschka Buis</a> 
-  </p>
-  <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
-  <a href="https://darcangels.com/impressum" class="footer-link">Impressum</a>
-</footer>
+    <hr class="footer-line" />
+    <footer class="footer">
+      <p class="footer-text">
+        Code and design by
+        <a
+          href="https://github.com/Jara86/D-Arc-Angels-Lux"
+          target="_blank"
+          class="footer-link"
+          >Jarouschka Buis</a
+        >
+      </p>
+      <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+      <a href="https://darcangels.com/impressum" class="footer-link"
+        >Impressum</a
+      >
+    </footer>
 
-<script src="js/script.js" defer></script>
+    <script src="js/script.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        fetch('nav.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('nav-placeholder').innerHTML = data;
-            });
+      fetch("nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("nav-placeholder").innerHTML = data;
+        });
     </script>
-    
-</body>
+  </body>
 </html>
