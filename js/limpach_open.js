@@ -139,6 +139,37 @@ const translations = {
 const isTestMode = window.location.search.includes("test=true");
 const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
 
+let currentLang = "en";
+
+function getMonthTranslations(lang) {
+  return {
+    "01": lang === "de" ? "Januar" : lang === "en" ? "January" : "Janvier",
+    "02": lang === "de" ? "Februar" : lang === "en" ? "February" : "Février",
+    "03": lang === "de" ? "März" : lang === "en" ? "March" : "Mars",
+    "04": lang === "de" ? "April" : lang === "en" ? "April" : "Avril",
+    "05": lang === "de" ? "Mai" : lang === "en" ? "May" : "Mai",
+    "06": lang === "de" ? "Juni" : lang === "en" ? "June" : "Juin",
+    "07": lang === "de" ? "Juli" : lang === "en" ? "July" : "Juillet",
+    "08": lang === "de" ? "August" : lang === "en" ? "August" : "Août",
+    "09":
+      lang === "de" ? "September" : lang === "en" ? "September" : "Septembre",
+    "10": lang === "de" ? "Oktober" : lang === "en" ? "October" : "Octobre",
+    "11": lang === "de" ? "November" : lang === "en" ? "November" : "Novembre",
+    "12": lang === "de" ? "Dezember" : lang === "en" ? "December" : "Décembre",
+  };
+}
+
+function translateMonthSelects(root = document) {
+  const monthTranslations = getMonthTranslations(currentLang);
+  root.querySelectorAll('select[id*="monat"]').forEach((select) => {
+    Array.from(select.options).forEach((opt) => {
+      if (opt.value && monthTranslations[opt.value]) {
+        opt.textContent = monthTranslations[opt.value];
+      }
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
   const registrationForms = document.getElementById("registration-forms");
@@ -335,6 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     weitereTeilnehmerContainer.appendChild(div);
+    translateMonthSelects(div);
     div.scrollIntoView({ behavior: "smooth" });
     div.querySelector(".remove-participant").addEventListener("click", () => {
       div.remove();
@@ -461,6 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ==================== LANGUAGE SWITCHER FUNCTION ====================
 function changeLanguage(lang) {
+  currentLang = lang;
   const t = translations[lang];
 
   // Update form title
@@ -599,29 +632,7 @@ function changeLanguage(lang) {
   }
 
   // Update all month dropdowns
-  const monthTranslations = {
-    "01": lang === "de" ? "Januar" : lang === "en" ? "January" : "Janvier",
-    "02": lang === "de" ? "Februar" : lang === "en" ? "February" : "Février",
-    "03": lang === "de" ? "März" : lang === "en" ? "March" : "Mars",
-    "04": lang === "de" ? "April" : lang === "en" ? "April" : "Avril",
-    "05": lang === "de" ? "Mai" : lang === "en" ? "May" : "Mai",
-    "06": lang === "de" ? "Juni" : lang === "en" ? "June" : "Juin",
-    "07": lang === "de" ? "Juli" : lang === "en" ? "July" : "Juillet",
-    "08": lang === "de" ? "August" : lang === "en" ? "August" : "Août",
-    "09":
-      lang === "de" ? "September" : lang === "en" ? "September" : "Septembre",
-    "10": lang === "de" ? "Oktober" : lang === "en" ? "October" : "Octobre",
-    "11": lang === "de" ? "November" : lang === "en" ? "November" : "Novembre",
-    "12": lang === "de" ? "Dezember" : lang === "en" ? "December" : "Décembre",
-  };
-
-  document.querySelectorAll('select[id*="monat"]').forEach((select) => {
-    Array.from(select.options).forEach((opt) => {
-      if (opt.value && monthTranslations[opt.value]) {
-        opt.textContent = monthTranslations[opt.value];
-      }
-    });
-  });
+  translateMonthSelects();
 
   // Update horse gender label
   const horseGenderLabel = document.getElementById("horse-gender-label");
