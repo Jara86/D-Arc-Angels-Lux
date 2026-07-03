@@ -1,90 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Load all components with proper error handling
-    const loadComponent = (url, elementId) => {
-        return fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById(elementId).innerHTML = data;
-                if (elementId === 'nav-placeholder') {
-                    initializeMobileNav();
-                }
-            })
-            .catch(error => {
-                console.log(`Error loading ${url}:`, error);
-            });
-    };
-
-    // Load all components concurrently
-    Promise.all([
-        loadComponent('header.html', 'header-placeholder'),
-        loadComponent('navigation.html', 'nav-placeholder'),
-        loadComponent('footer.html', 'footer-placeholder')
-    ]).then(() => {
-        console.log('All components loaded successfully');
-    });
-});
-
-function initializeMobileNav() {
-    const mobileToggle = document.querySelector('.mobile-nav-toggle');
-    const navList = document.querySelector('.nav-list');
-
-    if (mobileToggle && navList) {
-        mobileToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
-        });
-    }
-}
-
-// Handle page transitions
-const pageLinks = document.querySelectorAll('a[href]');
-pageLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        if (link.hostname === window.location.hostname) {
-            loadPage(link.href);
-            e.preventDefault();
-        }
-    });
-});
-
-function loadPage(url) {
-    fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            const content = document.querySelector('.site-content');
-            if (content) {
-                content.innerHTML = html;
-                window.history.pushState({}, '', url);
+// Clean, defensive loader for header/nav/footer placeholders.
+// This avoids getElementById null errors by checking for elements before using them.
+document.addEventListener('DOMContentLoaded', async () => {
+    async function safeLoad(url, elementId) {
+        const el = document.getElementById(elementId);
+        if (!el) return;
+        try {
+            const res = await fetch(url);
+            if (!res.ok) {
+                console.warn(`Failed to load ${url}: ${res.status}`);
+                return;
             }
-        });
-}
-document.addEventListener('DOMContentLoaded', function() {
-    // Load navigation
-    fetch('nav.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('nav-placeholder').innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error loading navigation:', error);
-        });
-
-});
-document.addEventListener('DOMContentLoaded', async function() {
-    try {
-        const response = await fetch('header.html');
-        const data = await response.text();
-        document.getElementById('header').innerHTML = data;
-    } catch (error) {
-        console.log('Header loading:', error);
+            el.innerHTML = await res.text();
+        } catch (err) {
+            console.error(`Error loading ${url}:`, err);
+        }
     }
-});
 
-document.addEventListener('DOMContentLoaded', function() {
+    // Load only placeholders that exist on the page
+    await Promise.all([
+        safeLoad('nav.html', 'nav-placeholder'),
+        safeLoad('header.html', 'header-placeholder'),
+        safeLoad('footer.html', 'footer-placeholder')
+    ]);
+
+    // If a navigation initialization function exists (from nav-loader.js), call it.
+    if (typeof initializeNavigation === 'function') {
+        try { initializeNavigation(); } catch (e) { console.warn('initializeNavigation error', e); }
+    }
+
+    // Small utility: attach click logger for impressum links if present
     const impressumLinks = document.querySelectorAll('a[href*="impressum.html"]');
-    impressumLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            console.log('Impressum link clicked');
-        });
-    });
+    if (impressumLinks.length) {
+        impressumLinks.forEach(link => link.addEventListener('click', () => console.log('Impressum link clicked')));
+    }
 });
