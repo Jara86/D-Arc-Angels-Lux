@@ -598,6 +598,31 @@ function changeLanguage(lang) {
           : "Lebensnummer (Equidenpass)";
   }
 
+  // Update all month dropdowns
+  const monthTranslations = {
+    "01": lang === "de" ? "Januar" : lang === "en" ? "January" : "Janvier",
+    "02": lang === "de" ? "Februar" : lang === "en" ? "February" : "Février",
+    "03": lang === "de" ? "März" : lang === "en" ? "March" : "Mars",
+    "04": lang === "de" ? "April" : lang === "en" ? "April" : "Avril",
+    "05": lang === "de" ? "Mai" : lang === "en" ? "May" : "Mai",
+    "06": lang === "de" ? "Juni" : lang === "en" ? "June" : "Juin",
+    "07": lang === "de" ? "Juli" : lang === "en" ? "July" : "Juillet",
+    "08": lang === "de" ? "August" : lang === "en" ? "August" : "Août",
+    "09":
+      lang === "de" ? "September" : lang === "en" ? "September" : "Septembre",
+    "10": lang === "de" ? "Oktober" : lang === "en" ? "October" : "Octobre",
+    "11": lang === "de" ? "November" : lang === "en" ? "November" : "Novembre",
+    "12": lang === "de" ? "Dezember" : lang === "en" ? "December" : "Décembre",
+  };
+
+  document.querySelectorAll('select[id*="monat"]').forEach((select) => {
+    Array.from(select.options).forEach((opt) => {
+      if (opt.value && monthTranslations[opt.value]) {
+        opt.textContent = monthTranslations[opt.value];
+      }
+    });
+  });
+
   // Update horse gender label
   const horseGenderLabel = document.getElementById("horse-gender-label");
   if (horseGenderLabel) horseGenderLabel.textContent = t.horse_gender_label;
