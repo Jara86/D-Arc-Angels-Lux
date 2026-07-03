@@ -342,3 +342,93 @@ section {
     border-radius: 6px;
   }
 }
+/* Tournament Card Styles */
+.tournament-card {
+  background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tournament-card h3 {
+  color: #183947;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tournament-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .tournament-image {
+    height: 300px;
+  }
+}
+
+.tournament-details p {
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.tournament-details .datum,
+.tournament-details .location,
+.tournament-details .event {
+  font-weight: bold;
+  color: #c9a227;
+}
+
+.tournament-details .status.registration-toggle {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: #2c7358;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: background 0.3s ease;
+}
+
+.tournament-details .status.registration-toggle:hover {
+  background: #b89222;
+}
+
+.tournament-details .btn {
+  display: inline-block;
+  margin-top: 1rem;
+}
+/* Forceer alles onder elkaar op grote schermen */
+@media (min-width: 769px) {
+  .content-grid > .row {
+    display: block !important;
+    margin-bottom: 2rem;
+  }
+
+  .content-grid > .row:last-of-type img.banner {
+    display: none; /* Verberg banner indien nodig */
+  }
+
+  #news {
+    max-width: 100%;
+    width: 100%;
+    grid-column: span 2 !important;
+  }
+
+  .tournament-card {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+  }
+}
