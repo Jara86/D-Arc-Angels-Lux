@@ -66,6 +66,7 @@
   </head>
 
   <body>
+    <!-- NAV HEADER CONTAINER -->
     <div id="nav-placeholder"></div>
 
     <div class="hero">
@@ -110,7 +111,7 @@
             <div class="tournament-card">
               <h3>Waldrandranch Open</h3>
               <img
-                src="http://www.waldrandranch.de/wp-content/uploads/2019/07/logo_waldrandranch_small.png"
+                src="https://www.waldrandranch.de/wp-content/uploads/2019/07/logo_waldrandranch_small.png"
                 alt="Waldrandranch Turnier"
                 class="tournament-image"
               />
@@ -576,9 +577,9 @@
 
               <div class="terms-section">
                 <div class="form-group checkbox-group">
-                  <a href="docs/rules.html" target="_blank" class="text-link"
-                    >Rules</a
-                  >
+                  <p class="checkbox-label" id="terms-label">
+                    Terms and Conditions
+                  </p>
                   <div class="checkbox-options">
                     <div class="checkbox-item">
                       <input
@@ -606,6 +607,13 @@
                       </label>
                     </div>
                   </div>
+                  <a
+                    href="docs/rules.html"
+                    target="_blank"
+                    class="text-link"
+                    id="rules-link-text"
+                    >Regeln lesen</a
+                  >
                 </div>
               </div>
 
@@ -659,8 +667,10 @@
       fetch("nav.html")
         .then((response) => response.text())
         .then((data) => {
-          document.getElementById("nav-placeholder").innerHTML = data;
-        });
+          const navEl = document.getElementById("nav-placeholder");
+          if (navEl) navEl.innerHTML = data;
+        })
+        .catch((err) => console.warn("Nav load skipped:", err));
     </script>
     <script src="js/form-persistence.js"></script>
   </body>

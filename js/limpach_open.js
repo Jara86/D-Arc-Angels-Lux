@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tournamentForm = document.getElementById("tournament-registration");
   const emailField = document.querySelector('input[name="Email"]');
   const rulesCheckbox = document.getElementById("regeln");
-  const rulesButton = document.querySelector(".text-link");
+  const rulesButton = document.getElementById("rules-link-text");
 
   let registrationCount = 0;
   const registrationLimit = 25;
@@ -612,7 +612,7 @@ function changeLanguage(lang) {
   if (addParticipantBtn)
     addParticipantBtn.innerHTML = `<i class="fas fa-plus"></i> ${t.add_participant_btn}`;
 
-  // Update rules link text (NEW!)
+  // Update rules link text
   const rulesLink = document.getElementById("rules-link-text");
   if (rulesLink) rulesLink.textContent = t.read_rules_link;
 
