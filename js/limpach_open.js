@@ -577,6 +577,27 @@ function changeLanguage(lang) {
   const horseNameInput = document.getElementById("horse-name-input");
   if (horseNameInput) horseNameInput.placeholder = t.horse_name_placeholder;
 
+  // Update horse-related placeholders
+  const horseOwner = document.querySelector('input[name="Pferdebesitzer"]');
+  if (horseOwner) {
+    horseOwner.placeholder =
+      lang === "en"
+        ? "Horse Owner"
+        : lang === "fr"
+          ? "Propriétaire du cheval"
+          : "Pferdebesitzer";
+  }
+
+  const lifeNumber = document.querySelector('input[name="Lebensnummer"]');
+  if (lifeNumber) {
+    lifeNumber.placeholder =
+      lang === "en"
+        ? "Life Number (Equine Passport)"
+        : lang === "fr"
+          ? "Numéro de vie (Passeport équin)"
+          : "Lebensnummer (Equidenpass)";
+  }
+
   // Update horse gender label
   const horseGenderLabel = document.getElementById("horse-gender-label");
   if (horseGenderLabel) horseGenderLabel.textContent = t.horse_gender_label;
