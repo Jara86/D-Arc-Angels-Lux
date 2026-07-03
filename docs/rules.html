@@ -1,192 +1,490 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mitgliedschaftsregeln D'Arc Angels</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            position: relative;
-            background-color: #fff;
-        }
-        
-        body::before {
-            content: "";
-            background-image: url('../images/logo-darc\ angels.avif');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 50%;
-            opacity: 0.1;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        h1 {
-            color: #8B0000;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        h2 {
-            color: #8B0000;
-            margin-top: 30px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 15px;
-            border-radius: 5px;
-        }
-        .agreement-section {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        
-        .checkbox-container {
-            margin-bottom: 20px;
-        }
-        
-        .checkbox-container label {
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .button {
-            display: inline-block;
-            background-color: #8B0000;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .button:hover {
-            background-color: #6d0000;
-        }
-        
-        .button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #333;
+        position: relative;
+        background-color: #fff;
+      }
+
+      body::before {
+        content: "";
+        background-image: url("../images/logo-darc\ angels.avif");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50%;
+        opacity: 0.1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      h1 {
+        color: #8b0000;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        color: #8b0000;
+        margin-top: 30px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 15px;
+        border-radius: 5px;
+      }
+
+      .agreement-section {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .checkbox-container {
+        margin-bottom: 20px;
+      }
+
+      .checkbox-container label {
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .button {
+        display: inline-block;
+        background-color: #8b0000;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+      }
+
+      .button:hover {
+        background-color: #6d0000;
+      }
+
+      .button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+
+      /* Language Selector Styling */
+      .language-selector {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+        border-radius: 8px;
+      }
+
+      .language-selector label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .language-selector select {
+        padding: 8px 15px;
+        font-size: 1em;
+        border-radius: 4px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
-    <h1>Mitgliedschaftsregeln / Teilnahmebedingungen<br> D'Arc Angels</h1>
-    
-    <div class="section">
-        <h2>Sicherheit</h2>
-        <p><strong>Umgang mit Pfeil und Bogen:</strong> Das Spannen und Schießen von Pfeilen ist nur auf dem dafür vorgesehenen Bereich und unter Aufsicht eines qualifizierten Trainers gestattet. Pfeile dürfen niemals auf Personen oder Tiere gerichtet werden. Vor dem Betreten des Schießbereichs ist sicherzustellen, dass dieser frei ist. (Range Operation, 2023)</p>
-        <p>Mir ist bewusst, dass das berittene Bogenschießen eine Sportart mit erhöhtem Verletzungsrisiko ist und jeder Schütze für seinen eigenen Schuss die volle Verantwortung trägt. Zudem bestätige ich, dass ich über eine private Haftpflichtversicherung verfüge, die sowohl den Bogen- als auch den Reitsport abdeckt.</p>
-        
-        <p><strong>Ausrüstung:</strong> Die Ausrüstung muss sich in einwandfreiem Zustand befinden. Beschädigte Pfeile oder Bögen dürfen nicht verwendet werden.</p>
-        
-        <p><strong>Bekleidung:</strong> Geeignete Kleidung und Schutzkleidung (z.B. Reithelm) sind Pflicht.</p>
-        
-        <p><strong>Alkohol und Drogen:</strong> Der Konsum von Alkohol oder Drogen vor oder während des Trainings ist strengstens verboten.</p>
+  </head>
+  <body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+      <label for="language-select">Sprache / Language / Langue:</label>
+      <select id="language-select" onchange="changeLanguage(this.value)">
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="en" selected>🇬🇧 English</option>
+        <option value="fr">🇫🇷 Français</option>
+      </select>
     </div>
-    
-    <div class="section">
-        <h2>Respekt</h2>
-        <p><strong>Gegenseitige Rücksichtnahme:</strong> Respektvoller Umgang untereinander ist unerlässlich. Beleidigungen, Diskriminierung oder Mobbing werden nicht toleriert.</p>
-        
-        <p><strong>Material:</strong> Das Material anderer Vereinsmitglieder ist mit Sorgfalt zu behandeln.</p>
-        
-        <p><strong>Anweisungen:</strong> Den Anweisungen der Trainer und des Aufsichtspersonals ist Folge zu leisten.</p>
-    </div>
-    
-    <div class="section">
-        <h2>Umgang mit Pferden und anderen Tieren</h2>
-        <p><strong>Pferde:</strong>Teilnehmende Pferde müssen ruhig und zuverlässig sein und an das Bogenschießen gewöhnt sein.Die Pferde müssen artgerecht gehalten und behandelt werden. Regelmäßige Hufpflege und tierärztliche Versorgung sind sicherzustellen. Es wird ohne Kandarre oder andere scharfe Gebisse sowie Sporen geritten. Ebenfalls stellt das Festbinden der Zügel am Sattel eine erhebliche Verletzungsgefahr für Pferd und Reiter dar und ist daher untersagt.</p>
 
-        <p>Respektvoller Umgang mit Pferden und anderen Tieren ist selbstverständlich. Tiere dürfen nicht misshandelt oder überfordert werden.</p>
-        
-        <p><strong>Schutz der Tiere:</strong> Kein Tier darf absichtlich verletzt oder durch Nachlässigkeit gefährdet werden. Falls sich ein Tier – wie eine Katze, ein Hund oder ein anderes Lebewesen – auf das Trainingsgelände verirrt, ist das Schießen sofort einzustellen, bis das Tier in Sicherheit ist.</p>
-        
-        <p><strong>Sauberkeit:</strong> Der Stall und das Gelände sind sauber zu halten.</p>
-    </div>
-    
+    <h1 id="page-title">
+      Mitgliedschaftsregeln / Teilnahmebedingungen<br />
+      D'Arc Angels
+    </h1>
+
     <div class="section">
-        <h2>Weitere Bestimmungen</h2>
-        <p><strong>Mitgliedsbeitrag:</strong>Der Mitgliedsbeitrag ist jährlich zu entrichten und gilt ausschließlich für Vereinsmitglieder. Personen, die lediglich an einem Turnier teilnehmen, zahlen nur die entsprechende Teilnahmegebühr.</p>
-        
-        <p><strong>Haftung:</strong> Der Verein haftet nicht für Schäden, die durch unsachgemäßen Umgang mit Pfeil und Bogen oder durch Pferde verursacht werden.</p>
-        
-        <p><strong>Änderungen:</strong> Der Vorstand behält sich das Recht vor, die Regeln jederzeit zu ändern.</p>
-        
-        <p><strong>Konsequenzen:</strong> 
-Bei einem gravierenden Verstoß gegen diese Regeln kann der Vorstand Maßnahmen bis hin zum Ausschluss aus dem Verein beschließen. Personen, die keine Mitglieder des Vereins sind, jedoch an einem Turnier oder einer Veranstaltung teilnehmen, können bei Missachtung der Regeln von der verantwortlichen Turnierleitung disqualifiziert und vom weiteren Verlauf der Veranstaltung ausgeschlossen werden.</p>
-        
+      <h2 id="safety-heading">Sicherheit</h2>
+      <p>
+        <strong id="arrow-bow-handling">Umgang mit Pfeil und Bogen:</strong> Das
+        Spannen und Schießen von Pfeilen ist nur auf dem dafür vorgesehenen
+        Bereich und unter Aufsicht eines qualifizierten Trainers gestattet.
+        Pfeile dürfen niemals auf Personen oder Tiere gerichtet werden. Vor dem
+        Betreten des Schießbereichs ist sicherzustellen, dass dieser frei ist.
+        (Range Operation, 2023)
+      </p>
+      <p id="risk-awareness">
+        Mir ist bewusst, dass das berittene Bogenschießen eine Sportart mit
+        erhöhtem Verletzungsrisiko ist und jeder Schütze für seinen eigenen
+        Schuss die volle Verantwortung trägt. Zudem bestätige ich, dass ich über
+        eine private Haftpflichtversicherung verfüge, die sowohl den Bogen- als
+        auch den Reitsport abdeckt.
+      </p>
+
+      <p>
+        <strong id="equipment-heading">Ausrüstung:</strong> Die Ausrüstung muss
+        sich in einwandfreiem Zustand befinden. Beschädigte Pfeile oder Bögen
+        dürfen nicht verwendet werden.
+      </p>
+
+      <p>
+        <strong id="clothing-heading">Bekleidung:</strong> Geeignete Kleidung
+        und Schutzkleidung (z.B. Reithelm) sind Pflicht.
+      </p>
+
+      <p>
+        <strong id="alcohol-drugs-heading">Alkohol und Drogen:</strong> Der
+        Konsum von Alkohol oder Drogen vor oder während des Trainings ist
+        strengstens verboten.
+      </p>
     </div>
-    
+
     <div class="section">
-        <h2>Privatsphäre und Datenschutz: Verwendung von Fotos und Videos</h2>
-        <p>Im Rahmen unserer Vereinsaktivitäten (Trainings, Turniere, Veranstaltungen) werden Fotos und Videos aufgenommen und auf unserer Website, Social-Media-Plattformen (Facebook, Instagram) sowie in Vereinsmaterialien veröffentlicht. Diese können auch für interne Vereinsdokumentationen und Presseartikel genutzt werden.</p>
-        
-        <p>Mit der Anmeldung und der Zustimmung zur Datenschutzerklärung erklären Sie sich mit der Veröffentlichung von Bildern einverstanden.</p>
+      <h2 id="respect-heading">Respekt</h2>
+      <p>
+        <strong id="mutual-respect">Gegenseitige Rücksichtnahme:</strong>
+        Respektvoller Umgang untereinander ist unerlässlich. Beleidigungen,
+        Diskriminierung oder Mobbing werden nicht toleriert.
+      </p>
+
+      <p>
+        <strong id="material-heading">Material:</strong> Das Material anderer
+        Vereinsmitglieder ist mit Sorgfalt zu behandeln.
+      </p>
+
+      <p>
+        <strong id="instructions-heading">Anweisungen:</strong> Den Anweisungen
+        der Trainer und des Aufsichtspersonals ist Folge zu leisten.
+      </p>
     </div>
+
+    <div class="section">
+      <h2 id="horses-heading">Umgang mit Pferden und anderen Tieren</h2>
+      <p id="horses-requirements">
+        <strong>Pferde:</strong>Teilnehmende Pferde müssen ruhig und zuverlässig
+        sein und an das Bogenschießen gewöhnt sein.Die Pferde müssen artgerecht
+        gehalten und behandelt werden. Regelmäßige Hufpflege und tierärztliche
+        Versorgung sind sicherzustellen. Es wird ohne Kandarre oder andere
+        scharfe Gebisse sowie Sporen geritten. Ebenfalls stellt das Festbinden
+        der Zügel am Sattel eine erhebliche Verletzungsgefahr für Pferd und
+        Reiter dar und ist daher untersagt.
+      </p>
+
+      <p id="animals-respect">
+        Respektvoller Umgang mit Pferden und anderen Tieren ist
+        selbstverständlich. Tiere dürfen nicht misshandelt oder überfordert
+        werden.
+      </p>
+
+      <p>
+        <strong id="animal-protection">Schutz der Tiere:</strong> Kein Tier darf
+        absichtlich verletzt oder durch Nachlässigkeit gefährdet werden. Falls
+        sich ein Tier – wie eine Katze, ein Hund oder ein anderes Lebewesen –
+        auf das Trainingsgelände verirrt, ist das Schießen sofort einzustellen,
+        bis das Tier in Sicherheit ist.
+      </p>
+
+      <p>
+        <strong id="cleanliness">Sauberkeit:</strong> Der Stall und das Gelände
+        sind sauber zu halten.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 id="other-heading">Weitere Bestimmungen</h2>
+      <p id="membership-fee">
+        <strong>Mitgliedsbeitrag:</strong>Der Mitgliedsbeitrag ist jährlich zu
+        entrichten und gilt ausschließlich für Vereinsmitglieder. Personen, die
+        lediglich an einem Turnier teilnehmen, zahlen nur die entsprechende
+        Teilnahmegebühr.
+      </p>
+
+      <p id="liability">
+        <strong>Haftung:</strong> Der Verein haftet nicht für Schäden, die durch
+        unsachgemäßen Umgang mit Pfeil und Bogen oder durch Pferde verursacht
+        werden.
+      </p>
+
+      <p id="changes-heading">
+        <strong>Änderungen:</strong> Der Vorstand behält sich das Recht vor, die
+        Regeln jederzeit zu ändern.
+      </p>
+
+      <p id="consequences-heading">
+        <strong>Konsequenzen:</strong> Bei einem gravierenden Verstoß gegen
+        diese Regeln kann der Vorstand Maßnahmen bis hin zum Ausschluss aus dem
+        Verein beschließen. Personen, die keine Mitglieder des Vereins sind,
+        jedoch an einem Turnier oder einer Veranstaltung teilnehmen, können bei
+        Missachtung der Regeln von der verantwortlichen Turnierleitung
+        disqualifiziert und vom weiteren Verlauf der Veranstaltung
+        ausgeschlossen werden.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 id="privacy-heading">
+        Privatsphäre und Datenschutz: Verwendung von Fotos und Videos
+      </h2>
+      <p id="photos-video-text">
+        Im Rahmen unserer Vereinsaktivitäten (Trainings, Turniere,
+        Veranstaltungen) werden Fotos und Videos aufgenommen und auf unserer
+        Website, Social-Media-Plattformen (Facebook, Instagram) sowie in
+        Vereinsmaterialien veröffentlicht. Diese können auch für interne
+        Vereinsdokumentationen und Presseartikel genutzt werden.
+      </p>
+
+      <p id="photo-consent">
+        Mit der Anmeldung und der Zustimmung zur Datenschutzerklärung erklären
+        Sie sich mit der Veröffentlichung von Bildern einverstanden.
+      </p>
+    </div>
+
     <div class="agreement-section">
-        <div class="checkbox-container">
-            <input type="checkbox" id="agreement" onchange="enableButton()">
-            <label for="agreement">Gelesen und einverstanden</label>
-        </div>
-        
-        <button id="backButton" class="button" onclick="acceptAndClose()" disabled>Akzeptieren</button>
+      <div class="checkbox-container">
+        <input type="checkbox" id="agreement" onchange="enableButton()" />
+        <label for="agreement" id="read-agree-label"
+          >Gelesen und einverstanden</label
+        >
+      </div>
+
+      <button
+        id="backButton"
+        class="button"
+        onclick="acceptAndClose()"
+        disabled
+        id="accept-btn"
+      >
+        Akzeptieren
+      </button>
     </div>
 
+    <!-- TRANSLATIONS OBJECT FOR RULES PAGE -->
     <script>
-        function enableButton() {
-            const checkbox = document.getElementById('agreement');
-            const button = document.getElementById('backButton');
-            
-            if (checkbox.checked) {
-                button.disabled = false;
-            } else {
-                button.disabled = true;
-            }
+      const ruleTranslations = {
+        de: {
+          pageTitle:
+            "Mitgliedschaftsregeln / Teilnahmebedingungen<br>D'Arc Angels",
+          safetyHeading: "Sicherheit",
+          arrowBowHandling: "Umgang mit Pfeil und Bogen:",
+          riskAwareness:
+            "Mir ist bewusst, dass das berittene Bogenschießen eine Sportart mit erhöhtem Verletzungsrisiko ist und jeder Schütze für seinen eigenen Schuss die volle Verantwortung trägt. Zudem bestätige ich, dass ich über eine private Haftpflichtversicherung verfüge, die sowohl den Bogen- als auch den Reitsport abdeckt.",
+          equipmentHeading: "Ausrüstung:",
+          clothingHeading: "Bekleidung:",
+          alcoholDrugsHeading: "Alkohol und Drogen:",
+          respectHeading: "Respekt",
+          mutualRespect: "Gegenseitige Rücksichtnahme:",
+          materialHeading: "Material:",
+          instructionsHeading: "Anweisungen:",
+          horsesHeading: "Umgang mit Pferden und anderen Tieren",
+          horsesRequirements:
+            "<strong>Pferde:</strong>Teilnehmende Pferde müssen ruhig und zuverlässig sein und an das Bogenschießen gewöhnt sein. Die Pferde müssen artgerecht gehalten und behandelt werden. Regelmäßige Hufpflege und tierärztliche Versorgung sind sicherzustellen. Es wird ohne Kandarre oder andere scharfe Gebisse sowie Sporen geritten. Ebenfalls stellt das Festbinden der Zügel am Sattel eine erhebliche Verletzungsgefahr für Pferd und Reiter dar und ist daher untersagt.",
+          animalsRespect:
+            "Respektvoller Umgang mit Pferden und anderen Tieren ist selbstverständlich. Tiere dürfen nicht misshandelt oder überfordert werden.",
+          animalProtection: "Schutz der Tiere:",
+          cleanliness: "Sauberkeit:",
+          otherHeading: "Weitere Bestimmungen",
+          membershipFee: "Mitgliedsbeitrag:",
+          liability: "Haftung:",
+          changesHeading: "Änderungen:",
+          consequencesHeading: "Konsequenzen:",
+          privacyHeading:
+            "Privatsphäre und Datenschutz: Verwendung von Fotos und Videos",
+          photosVideoText:
+            "Im Rahmen unserer Vereinsaktivitäten (Trainings, Turniere, Veranstaltungen) werden Fotos und Videos aufgenommen und auf unserer Website, Social-Media-Plattformen (Facebook, Instagram) sowie in Vereinsmaterialien veröffentlicht. Diese können auch für interne Vereinsdokumentationen und Presseartikel genutzt werden.",
+          photoConsent:
+            "Mit der Anmeldung und der Zustimmung zur Datenschutzerklärung erklären Sie sich mit der Veröffentlichung von Bildern einverstanden.",
+          readAgreeLabel: "Gelesen und einverstanden",
+          acceptBtn: "Akzeptieren",
+        },
+        en: {
+          pageTitle: "Membership Rules / Participation Terms<br>D'Arc Angels",
+          safetyHeading: "Safety",
+          arrowBowHandling: "Arrow and Bow Handling:",
+          riskAwareness:
+            "I am aware that mounted archery is a sport with increased injury risk and each shooter bears full responsibility for their own shot. Furthermore, I confirm that I have private liability insurance covering both bow sports and equestrian activities.",
+          equipmentHeading: "Equipment:",
+          clothingHeading: "Clothing:",
+          alcoholDrugsHeading: "Alcohol and Drugs:",
+          respectHeading: "Respect",
+          mutualRespect: "Mutual Consideration:",
+          materialHeading: "Materials:",
+          instructionsHeading: "Instructions:",
+          horsesHeading: "Handling Horses and Other Animals",
+          horsesRequirements:
+            "<strong>Horses:</strong>Participating horses must be calm and reliable and accustomed to archery. Horses must be kept and treated humanely. Regular hoof care and veterinary attention must be ensured. Riding without a curb or other sharp bits as well as spurs is required. Additionally, tying reins to the saddle poses a significant injury risk to horse and rider and is therefore prohibited.",
+          animalsRespect:
+            "Respectful treatment of horses and other animals goes without saying. Animals must not be mistreated or overworked.",
+          animalProtection: "Animal Protection:",
+          cleanliness: "Cleanliness:",
+          otherHeading: "Additional Provisions",
+          membershipFee: "Membership Fee:",
+          liability: "Liability:",
+          changesHeading: "Changes:",
+          consequencesHeading: "Consequences:",
+          privacyHeading:
+            "Privacy and Data Protection: Use of Photos and Videos",
+          photosVideoText:
+            "As part of our club activities (trainings, tournaments, events), photos and videos are taken and published on our website, social media platforms (Facebook, Instagram), and in club materials. These may also be used for internal club documentation and press articles.",
+          photoConsent:
+            "By registering and agreeing to the privacy policy, you consent to the publication of images.",
+          readAgreeLabel: "Read and Agree",
+          acceptBtn: "Accept",
+        },
+        fr: {
+          pageTitle:
+            "Règles d'adhésion / Conditions de participation<br>D'Arc Angels",
+          safetyHeading: "Sécurité",
+          arrowBowHandling: "Manutention des flèches et arcs :",
+          riskAwareness:
+            "Je suis conscient que l'archerie équestre est un sport avec un risque accru de blessure et chaque tireur porte la pleine responsabilité de son tir. De plus, je confirme avoir une assurance responsabilité privée couvrant à la fois les sports à l'arc et équestres.",
+          equipmentHeading: "Équipement :",
+          clothingHeading: "Vêtements :",
+          alcoholDrugsHeading: "Alcool et drogues :",
+          respectHeading: "Respect",
+          mutualRespect: "Considération mutuelle :",
+          materialHeading: "Matériel :",
+          instructionsHeading: "Instructions :",
+          horsesHeading: "Traitement des chevaux et autres animaux",
+          horsesRequirements:
+            "<strong>Chevaux :</strong>Les chevaux participants doivent être calmes et fiables et habitués à l'archerie. Les chevaux doivent être tenus et traités humainement. Les soins réguliers aux sabots et les soins vétérinaires doivent être assurés. Il est obligatoire de monter sans bride ou morsures pointues ainsi qu'éperons. De plus, attacher les rênes au selle présente un risque considérable de blessure pour le cheval et le cavalier et est donc interdit.",
+          animalsRespect:
+            "Le traitement respectueux des chevaux et autres animaux va de soi. Les animaux ne doivent pas être maltraités ou surchargés.",
+          animalProtection: "Protection animale :",
+          cleanliness: "Propreté :",
+          otherHeading: "Autres dispositions",
+          membershipFee: "Droits d'adhésion :",
+          liability: "Responsabilité :",
+          changesHeading: "Modifications :",
+          consequencesHeading: "Conséquences :",
+          privacyHeading:
+            "Confidentialité et protection des données : Utilisation de photos et vidéos",
+          photosVideoText:
+            "Dans le cadre de nos activités de club (entraînements, tournois, événements), des photos et vidéos sont prises et publiées sur notre site web, plates-formes de médias sociaux (Facebook, Instagram) et matériaux de club. Ceux-ci peuvent également être utilisés pour la documentation intérieure du club et articles de presse.",
+          photoConsent:
+            "En vous inscrivant et acceptant la politique de confidentialité, vous consentez à la publication d'images.",
+          readAgreeLabel: "Lu et accepté",
+          acceptBtn: "Accepter",
+        },
+      };
+
+      function changeLanguage(lang) {
+        const t = ruleTranslations[lang];
+
+        // Update all translated elements by ID mapping
+        document.getElementById("page-title").innerHTML = t.pageTitle;
+        document.getElementById("safety-heading").textContent = t.safetyHeading;
+        document.getElementById("arrow-bow-handling").textContent =
+          t.arrowBowHandling;
+        document.getElementById("risk-awareness").textContent = t.riskAwareness;
+        document.getElementById("equipment-heading").textContent =
+          t.equipmentHeading;
+        document.getElementById("clothing-heading").textContent =
+          t.clothingHeading;
+        document.getElementById("alcohol-drugs-heading").textContent =
+          t.alcoholDrugsHeading;
+        document.getElementById("respect-heading").textContent =
+          t.respectHeading;
+        document.getElementById("mutual-respect").textContent = t.mutualRespect;
+        document.getElementById("material-heading").textContent =
+          t.materialHeading;
+        document.getElementById("instructions-heading").textContent =
+          t.instructionsHeading;
+        document.getElementById("horses-heading").textContent = t.horsesHeading;
+        document.getElementById("horses-requirements").innerHTML =
+          t.horsesRequirements;
+        document.getElementById("animals-respect").textContent =
+          t.animalsRespect;
+        document.getElementById("animal-protection").textContent =
+          t.animalProtection;
+        document.getElementById("cleanliness").textContent = t.cleanliness;
+        document.getElementById("other-heading").textContent = t.otherHeading;
+        document.getElementById("membership-fee").innerHTML =
+          t.membershipFee + " Der Mitgliedsbeitrag...";
+        document.getElementById("liability").innerHTML =
+          t.liability + " Der Verein haftet nicht...";
+        document.getElementById("changes-heading").innerHTML =
+          t.changesHeading + " Der Vorstand behält...";
+        document.getElementById("consequences-heading").innerHTML =
+          t.consequencesHeading + " Bei einem gravierenden Verstoß...";
+        document.getElementById("privacy-heading").textContent =
+          t.privacyHeading;
+        document.getElementById("photos-video-text").textContent =
+          t.photosVideoText;
+        document.getElementById("photo-consent").textContent = t.photoConsent;
+        document.getElementById("read-agree-label").textContent =
+          t.readAgreeLabel;
+        document.getElementById("accept-btn").textContent = t.acceptBtn;
+      }
+
+      function enableButton() {
+        const checkbox = document.getElementById("agreement");
+        const button = document.getElementById("backButton");
+
+        if (checkbox.checked) {
+          button.disabled = false;
+        } else {
+          button.disabled = true;
         }
-        
-        function acceptAndClose() {
-            // Set a flag in localStorage to indicate the user has agreed
-            localStorage.setItem('rulesAgreed', 'true');
-            
-            // Notify the opener window that rules were accepted (if it exists)
-            if (window.opener && !window.opener.closed) {
-                try {
-                    window.opener.rulesAccepted();
-                } catch (e) {
-                    // If the function doesn't exist in the parent, ignore the error
-                    console.log("Parent window doesn't have rulesAccepted function");
-                }
-            }
-            
-            // Close this window
-            window.close();
+      }
+
+      function acceptAndClose() {
+        // Set a flag in localStorage to indicate the user has agreed
+        localStorage.setItem("rulesAgreed", "true");
+
+        // Notify the opener window that rules were accepted (if it exists)
+        if (window.opener && !window.opener.closed) {
+          try {
+            window.opener.rulesAccepted();
+          } catch (e) {
+            // If the function doesn't exist in the parent, ignore the error
+            console.log("Parent window doesn't have rulesAccepted function");
+          }
         }
+
+        // Close this window
+        window.close();
+      }
+
+      // Initialize default language on load
+      document.addEventListener("DOMContentLoaded", () => {
+        const langSelector = document.getElementById("language-select");
+        if (langSelector) {
+          langSelector.value = "en";
+          changeLanguage("en");
+        }
+      });
     </script>
-  <script src="js/nav.js"></script>\n</body>
+
+    <script src="../js/nav.js"></script>
+  </body>
 </html>
