@@ -9,12 +9,12 @@ body {
 
 .tournament-form-container {
     background: white !important;
-    padding: 2rem !important;
-    border-radius: 10px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-    margin: 2rem auto !important;
-    max-width: 800px !important;
+    padding: 2rem;
+    border-radius: 10px;
     border: 2px solid #183947 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 800px;
 }
 
 .tournament-form {
@@ -26,14 +26,15 @@ body {
 .participant-section, .main-participant-section {
     background: #f9f9f9 !important;
     border: 1px solid #ddd !important;
-    padding: 1rem !important;
-    margin-bottom: 1.5rem !important;
-    border-radius: 8px !important;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
 }
 
 .participant-section h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+    color: #183947;
 }
 
 .participant-header {
@@ -58,17 +59,17 @@ body {
 
 /* -------------------- Buttons -------------------- */
 .btn-secondary {
-    background-color: #ffffff;
-    color: #183947;
-    border: 2px solid #183947;
-    padding: 8px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
+    background-color: #ffffff !important;
+    color: #183947 !important;
+    border: 2px solid #183947 !important;
+    padding: 8px 20px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
 }
 
 .btn-secondary:hover {
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important;
 }
 
 #addparticipant {
@@ -78,18 +79,18 @@ body {
 }
 
 .btn-primary {
-    background-color: #183947;
-    color: white;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #183947 !important;
+    color: white !important;
+    border: none !important;
+    padding: 10px 25px !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
     flex: 1;
 }
 
 .btn-primary:hover {
-    background-color: #0f2631;
+    background-color: #0f2631 !important;
 }
 
 /* ------------------- GROENE REGISTRATIEKNOP ------------------- */
@@ -202,11 +203,11 @@ body {
 }
 
 .curse-images img {
-    width: 100%;
-    max-width: 250px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .status {
@@ -306,7 +307,7 @@ p {
     color: #333 !important;
 }
 
-/* ------------------- TERM SECTION STYLING ------------------- */
+/* ------------------- TERMS SECTIE GROEN ------------------- */
 .terms-section {
     background: #e8f5e9 !important;
     border: 1px solid #4CAF50 !important;
