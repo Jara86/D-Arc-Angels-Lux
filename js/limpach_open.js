@@ -45,6 +45,10 @@ const translations = {
     read_rules_link: "Regeln lesen",
     register_btn: "Anmelden",
     cancel_btn: "Abbrechen",
+    second_horse_title: "Second Horse Details",
+    second_horse_name: "Pferdename 2 (wie im Pass)",
+    second_horse_owner: "Pferdebesitzer 2",
+    second_life_number: "Lebensnummer (Equidenpass)",
   },
   en: {
     title: "Registration Form Limpach Open",
@@ -90,6 +94,10 @@ const translations = {
     read_rules_link: "Read Rules",
     register_btn: "Register",
     cancel_btn: "Cancel",
+    second_horse_title: "Second Horse Details",
+    second_horse_name: "Horse Name 2 (like in Passport)",
+    second_horse_owner: "Horse Owner 2",
+    second_life_number: "Life Number (Equine Passport)",
   },
   fr: {
     title: "Formulaire d'inscription Limpach Open",
@@ -135,6 +143,10 @@ const translations = {
     read_rules_link: "Lire les règles",
     register_btn: "S'inscrire",
     cancel_btn: "Annuler",
+    second_horse_title: "Détails du deuxième cheval",
+    second_horse_name: "Nom du cheval 2 (comme dans passeport)",
+    second_horse_owner: "Propriétaire du cheval 2",
+    second_life_number: "Numéro de vie (Passeport équin)",
   },
 };
 
@@ -153,6 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
     'input[name="Pferde_Anzahl"]',
   );
   const pferdDetailsSection = document.getElementById("pferd_details");
+  const secondHorseDetailsSection = document.getElementById(
+    "second_horse_details",
+  );
   const addParticipantBtn = document.getElementById("addparticipant");
   const weitereTeilnehmerContainer =
     document.getElementById("weitere-Teilnehmer");
@@ -186,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // First horse birthdate
     const pferdTag = document.getElementById("pferd_geburtsdatum_tag");
     if (pferdTag) {
       for (let d = 1; d <= 31; d++) {
@@ -203,6 +219,27 @@ document.addEventListener("DOMContentLoaded", () => {
         opt.value = y;
         opt.textContent = y;
         pferdJahr.appendChild(opt);
+      }
+    }
+
+    // Second horse birthdate
+    const pferd2Tag = document.getElementById("pferd2_geburtsdatum_tag");
+    if (pferd2Tag) {
+      for (let d = 1; d <= 31; d++) {
+        const opt = document.createElement("option");
+        opt.value = d.toString().padStart(2, "0");
+        opt.textContent = d;
+        pferd2Tag.appendChild(opt);
+      }
+    }
+    const pferd2Jahr = document.getElementById("pferd2_geburtsdatum_jahr");
+    if (pferd2Jahr) {
+      const currentYear = new Date().getFullYear();
+      for (let y = currentYear; y >= 1980; y--) {
+        const opt = document.createElement("option");
+        opt.value = y;
+        opt.textContent = y;
+        pferd2Jahr.appendChild(opt);
       }
     }
   };
@@ -265,26 +302,69 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (pferdAnzahlRadios.length && pferdDetailsSection) {
+  // HANDLE HORSE COUNT - Show/hide second horse fields
+  if (pferdAnzahlRadios.length) {
     pferdAnzahlRadios.forEach((radio) => {
       radio.addEventListener("change", () => {
-        const show = radio.value !== "0";
-        pferdDetailsSection.style.display = show ? "block" : "none";
-        pferdDetailsSection
-          .querySelectorAll("input, select")
-          .forEach((field) => {
-            field.required = show;
-          });
+        const horseCount = radio.value;
+
+        // Hide all horse sections first
+        if (pferdDetailsSection) {
+          pferdDetailsSection.style.display = "none";
+          pferdDetailsSection
+            .querySelectorAll("input, select")
+            .forEach((field) => {
+              field.required = false;
+            });
+        }
+
+        if (secondHorseDetailsSection) {
+          secondHorseDetailsSection.style.display = "none";
+          secondHorseDetailsSection
+            .querySelectorAll("input, select")
+            .forEach((field) => {
+              field.required = false;
+            });
+        }
+
+        // Show appropriate sections based on count
+        if (horseCount === "1" && pferdDetailsSection) {
+          pferdDetailsSection.style.display = "block";
+          pferdDetailsSection
+            .querySelectorAll("input, select")
+            .forEach((field) => {
+              field.required = false; // Optional unless filled
+            });
+        } else if (
+          horseCount === "2" &&
+          pferdDetailsSection &&
+          secondHorseDetailsSection
+        ) {
+          pferdDetailsSection.style.display = "block";
+          secondHorseDetailsSection.style.display = "block";
+
+          // Make fields required when horse count is 2
+          pferdDetailsSection
+            .querySelectorAll("input, select")
+            .forEach((field) => {
+              if (field.type !== "radio") field.required = true;
+            });
+          secondHorseDetailsSection
+            .querySelectorAll("input, select")
+            .forEach((field) => {
+              if (field.type !== "radio") field.required = true;
+            });
+        }
       });
     });
+
+    // Check initial state
     const selectedRadio = document.querySelector(
       'input[name="Pferde_Anzahl"]:checked',
     );
-    if (selectedRadio && selectedRadio.value === "0") {
-      pferdDetailsSection.style.display = "none";
-      pferdDetailsSection
-        .querySelectorAll("input, select")
-        .forEach((field) => (field.required = false));
+    if (selectedRadio) {
+      const event = new Event("change");
+      selectedRadio.dispatchEvent(event);
     }
   }
 
@@ -380,20 +460,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // RULES MODAL HANDLER - Modal instead of popup
+  // RULES MODAL HANDLER
   if (rulesCheckbox) {
     rulesCheckbox.disabled = true;
 
     window.handleRulesClick = function (e) {
       e.preventDefault();
 
-      // Modal openen
       const modal = document.getElementById("rules-modal");
       if (modal) {
         modal.style.display = "flex";
       }
 
-      // Checkbox direct activeren
       if (rulesCheckbox) {
         rulesCheckbox.disabled = false;
       }
@@ -451,7 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
           updateRegistrationStatus();
           alert("Vielen Dank für deine Anmeldung!");
           tournamentForm.reset();
-          weitereTeilnehmerContainer.innerHTML = "";
+          WeitereTeilnehmerContainer.innerHTML = "";
           participantCount = 1;
           registrationForms.style.display = "none";
         } else {
@@ -532,7 +610,7 @@ function changeLanguage(lang) {
   if (participationLabel)
     participationLabel.textContent = t.participation_label;
 
-  // Update NEW checkbox labels (Kassai Day 1 & 2, Five Demons, Wheel, Beginner, Children)
+  // Update NEW checkbox labels
   const checkboxKassaiDay1 = document.getElementById("checkbox-kassai-day1");
   if (checkboxKassaiDay1)
     checkboxKassaiDay1.textContent = t.checkbox_kassai_day1;
@@ -588,9 +666,12 @@ function changeLanguage(lang) {
   if (horseNone && horseNone.labels[0])
     horseNone.labels[0].textContent = t.horse_none;
 
-  // Update horse name placeholder
+  // Update horse name placeholder (both first and second horse)
   const horseNameInput = document.getElementById("horse-name-input");
   if (horseNameInput) horseNameInput.placeholder = t.horse_name_placeholder;
+
+  const horse2NameInput = document.getElementById("horse2-name-input");
+  if (horse2NameInput) horse2NameInput.placeholder = t.second_horse_name;
 
   // Update horse-related placeholders
   const horseOwner = document.querySelector('input[name="Pferdebesitzer"]');
@@ -603,14 +684,34 @@ function changeLanguage(lang) {
           : "Pferdebesitzer";
   }
 
+  const horseOwner2 = document.querySelector('input[name="Pferdebesitzer_2"]');
+  if (horseOwner2) {
+    horseOwner2.placeholder =
+      lang === "en"
+        ? t.second_horse_owner
+        : lang === "fr"
+          ? t.second_horse_owner
+          : "Pferdebesitzer 2";
+  }
+
   const lifeNumber = document.querySelector('input[name="Lebensnummer"]');
   if (lifeNumber) {
     lifeNumber.placeholder =
       lang === "en"
         ? "Life Number (Equine Passport)"
         : lang === "fr"
-          ? "Numéro de vie (Passeport équin)"
+          ? t.second_life_number
           : "Lebensnummer (Equidenpass)";
+  }
+
+  const lifeNumber2 = document.querySelector('input[name="Lebensnummer_2"]');
+  if (lifeNumber2) {
+    lifeNumber2.placeholder =
+      lang === "en"
+        ? t.second_life_number
+        : lang === "fr"
+          ? t.second_life_number
+          : "Lebensnummer 2 (Equidenpass)";
   }
 
   // Update all month dropdowns
@@ -642,6 +743,10 @@ function changeLanguage(lang) {
   const horseGenderLabel = document.getElementById("horse-gender-label");
   if (horseGenderLabel) horseGenderLabel.textContent = t.horse_gender_label;
 
+  // Update second horse gender label
+  const horse2GenderLabel = document.getElementById("horse2-gender-label");
+  if (horse2GenderLabel) horse2GenderLabel.textContent = t.horse_gender_label;
+
   // Update horse gender radio labels
   const mareRadio = document.getElementById("mare-radio");
   if (mareRadio && mareRadio.labels[0])
@@ -655,10 +760,30 @@ function changeLanguage(lang) {
   if (stallionRadio && stallionRadio.labels[0])
     stallionRadio.labels[0].textContent = t.stallion;
 
-  // Update horse birthdate label
+  // Update second horse gender radio labels
+  const mare2Radio = document.getElementById("mare2-radio");
+  if (mare2Radio && mare2Radio.labels[0])
+    mare2Radio.labels[0].textContent = t.mare;
+
+  const gelding2Radio = document.getElementById("gelding2-radio");
+  if (gelding2Radio && gelding2Radio.labels[0])
+    gelding2Radio.labels[0].textContent = t.gelding;
+
+  const stallion2Radio = document.getElementById("stallion2-radio");
+  if (stallion2Radio && stallion2Radio.labels[0])
+    stallion2Radio.labels[0].textContent = t.stallion;
+
+  // Update horse birthdate label (first horse)
   const horseBirthdateLabel = document.getElementById("horse-birthdate-label");
-  if (horseBirthrateLabel)
+  if (horseBirthdateLabel)
     horseBirthdateLabel.textContent = t.horse_birthdate_label;
+
+  // Update second horse birthdate label
+  const horse2BirthdateLabel = document.getElementById(
+    "horse2-birthdate-label",
+  );
+  if (horse2BirthdateLabel)
+    horse2BirthdateLabel.textContent = t.horse_birthdate_label;
 
   // Update terms label
   const termsLabel = document.getElementById("terms-label");
@@ -688,6 +813,10 @@ function changeLanguage(lang) {
   // Update submit button
   const submitButton = document.getElementById("submit-btn");
   if (submitButton) submitButton.textContent = t.register_btn;
+
+  // Update second horse title
+  const secondHorseTitle = document.querySelector("#second_horse_details h3");
+  if (secondHorseTitle) secondHorseTitle.textContent = t.second_horse_title;
 }
 
 // ==================== CLOSE MODAL FUNCTION ====================
