@@ -309,6 +309,6 @@ input[type="checkbox"]:disabled + label {
     color: #999;
     cursor: not-allowed;
 }
- #page-content { display: none !important; }
-        html.has-access #page-content { display: block !important; }
-        html.has-access #access-screen { display: none !important; }
+
+#page-content { display: none !important; }
+html.has-access #page-content { display: block !important; }

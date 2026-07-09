@@ -1,0 +1,682 @@
+<!doctype html>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      property="og:title"
+      content="Turniere 2026 | D'Arc Angels Lëtzebuerg"
+    />
+    <meta
+      property="og:description"
+      content="Internationale Turniere für berittenes Bogenschießen . Jetzt registrieren!"
+    />
+    <meta
+      property="og:image"
+      content="https://darcangels.com/images/turnier.jpg"
+    />
+    <meta property="og:url" content="https://darcangels.com/turniere" />
+    <meta property="og:type" content="website" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="D'Arc Angels Lëtzebuerg tournament-registration page"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": "Limpach Open",
+        "startDate": "2026-07-17",
+        "endDate": "2026-07-19",
+        "location": {
+          "@type": "Place",
+          "name": "Limpach",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "LU"
+          }
+        },
+        "description": "International Mounted Archery Competition in Luxembourg.",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode"
+      }
+    </script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/invitation-tournament-limpach_open.css" />
+
+    <!-- 🔐 BEVEILIGING CSS -->
+    <style>
+      #access-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      #page-content {
+        display: none !important;
+      }
+      
+      html.has-access #page-content {
+        display: block !important;
+      }
+      
+      html.has-access #access-screen {
+        display: none !important;
+      }
+    </style>
+
+    <title>
+      Turniere 2026 | Berittenes Bogenschießen | D'Arc Angels Lëtzebuerg
+    </title>
+  </head>
+
+  <body>
+    
+    <!-- 🔐 ACCESS DENIED SCREEN (altijd zichtbaar zonder key) -->
+    <div id="access-screen">
+      <div style="background:white;padding:40px;border-radius:10px;text-align:center;max-width:400px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+        <div style="font-size:50px;margin-bottom:20px;">🔒</div>
+        <h2 style="margin-bottom:15px;color:#333;">Geen toegang</h2>
+        <p style="color:#666;line-height:1.5;">Deze pagina is alleen voor uitgenodigde deelnemers.<br>Heb je een link gekregen? Controleer of die volledig is.</p>
+        <a href="mailto:darcangelsletzebuerg@gmail.com" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#6d4aff;color:white;text-decoration:none;border-radius:5px;">Contacteer ons</a>
+      </div>
+    </div>
+
+    <!-- 🔐 PAGE CONTENT WRAPPER (verborgen zonder key) -->
+    <div id="page-content">
+      
+      <!-- NAV HEADER CONTAINER -->
+      <div id="nav-placeholder"></div>
+
+      <div class="hero">
+        <img
+          src="images/logo-darc-angels.avif"
+          alt="D'Arc Angels Lëtzebuerg Logo - Berittenes Bogenschießen Team"
+          width="200"
+          height="200"
+        />
+        <h1>D'Arc Angels Lëtzebuerg</h1>
+      </div>
+
+      <div class="content-container">
+        <main>
+          <section class="tournaments-container">
+            <h2>Turniere 2026</h2>
+            <div class="tournament-list">
+              <!-- Limpach Open Tournament Card -->
+              <div class="tournament-card">
+                <h3>Limpach Open</h3>
+                <img
+                  src="images/tournaments/Limpach Open 2026.png"
+                  alt="Limpach Open"
+                  class="tournament-image"
+                />
+                <div class="tournament-details">
+                  <p class="datum">🎯 17/18/19 Juli 2026</p>
+                  <p class="location">Limpach, Luxembourg</p>
+                  <p class="Veranstaltung">
+                    International Mounted Archery Competition
+                  </p>
+                  <button
+                    class="status registration-toggle"
+                    data-tournament="tournament1"
+                  >
+                    Registration open
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Single Registration Form Section -->
+          <section
+            id="registration-forms"
+            class="registration-section"
+            style="display: none"
+          >
+            <!-- Language Selector -->
+            <div
+              style="
+                text-align: center;
+                margin: 1.5rem 0;
+                padding: 1rem;
+                background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+                border-radius: 8px;
+              "
+            >
+              <label for="language-select" style="font-weight: bold"
+                >Sprache / Language / Langue:</label
+              >
+              <select
+                id="language-select"
+                onchange="changeLanguage(this.value)"
+                style="
+                  padding: 8px 15px;
+                  font-size: 1em;
+                  border-radius: 4px;
+                  margin-left: 10px;
+                  cursor: pointer;
+                "
+              >
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="en" selected>🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+              </select>
+            </div>
+
+            <!-- Tournament 1 Registration Form -->
+            <div
+              id="tournament1-form"
+              class="tournament-form-container"
+              style="display: none"
+            >
+              <h2>Anmeldeformular Limpach Open</h2>
+              <form id="tournament-registration" method="POST" novalidate>
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="Tournament Limpach Open Registration 🎯"
+                />
+                <input type="hidden" name="_cc" value="" />
+                <input type="hidden" name="Tournament" value="Limpach Open" />
+
+                <div class="participant-section">
+                  <h3>Hauptteilnehmer</h3>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="firstname-input"
+                      name="Vorname"
+                      placeholder="Vorname"
+                      required
+                      maxlength="100"
+                    />
+                    <input
+                      type="text"
+                      id="lastname-input"
+                      name="Nachname"
+                      placeholder="Nachname"
+                      required
+                      maxlength="100"
+                    />
+                  </div>
+
+                  <div class="form-group geburtsdatum-group">
+                    <label for="geburtsdatum_tag" id="birthdate-label"
+                      >Geburtsdatum</label
+                    >
+                    <select
+                      id="geburtsdatum_tag"
+                      name="Geburtsdatum_Tag"
+                      required
+                    >
+                      <option value="">Tag</option>
+                    </select>
+                    <select
+                      name="Geburtsdatum_Monat"
+                      id="geburtsdatum_monat"
+                      required
+                    >
+                      <option value="">Monat</option>
+                      <option value="01">Januar</option>
+                      <option value="02">Februar</option>
+                      <option value="03">März</option>
+                      <option value="04">April</option>
+                      <option value="05">Mai</option>
+                      <option value="06">Juni</option>
+                      <option value="07">Juli</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">Oktober</option>
+                      <option value="11">November</option>
+                      <option value="12">Dezember</option>
+                    </select>
+                    <select
+                      id="geburtsdatum_jahr"
+                      name="Geburtsdatum_Jahr"
+                      required
+                    >
+                      <option value="">Jahr</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <select name="Geschlecht" id="gender-select" required>
+                      <option value="">Geschlecht</option>
+                      <option value="männlich">Männlich</option>
+                      <option value="weiblich">Weiblich</option>
+                      <option value="divers">Divers</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="nationality-input"
+                      name="Nationalität"
+                      placeholder="Nationalität"
+                      required
+                      maxlength="100"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      id="email-input"
+                      name="Email"
+                      placeholder="E-Mail"
+                      required
+                      maxlength="250"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="tel"
+                      id="phone-input"
+                      name="Telefonnummer"
+                      placeholder="Telefonnummer"
+                      required
+                      maxlength="50"
+                    />
+                  </div>
+
+                  <div class="form-group radio-group">
+                    <p class="radio-label" id="handedness-label">Ich bin:</p>
+                    <div class="radio-options">
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="left-radio"
+                          name="Händigkeit"
+                          value="Linkshänder"
+                          required
+                        />
+                        <label for="left-radio">Linkshänder</label>
+                      </div>
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="right-radio"
+                          name="Händigkeit"
+                          value="Rechtshänder"
+                          required
+                        />
+                        <label for="right-radio">Rechtshänder</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group checkbox-group">
+                    <p class="checkbox-label" id="participation-label">
+                      Ich möchte an folgenden Turnieren mitmachen:
+                    </p>
+                    <div class="checkbox-options">
+                      <div class="checkbox-item">
+                        <input
+                          type="checkbox"
+                          id="ungarisch_day2"
+                          name="Teilnahme[]"
+                          value="Ungarisch nach Kassai Regeln Tag 2"
+                        />
+                        <label for="ungarisch_day2" id="checkbox-hungarian"
+                          >Ungarisch nach Kassai Regeln am 18.7.2026</label
+                        >
+                      </div>
+
+                      <div class="checkbox-item">
+                        <input
+                          type="checkbox"
+                          id="koreanisch"
+                          name="Teilnahme[]"
+                          value="Koreanisch nach IHAA Regeln"
+                        />
+                        <label for="koreanisch" id="checkbox-korean"
+                          >Turnier nach IHAA (Five Demons) am 17.7.2026</label
+                        >
+                      </div>
+
+                      <div class="checkbox-item">
+                        <input
+                          type="checkbox"
+                          id="wheel"
+                          name="Teilnahme[]"
+                          value="Wheel Archery"
+                        />
+                        <label for="wheel" id="checkbox-wheel"
+                          >Wheel Archery am 18.7.2026</label
+                        >
+                      </div>
+                      <div class="checkbox-item">
+                        <input
+                          type="checkbox"
+                          id="beide"
+                          name="Teilnahme[]"
+                          value="Beginner Competition"
+                        />
+                        <label for="beide" id="checkbox-beginner"
+                          >Beginner Competition am 19.7.2026</label
+                        >
+                      </div>
+                      <div class="checkbox-item">
+                        <input
+                          type="checkbox"
+                          id="gast"
+                          name="Teilnahme[]"
+                          value="Children Competition"
+                        />
+                        <label for="gast" id="checkbox-children"
+                          >Kinder Competition am 19.7.2026</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group radio-group">
+                    <p class="radio-label" id="qualification-label">
+                      Ich möchte dass meine Ergebnisse anerkannt werden:
+                    </p>
+                    <div class="radio-options">
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="yes-radio"
+                          name="Qualifikation"
+                          value="Ja"
+                          required
+                        />
+                        <label for="yes-radio">Ja.</label>
+                      </div>
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="no-radio"
+                          name="Qualifikation"
+                          value="Nein"
+                          required
+                        />
+                        <label for="no-radio">Nein.</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="ankunft" id="arrival-label">Ankunft:</label>
+                    <input
+                      type="date"
+                      id="ankunft"
+                      name="Ankunft"
+                      required
+                      max="2050-12-31"
+                      min="2025-01-01"
+                    />
+                  </div>
+                </div>
+
+                <div id="weitere-Teilnehmer"></div>
+
+                <!-- Add participant Button -->
+                <button type="button" id="addparticipant" class="btn-secondary">
+                  <i class="fas fa-plus"></i> Weiteren Teilnehmer hinzufügen
+                </button>
+
+                <div class="form-group radio-group">
+                  <p class="radio-label" id="horses-label">Pferde Anzahl:</p>
+                  <div class="radio-options">
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="horse-one"
+                        name="Pferde_Anzahl"
+                        value="1"
+                      />
+                      <label for="horse-one">1</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="horse-two"
+                        name="Pferde_Anzahl"
+                        value="2"
+                      />
+                      <label for="horse-two">2</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="horse-none"
+                        name="Pferde_Anzahl"
+                        value="0"
+                      />
+                      <label for="horse-none">Kein eigenes Pferd</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="pferd_details" class="conditional-section">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="horse-name-input"
+                      name="Pferdename"
+                      placeholder="Pferdenamen (wie im Pass)"
+                    />
+                  </div>
+
+                  <div class="form-group radio-group">
+                    <p class="radio-label" id="horse-gender-label">
+                      Pferd Geschlecht:
+                    </p>
+                    <div class="radio-options">
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="mare-radio"
+                          name="Pferd_Geschlecht"
+                          value="Stute"
+                        />
+                        <label for="mare-radio">Stute</label>
+                      </div>
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="gelding-radio"
+                          name="Pferd_Geschlecht"
+                          value="Wallach"
+                        />
+                        <label for="gelding-radio">Wallach</label>
+                      </div>
+                      <div class="radio-item">
+                        <input
+                          type="radio"
+                          id="stallion-radio"
+                          name="Pferd_Geschlecht"
+                          value="Hengst"
+                        />
+                        <label for="stallion-radio">Hengst</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group pferd-geburtsdatum-group">
+                    <label for="pferd_geburtsdatum_tag" id="horse-birthdate-label"
+                      >Pferd Geburtsdatum</label
+                    >
+                    <select
+                      id="pferd_geburtsdatum_tag"
+                      name="Pferd_Geburtsdatum_Tag"
+                    >
+                      <option value="">Tag</option>
+                    </select>
+                    <select
+                      name="Pferd_Geburtsdatum_Monat"
+                      id="pferd_geburtsdatum_monat"
+                    >
+                      <option value="">Monat</option>
+                      <option value="01">Januar</option>
+                      <option value="02">Februar</option>
+                      <option value="03">März</option>
+                      <option value="04">April</option>
+                      <option value="05">Mai</option>
+                      <option value="06">Juni</option>
+                      <option value="07">Juli</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">Oktober</option>
+                      <option value="11">November</option>
+                      <option value="12">Dezember</option>
+                    </select>
+                    <select
+                      id="pferd_geburtsdatum_jahr"
+                      name="Pferd_Geburtsdatum_Jahr"
+                    >
+                      <option value="">Jahr</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="Lebensnummer"
+                      placeholder="Lebensnummer (Equidenpass)"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="Pferdebesitzer"
+                      placeholder="Pferdebesitzer"
+                    />
+                  </div>
+                </div>
+
+                <div class="terms-section">
+    <div class="form-group checkbox-group">
+       
+         <a href="docs/rules.html" 
+           target="_blank" 
+           class="text-link" 
+           id="rules-link-text"
+           onclick="handleRulesClick(event)"
+           style="display:block; margin-top:10px;">Regeln lesen</a>
+           
+        <div class="checkbox-options">
+            <div class="checkbox-item">
+                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Regeln akzeptiert" required disabled>
+                <label for="regeln" id="checkbox-rules">
+                    Teilnahme/Mitgliedschaftsregeln und Datenschutzbestimmungen akzeptiert
+                </label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                <label for="no_photos" id="checkbox-nophotos">
+                    Keine Fotos von mir veröffentlichen
+                </label>
+            </div>
+        </div>
+       
+       
+    </div>
+</div>
+
+                <div class="form-buttons">
+                  <button
+                    type="button"
+                    class="btn-secondary close-form"
+                    id="cancel-btn"
+                  >
+                    Abbrechen
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn-primary-Limpach"
+                    id="submit-btn"
+                  >
+                    Anmelden
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+
+        <hr class="footer-line" />
+        <footer class="footer">
+          <p class="footer-text">
+            Code and design by
+            <a
+              href="https://github.com/Jara86/D-Arc-Angels-Lux"
+              target="_blank"
+              class="footer-link"
+              >Jarouschka Buis</a
+            >
+          </p>
+          <p class="footer-text">©2022 von D'ARC Angels Lëtzebuerg.</p>
+          <a href="https://darcangels.com/impressum" class="footer-link"
+            >Impressum</a
+          >
+        </footer>
+      </div>
+      
+    </div> <!-- END PAGE CONTENT WRAPPER -->
+
+    <!-- 🔐 SECURITY CHECK SCRIPT -->
+    <script>
+        (function() {
+            const url = new URL(window.location.href);
+            const code = url.searchParams.get('key');
+            
+            // 🔑 VERANDER DEZE CODE NAAR JOUW WENS
+            // Voorbeeld: 'DEELNEMER2026', 'POKKA2026', 'BOGENSCHIESEN', etc.
+            if(code === 'LIMPACH2026ANGELS') {
+                document.documentElement.classList.add('has-access');
+            }
+        })();
+    </script>
+
+    <script src="js/limpach_open.js" defer></script>
+    <script src="js/contern_tournament.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/nav.js" defer></script>
+    <script src="js/mobile-debug.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      fetch("nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const navEl = document.getElementById("nav-placeholder");
+          if (navEl) navEl.innerHTML = data;
+        })
+        .catch((err) => console.warn("Nav load skipped:", err));
+    </script>
+    <script src="js/form-persistence.js"></script>
+  </body>
+</html>
