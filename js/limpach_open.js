@@ -17,9 +17,10 @@ const translations = {
     left_handed: "Linkshänder",
     right_handed: "Rechtshänder",
     participation_label: "Ich möchte an folgenden Turnieren mitmachen:",
-    checkbox_hungarian: "Ungarisch nach Kassai Regeln am 18.7.2026",
-    checkbox_korean: "Turnier nach IHAA (Five Demons) am 17.7.2026",
-    checkbox_wheel: "Wheel Archery am 18.7.2026",
+    checkbox_kassai_day1: "Kassai Competition am 17.7.2026",
+    checkbox_kassai_day2: "Kassai Competition am 18.7.2026",
+    checkbox_five_demons: "Five Demons am 19.7.2026",
+    checkbox_wheel: "🎡 Wheel Archery (Amusement) am 18.7.2026",
     checkbox_beginner: "Beginner Competition am 19.7.2026",
     checkbox_children: "Kinder Competition am 19.7.2026",
     qualification_label: "Ich möchte dass meine Ergebnisse anerkannt werden:",
@@ -62,11 +63,12 @@ const translations = {
     left_handed: "Left Handed",
     right_handed: "Right Handed",
     participation_label: "I'd like to participate in:",
-    checkbox_hungarian: "Hungarian Style 18.7.2026",
-    checkbox_korean: "Five Demons 17.7.2026",
-    checkbox_wheel: "Wheel Archery 18.7.2026",
-    checkbox_beginner: "Beginner Competition 19.7.2026",
-    checkbox_children: "Children Competition 19.7.2026",
+    checkbox_kassai_day1: "Kassai Competition on 17.7.2026",
+    checkbox_kassai_day2: "Kassai Competition on 18.7.2026",
+    checkbox_five_demons: "Five Demons on 19.7.2026",
+    checkbox_wheel: "🎡 Wheel Archery (Fun) on 18.7.2026",
+    checkbox_beginner: "Beginner Competition on 19.7.2026",
+    checkbox_children: "Children Competition on 19.7.2026",
     qualification_label: "Results should be recognized:",
     yes_radio: "Yes.",
     no_radio: "No.",
@@ -106,11 +108,12 @@ const translations = {
     left_handed: "Gaucher",
     right_handed: "Droitier",
     participation_label: "Je souhaite participer à :",
-    checkbox_hungarian: "Style hongrois 18.7.2026",
-    checkbox_korean: "Cinq Démons 17.7.2026",
-    checkbox_wheel: "Archère roue 18.7.2026",
-    checkbox_beginner: "Débutants 19.7.2026",
-    checkbox_children: "Enfants 19.7.2026",
+    checkbox_kassai_day1: "Compétition Kassai le 17.7.2026",
+    checkbox_kassai_day2: "Compétition Kassai le 18.7.2026",
+    checkbox_five_demons: "Cinq Démons le 19.7.2026",
+    checkbox_wheel: "🎡 Wheel Archery (Amusement) le 18.7.2026",
+    checkbox_beginner: "Compétition Débutants le 19.7.2026",
+    checkbox_children: "Compétition Enfants le 19.7.2026",
     qualification_label: "Résultats reconnus :",
     yes_radio: "Oui.",
     no_radio: "Non.",
@@ -135,7 +138,7 @@ const translations = {
   },
 };
 
-// Global variables - USING SECURE HASH CODE
+// Global variables
 const isTestMode = window.location.search.includes("test=true");
 const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
 
@@ -378,11 +381,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // RULES LINK HANDLER - Enabled after clicking "Read Rules" link
+  // RULES LINK HANDLER
   if (rulesCheckbox) {
     rulesCheckbox.disabled = true;
 
-    // Set up global function for popup to call
     window.rulesAccepted = function () {
       console.log("Rules acceptance confirmed from popup");
       if (rulesCheckbox) {
@@ -523,12 +525,18 @@ function changeLanguage(lang) {
   if (participationLabel)
     participationLabel.textContent = t.participation_label;
 
-  // Update checkbox labels
-  const checkboxHungarian = document.getElementById("checkbox-hungarian");
-  if (checkboxHungarian) checkboxHungarian.textContent = t.checkbox_hungarian;
+  // Update NEW checkbox labels (Kassai Day 1 & 2, Five Demons, Wheel, Beginner)
+  const checkboxKassaiDay1 = document.getElementById("checkbox-kassai-day1");
+  if (checkboxKassaiDay1)
+    checkboxKassaiDay1.textContent = t.checkbox_kassai_day1;
 
-  const checkboxKorean = document.getElementById("checkbox-korean");
-  if (checkboxKorean) checkboxKorean.textContent = t.checkbox_korean;
+  const checkboxKassaiDay2 = document.getElementById("checkbox-kassai-day2");
+  if (checkboxKassaiDay2)
+    checkboxKassaiDay2.textContent = t.checkbox_kassai_day2;
+
+  const checkboxFiveDemons = document.getElementById("checkbox-five-demons");
+  if (checkboxFiveDemons)
+    checkboxFiveDemons.textContent = t.checkbox_five_demons;
 
   const checkboxWheel = document.getElementById("checkbox-wheel");
   if (checkboxWheel) checkboxWheel.textContent = t.checkbox_wheel;
@@ -610,9 +618,9 @@ function changeLanguage(lang) {
     "08": lang === "de" ? "August" : lang === "en" ? "August" : "Août",
     "09":
       lang === "de" ? "September" : lang === "en" ? "September" : "Septembre",
-    "10": lang === "de" ? "Oktober" : lang === "en" ? "October" : "Octobre",
-    "11": lang === "de" ? "November" : lang === "en" ? "November" : "Novembre",
-    "12": lang === "de" ? "Dezember" : lang === "en" ? "December" : "Décembre",
+    10: lang === "de" ? "Oktober" : lang === "en" ? "October" : "Octobre",
+    11: lang === "de" ? "November" : lang === "en" ? "November" : "Novembre",
+    12: lang === "de" ? "Dezember" : lang === "en" ? "December" : "Décembre",
   };
 
   document.querySelectorAll('select[id*="monat"]').forEach((select) => {
@@ -679,14 +687,12 @@ function changeLanguage(lang) {
 function handleRulesClick(e) {
   e.preventDefault();
 
-  // Open regelspagina in nieuw venster
   window.open(
     this.href,
     "_blank",
     "width=900,height=700,scrollbars=yes,resizable=yes",
   );
 
-  // Maakt checkbox beschikbaar na korte delay
   setTimeout(() => {
     const rulesCheckbox = document.getElementById("regeln");
     if (rulesCheckbox) {
