@@ -202,7 +202,7 @@
                   </div>
                 </div>
 
-                <div class="form-group checkbox-group">
+               <div class="form-group checkbox-group">
   <p class="checkbox-label" id="participation-label">
     Ich möchte an folgenden Turnieren mitmachen:
   </p>
@@ -231,18 +231,41 @@
       <label for="beide" id="checkbox-beginner">Beginner Competition am 19.7.2026</label>
     </div>
 
-    <!-- Wheel Archery als Amusement (groene markering) -->
+    <!-- 19.07 - Kinder Competition (MISSEND!) -->
+    <div class="checkbox-item">
+      <input type="checkbox" id="gast" name="Teilnahme[]" value="Children Competition 19.7.2026" />
+      <label for="gast" id="checkbox-children">Kinder Competition am 19.7.2026</label>
+    </div>
+
+    <!-- Wheel Archery als Amusement -->
     <div class="checkbox-item" style="background: #f0f8ff; padding: 10px; border-radius: 5px; border-left: 3px solid #4CAF50;">
       <input type="checkbox" id="wheel" name="Teilnahme[]" value="Wheel Archery Amusement" />
       <label for="wheel" id="checkbox-wheel" style="font-style: italic;">🎡 Wheel Archery (Amusement) am 18.7.2026</label>
     </div>
   </div>
 </div>
-                <div class="form-group">
-                  <label for="ankunft" id="arrival-label">Ankunft:</label>
-                  <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2025-01-01" />
-                </div>
-              </div>
+
+<!-- ⬇️ DIT MISST NU - QUAILFIKATION SECTION! ⬇️ -->
+<div class="form-group radio-group">
+  <p class="radio-label" id="qualification-label">
+    Ich möchte dass meine Ergebnisse anerkannt werden:
+  </p>
+  <div class="radio-options">
+    <div class="radio-item">
+      <input type="radio" id="yes-radio" name="Qualifikation" value="Ja" required />
+      <label for="yes-radio">Ja.</label>
+    </div>
+    <div class="radio-item">
+      <input type="radio" id="no-radio" name="Qualifikation" value="Nein" required />
+      <label for="no-radio">Nein.</label>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="ankunft" id="arrival-label">Ankunft:</label>
+  <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2025-01-01" />
+</div>
 
               <div id="weitere-Teilnehmer"></div>
 
