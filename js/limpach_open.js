@@ -140,7 +140,7 @@ const translations = {
 
 // Global variables
 const isTestMode = window.location.search.includes("test=true");
-const submitEmail = "itdarcangels@gmail.com";
+const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
 
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
