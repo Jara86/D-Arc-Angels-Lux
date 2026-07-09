@@ -140,7 +140,7 @@ const translations = {
 
 // Global variables
 const isTestMode = window.location.search.includes("test=true");
-const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
+const submitEmail = "darcangelsletzebuerg@gmail.com";
 
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
@@ -376,17 +376,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (emailField) {
     emailField.addEventListener("input", () => {
-      const ccField = document.querySelector('input[name="_cc"]');
-      if (ccField) ccField.value = emailField.value;
+      // CC field not used anymore
     });
   }
 
-  // RULES LINK HANDLER
+  // RULES MODAL HANDLER - Modal instead of popup
   if (rulesCheckbox) {
     rulesCheckbox.disabled = true;
 
-    window.rulesAccepted = function () {
-      console.log("Rules acceptance confirmed from popup");
+    window.handleRulesClick = function (e) {
+      e.preventDefault();
+
+      // Modal openen
+      const modal = document.getElementById("rules-modal");
+      if (modal) {
+        modal.style.display = "flex";
+      }
+
+      // Checkbox direct activeren
       if (rulesCheckbox) {
         rulesCheckbox.disabled = false;
       }
@@ -525,7 +532,7 @@ function changeLanguage(lang) {
   if (participationLabel)
     participationLabel.textContent = t.participation_label;
 
-  // Update NEW checkbox labels (Kassai Day 1 & 2, Five Demons, Wheel, Beginner)
+  // Update NEW checkbox labels (Kassai Day 1 & 2, Five Demons, Wheel, Beginner, Children)
   const checkboxKassaiDay1 = document.getElementById("checkbox-kassai-day1");
   if (checkboxKassaiDay1)
     checkboxKassaiDay1.textContent = t.checkbox_kassai_day1;
@@ -650,7 +657,7 @@ function changeLanguage(lang) {
 
   // Update horse birthdate label
   const horseBirthdateLabel = document.getElementById("horse-birthdate-label");
-  if (horseBirthdateLabel)
+  if (horseBirthrateLabel)
     horseBirthdateLabel.textContent = t.horse_birthdate_label;
 
   // Update terms label
@@ -683,20 +690,10 @@ function changeLanguage(lang) {
   if (submitButton) submitButton.textContent = t.register_btn;
 }
 
-// ==================== RULES POPUP HANDLER ====================
-function handleRulesClick(e) {
-  e.preventDefault();
-
-  window.open(
-    this.href,
-    "_blank",
-    "width=900,height=700,scrollbars=yes,resizable=yes",
-  );
-
-  setTimeout(() => {
-    const rulesCheckbox = document.getElementById("regeln");
-    if (rulesCheckbox) {
-      rulesCheckbox.disabled = false;
-    }
-  }, 100);
+// ==================== CLOSE MODAL FUNCTION ====================
+function closeRulesModal() {
+  const modal = document.getElementById("rules-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
 }
