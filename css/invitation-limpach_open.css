@@ -8,12 +8,13 @@ body {
 }
 
 .tournament-form-container {
-    background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 800px;
+    background: white !important;
+    padding: 2rem !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    margin: 2rem auto !important;
+    max-width: 800px !important;
+    border: 2px solid #183947 !important;
 }
 
 .tournament-form {
@@ -23,11 +24,11 @@ body {
 
 /* -------------------- Teilnehmer Sektion -------------------- */
 .participant-section, .main-participant-section {
-    background: white;
-    border: 1px solid #183947;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border-radius: 8px;
+    background: #f9f9f9 !important;
+    border: 1px solid #ddd !important;
+    padding: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 8px !important;
 }
 
 .participant-section h3 {
@@ -89,6 +90,23 @@ body {
 
 .btn-primary:hover {
     background-color: #0f2631;
+}
+
+/* ------------------- GROENE REGISTRATIEKNOP ------------------- */
+.btn-primary-Limpach {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 30px !important;
+    border-radius: 6px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;
+}
+
+.btn-primary-Limpach:hover {
+    background-color: #45a049 !important;
 }
 
 /* -------------------- Formulare -------------------- */
@@ -182,12 +200,13 @@ body {
     border-radius: 8px;
     margin-bottom: 1rem;
 }
+
 .curse-images img {
-  width: 100%;
-  max-width: 250px;
-  height: 150px;     /* feste Höhe */
-  object-fit: cover; /* Bild wird zugeschnitten, aber gleichmäßig */
-  border-radius: 8px;
+    width: 100%;
+    max-width: 250px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .status {
@@ -256,6 +275,46 @@ body {
     min-width: 80px;
 }
 
+/* ------------------- INPUT VELD STYLING ------------------- */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+    border: 2px solid #ccc !important;
+    background: white !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+}
+
+input:focus, select:focus {
+    border-color: #4CAF50 !important;
+    outline: none !important;
+}
+
+/* ------------------- LABELS DUIDELIJKER ------------------- */
+label {
+    font-weight: 600 !important;
+    color: #183947 !important;
+}
+
+h2, h3 {
+    color: #183947 !important;
+}
+
+p {
+    color: #333 !important;
+}
+
+/* ------------------- TERM SECTION STYLING ------------------- */
+.terms-section {
+    background: #e8f5e9 !important;
+    border: 1px solid #4CAF50 !important;
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    margin-top: 1.5rem !important;
+}
+
 /* -------------------- Responsive -------------------- */
 @media (max-width: 768px) {
     .form-group {
@@ -309,6 +368,3 @@ input[type="checkbox"]:disabled + label {
     color: #999;
     cursor: not-allowed;
 }
-
-#page-content { display: none !important; }
-html.has-access #page-content { display: block !important; }
