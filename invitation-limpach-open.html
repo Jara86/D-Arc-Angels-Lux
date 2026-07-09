@@ -203,24 +203,41 @@
                 </div>
 
                 <div class="form-group checkbox-group">
-                  <p class="checkbox-label" id="participation-label">Ich möchte an folgenden Turnieren mitmachen:</p>
-                  <div class="checkbox-options">
-                    <div class="checkbox-item"><input type="checkbox" id="ungarisch_day2" name="Teilnahme[]" value="Ungarisch nach Kassai Regeln Tag 2" /><label for="ungarisch_day2" id="checkbox-hungarian">Ungarisch nach Kassai Regeln am 18.7.2026</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="koreanisch" name="Teilnahme[]" value="Koreanisch nach IHAA Regeln" /><label for="koreanisch" id="checkbox-korean">Turnier nach IHAA (Five Demons) am 17.7.2026</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="wheel" name="Teilnahme[]" value="Wheel Archery" /><label for="wheel" id="checkbox-wheel">Wheel Archery am 18.7.2026</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="beide" name="Teilnahme[]" value="Beginner Competition" /><label for="beide" id="checkbox-beginner">Beginner Competition am 19.7.2026</label></div>
-                    <div class="checkbox-item"><input type="checkbox" id="gast" name="Teilnahme[]" value="Children Competition" /><label for="gast" id="checkbox-children">Kinder Competition am 19.7.2026</label></div>
-                  </div>
-                </div>
+  <p class="checkbox-label" id="participation-label">
+    Ich möchte an folgenden Turnieren mitmachen:
+  </p>
+  <div class="checkbox-options">
+    <!-- 17.07 - Kassai Competition -->
+    <div class="checkbox-item">
+      <input type="checkbox" id="kassai_day1" name="Teilnahme[]" value="Kassai Competition 17.7.2026" />
+      <label for="kassai_day1" id="checkbox-kassai-day1">Kassai Competition am 17.7.2026</label>
+    </div>
 
-                <div class="form-group radio-group">
-                  <p class="radio-label" id="qualification-label">Ich möchte dass meine Ergebnisse anerkannt werden:</p>
-                  <div class="radio-options">
-                    <div class="radio-item"><input type="radio" id="yes-radio" name="Qualifikation" value="Ja" required /><label for="yes-radio">Ja.</label></div>
-                    <div class="radio-item"><input type="radio" id="no-radio" name="Qualifikation" value="Nein" required /><label for="no-radio">Nein.</label></div>
-                  </div>
-                </div>
+    <!-- 18.07 - Kassai Competition -->
+    <div class="checkbox-item">
+      <input type="checkbox" id="kassai_day2" name="Teilnahme[]" value="Kassai Competition 18.7.2026" />
+      <label for="kassai_day2" id="checkbox-kassai-day2">Kassai Competition am 18.7.2026</label>
+    </div>
 
+    <!-- 19.07 - Five Demons -->
+    <div class="checkbox-item">
+      <input type="checkbox" id="five_demons" name="Teilnahme[]" value="Five Demons 19.7.2026" />
+      <label for="five_demons" id="checkbox-five-demons">Five Demons am 19.7.2026</label>
+    </div>
+
+    <!-- 19.07 - Beginner Competition -->
+    <div class="checkbox-item">
+      <input type="checkbox" id="beide" name="Teilnahme[]" value="Beginner Competition 19.7.2026" />
+      <label for="beide" id="checkbox-beginner">Beginner Competition am 19.7.2026</label>
+    </div>
+
+    <!-- Wheel Archery als Amusement (groene markering) -->
+    <div class="checkbox-item" style="background: #f0f8ff; padding: 10px; border-radius: 5px; border-left: 3px solid #4CAF50;">
+      <input type="checkbox" id="wheel" name="Teilnahme[]" value="Wheel Archery Amusement" />
+      <label for="wheel" id="checkbox-wheel" style="font-style: italic;">🎡 Wheel Archery (Amusement) am 18.7.2026</label>
+    </div>
+  </div>
+</div>
                 <div class="form-group">
                   <label for="ankunft" id="arrival-label">Ankunft:</label>
                   <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2025-01-01" />
