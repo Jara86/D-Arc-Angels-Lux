@@ -350,8 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
             .forEach((field) => {
               field.required = true;
             });
-        } else if (horseCount === "0") {
-          // No horses selected - hide both
         }
       });
     });
@@ -473,6 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // FORM SUBMIT HANDLER - AJAX METHOD
   if (tournamentForm) {
     tournamentForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -538,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (error) {
         console.error("Form submission error:", error);
-        alert("Ein Fehler ist aufgetreten. Bitte versuche es später erneut.");
+        alert("Error: " + error.message + "\nCheck console voor details.");
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
@@ -751,7 +750,7 @@ function changeLanguage(lang) {
   if (stallion2Radio && stallion2Radio.labels[0])
     stallion2Radio.labels[0].textContent = t.stallion;
 
-  // Update horse birthdate label (FIXED TYPO: was horseBirthRateLabel)
+  // Update horse birthdate label (CORRECTED TYPO)
   const horseBirthdateLabel = document.getElementById("horse-birthdate-label");
   if (horseBirthdateLabel)
     horseBirthdateLabel.textContent = t.horse_birthdate_label;
