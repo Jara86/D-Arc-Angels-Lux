@@ -305,7 +305,4 @@ input[type="checkbox"]:disabled {
     cursor: not-allowed;
 }
 
-input[type="checkbox"]:disabled + label {
-    color: #999;
-    cursor: not-allowed;
-}
+
