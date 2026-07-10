@@ -149,7 +149,7 @@ const translations = {
   },
 };
 
-const submitEmail = "it.darcangels@gmail.com";
+const submitEmail = "e1ac178ac36d6dc694765e53c76b9a45";
 
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
