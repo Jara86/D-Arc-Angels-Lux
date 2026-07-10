@@ -135,10 +135,10 @@
           <div id="tournament1-form" class="tournament-form-container" style="display: none">
             <h2>Anmeldeformular Limpach Open</h2>
             <form id="tournament-registration" action="https://formsubmit.co/it.darcangels@gmail.com" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="Limpach Open Registration 🎯" />
+              <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯" />
               <input type="hidden" name="Tournament" value="Limpach Open" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_honey" value="true" style="display:none;" />
+              <input type="hidden" name="_template" value="table" />
 
               <div class="participant-section">
                 <h3>Hauptteilnehmer</h3>
@@ -247,9 +247,20 @@
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <label for="ankunft" id="arrival-label">Ankunft:</label>
-                  <input type="date" id="ankunft" name="Ankunft" required max="2050-12-31" min="2025-01-01" />
+                <!-- ANKOMST DATE MET DROPDOWN (in plaats van date picker!) -->
+                <div class="form-group ankunft-group">
+                  <label for="ankunft_tag" id="arrival-label">Ankunft:</label>
+                  <select id="ankunft_tag" name="Ankunft_Tag" required><option value="">Tag</option></select>
+                  <select name="Ankunft_Monat" id="ankunft_monat" required>
+                    <option value="">Monat</option>
+                    <option value="07">Juli</option>
+                    <option value="08">August</option>
+                  </select>
+                  <select id="ankunft_jahr" name="Ankunft_Jahr" required>
+                    <option value="">Jahr</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                  </select>
                 </div>
               </div>
 
@@ -380,7 +391,7 @@
         })();
     </script>
 
-       <script src="js/limpach_open.js" defer></script>
+    <script src="js/limpach_open.js" defer></script>
     <script src="js/contern_tournament.js" defer></script>
     <script src="js/script.js" defer></script>
     <script src="js/nav.js" defer></script>
@@ -395,21 +406,6 @@
           if (navEl) navEl.innerHTML = data;
         })
         .catch((err) => console.warn("Nav load skipped:", err));
-    </script>
-    
-    <!-- ENKEL EÉNKEER form-persistence.js -->
-    <script src="js/form-persistence.js"></script>
-    
-                    <div class="radio-item"><input type="radio" id="mare-radio" name="Pferd_Geschlecht" value="Stute" /><label for="mare-radio">Stute</label></div>
-    <!-- AANKOMST DATUM FIX -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const ankunftInput = document.getElementById("ankunft");
-        if (ankunftInput) {
-            ankunftInput.setAttribute("autocomplete", "off");
-            console.log("Datum input gevonden:", ankunftInput.value);
-        }
-    });
     </script>
   </body>
 </html>
