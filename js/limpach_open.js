@@ -1,4 +1,3 @@
-// ==================== TRANSLATIONS OBJECT ====================
 const translations = {
   de: {
     title: "Anmeldeformular Limpach Open",
@@ -150,8 +149,6 @@ const translations = {
   },
 };
 
-// Global variables
-const isTestMode = window.location.search.includes("test=true");
 const submitEmail = "it.darcangels@gmail.com";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -172,16 +169,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const weitereTeilnehmerContainer =
     document.getElementById("weitere-Teilnehmer");
   const tournamentForm = document.getElementById("tournament-registration");
-  const emailField = document.querySelector('input[name="Email"]');
   const rulesCheckbox = document.getElementById("regeln");
 
   let registrationCount = 0;
   const registrationLimit = 25;
   let participantCount = 1;
 
-  // Fill birthday dropdowns
   const fillBirthdayDropdowns = () => {
-    // Main participant birthdate
+    // Main participant
     const tagSelect = document.getElementById("geburtsdatum_tag");
     if (tagSelect) {
       for (let d = 1; d <= 31; d++) {
@@ -193,8 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const yearSelect = document.getElementById("geburtsdatum_jahr");
     if (yearSelect) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear - 5; y >= 1920; y--) {
+      for (let y = new Date().getFullYear(); y >= 1920; y--) {
         const opt = document.createElement("option");
         opt.value = y;
         opt.textContent = y;
@@ -202,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // First horse birthdate
+    // First horse
     const pferdTag = document.getElementById("pferd_geburtsdatum_tag");
     if (pferdTag) {
       for (let d = 1; d <= 31; d++) {
@@ -214,8 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const pferdJahr = document.getElementById("pferd_geburtsdatum_jahr");
     if (pferdJahr) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 1980; y--) {
+      for (let y = new Date().getFullYear(); y >= 1980; y--) {
         const opt = document.createElement("option");
         opt.value = y;
         opt.textContent = y;
@@ -223,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Second horse birthdate
+    // Second horse
     const pferd2Tag = document.getElementById("pferd2_geburtsdatum_tag");
     if (pferd2Tag) {
       for (let d = 1; d <= 31; d++) {
@@ -235,8 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const pferd2Jahr = document.getElementById("pferd2_geburtsdatum_jahr");
     if (pferd2Jahr) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear; y >= 1980; y--) {
+      for (let y = new Date().getFullYear(); y >= 1980; y--) {
         const opt = document.createElement("option");
         opt.value = y;
         opt.textContent = y;
@@ -247,13 +239,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fillBirthdayDropdowns();
 
-  // Initialize Language Switcher
   const initializeLanguageSwitcher = () => {
     const langSelector = document.getElementById("language-select");
     if (langSelector) {
       langSelector.value = "en";
       changeLanguage("en");
-
       langSelector.addEventListener("change", (e) => {
         changeLanguage(e.target.value);
       });
@@ -267,11 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (registrationCount >= registrationLimit) {
         toggle.textContent = "Registration closed - Fully booked";
         toggle.disabled = true;
-        toggle.classList.add("registration-closed");
       } else {
         toggle.textContent = "Registration open";
         toggle.disabled = false;
-        toggle.classList.remove("registration-closed");
       }
     });
   };
@@ -303,13 +291,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // HANDLE HORSE COUNT - Show/hide second horse fields
   if (pferdAnzahlRadios.length) {
     pferdAnzahlRadios.forEach((radio) => {
       radio.addEventListener("change", () => {
         const horseCount = radio.value;
-
-        // Hide all horse sections first
         if (pferdDetailsSection) {
           pferdDetailsSection.style.display = "none";
           pferdDetailsSection
@@ -318,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
               field.required = false;
             });
         }
-
         if (secondHorseDetailsSection) {
           secondHorseDetailsSection.style.display = "none";
           secondHorseDetailsSection
@@ -327,8 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
               field.required = false;
             });
         }
-
-        // Show appropriate sections based on count
         if (horseCount === "1" && pferdDetailsSection) {
           pferdDetailsSection.style.display = "block";
         } else if (
@@ -338,8 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ) {
           pferdDetailsSection.style.display = "block";
           secondHorseDetailsSection.style.display = "block";
-
-          // Make fields required when horse count is 2
           pferdDetailsSection
             .querySelectorAll("input:not([type='radio']), select")
             .forEach((field) => {
@@ -353,8 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });
-
-    // Trigger initial state check
     const selectedRadio = document.querySelector(
       'input[name="Pferde_Anzahl"]:checked',
     );
@@ -373,15 +351,15 @@ document.addEventListener("DOMContentLoaded", () => {
         <button type="button" class="remove-participant">Entfernen</button>
       </div>
       <div class="form-group">
-        <input type="text" name="Vorname_${participantCount}" placeholder="Vorname">
-        <input type="text" name="Nachname_${participantCount}" placeholder="Nachname">
+        <input type="text" name="Vorname_${participantCount}" placeholder="Vorname" required />
+        <input type="text" name="Nachname_${participantCount}" placeholder="Nachname" required />
       </div>
       <div class="form-group geburtsdatum-group">
-        <label for="geburtsdatum_tag_${participantCount}">Geburtsdatum</label>
-        <select name="Geburtsdatum_Tag_${participantCount}" id="geburtsdatum_tag_${participantCount}" required>
+        <label>Geburtsdatum:</label>
+        <select name="Geburtsdatum_Tag_${participantCount}" required>
           <option value="">Tag</option>
         </select>
-        <select name="Geburtsdatum_Monat_${participantCount}" id="geburtsdatum_monat_${participantCount}" required>
+        <select name="Geburtsdatum_Monat_${participantCount}" required>
           <option value="">Monat</option>
           <option value="01">Januar</option>
           <option value="02">Februar</option>
@@ -396,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <option value="11">November</option>
           <option value="12">Dezember</option>
         </select>
-        <select name="Geburtsdatum_Jahr_${participantCount}" id="geburtsdatum_jahr_${participantCount}" required>
+        <select name="Geburtsdatum_Jahr_${participantCount}" required>
           <option value="">Jahr</option>
         </select>
       </div>
@@ -409,18 +387,47 @@ document.addEventListener("DOMContentLoaded", () => {
         </select>
       </div>
       <div class="form-group">
-        <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität">
+        <input type="text" name="Nationalität_${participantCount}" placeholder="Nationalität" />
+      </div>
+      <div class="form-group radio-group">
+        <p class="radio-label">Ich bin:</p>
+        <div class="radio-options">
+          <div class="radio-item">
+            <input type="radio" id="left_${participantCount}" name="Händigkeit_${participantCount}" value="Linkshänder" />
+            <label for="left_${participantCount}">Linkshänder</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="right_${participantCount}" name="Händigkeit_${participantCount}" value="Rechtshänder" />
+            <label for="right_${participantCount}">Rechtshänder</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group checkbox-group">
+        <p class="checkbox-label">Kompetitiën:</p>
+        <div class="checkbox-options">
+          <div class="checkbox-item">
+            <input type="checkbox" name="Teilnahme_${participantCount}[]" value="Kassai 17.7.2026" />
+            <label>Kassai 17.7</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" name="Teilnahme_${participantCount}[]" value="Kassai 18.7.2026" />
+            <label>Kassai 18.7</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" name="Teilnahme_${participantCount}[]" value="Five Demons 19.7.2026" />
+            <label>Five Demons</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" name="Teilnahme_${participantCount}[]" value="Beginner 19.7.2026" />
+            <label>Beginner</label>
+          </div>
+        </div>
       </div>
     `;
     weitereTeilnehmerContainer.appendChild(div);
-    div.scrollIntoView({ behavior: "smooth" });
-    div.querySelector(".remove-participant").addEventListener("click", () => {
-      div.remove();
-      participantCount--;
-    });
 
     const daySelect = div.querySelector(
-      `#geburtsdatum_tag_${participantCount}`,
+      `select[name="Geburtsdatum_Tag_${participantCount}"]`,
     );
     if (daySelect) {
       for (let d = 1; d <= 31; d++) {
@@ -432,53 +439,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const yearSelect = div.querySelector(
-      `#geburtsdatum_jahr_${participantCount}`,
+      `select[name="Geburtsdatum_Jahr_${participantCount}"]`,
     );
     if (yearSelect) {
-      const currentYear = new Date().getFullYear();
-      for (let y = currentYear - 5; y >= 1920; y--) {
+      for (let y = new Date().getFullYear(); y >= 1920; y--) {
         const opt = document.createElement("option");
         opt.value = y;
         opt.textContent = y;
         yearSelect.appendChild(opt);
       }
     }
+
+    div.scrollIntoView({ behavior: "smooth" });
+    div.querySelector(".remove-participant").addEventListener("click", () => {
+      div.remove();
+      participantCount--;
+    });
   };
 
   if (addParticipantBtn && weitereTeilnehmerContainer) {
     addParticipantBtn.addEventListener("click", createParticipant);
   }
 
-  if (emailField) {
-    emailField.addEventListener("input", () => {});
-  }
-
-  // RULES MODAL HANDLER
   if (rulesCheckbox) {
     rulesCheckbox.disabled = true;
-
     window.handleRulesClick = function (e) {
       e.preventDefault();
-
       const modal = document.getElementById("rules-modal");
       if (modal) {
         modal.style.display = "flex";
       }
-
       if (rulesCheckbox) {
         rulesCheckbox.disabled = false;
       }
     };
   }
 
-  // FORM SUBMIT HANDLER - STANDARD POST (NO AJAX - MORE RELIABLE)
   if (tournamentForm) {
-    tournamentForm.addEventListener("submit", function (e) {
-      // Combine birthdate parts
+    tournamentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
       const tag = document.getElementById("geburtsdatum_tag")?.value || "";
       const monat = document.getElementById("geburtsdatum_monat")?.value || "";
       const jahr = document.getElementById("geburtsdatum_jahr")?.value || "";
-
       let hidden = document.getElementById("geburtsdatum_hidden");
       if (!hidden) {
         hidden = document.createElement("input");
@@ -491,44 +493,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (registrationCount >= registrationLimit) {
         alert("Sorry, this tournament is fully booked.");
-        e.preventDefault();
-        return false;
+        return;
       }
 
-      // Feedback to user - let form submit normally via FormSubmit
       const submitBtn = tournamentForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = "Sending...";
+
+      const formData = new FormData(tournamentForm);
+      formData.append("_captcha", "false");
+      formData.append("_template", "table");
+
+      try {
+        const response = await fetch(
+          `https://formsubmit.co/ajax/${submitEmail}`,
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+          registrationCount += participantCount;
+          updateRegistrationStatus();
+          alert("Vielen Dank für deine Anmeldung!");
+          tournamentForm.reset();
+          weitereTeilnehmerContainer.innerHTML = "";
+          participantCount = 1;
+          registrationForms.style.display = "none";
+          if (pferdDetailsSection) pferdDetailsSection.style.display = "none";
+          if (secondHorseDetailsSection)
+            secondHorseDetailsSection.style.display = "none";
+        } else {
+          throw new Error("Submission failed");
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        alert("Error: " + error.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
     });
   }
 });
 
-// ==================== LANGUAGE SWITCHER FUNCTION ====================
 function changeLanguage(lang) {
   const t = translations[lang];
 
-  // Update form title
   const formTitle = document.querySelector("#tournament1-form h2");
   if (formTitle) formTitle.textContent = t.title;
 
-  // Update participant section heading
   const mainHeading = document.querySelector(".participant-section h3");
   if (mainHeading) mainHeading.textContent = t.main_participant;
 
-  // Update first name placeholder
   const firstNameInput = document.getElementById("firstname-input");
   if (firstNameInput) firstNameInput.placeholder = t.firstname_placeholder;
 
-  // Update last name placeholder
   const lastNameInput = document.getElementById("lastname-input");
   if (lastNameInput) lastNameInput.placeholder = t.lastname_placeholder;
 
-  // Update birthdate label
   const birthdateLabel = document.getElementById("birthdate-label");
   if (birthdateLabel) birthdateLabel.textContent = t.birthdate_label;
 
-  // Update gender select
   const genderSelect = document.getElementById("gender-select");
   if (genderSelect) {
     genderSelect.options[0].text = t.gender_select_first_option;
@@ -537,24 +571,19 @@ function changeLanguage(lang) {
     genderSelect.options[3].text = t.gender_other;
   }
 
-  // Update nationality placeholder
   const nationalityInput = document.getElementById("nationality-input");
   if (nationalityInput)
     nationalityInput.placeholder = t.nationality_placeholder;
 
-  // Update email placeholder
   const emailInput = document.getElementById("email-input");
   if (emailInput) emailInput.placeholder = t.email_placeholder;
 
-  // Update phone placeholder
   const phoneInput = document.getElementById("phone-input");
   if (phoneInput) phoneInput.placeholder = t.phone_placeholder;
 
-  // Update handedness label
   const handednessLabel = document.getElementById("handedness-label");
   if (handednessLabel) handednessLabel.textContent = t.handedness_label;
 
-  // Update left/right radio labels
   const leftRadio = document.getElementById("left-radio");
   if (leftRadio && leftRadio.labels[0])
     leftRadio.labels[0].textContent = t.left_handed;
@@ -563,12 +592,10 @@ function changeLanguage(lang) {
   if (rightRadio && rightRadio.labels[0])
     rightRadio.labels[0].textContent = t.right_handed;
 
-  // Update participation label
   const participationLabel = document.getElementById("participation-label");
   if (participationLabel)
     participationLabel.textContent = t.participation_label;
 
-  // Update checkbox labels
   const checkboxKassaiDay1 = document.getElementById("checkbox-kassai-day1");
   if (checkboxKassaiDay1)
     checkboxKassaiDay1.textContent = t.checkbox_kassai_day1;
@@ -590,12 +617,10 @@ function changeLanguage(lang) {
   const checkboxChildren = document.getElementById("checkbox-children");
   if (checkboxChildren) checkboxChildren.textContent = t.checkbox_children;
 
-  // Update qualification label
   const qualificationLabel = document.getElementById("qualification-label");
   if (qualificationLabel)
     qualificationLabel.textContent = t.qualification_label;
 
-  // Update yes/no radio labels
   const yesRadio = document.getElementById("yes-radio");
   if (yesRadio && yesRadio.labels[0])
     yesRadio.labels[0].textContent = t.yes_radio;
@@ -603,15 +628,12 @@ function changeLanguage(lang) {
   const noRadio = document.getElementById("no-radio");
   if (noRadio && noRadio.labels[0]) noRadio.labels[0].textContent = t.no_radio;
 
-  // Update arrival label
   const arrivalLabel = document.getElementById("arrival-label");
   if (arrivalLabel) arrivalLabel.textContent = t.arrival_label;
 
-  // Update horses label
   const horsesLabel = document.getElementById("horses-label");
   if (horsesLabel) horsesLabel.textContent = t.horses_label;
 
-  // Update horse number radio labels
   const horseOne = document.getElementById("horse-one");
   if (horseOne && horseOne.labels[0])
     horseOne.labels[0].textContent = t.horse_one;
@@ -624,14 +646,12 @@ function changeLanguage(lang) {
   if (horseNone && horseNone.labels[0])
     horseNone.labels[0].textContent = t.horse_none;
 
-  // Update horse name placeholders (both)
   const horseNameInput = document.getElementById("horse-name-input");
   if (horseNameInput) horseNameInput.placeholder = t.horse_name_placeholder;
 
   const horse2NameInput = document.getElementById("horse2-name-input");
   if (horse2NameInput) horse2NameInput.placeholder = t.second_horse_name;
 
-  // Update horse owner placeholders
   const horseOwner = document.querySelector('input[name="Pferdebesitzer"]');
   if (horseOwner)
     horseOwner.placeholder = t.second_horse_owner.replace(" 2", "");
@@ -639,7 +659,6 @@ function changeLanguage(lang) {
   const horseOwner2 = document.querySelector('input[name="Pferdebesitzer_2"]');
   if (horseOwner2) horseOwner2.placeholder = t.second_horse_owner;
 
-  // Update life number placeholders
   const lifeNumber = document.querySelector('input[name="Lebensnummer"]');
   if (lifeNumber)
     lifeNumber.placeholder = t.second_life_number
@@ -649,7 +668,6 @@ function changeLanguage(lang) {
   const lifeNumber2 = document.querySelector('input[name="Lebensnummer_2"]');
   if (lifeNumber2) lifeNumber2.placeholder = t.second_life_number;
 
-  // Update all month dropdowns
   const monthTranslations = {
     "01": lang === "de" ? "Januar" : lang === "en" ? "January" : "Janvier",
     "02": lang === "de" ? "Februar" : lang === "en" ? "February" : "Février",
@@ -674,15 +692,12 @@ function changeLanguage(lang) {
     });
   });
 
-  // Update horse gender label
   const horseGenderLabel = document.getElementById("horse-gender-label");
   if (horseGenderLabel) horseGenderLabel.textContent = t.horse_gender_label;
 
-  // Update second horse gender label
   const horse2GenderLabel = document.getElementById("horse2-gender-label");
   if (horse2GenderLabel) horse2GenderLabel.textContent = t.horse_gender_label;
 
-  // Update horse gender radio labels
   const mareRadio = document.getElementById("mare-radio");
   if (mareRadio && mareRadio.labels[0])
     mareRadio.labels[0].textContent = t.mare;
@@ -695,7 +710,6 @@ function changeLanguage(lang) {
   if (stallionRadio && stallionRadio.labels[0])
     stallionRadio.labels[0].textContent = t.stallion;
 
-  // Update second horse gender radio labels
   const mare2Radio = document.getElementById("mare2-radio");
   if (mare2Radio && mare2Radio.labels[0])
     mare2Radio.labels[0].textContent = t.mare;
@@ -708,49 +722,39 @@ function changeLanguage(lang) {
   if (stallion2Radio && stallion2Radio.labels[0])
     stallion2Radio.labels[0].textContent = t.stallion;
 
-  // Update horse birthdate label
   const horseBirthdateLabel = document.getElementById("horse-birthdate-label");
   if (horseBirthdateLabel)
     horseBirthdateLabel.textContent = t.horse_birthdate_label;
 
-  // Update second horse birthdate label
   const horse2BirthdateLabel = document.getElementById(
     "horse2-birthdate-label",
   );
   if (horse2BirthdateLabel)
     horse2BirthdateLabel.textContent = t.horse_birthdate_label;
 
-  // Update terms checkbox label
   const checkboxRules = document.getElementById("checkbox-rules");
   if (checkboxRules) checkboxRules.textContent = t.checkbox_rules;
 
-  // Update nophotos checkbox label
   const checkboxNophotos = document.getElementById("checkbox-nophotos");
   if (checkboxNophotos) checkboxNophotos.textContent = t.checkbox_nophotos;
 
-  // Update add participant button
   const addParticipantBtnElement = document.getElementById("addparticipant");
   if (addParticipantBtnElement)
     addParticipantBtnElement.innerHTML = `<i class="fas fa-plus"></i> ${t.add_participant_btn}`;
 
-  // Update rules link text
   const rulesLink = document.getElementById("rules-link-text");
   if (rulesLink) rulesLink.textContent = t.read_rules_link;
 
-  // Update cancel button
   const cancelButton = document.getElementById("cancel-btn");
   if (cancelButton) cancelButton.textContent = t.cancel_btn;
 
-  // Update submit button
   const submitButton = document.getElementById("submit-btn");
   if (submitButton) submitButton.textContent = t.register_btn;
 
-  // Update second horse title
   const secondHorseTitle = document.querySelector("#second_horse_details h3");
   if (secondHorseTitle) secondHorseTitle.textContent = t.second_horse_title;
 }
 
-// ==================== CLOSE MODAL FUNCTION ====================
 function closeRulesModal() {
   const modal = document.getElementById("rules-modal");
   if (modal) {
