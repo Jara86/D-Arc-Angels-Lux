@@ -73,6 +73,22 @@
         max-width: 100% !important;
         height: auto !important;
       }
+      
+      /* ANKOMST DROPDOWN STYLING */
+      .ankunft-group {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      .ankunft-group select {
+        flex: 1;
+        min-width: 80px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
     </style>
 
     <title>Turniere 2026 | Berittenes Bogenschießen | D'Arc Angels Lëtzebuerg</title>
@@ -134,7 +150,8 @@
 
           <div id="tournament1-form" class="tournament-form-container" style="display: none">
             <h2>Anmeldeformular Limpach Open</h2>
-            <form id="tournament-registration" action="https://formsubmit.co/it.darcangels@gmail.com" method="POST" novalidate>
+            <!-- ✅ FORMSUBMIT TOKEN HIER (nieuwe lijn!) -->
+            <form id="tournament-registration" action="https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45" method="POST" novalidate>
               <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯" />
               <input type="hidden" name="Tournament" value="Limpach Open" />
               <input type="hidden" name="_captcha" value="false" />
@@ -247,7 +264,7 @@
                   </div>
                 </div>
 
-                <!-- ANKOMST DATE MET DROPDOWN (in plaats van date picker!) -->
+                <!-- ANKOMST DATE MET DROPDOWN -->
                 <div class="form-group ankunft-group">
                   <label for="ankunft_tag" id="arrival-label">Ankunft:</label>
                   <select id="ankunft_tag" name="Ankunft_Tag" required><option value="">Tag</option></select>
@@ -349,7 +366,7 @@
     <select id="pferd2_geburtsdatum_jahr" name="Pferd2_Geburtsdatum_Jahr"><option value="">Jahr</option></select>
   </div>
 
-  <div class="form-group"><input type="text" name="Lebensnummer_2" placeholder="Lebensnummer (Equidenpass)" /></div>
+  <div class="form-group"><input type="text" name="Lebensnummer_2" placeholder="Levensnummer (Equidenpass)" /></div>
   <div class="form-group"><input type="text" name="Pferdebesitzer_2" placeholder="Pferdebesitzer" /></div>
 </div>
 
