@@ -152,7 +152,7 @@ const translations = {
 
 // Global variables
 const isTestMode = window.location.search.includes("test=true");
-const submitEmail = "darcangelsletzebuerg@gmail.com";
+const submitEmail = "it.darcangels@gmail.com";
 
 document.addEventListener("DOMContentLoaded", () => {
   const registrationToggles = document.querySelectorAll(".registration-toggle");
@@ -471,15 +471,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // FORM SUBMIT HANDLER - AJAX METHOD
+  // FORM SUBMIT HANDLER - STANDARD POST (NO AJAX - MORE RELIABLE)
   if (tournamentForm) {
-    tournamentForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
+    tournamentForm.addEventListener("submit", function (e) {
       // Combine birthdate parts
       const tag = document.getElementById("geburtsdatum_tag")?.value || "";
       const monat = document.getElementById("geburtsdatum_monat")?.value || "";
       const jahr = document.getElementById("geburtsdatum_jahr")?.value || "";
+
       let hidden = document.getElementById("geburtsdatum_hidden");
       if (!hidden) {
         hidden = document.createElement("input");
@@ -492,56 +491,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (registrationCount >= registrationLimit) {
         alert("Sorry, this tournament is fully booked.");
-        return;
+        e.preventDefault();
+        return false;
       }
 
+      // Feedback to user - let form submit normally via FormSubmit
       const submitBtn = tournamentForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = "Sending...";
-
-      const formData = new FormData(tournamentForm);
-      formData.append("_captcha", "false");
-      formData.append("_template", "table");
-
-      try {
-        const response = await fetch(
-          `https://formsubmit.co/ajax/${submitEmail}`,
-          {
-            method: "POST",
-            body: formData,
-          },
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        if (result.success) {
-          registrationCount += participantCount;
-          updateRegistrationStatus();
-          alert("Vielen Dank für deine Anmeldung!");
-          tournamentForm.reset();
-          weitereTeilnehmerContainer.innerHTML = "";
-          participantCount = 1;
-          registrationForms.style.display = "none";
-
-          // Reset horse visibility
-          if (pferdDetailsSection) pferdDetailsSection.style.display = "none";
-          if (secondHorseDetailsSection)
-            secondHorseDetailsSection.style.display = "none";
-        } else {
-          throw new Error("Submission failed");
-        }
-      } catch (error) {
-        console.error("Form submission error:", error);
-        alert("Error: " + error.message + "\nCheck console voor details.");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }
     });
   }
 });
@@ -750,7 +708,7 @@ function changeLanguage(lang) {
   if (stallion2Radio && stallion2Radio.labels[0])
     stallion2Radio.labels[0].textContent = t.stallion;
 
-  // Update horse birthdate label (CORRECTED TYPO)
+  // Update horse birthdate label
   const horseBirthdateLabel = document.getElementById("horse-birthdate-label");
   if (horseBirthdateLabel)
     horseBirthdateLabel.textContent = t.horse_birthdate_label;

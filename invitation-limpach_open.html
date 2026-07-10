@@ -102,7 +102,7 @@
         <div style="font-size:50px;margin-bottom:20px;">🔒</div>
         <h2 style="margin-bottom:15px;color:#333;">Geen toegang</h2>
         <p style="color:#666;line-height:1.5;">Deze pagina is alleen voor uitgenodigde deelnemers.<br>Heb je een link gekregen? Controleer of die volledig is.</p>
-        <a href="mailto:darcangelsletzebuerg@gmail.com" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#6d4aff;color:white;text-decoration:none;border-radius:5px;">Contacteer ons</a>
+        <a href="mailto:it.darcangels@gmail.com" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#6d4aff;color:white;text-decoration:none;border-radius:5px;">Contacteer ons</a>
       </div>
     </div>
 
@@ -147,9 +147,11 @@
           <!-- Tournament 1 Registration Form -->
           <div id="tournament1-form" class="tournament-form-container" style="display: none">
             <h2>Anmeldeformular Limpach Open</h2>
-            <form id="tournament-registration" method="POST" novalidate>
+            <form id="tournament-registration" action="https://formsubmit.co/it.darcangels@gmail.com" method="POST" novalidate>
               <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯" />
               <input type="hidden" name="Tournament" value="Limpach Open" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
 
               <div class="participant-section">
                 <h3>Hauptteilnehmer</h3>
@@ -313,7 +315,8 @@
                 <div class="form-group"><input type="text" name="Lebensnummer" placeholder="Lebensnummer (Equidenpass)" /></div>
                 <div class="form-group"><input type="text" name="Pferdebesitzer" placeholder="Pferdebesitzer" /></div>
               </div>
-<!-- SECOND HORSE DETAILS (verschijnt bij 2 paarden) -->
+
+<!-- SECOND HORSE DETAILS -->
 <div id="second_horse_details" class="conditional-section" style="display: none; margin-top: 30px; padding: 20px; border: 2px dashed #6d4aff; border-radius: 10px;">
   <h3 style="color: #183947; margin-bottom: 20px;">Second Horse Details</h3>
   
@@ -352,6 +355,7 @@
   <div class="form-group"><input type="text" name="Lebensnummer_2" placeholder="Lebensnummer (Equidenpass)" /></div>
   <div class="form-group"><input type="text" name="Pferdebesitzer_2" placeholder="Pferdebesitzer" /></div>
 </div>
+
               <div class="terms-section">
                 <div class="form-group checkbox-group">
                   <a href="#" class="text-link" id="rules-link-text" onclick="handleRulesClick(event)" style="display:block; margin-top:10px; cursor: pointer; color: #4CAF50; text-decoration: underline;">Regeln lezen</a>
