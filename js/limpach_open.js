@@ -761,3 +761,23 @@ function closeRulesModal() {
     modal.style.display = "none";
   }
 }
+// AANKOMST DATUM DROPDOWN VULLEN (31 dagen!)
+const ankunftTag = document.getElementById("ankunft_tag");
+if (ankunftTag) {
+  for (let d = 1; d <= 31; d++) {
+    const opt = document.createElement("option");
+    opt.value = d.toString().padStart(2, "0");
+    opt.textContent = d;
+    ankunftTag.appendChild(opt);
+  }
+}
+
+const ankunftJahr = document.getElementById("ankunft_jahr");
+if (ankunftJahr) {
+  for (let y = 2026; y <= 2027; y++) {
+    const opt = document.createElement("option");
+    opt.value = y;
+    opt.textContent = y;
+    ankunftJahr.appendChild(opt);
+  }
+}
