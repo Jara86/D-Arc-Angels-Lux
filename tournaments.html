@@ -145,6 +145,479 @@
           </div>
         </section>
 
+        <!-- Single Registration Form Section -->
+        <section
+          id="registration-forms"
+          class="registration-section"
+          style="display: none"
+        >
+          <!-- Language Selector -->
+          <div
+            style="
+              text-align: center;
+              margin: 1.5rem 0;
+              padding: 1rem;
+              background: linear-gradient(-20deg, #f0eafb 0%, #fcfced 100%);
+              border-radius: 8px;
+            "
+          >
+            <label for="language-select" style="font-weight: bold"
+              >Sprache / Language / Langue:</label
+            >
+            <select
+              id="language-select"
+              onchange="changeLanguage(this.value)"
+              style="
+                padding: 8px 15px;
+                font-size: 1em;
+                border-radius: 4px;
+                margin-left: 10px;
+                cursor: pointer;
+              "
+            >
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="en" selected>🇬🇧 English</option>
+              <option value="fr">🇫🇷 Français</option>
+            </select>
+          </div>
+
+          <!-- Tournament 1 Registration Form -->
+          <div
+            id="tournament1-form"
+            class="tournament-form-container"
+            style="display: none"
+          >
+            <h2>Anmeldeformular Limpach Open</h2>
+            <form id="tournament-registration" method="POST" novalidate>
+              <input
+                type="hidden"
+                name="_subject"
+                value="Tournament Limpach Open Registration 🎯"
+              />
+              <input type="hidden" name="_cc" value="" />
+              <input type="hidden" name="Tournament" value="Limpach Open" />
+
+              <div class="participant-section">
+                <h3>Hauptteilnehmer</h3>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="firstname-input"
+                    name="Vorname"
+                    placeholder="Vorname"
+                    required
+                    maxlength="100"
+                  />
+                  <input
+                    type="text"
+                    id="lastname-input"
+                    name="Nachname"
+                    placeholder="Nachname"
+                    required
+                    maxlength="100"
+                  />
+                </div>
+
+                <div class="form-group geburtsdatum-group">
+                  <label for="geburtsdatum_tag" id="birthdate-label"
+                    >Geburtsdatum</label
+                  >
+                  <select
+                    id="geburtsdatum_tag"
+                    name="Geburtsdatum_Tag"
+                    required
+                  >
+                    <option value="">Tag</option>
+                  </select>
+                  <select
+                    name="Geburtsdatum_Monat"
+                    id="geburtsdatum_monat"
+                    required
+                  >
+                    <option value="">Monat</option>
+                    <option value="01">Januar</option>
+                    <option value="02">Februar</option>
+                    <option value="03">März</option>
+                    <option value="04">April</option>
+                    <option value="05">Mai</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Dezember</option>
+                  </select>
+                  <select
+                    id="geburtsdatum_jahr"
+                    name="Geburtsdatum_Jahr"
+                    required
+                  >
+                    <option value="">Jahr</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <select name="Geschlecht" id="gender-select" required>
+                    <option value="">Geschlecht</option>
+                    <option value="männlich">Männlich</option>
+                    <option value="weiblich">Weiblich</option>
+                    <option value="divers">Divers</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="nationality-input"
+                    name="Nationalität"
+                    placeholder="Nationalität"
+                    required
+                    maxlength="100"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="email-input"
+                    name="Email"
+                    placeholder="E-Mail"
+                    required
+                    maxlength="250"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    id="phone-input"
+                    name="Telefonnummer"
+                    placeholder="Telefonnummer"
+                    required
+                    maxlength="50"
+                  />
+                </div>
+
+                <div class="form-group radio-group">
+                  <p class="radio-label" id="handedness-label">Ich bin:</p>
+                  <div class="radio-options">
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="left-radio"
+                        name="Händigkeit"
+                        value="Linkshänder"
+                        required
+                      />
+                      <label for="left-radio">Linkshänder</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="right-radio"
+                        name="Händigkeit"
+                        value="Rechtshänder"
+                        required
+                      />
+                      <label for="right-radio">Rechtshänder</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <p class="checkbox-label" id="participation-label">
+                    Ich möchte an folgenden Turnieren mitmachen:
+                  </p>
+                  <div class="checkbox-options">
+                    <div class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        id="ungarisch_day2"
+                        name="Teilnahme[]"
+                        value="Ungarisch nach Kassai Regeln Tag 2"
+                      />
+                      <label for="ungarisch_day2" id="checkbox-hungarian"
+                        >Ungarisch nach Kassai Regeln am 18.7.2026</label
+                      >
+                    </div>
+
+                    <div class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        id="koreanisch"
+                        name="Teilnahme[]"
+                        value="Koreanisch nach IHAA Regeln"
+                      />
+                      <label for="koreanisch" id="checkbox-korean"
+                        >Turnier nach IHAA (Five Demons) am 17.7.2026</label
+                      >
+                    </div>
+
+                    <div class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        id="wheel"
+                        name="Teilnahme[]"
+                        value="Wheel Archery"
+                      />
+                      <label for="wheel" id="checkbox-wheel"
+                        >Wheel Archery am 18.7.2026</label
+                      >
+                    </div>
+                    <div class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        id="beide"
+                        name="Teilnahme[]"
+                        value="Beginner Competition"
+                      />
+                      <label for="beide" id="checkbox-beginner"
+                        >Beginner Competition am 19.7.2026</label
+                      >
+                    </div>
+                    <div class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        id="gast"
+                        name="Teilnahme[]"
+                        value="Children Competition"
+                      />
+                      <label for="gast" id="checkbox-children"
+                        >Kinder Competition am 19.7.2026</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group radio-group">
+                  <p class="radio-label" id="qualification-label">
+                    Ich möchte dass meine Ergebnisse anerkannt werden:
+                  </p>
+                  <div class="radio-options">
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="yes-radio"
+                        name="Qualifikation"
+                        value="Ja"
+                        required
+                      />
+                      <label for="yes-radio">Ja.</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="no-radio"
+                        name="Qualifikation"
+                        value="Nein"
+                        required
+                      />
+                      <label for="no-radio">Nein.</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ankunft" id="arrival-label">Ankunft:</label>
+                  <input
+                    type="date"
+                    id="ankunft"
+                    name="Ankunft"
+                    required
+                    max="2050-12-31"
+                    min="2025-01-01"
+                  />
+                </div>
+              </div>
+
+              <div id="weitere-Teilnehmer"></div>
+
+              <!-- Add participant Button -->
+              <button type="button" id="addparticipant" class="btn-secondary">
+                <i class="fas fa-plus"></i> Weiteren Teilnehmer hinzufügen
+              </button>
+
+              <div class="form-group radio-group">
+                <p class="radio-label" id="horses-label">Pferde Anzahl:</p>
+                <div class="radio-options">
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="horse-one"
+                      name="Pferde_Anzahl"
+                      value="1"
+                    />
+                    <label for="horse-one">1</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="horse-two"
+                      name="Pferde_Anzahl"
+                      value="2"
+                    />
+                    <label for="horse-two">2</label>
+                  </div>
+                  <div class="radio-item">
+                    <input
+                      type="radio"
+                      id="horse-none"
+                      name="Pferde_Anzahl"
+                      value="0"
+                    />
+                    <label for="horse-none">Kein eigenes Pferd</label>
+                  </div>
+                </div>
+              </div>
+
+              <div id="pferd_details" class="conditional-section">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="horse-name-input"
+                    name="Pferdename"
+                    placeholder="Pferdenamen (wie im Pass)"
+                  />
+                </div>
+
+                <div class="form-group radio-group">
+                  <p class="radio-label" id="horse-gender-label">
+                    Pferd Geschlecht:
+                  </p>
+                  <div class="radio-options">
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="mare-radio"
+                        name="Pferd_Geschlecht"
+                        value="Stute"
+                      />
+                      <label for="mare-radio">Stute</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="gelding-radio"
+                        name="Pferd_Geschlecht"
+                        value="Wallach"
+                      />
+                      <label for="gelding-radio">Wallach</label>
+                    </div>
+                    <div class="radio-item">
+                      <input
+                        type="radio"
+                        id="stallion-radio"
+                        name="Pferd_Geschlecht"
+                        value="Hengst"
+                      />
+                      <label for="stallion-radio">Hengst</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group pferd-geburtsdatum-group">
+                  <label for="pferd_geburtsdatum_tag" id="horse-birthdate-label"
+                    >Pferd Geburtsdatum</label
+                  >
+                  <select
+                    id="pferd_geburtsdatum_tag"
+                    name="Pferd_Geburtsdatum_Tag"
+                  >
+                    <option value="">Tag</option>
+                  </select>
+                  <select
+                    name="Pferd_Geburtsdatum_Monat"
+                    id="pferd_geburtsdatum_monat"
+                  >
+                    <option value="">Monat</option>
+                    <option value="01">Januar</option>
+                    <option value="02">Februar</option>
+                    <option value="03">März</option>
+                    <option value="04">April</option>
+                    <option value="05">Mai</option>
+                    <option value="06">Juni</option>
+                    <option value="07">Juli</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">Dezember</option>
+                  </select>
+                  <select
+                    id="pferd_geburtsdatum_jahr"
+                    name="Pferd_Geburtsdatum_Jahr"
+                  >
+                    <option value="">Jahr</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="Lebensnummer"
+                    placeholder="Lebensnummer (Equidenpass)"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <input
+                    type="text"
+                    name="Pferdebesitzer"
+                    placeholder="Pferdebesitzer"
+                  />
+                </div>
+              </div>
+
+              <div class="terms-section">
+    <div class="form-group checkbox-group">
+       
+         <a href="docs/rules.html" 
+           target="_blank" 
+           class="text-link" 
+           id="rules-link-text"
+           onclick="handleRulesClick(event)"
+           style="display:block; margin-top:10px;">Regeln lesen</a>
+           
+        <div class="checkbox-options">
+            <div class="checkbox-item">
+                <input type="checkbox" id="regeln" name="Mitgliedschaftsregeln" value="Regeln akzeptiert" required disabled>
+                <label for="regeln" id="checkbox-rules">
+                    Teilnahme/Mitgliedschaftsregeln und Datenschutzbestimmungen akzeptiert
+                </label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="no_photos" name="NoPhotos" value="Keine Fotos veröffentlichen">
+                <label for="no_photos" id="checkbox-nophotos">
+                    Keine Fotos von mir veröffentlichen
+                </label>
+            </div>
+        </div>
+       
+       
+    </div>
+</div>
+                </div>
+              </div>
+
+              <div class="form-buttons">
+                <button
+                  type="button"
+                  class="btn-secondary close-form"
+                  id="cancel-btn"
+                >
+                  Abbrechen
+                </button>
+                <button
+                  type="submit"
+                  class="btn-primary-Limpach"
+                  id="submit-btn"
+                >
+                  Anmelden
+                </button>
+              </div>
+            </form>
           </div> <p class="checkbox-label" id="terms-label"></p>
         </section>
       </main>
