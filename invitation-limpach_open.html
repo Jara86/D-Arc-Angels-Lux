@@ -58,10 +58,11 @@
       }
       
       .tournament-image {
-        max-width: 100% !important;
+        width: 100% !important;
         height: auto !important;
-        max-height: 400px !important;
+        max-height: none !important;
         object-fit: contain !important;
+        display: block !important;
       }
       
       .hero img {
@@ -72,22 +73,6 @@
       img {
         max-width: 100% !important;
         height: auto !important;
-      }
-      
-      /* ANKOMST DROPDOWN STYLING */
-      .ankunft-group {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      
-      .ankunft-group select {
-        flex: 1;
-        min-width: 80px;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
       }
     </style>
 
@@ -109,7 +94,7 @@
         <div style="font-size:50px;margin-bottom:20px;">🔒</div>
         <h2 style="margin-bottom:15px;color:#333;">Geen toegang</h2>
         <p style="color:#666;line-height:1.5;">Deze pagina is alleen voor uitgenodigde deelnemers.<br>Heb je een link gekregen? Controleer of die volledig is.</p>
-        <a href="mailto:it.darcangels@gmail.com" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#6d4aff;color:white;text-decoration:none;border-radius:5px;">Contacteer ons</a>
+        <a href="mailto:darcangelsletzebuerg@gmail.com" style="display:inline-block;margin-top:15px;padding:10px 20px;background:#6d4aff;color:white;text-decoration:none;border-radius:5px;">Contacteer ons</a>
       </div>
     </div>
 
@@ -123,7 +108,7 @@
     <div class="content-container">
       <main>
         <section class="tournaments-container">
-          
+          <h2>Turniere 2026</h2>
           <div class="tournament-list">
             <div class="tournament-card">
               <h3>Limpach Open</h3>
@@ -150,12 +135,13 @@
 
           <div id="tournament1-form" class="tournament-form-container" style="display: none">
             <h2>Anmeldeformular Limpach Open</h2>
-            <!-- ✅ FORMSUBMIT TOKEN HIER (nieuwe lijn!) -->
-            <form id="tournament-registration" action="https://formsubmit.co/e1ac178ac36d6dc694765e53c76b9a45" method="POST" novalidate>
+            <!-- ✅ NIEUWE EMAIL ADRES -->
+            <form id="tournament-registration" action="https://formsubmit.co/darcangelsletzebuerg@gmail.com" method="POST" novalidate>
               <input type="hidden" name="_subject" value="Tournament Limpach Open Registration 🎯" />
               <input type="hidden" name="Tournament" value="Limpach Open" />
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value="https://darcangels.com/thanks.html" />
 
               <div class="participant-section">
                 <h3>Hauptteilnehmer</h3>
@@ -264,7 +250,6 @@
                   </div>
                 </div>
 
-                <!-- ANKOMST DATE MET DROPDOWN -->
                 <div class="form-group ankunft-group">
                   <label for="ankunft_tag" id="arrival-label">Ankunft:</label>
                   <select id="ankunft_tag" name="Ankunft_Tag" required><option value="">Tag</option></select>
